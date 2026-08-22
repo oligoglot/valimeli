@@ -1,0 +1,22 @@
+{
+  "experiment_metadata": {
+    "language": "mal",
+    "experimental_arm": "A1",
+    "arm_label": "ValiMeli (Phonology-Aware)",
+    "direction": "en-indic",
+    "model_type": "transformer",
+    "num_parameters": 11106894,
+    "epochs": 8,
+    "train_samples": 250000,
+    "test_samples": 12451,
+    "device": "mps"
+  },
+  "metrics": {
+    "validation_loss": 0.1730292289207379,
+    "test_loss": 0.2442171722650528,
+    "exact_match_accuracy": 52.73472010280299,
+    "character_error_rate": 10.255572467983711,
+    "stop_voicing_accuracy": 55.63423645320197,
+    "direction": "en-indic"
+  }
+}
