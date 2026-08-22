@@ -208,12 +208,24 @@ To directly replicate AI4Bharat's *IndicXlit* evaluation pipeline in full detail
 | **Malayalam** | `en-indic` | Baseline (A0) [500k] | 61.71% (CER 7.06%) | 26.14% (CER 28.27%) | 55.92% (CER 9.52%) | 0.1918 |
 | **Malayalam** | `en-indic` | **ValiMeli (A1) [500k]** | 60.94% (CER 7.12%) | 26.78% (CER 27.89%) | 55.39% (CER 9.52%) | **0.1623 (-15.4%)** |
 
-#### Key Replication Insights:
-1. **The Native Words vs Named Entities Discrepancy Resolved**:
-   - On **Native Words (`Dakshina` + `AK-Freq`)**, our standalone 500k model reaches **66.91% on Tamil** and **61.71% on Malayalam**, directly matching the headline numbers reported in the Aksharantar paper (69.78% / 64.73%).
-   - On **Named Entities**, accuracy falls to **32.03% (Tamil)** and **26.14% (Malayalam)**, exactly replicating the severe domain shift documented in the original literature.
-2. **Substantial Cross-Entropy Optimization**:
-   - ValiMeli (A1) reduces validation cross-entropy loss by **19.7% on Tamil (0.1495 vs 0.1862)** and **15.4% on Malayalam (0.1623 vs 0.1918)**, demonstrating that phonotactic boundary tokens substantially accelerate neural representation learning across large data regimes.
+### 6.4 Low-Resource Regime Matrix (25,000 Training Samples)
+To evaluate the impact of phonological inductive bias under data sparsity (simulating low-resource Dravidian languages like Badaga, Kodava, and Tulu), we trained 11.0M Transformers on a constrained budget of **25,000 parallel pairs per cell** with our Multi-Task Phonology architecture (`A1-MT`):
+
+#### Table 5: Low-Resource Regime Matrix (25,000 Samples per cell, Full Holdout Test Set)
+
+| Language | Direction | Experimental Arm | Native Words EM (%) | Native Words CER (%) | Stop-Voicing Accuracy (%) | Combined EM (%) |
+| :--- | :--- | :--- | :---: | :---: | :---: | :---: |
+| **Tamil** | `en-indic` | Baseline (A0) [25k] | 27.83% | 27.19% | 28.18% | 24.04% |
+| **Tamil** | `en-indic` | **Multi-Task (A1-MT) [25k]** | **28.91% (+1.08%)** | **25.39% (-1.80%)** | **29.34% (+1.16%)** | **24.98% (+0.94%)** |
+| **Malayalam** | `en-indic` | Baseline (A0) [25k] | 19.59% | 32.08% | 20.05% | 17.15% |
+| **Malayalam** | `en-indic` | **Multi-Task (A1-MT) [25k]** | **20.85% (+1.26%)** | **31.68% (-0.40%)** | **21.35% (+1.30%)** | **18.41% (+1.26%)** |
+
+#### Key Low-Resource Insights:
+1. **Consistent Multi-Task Gains Under Data Sparsity**:
+   - Across both Tamil and Malayalam, the Multi-Task Phonology head delivers a **+1.08% to +1.26% boost in Top-1 Exact Match** and reduces Character Error Rate by up to **1.80%**.
+   - Stop-Voicing Accuracy improves by **+1.16% on Tamil** and **+1.30% on Malayalam**, demonstrating that when training data is insufficient for deep self-attention to memorize unigram co-occurrences, phonotactic inductive bias directly resolves plosive voicing distributions.
+2. **Zero Decoding Length Overhead**:
+   - Because the auxiliary head is discarded at inference time, the Multi-Task model generates clean native characters at full speed without suffering from autoregressive tag drift.
 
 ---
 

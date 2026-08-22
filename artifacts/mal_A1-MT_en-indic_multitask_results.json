@@ -1,0 +1,41 @@
+{
+  "experiment_metadata": {
+    "language": "mal",
+    "experimental_arm": "A1-MT",
+    "arm_label": "Multi-Task Phonology (Auxiliary Loss)",
+    "direction": "en-indic",
+    "model_type": "transformer_multitask_phonology",
+    "num_parameters": 11105871,
+    "aux_lambda": 0.3,
+    "lm_weight": 0.5,
+    "epochs": 8,
+    "train_samples": 500000,
+    "test_samples": 12451,
+    "device": "mps"
+  },
+  "metrics": {
+    "validation_loss": 0.19734482218821844,
+    "test_loss": 0.2845254652962393,
+    "native_words": {
+      "exact_match_accuracy": 60.43924426968448,
+      "character_error_rate": 7.282249123407937,
+      "stop_voicing_accuracy": 62.95294117647059,
+      "count": 10427,
+      "plosive_count": 8500
+    },
+    "named_entities": {
+      "exact_match_accuracy": 25.889328063241106,
+      "character_error_rate": 28.249209187181958,
+      "stop_voicing_accuracy": 25.080385852090032,
+      "count": 2024,
+      "plosive_count": 1244
+    },
+    "combined": {
+      "exact_match_accuracy": 54.82290579069954,
+      "character_error_rate": 9.712072551660384,
+      "stop_voicing_accuracy": 58.11781609195402,
+      "count": 12451,
+      "plosive_count": 9744
+    }
+  }
+}
