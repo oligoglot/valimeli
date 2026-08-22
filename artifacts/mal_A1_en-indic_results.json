@@ -2,44 +2,19 @@
   "experiment_metadata": {
     "language": "mal",
     "experimental_arm": "A1",
+    "arm_label": "ValiMeli (Phonology-Aware)",
     "direction": "en-indic",
     "epochs": 8,
-    "train_samples": 200000,
+    "train_samples": 250000,
     "test_samples": 12451,
     "device": "mps"
   },
   "metrics": {
-    "validation_loss": 0.7636162092288336,
-    "test_loss": 1.056338018300582,
-    "exact_match_accuracy": 50.381495462211866,
-    "character_error_rate": 10.486679470525887,
+    "validation_loss": 0.7329834848642349,
+    "test_loss": 1.063703870286747,
+    "exact_match_accuracy": 52.15645329692394,
+    "character_error_rate": 10.226883322840544,
+    "stop_voicing_accuracy": 55.34688013136289,
     "direction": "en-indic"
-  },
-  "linguistic_entropy": {
-    "[INIT]": {
-      "n": 1330,
-      "entropy_bits": 0.82,
-      "voiced_ratio": 74.4
-    },
-    "[INTER]": {
-      "n": 2351,
-      "entropy_bits": 0.538,
-      "voiced_ratio": 87.7
-    },
-    "[NASAL]": {
-      "n": 580,
-      "entropy_bits": 0.551,
-      "voiced_ratio": 87.2
-    },
-    "[GEM]": {
-      "n": 4906,
-      "entropy_bits": 0.711,
-      "voiced_ratio": 80.6
-    },
-    "[DEF]": {
-      "n": 1130,
-      "entropy_bits": 0.62,
-      "voiced_ratio": 84.6
-    }
   }
 }

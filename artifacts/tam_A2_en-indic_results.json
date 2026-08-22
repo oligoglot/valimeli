@@ -1,0 +1,20 @@
+{
+  "experiment_metadata": {
+    "language": "tam",
+    "experimental_arm": "A2",
+    "arm_label": "Morphology-Aware (arXiv:2508.08424)",
+    "direction": "en-indic",
+    "epochs": 8,
+    "train_samples": 250000,
+    "test_samples": 11499,
+    "device": "mps"
+  },
+  "metrics": {
+    "validation_loss": 0.5097365490027836,
+    "test_loss": 0.7129612227280935,
+    "exact_match_accuracy": 57.23975997912862,
+    "character_error_rate": 9.606931447437827,
+    "stop_voicing_accuracy": 58.166323281513385,
+    "direction": "en-indic"
+  }
+}
