@@ -2,13 +2,13 @@
 
 **Authors**: Anonymous (Under Peer Review / Pre-print Manuscript)  
 **Target Venue**: ACL / EMNLP / COLING Findings  
-**Keywords**: Machine Transliteration, Tamil, Malayalam, Dravidian Phonology, Phonology-Aware Tokenisation, Stop Allophony, Sequence-to-Sequence
+**Keywords**: Machine Transliteration, Tamil, Malayalam, Dravidian Phonology, Phonology-Aware Tokenisation, Stop Allophony, Orthographic Parsimony, Sequence-to-Sequence, DravidianCodeMix
 
 ---
 
 ## Abstract
 
-Multilingual sequence-to-sequence models for South Asian languages consistently exhibit a pronounced performance deficit on Tamil and Malayalam compared to Indo-Aryan languages as well as other major Dravidian languages (Kannada and Telugu). A prevalent misconception attributes this gap to "orthographic underspecification," alleging that Tamil and Malayalam writing systems fail to distinguish voiced, voiceless, and aspirated stops. We refute this deficit hypothesis by showing that Tamil and native Malayalam orthographies are maximally specified with respect to their native phonology and deterministic phonotactics. When transliteration architectures rely on standard character tokenisers or Devanagari intermediate representations, they discard deterministic phonotactic structure, compelling neural decoders to redundantly infer acoustic voicing distributions through high-entropy statistical fitting.
+Multilingual sequence-to-sequence models for South Asian languages consistently exhibit a pronounced performance deficit on Tamil and Malayalam compared to Indo-Aryan languages as well as other major Dravidian languages (Kannada and Telugu). A prevalent misconception attributes this gap to "orthographic underspecification," alleging that Tamil and Malayalam writing systems fail to distinguish voiced, voiceless, and aspirated stops. We refute this deficit hypothesis by showing that Tamil and native Malayalam orthographies are maximally specified with respect to their native phonology through **principled orthographic and phonemic parsimony**. When transliteration architectures rely on standard character tokenisers or Devanagari intermediate representations, they discard deterministic phonotactic structure, compelling neural decoders to redundantly infer acoustic voicing distributions through high-entropy statistical fitting.
 
 We present **ValiMeli** (*Vallinam* [Hard] + *Mellinam* [Soft]), a deterministic, zero-parameter, phonology-aware tokenisation framework specifically engineered for Tamil and Malayalam transliteration. ValiMeli injects context-sensitive phonological boundary tokens (`[INIT]`, `[GEM]`, `[NASAL]`, `[INTER]`, `[DEF]`) into input grapheme sequences, directly encoding allophonic voicing rules without expanding vocabulary size or sacrificing exact string reversibility. We evaluate ValiMeli in a comprehensive three-arm comparative study against:
 1. **Arm A0**: Standard Character-Level Baseline (IndicXlit / Aksharantar standard)
@@ -19,7 +19,7 @@ Evaluated across the standardised **Aksharantar** benchmark across 3.0 Million t
 
 ---
 
-## 1. Introduction
+## 1. Introduction & Theoretical Framing
 
 Machine transliteration across scripts is essential for named entity recognition, cross-lingual information retrieval, code-mixed text normalisation, and keyboard input methods across multilingual regions (Kunchukuttan et al., 2021; Madhani et al., 2022). In South Asia,[^1] robust phonetic mapping between indigenous scripts and the Roman alphabet is a core prerequisite for digital language technologies.
 
@@ -47,7 +47,13 @@ This discrepancy stems from a specific orthographic-phonological distinction:
 +-------------------+--------------------+--------------------+---------------------+
 ```
 
-### 1.2 Dravidian Stop Allophony
+### 1.2 Orthographic & Phonemic Parsimony (Martinet's Principle of Economy)
+We introduce the concept of **Orthographic Parsimony** to refute the notion of "orthographic underspecification":
+- In phonological theory and the classical *Phonemic Principle* (Swadesh, 1934; Trubetzkoy, 1939), writing systems are designed to encode **contrastive phonemes**, not non-contrastive physical allophones.
+- Because voicing in Tamil and native Malayalam is deterministically conditioned by phonotactic environment (complementary distribution), dedicating separate graphemes to $[k]$ and $[g]$ would represent redundant functional overhead (*Martinet's Principle of Economy*, 1955).
+- Tamil orthography is therefore an **optimal, information-theoretically parsimonious representation**: it encodes the minimal necessary graphemic inventory and delegates phonetic realisation to deterministic phonotactic decoding.
+
+### 1.3 Dravidian Stop Allophony
 In classical Tamil grammatical tradition,[^2] consonants are partitioned into three classes:
 1. **Vallinam (வலி)**: Hard consonants / Plosives ($\{k, c, ʈ, t, p, r\}$ — க, ச, ட, த, ப, ற)
 2. **Mellinam (மெலி)**: Soft consonants / Nasals ($\{\ŋ, ɲ, ɳ, n, m, n̪\}$ — ங, ஞ, ண, ந, ம, ன)
@@ -61,7 +67,7 @@ Voicing in native Dravidian roots is **allophonic and positional**:
 - **Rule 3 (Post-Nasal / Lenis)**: Plosives preceded by a homorganic nasal undergo voicing assimilation (*puṇarcci*) to become **voiced** $[g, d͡ʒ, ɖ, d̪, b]$ (e.g., *தம்பி* $\to$ `tham[b]i`, *பந்து* $\to$ `pan[d̪]u` / `pandhu`).
 - **Rule 4 (Intervocalic / Lenis / Spirantised)**: Singleton plosives bounded by vowels undergo intervocalic lenition, realising as **voiced or fricativised** $[ɣ/h, s/j, ɖ/r, ð, β/v]$ (e.g., *படம்* $\to$ `pa[d]am`, *அழகு* $\to$ `azha[g]u`).
 
-### 1.3 The Devanagari Pivot Failure Mode
+### 1.4 The Devanagari Pivot Failure Mode
 When multilingual architectures pivot through Devanagari, mapping Tamil 'க' to Devanagari 'क' or Tamil 'ப' in *தம்பி* to Devanagari 'प' loses the post-nasal voiced $[b]$ realisation (*thambi*), corrupting multilingual token embeddings.
 
 ---
@@ -184,6 +190,7 @@ Table 2: Full 12-Cell Empirical Benchmark on Aksharantar Holdout Test Sets
 ### 7.1 In-the-Wild Robustness: DravidianCodeMix Benchmark
 A key challenge in practical transliteration is handling **non-deterministic, colloquial Romanisation** on social media (Tanglish / Manglish), where users write variable phonetic spellings (e.g., *padam* vs *padham* vs *paadam*, *thambi* vs *thamby*, *nandri* vs *nanri*).
 - We designate a dedicated follow-up study evaluating on the **DravidianCodeMix YouTube comments dataset** (*Theedhum Nandrum*, Kumar and Lakshmanan, 2020; Chakravarthi et al., 2020) to examine ValiMeli's normalisation capabilities.
+- The dataset provides 44,000+ real-world YouTube review comments in code-mixed Tamil/Malayalam, offering an authentic testbed to evaluate whether phonology-aware transliteration normalisation boosts downstream sentiment classification and information retrieval accuracy.
 
 ### 7.2 Speech-Augmented Transliteration via Wikimedia Commons & Mozilla Common Voice
 To ground representations in physical acoustics, future work will integrate volunteer audio recordings from the **Wikimedia Commons Tamil Pronunciation Corpus** (10,000+ native utterances) and **Mozilla Common Voice**, joint-training acoustic spectrogram features to anchor stop-voicing representations in physical formant transitions ($F_1, F_2$) and Voice Onset Time (VOT).
@@ -192,7 +199,7 @@ To ground representations in physical acoustics, future work will integrate volu
 
 ## 8. Conclusion
 
-Our findings demonstrate that Tamil and native Malayalam orthographies are not underspecified, but phonotactically conditioned. By aligning tokenisation with native phonological structure, ValiMeli provides an explicit inductive bias for Dravidian transliteration, establishing significant performance gains in reverse transliteration and stop-voicing accuracy across millions of samples.
+Our findings demonstrate that Tamil and native Malayalam orthographies are not underspecified, but governed by principled orthographic parsimony. By aligning tokenisation with native phonological structure, ValiMeli provides an explicit inductive bias for Dravidian transliteration, establishing significant performance gains in reverse transliteration and stop-voicing accuracy across millions of samples.
 
 ---
 
@@ -202,7 +209,10 @@ Our findings demonstrate that Tamil and native Malayalam orthographies are not u
 - Kumar, S., & Lakshmanan, S. (2020). *Theedhum Nandrum @ Dravidian-CodeMix-FIRE2020: Sentiment Analysis on Multilingual Dravidian YouTube Comments*. In Working Notes of FIRE 2020 - Forum for Information Retrieval Evaluation, CEUR Workshop Proceedings, vol. 2826, pp. 542–547.
 - Kunchukuttan, A., Kakwani, D., Golla, S., Bhattacharyya, P., Khapra, M. M., & Kumar, P. (2021). *AI4Bharat-IndicXlit: Multilingual Transliteration for Indian Languages*. Transactions of the Association for Computational Linguistics (TACL).
 - Madhani, Y., Seshadri, P., Parikh, T., Kunchukuttan, A., Kumar, P., & Khapra, M. M. (2022). *Aksharantar: Towards Building Open Datasets for Indic Language Transliteration*. In Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing (EMNLP), pp. 11621–11634.
+- Martinet, A. (1955). *Économie des changements phonétiques: Traité de phonologie diachronique*. Francke.
 - Niklas, U. (1988). *Introduction to Tamil Grammatical Theory*. Bulletin de l'École française d'Extrême-Orient (BEFEO), 77(1), 165–188.
 - Ramesh, G., Doddapaneni, S., Bheemambika, A., Kunchukuttan, A., Kumar, P., & Khapra, M. M. (2022). *IndicTrans: Towards High-Quality and Accessible Machine Translation for Indian Languages*. In Proceedings of ACL 2022.
 - Roark, B., Wolf-Sonkin, L., Kirov, C., Gibson, S., Chase, M., & Murphy, N. (2020). *Processing South Asian Languages in the Dakshina Dataset*. In Proceedings of the 12th Language Resources and Evaluation Conference (LREC 2020), pp. 6806–6814.
+- Swadesh, M. (1934). *The Phonemic Principle*. Language, 10(2), 117–129.
 - Tolkāppiyar (c. 300 BCE). *Tolkāppiyam: Eluttatikāram (Phonology and Orthography)*.
+- Trubetzkoy, N. S. (1939). *Grundzüge der Phonologie*. Travaux du Cercle Linguistique de Prague.
