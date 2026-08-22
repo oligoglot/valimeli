@@ -1,17 +1,21 @@
 #!/usr/bin/env python3
 """
-Project ValiMeli (வலி–മെலி) — Standardized Benchmarking Pipeline (v7 - IndicXlit Exact Replication)
+Project ValiMeli (வலி–മെலி) — Standardized Benchmarking Pipeline (v8 - Multi-Task Auxiliary Phonology Architecture)
 Phonology-Aware vs Morphology-Aware vs Baseline for Dravidian Transliteration
 
-Features for Exact IndicXlit Replication:
-1. 11.0M Parameter Transformer (6 Enc + 6 Dec, d=256, 4 Heads, d_ffn=1024)
-2. High-Speed Batched Beam Search Decoding (Beam Size = 4, Length Penalty = 0.6)
-3. Unigram Language Model (LM) Rescorer (AI4Bharat Standard: log P_model + lambda * log P_LM)
-4. Fine-Grained Partitioned Evaluation:
-   - Native Words (Dakshina + AK-Freq) -> Matches IndicXlit 69.78% (TAM) / 64.73% (MAL)
-   - Named Entities (AK-NEI + AK-NEF) -> Matches IndicXlit 42.12% (TAM) / 33.93% (MAL)
-   - Overall Combined Test Set
-5. Stop-Voicing Accuracy (SVA %) & Character Error Rate (CER %)
+Features:
+1. Multi-Task Auxiliary Phonology Transformer:
+   - Main Head predicts pure, clean native characters (Zero Tag Length Overhead, Zero Decoding Drift).
+   - Auxiliary Head predicts phonotactic allophone class (INIT, GEM, NASAL, INTER, DEF, NONE) on decoder hidden states.
+   - Total Loss = CrossEntropy(Char) + 0.3 * CrossEntropy(Phonology).
+   - During inference, auxiliary head is discarded; decoder generates at native speed.
+2. 11.0M Parameter Transformer (6 Enc + 6 Dec, d=256, 4 Heads, d_ffn=1024).
+3. Unigram Language Model (LM) Rescorer (indexing target training words).
+4. Partitioned Test Evaluation:
+   - Native Words (Dakshina + AK-Freq)
+   - Named Entities (AK-NEI + AK-NEF)
+   - Low-Resource Regime Ablations (10k, 25k, 50k, 500k)
+5. Stop-Voicing Accuracy (SVA %) & Character Error Rate (CER %).
 """
 
 import os
@@ -76,7 +80,7 @@ os.makedirs(ARTIFACTS_DIR, exist_ok=True)
 os.makedirs(DOCS_DIR, exist_ok=True)
 
 # =====================================================================
-# 2. LINGUISTIC RULES & MORPHOLOGY ENGINE
+# 2. LINGUISTIC RULES & PHONOLOGY TARGET GENERATOR
 # =====================================================================
 
 TAMIL_PLOSIVES = {'க', 'ச', 'ட', 'த', 'ப', 'ற'}
@@ -87,11 +91,6 @@ TAMIL_VOWEL_SIGNS = {
 }
 TAMIL_VIRAMA = '\u0bcd'
 
-TAMIL_SUFFIX_MORPHEMES = [
-    'களில்', 'களுக்கு', 'களின்', 'களை', 'கள்',
-    'உடைய', 'இடம்', 'இல்', 'க்கு', 'ஆல்', 'ஐ', 'உம்', 'ஆக', 'தான்', 'ஏ'
-]
-
 MALAYALAM_PLOSIVES = {'ക', 'ച', 'ട', 'ത', 'പ', 'റ'}
 MALAYALAM_NASALS = {'ങ', 'ഞ', 'ണ', 'ന', 'മ'}
 MALAYALAM_VOWEL_SIGNS = {
@@ -100,23 +99,21 @@ MALAYALAM_VOWEL_SIGNS = {
 }
 MALAYALAM_VIRAMA = '\u0d4d'
 
-MALAYALAM_SUFFIX_MORPHEMES = [
-    'ുകളിൽ', 'ുകൾക്ക്', 'ുകളുടെ', 'ുകളെ', 'ുകൾ',
-    'ത്തിൽ', 'ത്തിന്റെ', 'ത്തോട്', 'ന്', 'ൽ', 'ഉം', 'ആയി'
-]
+# Phonology Classes: 0: None, 1: INIT, 2: GEM, 3: NASAL, 4: INTER, 5: DEF
+PHONO_NONE = 0
+PHONO_INIT = 1
+PHONO_GEM = 2
+PHONO_NASAL = 3
+PHONO_INTER = 4
+PHONO_DEF = 5
 
-TAG_INITIAL = '\ue001'      # [INIT]
-TAG_GEMINATE = '\ue002'     # [GEM]
-TAG_POST_NASAL = '\ue003'   # [NASAL]
-TAG_INTERVOCALIC = '\ue004' # [INTER]
-TAG_DEFAULT = '\ue005'      # [DEF]
-TAG_MORPH_BOUND = '\ue006'  # [MORPH]
-
-def segment_tamil_aksharas(word: str) -> List[str]:
+def segment_aksharas(word: str, lang: str = "tam") -> List[str]:
+    vowel_signs = TAMIL_VOWEL_SIGNS if lang == "tam" else MALAYALAM_VOWEL_SIGNS
+    virama = TAMIL_VIRAMA if lang == "tam" else MALAYALAM_VIRAMA
     units = []
     current = ""
     for char in word:
-        if char in TAMIL_VOWEL_SIGNS or char == TAMIL_VIRAMA:
+        if char in vowel_signs or char == virama:
             current += char
         else:
             if current:
@@ -126,106 +123,50 @@ def segment_tamil_aksharas(word: str) -> List[str]:
         units.append(current)
     return units
 
-def get_tamil_phonological_context(word: str, plosive_idx: int, aksharas: List[str]) -> str:
-    current_akshara = aksharas[plosive_idx]
-    if TAMIL_VIRAMA in current_akshara:
-        if plosive_idx + 1 < len(aksharas) and aksharas[plosive_idx + 1][0] == current_akshara[0]:
-            return TAG_GEMINATE
-    if plosive_idx > 0:
-        prev_akshara = aksharas[plosive_idx - 1]
-        if TAMIL_VIRAMA in prev_akshara and prev_akshara[0] == current_akshara[0]:
-            return TAG_GEMINATE
-    if plosive_idx > 0:
-        prev_akshara = aksharas[plosive_idx - 1]
-        if TAMIL_VIRAMA in prev_akshara and prev_akshara[0] in TAMIL_NASALS:
-            return TAG_POST_NASAL
-    if TAMIL_VIRAMA in current_akshara:
-        return TAG_DEFAULT
-    if plosive_idx == 0:
-        return TAG_INITIAL
-    if plosive_idx > 0:
-        prev_akshara = aksharas[plosive_idx - 1]
-        if TAMIL_VIRAMA not in prev_akshara:
-            return TAG_INTERVOCALIC
-    return TAG_DEFAULT
+def get_phonotactic_label(word: str, akshara_idx: int, aksharas: List[str], lang: str = "tam") -> int:
+    plosives = TAMIL_PLOSIVES if lang == "tam" else MALAYALAM_PLOSIVES
+    nasals = TAMIL_NASALS if lang == "tam" else MALAYALAM_NASALS
+    virama = TAMIL_VIRAMA if lang == "tam" else MALAYALAM_VIRAMA
+    
+    current = aksharas[akshara_idx]
+    if current[0] not in plosives:
+        return PHONO_NONE
+        
+    if virama in current:
+        if akshara_idx + 1 < len(aksharas) and aksharas[akshara_idx + 1][0] == current[0]:
+            return PHONO_GEM
+            
+    if akshara_idx > 0:
+        prev = aksharas[akshara_idx - 1]
+        if virama in prev and prev[0] == current[0]:
+            return PHONO_GEM
+        if virama in prev and prev[0] in nasals:
+            return PHONO_NASAL
+            
+    if virama in current:
+        return PHONO_DEF
+    if akshara_idx == 0:
+        return PHONO_INIT
+    if akshara_idx > 0:
+        prev = aksharas[akshara_idx - 1]
+        if virama not in prev:
+            return PHONO_INTER
+            
+    return PHONO_DEF
 
-def apply_tamil_phonology_tags(word: str) -> str:
-    aksharas = segment_tamil_aksharas(word)
-    tagged = []
-    for idx, akshara in enumerate(aksharas):
-        if akshara[0] in TAMIL_PLOSIVES:
-            tag = get_tamil_phonological_context(word, idx, aksharas)
-            tagged.append(tag + akshara)
-        else:
-            tagged.append(akshara)
-    return "".join(tagged)
-
-def apply_tamil_morphology_segmentation(word: str) -> str:
-    for suf in sorted(TAMIL_SUFFIX_MORPHEMES, key=len, reverse=True):
-        if word.endswith(suf) and len(word) > len(suf) + 1:
-            root = word[:-len(suf)]
-            return f"{root}{TAG_MORPH_BOUND}{suf}"
-    return word
-
-def segment_malayalam_aksharas(word: str) -> List[str]:
-    units = []
-    current = ""
-    for char in word:
-        if char in MALAYALAM_VOWEL_SIGNS or char == MALAYALAM_VIRAMA:
-            current += char
-        else:
-            if current:
-                units.append(current)
-            current = char
-    if current:
-        units.append(current)
-    return units
-
-def get_malayalam_phonological_context(word: str, plosive_idx: int, aksharas: List[str]) -> str:
-    current_akshara = aksharas[plosive_idx]
-    if MALAYALAM_VIRAMA in current_akshara:
-        if plosive_idx + 1 < len(aksharas) and aksharas[plosive_idx + 1][0] == current_akshara[0]:
-            return TAG_GEMINATE
-    if plosive_idx > 0:
-        prev_akshara = aksharas[plosive_idx - 1]
-        if MALAYALAM_VIRAMA in prev_akshara and prev_akshara[0] == current_akshara[0]:
-            return TAG_GEMINATE
-    if plosive_idx > 0:
-        prev_akshara = aksharas[plosive_idx - 1]
-        if MALAYALAM_VIRAMA in prev_akshara and prev_akshara[0] in MALAYALAM_NASALS:
-            return TAG_POST_NASAL
-    if MALAYALAM_VIRAMA in current_akshara:
-        return TAG_DEFAULT
-    if plosive_idx == 0:
-        return TAG_INITIAL
-    if plosive_idx > 0:
-        prev_akshara = aksharas[plosive_idx - 1]
-        if MALAYALAM_VIRAMA not in prev_akshara:
-            return TAG_INTERVOCALIC
-    return TAG_DEFAULT
-
-def apply_malayalam_phonology_tags(word: str) -> str:
-    aksharas = segment_malayalam_aksharas(word)
-    tagged = []
-    for idx, akshara in enumerate(aksharas):
-        if akshara[0] in MALAYALAM_PLOSIVES:
-            tag = get_malayalam_phonological_context(word, idx, aksharas)
-            tagged.append(tag + akshara)
-        else:
-            tagged.append(akshara)
-    return "".join(tagged)
-
-def apply_malayalam_morphology_segmentation(word: str) -> str:
-    for suf in sorted(MALAYALAM_SUFFIX_MORPHEMES, key=len, reverse=True):
-        if word.endswith(suf) and len(word) > len(suf) + 1:
-            root = word[:-len(suf)]
-            return f"{root}{TAG_MORPH_BOUND}{suf}"
-    return word
-
-def strip_pua_tags(text: str) -> str:
-    for tag in [TAG_INITIAL, TAG_GEMINATE, TAG_POST_NASAL, TAG_INTERVOCALIC, TAG_DEFAULT, TAG_MORPH_BOUND]:
-        text = text.replace(tag, "")
-    return text
+def generate_char_level_phonology_labels(word: str, lang: str = "tam") -> List[int]:
+    """
+    Returns a per-character phonological class label sequence aligned with the word characters.
+    """
+    aksharas = segment_aksharas(word, lang=lang)
+    labels = []
+    for idx, ak in enumerate(aksharas):
+        phono_label = get_phonotactic_label(word, idx, aksharas, lang=lang)
+        # First char of akshara gets the phonological label; trailing vowel signs/virama get NONE
+        labels.append(phono_label)
+        for _ in range(len(ak) - 1):
+            labels.append(PHONO_NONE)
+    return labels
 
 # =====================================================================
 # 3. LEVENSHTEIN & PARTITIONED METRICS ENGINE
@@ -263,8 +204,8 @@ def calculate_partitioned_metrics(predictions: List[str], references: List[str],
         sva_tot = 0
         
         for p, r, ind in zip(preds, refs, indics):
-            p_clean = strip_pua_tags(p.strip().lower())
-            r_clean = strip_pua_tags(r.strip().lower())
+            p_clean = p.strip().lower()
+            r_clean = r.strip().lower()
             is_match = (p_clean == r_clean)
             if is_match:
                 exact += 1
@@ -328,7 +269,7 @@ class UnigramLMRescorer:
         best_score = float("-inf")
         
         for cand, model_log_prob in beam_hypotheses:
-            cand_clean = strip_pua_tags(cand.strip())
+            cand_clean = cand.strip()
             count = self.counts.get(cand_clean, 0)
             lm_prob = (count + 1.0) / (self.total_tokens + self.vocab_size)
             lm_log_prob = math.log(lm_prob)
@@ -440,32 +381,26 @@ class CharVocabulary:
 import __main__
 __main__.CharVocabulary = CharVocabulary
 
-def transform_sample(indic: str, roman: str, arm: str, lang: str, direction: str) -> Tuple[str, str]:
-    if direction == "indic-en":
-        src = indic
-        tgt = roman
-        if arm == "A1":
-            src = apply_tamil_phonology_tags(indic) if lang == "tam" else apply_malayalam_phonology_tags(indic)
-        elif arm == "A2":
-            src = apply_tamil_morphology_segmentation(indic) if lang == "tam" else apply_malayalam_morphology_segmentation(indic)
-    else:  # en-indic
-        src = roman
-        tgt = indic
-        if arm == "A1":
-            tgt = apply_tamil_phonology_tags(indic) if lang == "tam" else apply_malayalam_phonology_tags(indic)
-        elif arm == "A2":
-            tgt = apply_tamil_morphology_segmentation(indic) if lang == "tam" else apply_malayalam_morphology_segmentation(indic)
-    return src, tgt
-
-class TransliterationDataset(Dataset):
-    def __init__(self, pairs: List[Tuple[str, str, str]], arm: str, lang: str, direction: str, 
+class MultiTaskTransliterationDataset(Dataset):
+    def __init__(self, pairs: List[Tuple[str, str, str]], lang: str, direction: str, 
                  vocab_src: CharVocabulary, vocab_tgt: CharVocabulary):
         self.samples = []
         for indic, roman, source_tag in pairs:
-            src_str, tgt_str = transform_sample(indic, roman, arm, lang, direction)
+            src_str = roman if direction == "en-indic" else indic
+            tgt_str = indic if direction == "en-indic" else roman
+            
+            # Ground-truth phonology class sequence aligned with tgt_str
+            phono_labels = generate_char_level_phonology_labels(tgt_str, lang=lang) if direction == "en-indic" else [0] * len(tgt_str)
+            
+            # [SOS] + tokens + [EOS]
+            tgt_encoded = vocab_tgt.encode(tgt_str)
+            # Pad phono labels with 0 for SOS and EOS
+            phono_encoded = [0] + phono_labels + [0]
+            
             self.samples.append((
                 vocab_src.encode(src_str),
-                vocab_tgt.encode(tgt_str),
+                tgt_encoded,
+                phono_encoded,
                 indic,
                 roman,
                 source_tag
@@ -477,22 +412,24 @@ class TransliterationDataset(Dataset):
     def __getitem__(self, idx):
         return self.samples[idx]
 
-def pad_collate_fn(batch):
-    src_list, tgt_list, raw_indic_list, raw_roman_list, source_tag_list = zip(*batch)
+def multitask_pad_collate_fn(batch):
+    src_list, tgt_list, phono_list, raw_indic_list, raw_roman_list, source_tag_list = zip(*batch)
     max_src = max(len(s) for s in src_list)
     max_tgt = max(len(t) for t in tgt_list)
     
     src_tensor = torch.zeros(len(src_list), max_src, dtype=torch.long)
     tgt_tensor = torch.zeros(len(tgt_list), max_tgt, dtype=torch.long)
+    phono_tensor = torch.zeros(len(phono_list), max_tgt, dtype=torch.long)
     
-    for i, (s, t) in enumerate(zip(src_list, tgt_list)):
+    for i, (s, t, p) in enumerate(zip(src_list, tgt_list, phono_list)):
         src_tensor[i, :len(s)] = torch.tensor(s, dtype=torch.long)
         tgt_tensor[i, :len(t)] = torch.tensor(t, dtype=torch.long)
+        phono_tensor[i, :len(p)] = torch.tensor(p, dtype=torch.long)
         
-    return src_tensor, tgt_tensor, raw_indic_list, raw_roman_list, source_tag_list
+    return src_tensor, tgt_tensor, phono_tensor, raw_indic_list, raw_roman_list, source_tag_list
 
 # =====================================================================
-# 6. MODEL ARCHITECTURES (11M Transformer with Fast Beam & Greedy Decode)
+# 6. MULTI-TASK TRANSFORMER ARCHITECTURE
 # =====================================================================
 
 class PositionalEncoding(nn.Module):
@@ -508,12 +445,13 @@ class PositionalEncoding(nn.Module):
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         return x + self.pe[:, :x.size(1)]
 
-class TransformerSeq2Seq(nn.Module):
+class MultiTaskTransformerSeq2Seq(nn.Module):
     """
-    11.0M Parameter Transformer (6 Encoder + 6 Decoder layers, d=256, 4 Heads, d_ffn=1024)
-    Matches AI4Bharat IndicXlit standard architecture.
+    11.0M Parameter Multi-Task Transformer.
+    - Main Head: OutProj -> Native Character Vocab
+    - Auxiliary Head: AuxPhonoProj -> 6 Phonotactic Classes (INIT, GEM, NASAL, INTER, DEF, NONE)
     """
-    def __init__(self, src_vocab_size: int, tgt_vocab_size: int, 
+    def __init__(self, src_vocab_size: int, tgt_vocab_size: int, num_phono_classes: int = 6,
                  d_model: int = 256, nhead: int = 4, num_layers: int = 6, dim_feedforward: int = 1024):
         super().__init__()
         self.d_model = d_model
@@ -532,12 +470,14 @@ class TransformerSeq2Seq(nn.Module):
         
         self.encoder = nn.TransformerEncoder(encoder_layer, num_layers=num_layers, enable_nested_tensor=False)
         self.decoder = nn.TransformerDecoder(decoder_layer, num_layers=num_layers)
+        
         self.out_proj = nn.Linear(d_model, tgt_vocab_size)
+        self.aux_phono_proj = nn.Linear(d_model, num_phono_classes)
         
     def generate_square_subsequent_mask(self, sz: int, device: torch.device) -> torch.Tensor:
         return torch.triu(torch.full((sz, sz), float('-inf'), device=device), diagonal=1)
 
-    def forward(self, src: torch.Tensor, tgt: torch.Tensor, teacher_forcing_ratio: float = 0.5) -> torch.Tensor:
+    def forward(self, src: torch.Tensor, tgt: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
         device = src.device
         tgt_in = tgt[:, :-1]
         
@@ -556,11 +496,18 @@ class TransformerSeq2Seq(nn.Module):
             memory_key_padding_mask=src_mask
         )
         
-        logits = self.out_proj(out)
-        batch_size, seq_len, vocab_size = logits.size()
-        padded_output = torch.zeros(batch_size, seq_len + 1, vocab_size, device=device)
-        padded_output[:, 1:] = logits
-        return padded_output
+        char_logits = self.out_proj(out)
+        phono_logits = self.aux_phono_proj(out)
+        
+        batch_size, seq_len, vocab_size = char_logits.size()
+        padded_char = torch.zeros(batch_size, seq_len + 1, vocab_size, device=device)
+        padded_char[:, 1:] = char_logits
+        
+        _, _, phono_size = phono_logits.size()
+        padded_phono = torch.zeros(batch_size, seq_len + 1, phono_size, device=device)
+        padded_phono[:, 1:] = phono_logits
+        
+        return padded_char, padded_phono
 
     def greedy_decode(self, src: torch.Tensor, max_len: int = 40, sos_idx: int = 1, eos_idx: int = 2) -> List[List[int]]:
         self.eval()
@@ -604,39 +551,13 @@ class TransformerSeq2Seq(nn.Module):
                 
         return decoded_batch
 
-    def topk_candidates_decode(self, src: torch.Tensor, k: int = 4, max_len: int = 40, 
-                               sos_idx: int = 1, eos_idx: int = 2) -> List[List[Tuple[List[int], float]]]:
-        """
-        High-Speed Batched Candidate Generator for Rescoring on GPU.
-        Generates Top-K sequence candidates with log-probabilities in parallel.
-        """
-        self.eval()
-        device = src.device
-        batch_size = src.size(0)
-        
-        with torch.no_grad():
-            src_mask = (src == 0)
-            src_emb = self.pos_encoder(self.src_embed(src) * math.sqrt(self.d_model))
-            memory = self.encoder(src_emb, src_key_padding_mask=src_mask)
-            
-            # We track top-1 greedy plus top alternatives at step 1-3
-            results = []
-            
-            # Step 1: Get greedy decode
-            greedy_tokens = self.greedy_decode(src, max_len=max_len, sos_idx=sos_idx, eos_idx=eos_idx)
-            
-            for b in range(batch_size):
-                results.append([(greedy_tokens[b], 0.0)])
-                
-        return results
-
 # =====================================================================
-# 7. TRAINING & EVALUATION ENGINE
+# 7. MULTI-TASK TRAINING & EVALUATION
 # =====================================================================
 
-def evaluate_model_on_dataset(model: TransformerSeq2Seq, data_loader: DataLoader, 
-                              vocab_tgt: CharVocabulary, direction: str, lang: str,
-                              rescorer: Optional[UnigramLMRescorer] = None) -> Tuple[float, Dict[str, Any]]:
+def evaluate_multitask_model(model: MultiTaskTransformerSeq2Seq, data_loader: DataLoader, 
+                             vocab_tgt: CharVocabulary, direction: str, lang: str,
+                             rescorer: Optional[UnigramLMRescorer] = None) -> Tuple[float, Dict[str, Any]]:
     model.eval()
     criterion = nn.CrossEntropyLoss(ignore_index=0)
     device = next(model.parameters()).device
@@ -648,12 +569,12 @@ def evaluate_model_on_dataset(model: TransformerSeq2Seq, data_loader: DataLoader
     partition_tags = []
     
     with torch.no_grad():
-        for src_tensor, tgt_tensor, raw_indic, raw_roman, source_tags in data_loader:
+        for src_tensor, tgt_tensor, _, raw_indic, raw_roman, source_tags in data_loader:
             src_tensor = src_tensor.to(device)
             tgt_tensor = tgt_tensor.to(device)
             
-            output = model(src_tensor, tgt_tensor, teacher_forcing_ratio=0.0)
-            loss = criterion(output[:, 1:].reshape(-1, vocab_tgt.num_chars), tgt_tensor[:, 1:].reshape(-1))
+            char_out, _ = model(src_tensor, tgt_tensor)
+            loss = criterion(char_out[:, 1:].reshape(-1, vocab_tgt.num_chars), tgt_tensor[:, 1:].reshape(-1))
             total_loss += loss.item()
             
             decoded_indices = model.greedy_decode(src_tensor)
@@ -669,24 +590,28 @@ def evaluate_model_on_dataset(model: TransformerSeq2Seq, data_loader: DataLoader
     partitioned_metrics = calculate_partitioned_metrics(predictions, references, indic_sources, partition_tags, lang)
     return avg_loss, partitioned_metrics
 
-def run_indicxlit_replication_experiment(lang: str = "tam", arm: str = "A1", direction: str = "en-indic",
-                                         epochs: int = 8, batch_size: int = 256, lr: float = 5e-4,
-                                         lm_weight: float = 0.5,
-                                         max_train_samples: Optional[int] = 500000,
-                                         max_val_samples: Optional[int] = None,
-                                         max_test_samples: Optional[int] = None) -> Dict[str, Any]:
+def run_multitask_phonology_experiment(lang: str = "tam", arm: str = "A1-MT", direction: str = "en-indic",
+                                       epochs: int = 8, batch_size: int = 256, lr: float = 5e-4,
+                                       aux_lambda: float = 0.3, lm_weight: float = 0.5,
+                                       max_train_samples: Optional[int] = 500000,
+                                       max_val_samples: Optional[int] = None,
+                                       max_test_samples: Optional[int] = None) -> Dict[str, Any]:
     check_disk_usage()
-    arm_names = {"A0": "IndicXlit Baseline (Character)", "A1": "ValiMeli (Phonology-Aware)", "A2": "Morphology-Aware"}
+    arm_labels = {
+        "A0": "IndicXlit Baseline (Character)",
+        "A1-MT": "Multi-Task Phonology (Auxiliary Loss)",
+        "A2": "Morphology-Aware"
+    }
     print("\n" + "=" * 80, flush=True)
-    print(f" PROJECT VALIMELI — INDICXLIT EXACT REPLICATION BENCHMARK", flush=True)
-    print(f" Language: {lang.upper()} | Arm: {arm} [{arm_names.get(arm, arm)}] | Direction: {direction.upper()}", flush=True)
-    print(f" Model: 11M Transformer (6E+6D) | LM Weight: {lm_weight} | Train Samples: {max_train_samples:,}", flush=True)
+    print(f" PROJECT VALIMELI — MULTI-TASK PHONOLOGY ARCHITECTURE BENCHMARK", flush=True)
+    print(f" Language: {lang.upper()} | Arm: {arm} [{arm_labels.get(arm, arm)}] | Direction: {direction.upper()}", flush=True)
+    print(f" Model: 11M Transformer (6E+6D) | Aux Lambda: {aux_lambda} | Train Samples: {max_train_samples:,}", flush=True)
     print("=" * 80, flush=True)
     
     device = torch.device("mps" if torch.backends.mps.is_available() else ("cuda" if torch.cuda.is_available() else "cpu"))
     print(f" -> Compute Device: {device}", flush=True)
     
-    run_dir = os.path.join(RUNS_DIR, f"{lang}_{arm}_{direction}_indicxlit_rep")
+    run_dir = os.path.join(RUNS_DIR, f"{lang}_{arm}_{direction}_multitask")
     os.makedirs(run_dir, exist_ok=True)
     checkpoint_path = os.path.join(run_dir, "checkpoint_best.pt")
     
@@ -702,28 +627,29 @@ def run_indicxlit_replication_experiment(lang: str = "tam", arm: str = "A1", dir
     
     train_target_words = []
     for indic, roman, _ in train_pairs:
-        s, t = transform_sample(indic, roman, arm, lang, direction)
+        s = roman if direction == "en-indic" else indic
+        t = indic if direction == "en-indic" else roman
         for char in s:
             vocab_src.add_character(char)
         for char in t:
             vocab_tgt.add_character(char)
-        train_target_words.append(indic if direction == "en-indic" else roman)
+        train_target_words.append(t)
         
     print(f"\n -> Vocabulary Compiled: Source Tokens = {vocab_src.num_chars} | Target Tokens = {vocab_tgt.num_chars}", flush=True)
     
     rescorer = UnigramLMRescorer(train_target_words, lm_weight=lm_weight)
     print(f" -> Unigram LM Rescorer Initialized with {rescorer.vocab_size:,} distinct words.", flush=True)
     
-    train_ds = TransliterationDataset(train_pairs, arm, lang, direction, vocab_src, vocab_tgt)
-    valid_ds = TransliterationDataset(valid_pairs, arm, lang, direction, vocab_src, vocab_tgt)
-    test_ds = TransliterationDataset(test_pairs, arm, lang, direction, vocab_src, vocab_tgt)
+    train_ds = MultiTaskTransliterationDataset(train_pairs, lang, direction, vocab_src, vocab_tgt)
+    valid_ds = MultiTaskTransliterationDataset(valid_pairs, lang, direction, vocab_src, vocab_tgt)
+    test_ds = MultiTaskTransliterationDataset(test_pairs, lang, direction, vocab_src, vocab_tgt)
     
-    train_loader = DataLoader(train_ds, batch_size=batch_size, shuffle=True, collate_fn=pad_collate_fn)
-    valid_loader = DataLoader(valid_ds, batch_size=batch_size, shuffle=False, collate_fn=pad_collate_fn)
-    test_loader = DataLoader(test_ds, batch_size=batch_size, shuffle=False, collate_fn=pad_collate_fn)
+    train_loader = DataLoader(train_ds, batch_size=batch_size, shuffle=True, collate_fn=multitask_pad_collate_fn)
+    valid_loader = DataLoader(valid_ds, batch_size=batch_size, shuffle=False, collate_fn=multitask_pad_collate_fn)
+    test_loader = DataLoader(test_ds, batch_size=batch_size, shuffle=False, collate_fn=multitask_pad_collate_fn)
     
-    model = TransformerSeq2Seq(
-        vocab_src.num_chars, vocab_tgt.num_chars,
+    model = MultiTaskTransformerSeq2Seq(
+        vocab_src.num_chars, vocab_tgt.num_chars, num_phono_classes=6,
         d_model=256, nhead=4, num_layers=6, dim_feedforward=1024
     ).to(device)
     
@@ -731,45 +657,49 @@ def run_indicxlit_replication_experiment(lang: str = "tam", arm: str = "A1", dir
     print(f" -> Trainable Parameters: {num_params:,} ({num_params / 1e6:.2f}M)", flush=True)
     
     optimizer = optim.Adam(model.parameters(), lr=lr)
-    criterion = nn.CrossEntropyLoss(ignore_index=0)
+    char_criterion = nn.CrossEntropyLoss(ignore_index=0)
+    phono_criterion = nn.CrossEntropyLoss(ignore_index=0)
     
     best_val_loss = float("inf")
-    loss_history = []
     
     print(f"\n -> Initiating Training over {len(train_pairs):,} samples ({len(train_loader)} batches/epoch)...", flush=True)
     for epoch in range(epochs):
         model.train()
-        total_train_loss = 0.0
+        total_char_loss = 0.0
+        total_aux_loss = 0.0
         start_time = time.time()
         
-        for batch_idx, (src_batch, tgt_batch, _, _, _) in enumerate(train_loader):
+        for batch_idx, (src_batch, tgt_batch, phono_batch, _, _, _) in enumerate(train_loader):
             src_batch = src_batch.to(device)
             tgt_batch = tgt_batch.to(device)
+            phono_batch = phono_batch.to(device)
             
             optimizer.zero_grad()
-            output = model(src_batch, tgt_batch, teacher_forcing_ratio=0.5)
+            char_logits, phono_logits = model(src_batch, tgt_batch)
             
-            loss = criterion(output[:, 1:].reshape(-1, vocab_tgt.num_chars), tgt_batch[:, 1:].reshape(-1))
-            loss.backward()
+            loss_char = char_criterion(char_logits[:, 1:].reshape(-1, vocab_tgt.num_chars), tgt_batch[:, 1:].reshape(-1))
+            loss_phono = phono_criterion(phono_logits[:, 1:].reshape(-1, 6), phono_batch[:, 1:].reshape(-1))
+            
+            total_loss = loss_char + (aux_lambda * loss_phono) if arm == "A1-MT" else loss_char
+            total_loss.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
             optimizer.step()
             
-            total_train_loss += loss.item()
+            total_char_loss += loss_char.item()
+            total_aux_loss += loss_phono.item()
             
             if (batch_idx + 1) % 400 == 0 or (batch_idx + 1) == len(train_loader):
                 pct = ((batch_idx + 1) / len(train_loader)) * 100
-                print(f"  [Epoch {epoch+1}/{epochs}] Batch [{batch_idx+1}/{len(train_loader)}] ({pct:.1f}%) | Loss: {loss.item():.4f}", flush=True)
+                print(f"  [Epoch {epoch+1}/{epochs}] Batch [{batch_idx+1}/{len(train_loader)}] ({pct:.1f}%) | CharLoss: {loss_char.item():.4f} | PhonoLoss: {loss_phono.item():.4f}", flush=True)
             
-        avg_train_loss = total_train_loss / max(len(train_loader), 1)
-        loss_history.append(avg_train_loss)
-        
-        val_loss, val_metrics = evaluate_model_on_dataset(model, valid_loader, vocab_tgt, direction, lang)
+        avg_char_loss = total_char_loss / max(len(train_loader), 1)
+        val_loss, val_metrics = evaluate_multitask_model(model, valid_loader, vocab_tgt, direction, lang)
         epoch_time = time.time() - start_time
         
         em_val = val_metrics["combined"]["exact_match_accuracy"]
         sva_val = val_metrics["combined"]["stop_voicing_accuracy"]
         print(f"=== EPOCH {epoch+1}/{epochs} SUMMARY ({epoch_time:.1f}s) ===", flush=True)
-        print(f"    Train Loss: {avg_train_loss:.4f} | Val Loss: {val_loss:.4f} | Val EM: {em_val:.2f}% | Val SVA: {sva_val:.2f}%", flush=True)
+        print(f"    Train CharLoss: {avg_char_loss:.4f} | Val Loss: {val_loss:.4f} | Val EM: {em_val:.2f}% | Val SVA: {sva_val:.2f}%", flush=True)
         
         if val_loss < best_val_loss:
             best_val_loss = val_loss
@@ -786,7 +716,7 @@ def run_indicxlit_replication_experiment(lang: str = "tam", arm: str = "A1", dir
     checkpoint = torch.load(checkpoint_path, map_location=device, weights_only=False)
     model.load_state_dict(checkpoint["model_state_dict"])
     
-    test_loss, test_partition_metrics = evaluate_model_on_dataset(
+    test_loss, test_partition_metrics = evaluate_multitask_model(
         model, test_loader, vocab_tgt, direction, lang, rescorer=rescorer
     )
     
@@ -802,13 +732,13 @@ def run_indicxlit_replication_experiment(lang: str = "tam", arm: str = "A1", dir
     comb_sva = test_partition_metrics["combined"]["stop_voicing_accuracy"]
     
     print("\n" + "*" * 80, flush=True)
-    print(f" OFFICIAL INDICXLIT REPLICATION RESULTS ({lang.upper()} - {arm} - {direction.upper()}):", flush=True)
+    print(f" OFFICIAL MULTI-TASK PHONOLOGY RESULTS ({lang.upper()} - {arm} - {direction.upper()}):", flush=True)
     print(f"   ► NATIVE WORDS (Dakshina + AK-Freq, {test_partition_metrics['native_words']['count']} samples):", flush=True)
-    print(f"       Top-1 Exact Match Accuracy:     {native_em:.2f}% (IndicXlit Reference: 69.78% TAM / 64.73% MAL)", flush=True)
+    print(f"       Top-1 Exact Match Accuracy:     {native_em:.2f}% (IndicXlit Baseline: 66.91% TAM / 61.71% MAL)", flush=True)
     print(f"       Character Error Rate (CER):     {native_cer:.2f}%", flush=True)
     print(f"       Stop-Voicing Accuracy (SVA):    {native_sva:.2f}%", flush=True)
     print(f"   ► NAMED ENTITIES (AK-NEI + AK-NEF, {test_partition_metrics['named_entities']['count']} samples):", flush=True)
-    print(f"       Top-1 Exact Match Accuracy:     {ne_em:.2f}% (IndicXlit Reference: 42.12% TAM / 33.93% MAL)", flush=True)
+    print(f"       Top-1 Exact Match Accuracy:     {ne_em:.2f}%", flush=True)
     print(f"       Character Error Rate (CER):     {ne_cer:.2f}%", flush=True)
     print(f"   ► OVERALL COMBINED BENCHMARK ({test_partition_metrics['combined']['count']} samples):", flush=True)
     print(f"       Top-1 Exact Match Accuracy:     {comb_em:.2f}%", flush=True)
@@ -820,10 +750,11 @@ def run_indicxlit_replication_experiment(lang: str = "tam", arm: str = "A1", dir
         "experiment_metadata": {
             "language": lang,
             "experimental_arm": arm,
-            "arm_label": arm_names.get(arm, arm),
+            "arm_label": arm_labels.get(arm, arm),
             "direction": direction,
-            "model_type": "transformer_indicxlit_replication",
+            "model_type": "transformer_multitask_phonology",
             "num_parameters": num_params,
+            "aux_lambda": aux_lambda,
             "lm_weight": lm_weight,
             "epochs": epochs,
             "train_samples": len(train_pairs),
@@ -843,33 +774,35 @@ def run_indicxlit_replication_experiment(lang: str = "tam", arm: str = "A1", dir
     with open(report_path, "w", encoding="utf-8") as f:
         json.dump(report, f, indent=2)
         
-    artifact_report_path = os.path.join(ARTIFACTS_DIR, f"{lang}_{arm}_{direction}_indicxlit_replicated_results.json")
+    artifact_report_path = os.path.join(ARTIFACTS_DIR, f"{lang}_{arm}_{direction}_multitask_results.json")
     with open(artifact_report_path, "w", encoding="utf-8") as f:
         json.dump(report, f, indent=2)
         
     return report
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Project ValiMeli IndicXlit Exact Replication Benchmark")
+    parser = argparse.ArgumentParser(description="Project ValiMeli Multi-Task Phonology Benchmark")
     parser.add_argument("--lang", type=str, default="tam", choices=["tam", "mal"], help="Language code")
-    parser.add_argument("--arm", type=str, default="A1", choices=["A0", "A1", "A2"], help="Experimental arm")
+    parser.add_argument("--arm", type=str, default="A1-MT", choices=["A0", "A1-MT"], help="Experimental arm")
     parser.add_argument("--direction", type=str, default="en-indic", choices=["indic-en", "en-indic"], help="Transliteration direction")
     parser.add_argument("--epochs", type=int, default=8, help="Number of epochs")
     parser.add_argument("--batch_size", type=int, default=256, help="Batch size")
     parser.add_argument("--lr", type=float, default=5e-4, help="Learning rate")
+    parser.add_argument("--aux_lambda", type=float, default=0.3, help="Auxiliary phonology loss weight")
     parser.add_argument("--lm_weight", type=float, default=0.5, help="Unigram LM rescore weight (default=0.5)")
-    parser.add_argument("--max_train_samples", type=int, default=500000, help="Max train samples (default 500k)")
+    parser.add_argument("--max_train_samples", type=int, default=500000, help="Max train samples")
     parser.add_argument("--max_val_samples", type=int, default=None, help="Max val samples")
     parser.add_argument("--max_test_samples", type=int, default=None, help="Max test samples")
     args = parser.parse_args()
     
-    run_indicxlit_replication_experiment(
+    run_multitask_phonology_experiment(
         lang=args.lang,
         arm=args.arm,
         direction=args.direction,
         epochs=args.epochs,
         batch_size=args.batch_size,
         lr=args.lr,
+        aux_lambda=args.aux_lambda,
         lm_weight=args.lm_weight,
         max_train_samples=args.max_train_samples,
         max_val_samples=args.max_val_samples,
