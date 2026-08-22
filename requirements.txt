@@ -1,0 +1,6 @@
+# Project ValiMeli — Python Dependencies
+# Run: pip install -r requirements.txt
+
+torch>=2.0.0
+# Core math and system libraries (usually pre-installed with PyTorch)
+numpy>=1.20.0
