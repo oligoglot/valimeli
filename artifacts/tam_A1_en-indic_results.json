@@ -1,0 +1,45 @@
+{
+  "experiment_metadata": {
+    "language": "tam",
+    "experimental_arm": "A1",
+    "direction": "en-indic",
+    "epochs": 8,
+    "train_samples": 200000,
+    "test_samples": 11499,
+    "device": "mps"
+  },
+  "metrics": {
+    "validation_loss": 0.616579607129097,
+    "test_loss": 0.8309404777155982,
+    "exact_match_accuracy": 59.52691538394643,
+    "character_error_rate": 9.1175493777717,
+    "direction": "en-indic"
+  },
+  "linguistic_entropy": {
+    "[INTER]": {
+      "n": 3646,
+      "entropy_bits": 0.461,
+      "voiced_ratio": 90.3
+    },
+    "[NASAL]": {
+      "n": 1258,
+      "entropy_bits": 0.452,
+      "voiced_ratio": 90.5
+    },
+    "[GEM]": {
+      "n": 4540,
+      "entropy_bits": 0.669,
+      "voiced_ratio": 82.5
+    },
+    "[DEF]": {
+      "n": 1355,
+      "entropy_bits": 0.714,
+      "voiced_ratio": 80.4
+    },
+    "[INIT]": {
+      "n": 2477,
+      "entropy_bits": 0.739,
+      "voiced_ratio": 79.1
+    }
+  }
+}

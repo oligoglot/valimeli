@@ -1,0 +1,72 @@
+# =====================================================================
+# Project ValiMeli (.gitignore)
+# Configured for clean public/replication repository release.
+# Excludes personal outreach notes, raw data archives, caches, & environments.
+# =====================================================================
+
+# --- Private Outreach & Strategic Career Documentation ---
+docs/outreach_strategy.md
+docs/*_private*
+docs/*career*
+docs/*outreach*
+
+# --- Runtime & High-Compute Working Directories ---
+scratch/
+runs/
+*.log
+*.pt
+*.pth
+*.ckpt
+*.onnx
+
+# --- Raw Data Archives (Users download Aksharantar from HuggingFace) ---
+data/
+*.zip
+*.tar.gz
+*.tar
+
+# --- Python Virtual Environments & Packages ---
+valimeli-env/
+venv/
+env/
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# --- IDE & Editor Settings ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- System & OS Metadata ---
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# --- Matplotlib & Temporary Caches ---
+mpl_cache/
+.cache/
