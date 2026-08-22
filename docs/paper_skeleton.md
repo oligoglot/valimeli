@@ -231,6 +231,15 @@ A key challenge in practical transliteration is handling **non-deterministic, co
 ### 7.2 Speech-Augmented Transliteration via Wikimedia Commons & Mozilla Common Voice
 To ground representations in physical acoustics, future work will integrate volunteer audio recordings from the **Wikimedia Commons Tamil Pronunciation Corpus** (10,000+ native utterances) and **Mozilla Common Voice**, joint-training acoustic spectrogram features to anchor stop-voicing representations in physical formant transitions ($F_1, F_2$) and Voice Onset Time (VOT).
 
+### 7.3 Phonotactically-Constrained Synthetic Augmentation for Low-Resource Regimes
+Recent work in low-resource machine transliteration demonstrates that explicitly augmenting training corpora with synthetic samples covering low-frequency character n-grams and bigrams significantly improves generalization on tail distributions ([arXiv:2410.17901](https://arxiv.org/abs/2410.17901)). 
+
+Because Dravidian phonotactics is deterministic and strictly codified (*meym-mayakkam*, Tolkkāppiyam 48–49), empirical frequency analyses across classical corpora demonstrate that permissible biconsonantal clusters follow a strict hierarchy:
+$$\text{NP (Nasal-Plosive)} > \text{PP (Geminate Plosive)} > \text{AP (Approximant-Plosive)} > \text{AA} > \text{NN} > \text{AN}$$
+accounting for over 60% of all cluster mass in Tamil, while onset clusters ($PN, PA$) are strictly prohibited (Venkatakrishnan, Kumarasamy, & Lakshmanan, 2025; [oligoglot/mayal](https://github.com/oligoglot/mayal)). 
+
+By coupling ValiMeli's phonological generator with the empirical Maximum Likelihood Estimation (MLE) cluster matrices from *Mayal*, future extensions can deterministically synthesize phonotactically legal pseudo-words to achieve 100% biconsonantal cluster coverage for extreme low-resource Dravidian languages (such as Badaga, Irula, Kodava, and Tulu) without generating phonotactically prohibited noise.
+
 ---
 
 ## 8. Conclusion
@@ -248,6 +257,7 @@ Our findings demonstrate that Tamil and native Malayalam orthographies are not u
 - Martinet, A. (1955). *Économie des changements phonétiques: Traité de phonologie diachronique*. Francke.
 - Niklas, U. (1988). *Introduction to Tamil Grammatical Theory*. Bulletin de l'École française d'Extrême-Orient (BEFEO), 77(1), 165–188.
 - Ramesh, G., Doddapaneni, S., Bheemambika, A., Kunchukuttan, A., Kumar, P., & Khapra, M. M. (2022). *IndicTrans: Towards High-Quality and Accessible Machine Translation for Indian Languages*. In Proceedings of ACL 2022.
+- Venkatakrishnan, R., Kumarasamy, R., & Lakshmanan, B. (2025). *Pattern of Biconsonantal Clusters in Old Tamil Texts*. International Journal of Dravidian Linguistics (IJDL), 54(1), 1–32. Code: https://github.com/oligoglot/mayal
 - Roark, B., Wolf-Sonkin, L., Kirov, C., Gibson, S., Chase, M., & Murphy, N. (2020). *Processing South Asian Languages in the Dakshina Dataset*. In Proceedings of the 12th Language Resources and Evaluation Conference (LREC 2020), pp. 6806–6814.
 - Swadesh, M. (1934). *The Phonemic Principle*. Language, 10(2), 117–129.
 - Tolkāppiyar (c. 300 BCE). *Tolkāppiyam: Eluttatikāram (Phonology and Orthography)*.
