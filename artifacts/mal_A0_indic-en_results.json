@@ -2,44 +2,19 @@
   "experiment_metadata": {
     "language": "mal",
     "experimental_arm": "A0",
+    "arm_label": "Baseline (Character)",
     "direction": "indic-en",
     "epochs": 8,
-    "train_samples": 200000,
+    "train_samples": 250000,
     "test_samples": 12451,
     "device": "mps"
   },
   "metrics": {
-    "validation_loss": 0.8205203702052434,
-    "test_loss": 1.2387874248076458,
-    "exact_match_accuracy": 32.74435788290097,
-    "character_error_rate": 11.416201766620176,
+    "validation_loss": 0.850713441769282,
+    "test_loss": 1.3067680366185246,
+    "exact_match_accuracy": 32.57569673118625,
+    "character_error_rate": 11.509181775918178,
+    "stop_voicing_accuracy": 32.40968801313629,
     "direction": "indic-en"
-  },
-  "linguistic_entropy": {
-    "[INIT]": {
-      "n": 1330,
-      "entropy_bits": 0.82,
-      "voiced_ratio": 74.4
-    },
-    "[INTER]": {
-      "n": 2351,
-      "entropy_bits": 0.538,
-      "voiced_ratio": 87.7
-    },
-    "[NASAL]": {
-      "n": 580,
-      "entropy_bits": 0.551,
-      "voiced_ratio": 87.2
-    },
-    "[GEM]": {
-      "n": 4906,
-      "entropy_bits": 0.711,
-      "voiced_ratio": 80.6
-    },
-    "[DEF]": {
-      "n": 1130,
-      "entropy_bits": 0.62,
-      "voiced_ratio": 84.6
-    }
   }
 }
