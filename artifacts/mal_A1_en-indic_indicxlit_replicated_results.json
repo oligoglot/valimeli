@@ -1,0 +1,40 @@
+{
+  "experiment_metadata": {
+    "language": "mal",
+    "experimental_arm": "A1",
+    "arm_label": "ValiMeli (Phonology-Aware)",
+    "direction": "en-indic",
+    "model_type": "transformer_indicxlit_replication",
+    "num_parameters": 11106894,
+    "lm_weight": 0.5,
+    "epochs": 8,
+    "train_samples": 500000,
+    "test_samples": 12451,
+    "device": "mps"
+  },
+  "metrics": {
+    "validation_loss": 0.16234336365014315,
+    "test_loss": 0.23207271768122303,
+    "native_words": {
+      "exact_match_accuracy": 60.93794955404239,
+      "character_error_rate": 7.115493821040013,
+      "stop_voicing_accuracy": 63.44705882352941,
+      "count": 10427,
+      "plosive_count": 8500
+    },
+    "named_entities": {
+      "exact_match_accuracy": 26.778656126482215,
+      "character_error_rate": 27.891624260761933,
+      "stop_voicing_accuracy": 25.723472668810288,
+      "count": 2024,
+      "plosive_count": 1244
+    },
+    "combined": {
+      "exact_match_accuracy": 55.38510962974862,
+      "character_error_rate": 9.523202346134536,
+      "stop_voicing_accuracy": 58.63095238095239,
+      "count": 12451,
+      "plosive_count": 9744
+    }
+  }
+}
