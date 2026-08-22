@@ -154,25 +154,22 @@ We evaluate 12 experimental conditions across:
 
 ## 6. Empirical Results & Architectural Insights
 
-```
-Table 2: Full 12-Cell Empirical Benchmark on Aksharantar Holdout Test Sets
-+------------+-------------+----------------------+--------------------+--------------------+--------------------+--------------------+
-| Language   | Direction   | Experimental Arm     | Val Loss           | Holdout EM (%)     | Holdout CER (%)    | Holdout SVA (%)    |
-+------------+-------------+----------------------+--------------------+--------------------+--------------------+--------------------+
-| Tamil      | indic-en    | Baseline (A0)        | 1.0197             | 29.59%             | 14.85%             | 29.20%             |
-| Tamil      | indic-en    | ValiMeli (A1) [Ours] | 1.0278             | 29.34%             | 15.00%             | 28.91%             |
-| Tamil      | indic-en    | Morphology (A2)      | 0.9817             | 28.99%             | 14.89%             | 28.58%             |
-| Tamil      | en-indic    | Baseline (A0)        | 0.5262             | 58.19%             | 9.38%              | 59.22%             |
-| Tamil      | en-indic    | ValiMeli (A1) [Ours] | 0.6251             | 59.72% (+1.53%)    | 8.93% (-0.45%)     | 60.67% (+1.45%)    |
-| Tamil      | en-indic    | Morphology (A2)      | 0.5097             | 57.24%             | 9.61%              | 58.17%             |
-| Malayalam  | indic-en    | Baseline (A0)        | 0.8507             | 32.58%             | 11.51%             | 32.41%             |
-| Malayalam  | indic-en    | ValiMeli (A1) [Ours] | 0.8444             | 31.96%             | 11.57%             | 32.01%             |
-| Malayalam  | indic-en    | Morphology (A2)      | 0.8457             | 31.22%             | 11.87%             | 31.18%             |
-| Malayalam  | en-indic    | Baseline (A0)        | 0.6120             | 51.08%             | 10.37%             | 54.13%             |
-| Malayalam  | en-indic    | ValiMeli (A1) [Ours] | 0.7330             | 52.16% (+1.08%)    | 10.23% (-0.14%)    | 55.35% (+1.22%)    |
-| Malayalam  | en-indic    | Morphology (A2)      | 0.6331             | 51.26%             | 10.49%             | 54.17%             |
-+------------+-------------+----------------------+--------------------+--------------------+--------------------+--------------------+
-```
+### Table 2: Full 12-Cell Empirical Benchmark on Aksharantar Holdout Test Sets (BiGRU)
+
+| Language | Direction | Experimental Arm | Val Loss | Holdout EM (%) | Holdout CER (%) | Holdout SVA (%) |
+| :--- | :--- | :--- | :---: | :---: | :---: | :---: |
+| **Tamil** | `indic-en` | Baseline (A0) | 1.0197 | 29.59% | 14.85% | 29.20% |
+| **Tamil** | `indic-en` | **ValiMeli (A1) [Ours]** | 1.0278 | 29.34% | 15.00% | 28.91% |
+| **Tamil** | `indic-en` | Morphology (A2) | 0.9817 | 28.99% | 14.89% | 28.58% |
+| **Tamil** | `en-indic` | Baseline (A0) | 0.5262 | 58.19% | 9.38% | 59.22% |
+| **Tamil** | `en-indic` | **ValiMeli (A1) [Ours]** | 0.6251 | **59.72% (+1.53%)** | **8.93% (-0.45%)** | **60.67% (+1.45%)** |
+| **Tamil** | `en-indic` | Morphology (A2) | 0.5097 | 57.24% | 9.61% | 58.17% |
+| **Malayalam** | `indic-en` | Baseline (A0) | 0.8507 | 32.58% | 11.51% | 32.41% |
+| **Malayalam** | `indic-en` | **ValiMeli (A1) [Ours]** | 0.8444 | 31.96% | 11.57% | 32.01% |
+| **Malayalam** | `indic-en` | Morphology (A2) | 0.8457 | 31.22% | 11.87% | 31.18% |
+| **Malayalam** | `en-indic` | Baseline (A0) | 0.6120 | 51.08% | 10.37% | 54.13% |
+| **Malayalam** | `en-indic` | **ValiMeli (A1) [Ours]** | 0.7330 | **52.16% (+1.08%)** | **10.23% (-0.14%)** | **55.35% (+1.22%)** |
+| **Malayalam** | `en-indic` | Morphology (A2) | 0.6331 | 51.26% | 10.49% | 54.17% |
 
 ### 6.1 Key Empirical Takeaways (Recurrent Architecture - 1.48M BiGRU)
 1. **Reverse Transliteration Superiority (`en-indic`)**:
@@ -188,29 +185,28 @@ Table 2: Full 12-Cell Empirical Benchmark on Aksharantar Holdout Test Sets
 ### 6.2 11M Parameter Transformer Architecture Parity Study (IndicXlit Architecture)
 To demonstrate that ValiMeli's performance advantages are architecture-invariant and generalize directly to state-of-the-art transformer backbones, we evaluated the exact **11.0M Parameter Transformer** architecture (6 Encoder + 6 Decoder layers, $d_{\text{model}}=256$, 4 Attention Heads, $d_{\text{ffn}}=1024$) utilized by AI4Bharat's *IndicXlit* on 250,000 training pairs per cell and the full holdout test set:
 
-```
-Table 3: 11M Parameter Transformer Parity Benchmark (Aksharantar Full Holdout Test Set)
-+------------+-----------+----------------------+--------------------+--------------------+--------------------+--------------------+
-| Language   | Direction | Experimental Arm     | Val Loss           | Holdout EM (%)     | Holdout CER (%)    | Holdout SVA (%)    |
-+------------+-----------+----------------------+--------------------+--------------------+--------------------+--------------------+
-| Tamil      | en-indic  | Baseline (A0) [11M]  | 0.1848             | 59.18%             | 9.17%              | 60.29%             |
-| Tamil      | en-indic  | ValiMeli (A1) [11M]  | 0.1426 (-22.8%)    | 59.94% (+0.76%)    | 9.06% (-0.11%)     | 61.04% (+0.75%)    |
-| Malayalam  | en-indic  | Baseline (A0) [11M]  | 0.1975             | 52.84%             | 10.09%             | 55.89%             |
-| Malayalam  | en-indic  | ValiMeli (A1) [11M]  | 0.1730 (-12.4%)    | 52.73%             | 10.26%             | 55.63%             |
+#### Table 3: 11M Parameter Transformer Parity Benchmark (Aksharantar Full Holdout Test Set)
+
+| Language | Direction | Experimental Arm | Val Loss | Holdout EM (%) | Holdout CER (%) | Holdout SVA (%) |
+| :--- | :--- | :--- | :---: | :---: | :---: | :---: |
+| **Tamil** | `en-indic` | Baseline (A0) [11M] | 0.1848 | 59.18% | 9.17% | 60.29% |
+| **Tamil** | `en-indic` | **ValiMeli (A1) [11M]** | **0.1426 (-22.8%)** | **59.94% (+0.76%)** | **9.06% (-0.11%)** | **61.04% (+0.75%)** |
+| **Malayalam** | `en-indic` | Baseline (A0) [11M] | 0.1975 | 52.84% | 10.09% | 55.89% |
+| **Malayalam** | `en-indic` | **ValiMeli (A1) [11M]** | **0.1730 (-12.4%)** | 52.73% | 10.26% | 55.63% |
+
+---
+
 ### 6.3 IndicXlit Exact Replication & Partitioned Test Benchmark (500,000 Samples Matrix)
 To directly replicate AI4Bharat's *IndicXlit* evaluation pipeline in full detail, we evaluated the 11.0M Transformer on **500,000 training pairs per cell** with **Unigram Language Model (LM) Rescoring** (indexing 458,506 target words) and partitioned reporting across **Native Words** (`Dakshina` + `AK-Freq`) and **Named Entities** (`AK-NEI` + `AK-NEF`):
 
-```
-Table 4: 500k IndicXlit Exact Replication Matrix (Aksharantar Partitioned Benchmark)
-+------------+-----------+----------------------+-----------------------+-----------------------+-----------------------+-------------------+
-| Language   | Direction | Experimental Arm     | Native Words EM (%)   | Named Entities EM (%) | Combined Test EM (%)  | Val Loss          |
-+------------+-----------+----------------------+-----------------------+-----------------------+-----------------------+-------------------+
-| Tamil      | en-indic  | Baseline (A0) [500k] | 66.91% (CER 7.29%)    | 32.03% (CER 18.39%)   | 60.71% (CER 8.95%)    | 0.1862            |
-| Tamil      | en-indic  | ValiMeli (A1) [500k] | 66.73% (CER 7.42%)    | 31.64% (CER 18.07%)   | 60.49% (CER 9.02%)    | 0.1495 (-19.7%!)  |
-| Malayalam  | en-indic  | Baseline (A0) [500k] | 61.71% (CER 7.06%)    | 26.14% (CER 28.27%)   | 55.92% (CER 9.52%)    | 0.1918            |
-| Malayalam  | en-indic  | ValiMeli (A1) [500k] | 60.94% (CER 7.12%)    | 26.78% (CER 27.89%)   | 55.39% (CER 9.52%)    | 0.1623 (-15.4%!)  |
-+------------+-----------+----------------------+-----------------------+-----------------------+-----------------------+-------------------+
-```
+#### Table 4: 500k IndicXlit Exact Replication Matrix (Aksharantar Partitioned Benchmark)
+
+| Language | Direction | Experimental Arm | Native Words EM (%) | Named Entities EM (%) | Combined Test EM (%) | Val Loss |
+| :--- | :--- | :--- | :---: | :---: | :---: | :---: |
+| **Tamil** | `en-indic` | Baseline (A0) [500k] | 66.91% (CER 7.29%) | 32.03% (CER 18.39%) | 60.71% (CER 8.95%) | 0.1862 |
+| **Tamil** | `en-indic` | **ValiMeli (A1) [500k]** | 66.73% (CER 7.42%) | 31.64% (CER 18.07%) | 60.49% (CER 9.02%) | **0.1495 (-19.7%)** |
+| **Malayalam** | `en-indic` | Baseline (A0) [500k] | 61.71% (CER 7.06%) | 26.14% (CER 28.27%) | 55.92% (CER 9.52%) | 0.1918 |
+| **Malayalam** | `en-indic` | **ValiMeli (A1) [500k]** | 60.94% (CER 7.12%) | 26.78% (CER 27.89%) | 55.39% (CER 9.52%) | **0.1623 (-15.4%)** |
 
 #### Key Replication Insights:
 1. **The Native Words vs Named Entities Discrepancy Resolved**:
