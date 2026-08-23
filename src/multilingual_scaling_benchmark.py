@@ -170,9 +170,10 @@ class MultilingualDataset(Dataset):
         for full_src, raw_indic, lang_code, source_tag in samples:
             # Parse language tag e.g. __ta__
             lang_tag = LANG_MAP[lang_code]
-            roman_str = full_src[len(lang_tag):]
+            roman_str = full_src[len(lang_tag):][:40]
+            indic_str = raw_indic[:40]
             src_tokens = [lang_tag] + list(roman_str)
-            tgt_tokens = list(raw_indic)
+            tgt_tokens = list(indic_str)
             
             self.data.append((
                 src_vocab.encode(src_tokens),
@@ -202,7 +203,7 @@ def multilingual_pad_collate(batch):
 # =====================================================================
 
 class PositionalEncoding(nn.Module):
-    def __init__(self, d_model: int, max_len: int = 128):
+    def __init__(self, d_model: int, max_len: int = 256):
         super().__init__()
         pe = torch.zeros(max_len, d_model)
         pos = torch.arange(0, max_len, dtype=torch.float).unsqueeze(1)
@@ -219,7 +220,7 @@ class MultilingualTransformerSeq2Seq(nn.Module):
         self.d_model = d_model
         self.src_embed = nn.Embedding(src_vocab_size, d_model, padding_idx=0)
         self.tgt_embed = nn.Embedding(tgt_vocab_size, d_model, padding_idx=0)
-        self.pos_encoder = PositionalEncoding(d_model)
+        self.pos_encoder = PositionalEncoding(d_model, max_len=256)
         
         enc_layer = nn.TransformerEncoderLayer(d_model=d_model, nhead=nhead, dim_feedforward=dim_feedforward, batch_first=True)
         dec_layer = nn.TransformerDecoderLayer(d_model=d_model, nhead=nhead, dim_feedforward=dim_feedforward, batch_first=True)
