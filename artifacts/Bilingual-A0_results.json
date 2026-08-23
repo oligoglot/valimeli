@@ -1,0 +1,58 @@
+{
+  "experiment_metadata": {
+    "model_type": "bilingual_transformer",
+    "arm": "Bilingual-A0",
+    "samples_per_lang": 500000,
+    "total_train_samples": 1000000,
+    "device": "mps"
+  },
+  "metrics": {
+    "joint_val_loss": 0.20466684793623593,
+    "tamil": {
+      "combined": {
+        "exact_match_accuracy": 62.42281937559788,
+        "character_error_rate": 8.420106667708598,
+        "stop_voicing_accuracy": 63.17662483611163,
+        "count": 11499,
+        "plosive_count": 10678
+      },
+      "native_words": {
+        "exact_match_accuracy": 68.27797757562936,
+        "character_error_rate": 6.944093384498724,
+        "stop_voicing_accuracy": 69.22817281728173,
+        "count": 9454,
+        "plosive_count": 8888
+      },
+      "named_entities": {
+        "exact_match_accuracy": 35.35452322738386,
+        "character_error_rate": 16.797078768909753,
+        "stop_voicing_accuracy": 33.12849162011173,
+        "count": 2045,
+        "plosive_count": 1790
+      }
+    },
+    "malayalam": {
+      "combined": {
+        "exact_match_accuracy": 55.280700345353786,
+        "character_error_rate": 9.34787979248185,
+        "stop_voicing_accuracy": 58.44622331691297,
+        "count": 12451,
+        "plosive_count": 9744
+      },
+      "native_words": {
+        "exact_match_accuracy": 60.765320801764645,
+        "character_error_rate": 7.0235530597344535,
+        "stop_voicing_accuracy": 63.17647058823529,
+        "count": 10427,
+        "plosive_count": 8500
+      },
+      "named_entities": {
+        "exact_match_accuracy": 27.025691699604742,
+        "character_error_rate": 27.08018154311649,
+        "stop_voicing_accuracy": 26.12540192926045,
+        "count": 2024,
+        "plosive_count": 1244
+      }
+    }
+  }
+}
