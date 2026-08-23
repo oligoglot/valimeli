@@ -1,0 +1,54 @@
+{
+  "tam": {
+    "1. Raw Code-Mixed Text (No Transliteration)": {
+      "macro_f1": 52.90610809798487,
+      "weighted_f1": 56.002815079664245,
+      "accuracy": 51.78429817605076,
+      "positive_f1": 66.38054363376253,
+      "negative_f1": 40.399002493765586,
+      "mixed_f1": 24.043715846994534
+    },
+    "2. Raw Text + Neural IndicXlit Transliteration (A0)": {
+      "macro_f1": 52.689398675875445,
+      "weighted_f1": 54.97685610102481,
+      "accuracy": 50.59476605868358,
+      "positive_f1": 65.21739130434783,
+      "negative_f1": 38.59649122807017,
+      "mixed_f1": 23.316062176165804
+    },
+    "3. Raw Text + Neural ValiMeli Transliteration (A1)": {
+      "macro_f1": 52.223509676898075,
+      "weighted_f1": 55.36652387312875,
+      "accuracy": 50.99127676447264,
+      "positive_f1": 66.33093525179856,
+      "negative_f1": 36.45569620253165,
+      "mixed_f1": 22.105263157894736
+    }
+  },
+  "mal": {
+    "1. Raw Code-Mixed Text (No Transliteration)": {
+      "macro_f1": 69.86321259737092,
+      "weighted_f1": 68.59966266010909,
+      "accuracy": 67.8373382624769,
+      "positive_f1": 73.71007371007371,
+      "negative_f1": 56.666666666666664,
+      "mixed_f1": 47.706422018348626
+    },
+    "2. Raw Text + Neural IndicXlit Transliteration (A0)": {
+      "macro_f1": 71.17230948746881,
+      "weighted_f1": 69.59650317928248,
+      "accuracy": 68.94639556377079,
+      "positive_f1": 72.9064039408867,
+      "negative_f1": 58.536585365853654,
+      "mixed_f1": 50.943396226415096
+    },
+    "3. Raw Text + Neural ValiMeli Transliteration (A1)": {
+      "macro_f1": 70.99442821574085,
+      "weighted_f1": 69.30587441422503,
+      "accuracy": 68.76155268022181,
+      "positive_f1": 72.6829268292683,
+      "negative_f1": 59.32203389830508,
+      "mixed_f1": 49.523809523809526
+    }
+  }
+}

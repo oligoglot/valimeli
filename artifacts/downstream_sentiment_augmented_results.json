@@ -1,0 +1,264 @@
+{
+  "tam": {
+    "raw": {
+      "macro_f1": 52.90610809798487,
+      "weighted_f1": 56.002815079664245,
+      "accuracy": 51.78429817605076,
+      "class_details": {
+        "Mixed_feelings": {
+          "precision": 19.555555555555557,
+          "recall": 31.20567375886525,
+          "f1_score": 24.043715846994534,
+          "support": 141.0
+        },
+        "Negative": {
+          "precision": 34.32203389830508,
+          "recall": 49.09090909090909,
+          "f1_score": 40.399002493765586,
+          "support": 165.0
+        },
+        "Positive": {
+          "precision": 85.76709796672827,
+          "recall": 54.14235705950992,
+          "f1_score": 66.38054363376253,
+          "support": 857.0
+        },
+        "category": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1_score": 100.0,
+          "support": 1.0
+        },
+        "not-Tamil": {
+          "precision": 43.54838709677419,
+          "recall": 93.10344827586206,
+          "f1_score": 59.34065934065934,
+          "support": 29.0
+        },
+        "unknown_state": {
+          "precision": 18.367346938775512,
+          "recall": 52.94117647058824,
+          "f1_score": 27.27272727272727,
+          "support": 68.0
+        }
+      }
+    },
+    "standard_augmented": {
+      "macro_f1": 52.89116915708457,
+      "weighted_f1": 55.7000349280246,
+      "accuracy": 51.4670896114195,
+      "class_details": {
+        "Mixed_feelings": {
+          "precision": 18.614718614718615,
+          "recall": 30.49645390070922,
+          "f1_score": 23.118279569892472,
+          "support": 141.0
+        },
+        "Negative": {
+          "precision": 33.047210300429185,
+          "recall": 46.666666666666664,
+          "f1_score": 38.69346733668342,
+          "support": 165.0
+        },
+        "Positive": {
+          "precision": 85.03649635036497,
+          "recall": 54.3757292882147,
+          "f1_score": 66.33451957295374,
+          "support": 857.0
+        },
+        "category": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1_score": 100.0,
+          "support": 1.0
+        },
+        "not-Tamil": {
+          "precision": 46.55172413793103,
+          "recall": 93.10344827586206,
+          "f1_score": 62.06896551724138,
+          "support": 29.0
+        },
+        "unknown_state": {
+          "precision": 18.421052631578945,
+          "recall": 51.470588235294116,
+          "f1_score": 27.131782945736433,
+          "support": 68.0
+        }
+      }
+    },
+    "valimeli_augmented": {
+      "macro_f1": 52.4252182894238,
+      "weighted_f1": 55.73215769836867,
+      "accuracy": 51.4670896114195,
+      "class_details": {
+        "Mixed_feelings": {
+          "precision": 18.695652173913043,
+          "recall": 30.49645390070922,
+          "f1_score": 23.180592991913745,
+          "support": 141.0
+        },
+        "Negative": {
+          "precision": 33.05084745762712,
+          "recall": 47.27272727272727,
+          "f1_score": 38.90274314214464,
+          "support": 165.0
+        },
+        "Positive": {
+          "precision": 85.6353591160221,
+          "recall": 54.25904317386231,
+          "f1_score": 66.42857142857143,
+          "support": 857.0
+        },
+        "category": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1_score": 100.0,
+          "support": 1.0
+        },
+        "not-Tamil": {
+          "precision": 42.857142857142854,
+          "recall": 93.10344827586206,
+          "f1_score": 58.69565217391305,
+          "support": 29.0
+        },
+        "unknown_state": {
+          "precision": 18.617021276595743,
+          "recall": 51.470588235294116,
+          "f1_score": 27.34375,
+          "support": 68.0
+        }
+      }
+    }
+  },
+  "mal": {
+    "raw": {
+      "macro_f1": 69.86321259737092,
+      "weighted_f1": 68.59966266010909,
+      "accuracy": 67.8373382624769,
+      "class_details": {
+        "Mixed_feelings": {
+          "precision": 40.0,
+          "recall": 59.09090909090909,
+          "f1_score": 47.706422018348626,
+          "support": 44.0
+        },
+        "Negative": {
+          "precision": 49.275362318840585,
+          "recall": 66.66666666666666,
+          "f1_score": 56.666666666666664,
+          "support": 51.0
+        },
+        "Positive": {
+          "precision": 81.9672131147541,
+          "recall": 66.96428571428571,
+          "f1_score": 73.71007371007371,
+          "support": 224.0
+        },
+        "category": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1_score": 100.0,
+          "support": 1.0
+        },
+        "not-malayalam": {
+          "precision": 61.44578313253012,
+          "recall": 85.0,
+          "f1_score": 71.32867132867133,
+          "support": 60.0
+        },
+        "unknown_state": {
+          "precision": 75.0,
+          "recall": 65.21739130434783,
+          "f1_score": 69.76744186046511,
+          "support": 161.0
+        }
+      }
+    },
+    "standard_augmented": {
+      "macro_f1": 70.22945742787421,
+      "weighted_f1": 69.57916938380147,
+      "accuracy": 68.76155268022181,
+      "class_details": {
+        "Mixed_feelings": {
+          "precision": 37.878787878787875,
+          "recall": 56.81818181818182,
+          "f1_score": 45.45454545454545,
+          "support": 44.0
+        },
+        "Negative": {
+          "precision": 50.0,
+          "recall": 64.70588235294117,
+          "f1_score": 56.41025641025641,
+          "support": 51.0
+        },
+        "Positive": {
+          "precision": 82.35294117647058,
+          "recall": 68.75,
+          "f1_score": 74.93917274939173,
+          "support": 224.0
+        },
+        "category": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1_score": 100.0,
+          "support": 1.0
+        },
+        "not-malayalam": {
+          "precision": 63.41463414634146,
+          "recall": 86.66666666666667,
+          "f1_score": 73.23943661971832,
+          "support": 60.0
+        },
+        "unknown_state": {
+          "precision": 76.97841726618705,
+          "recall": 66.45962732919256,
+          "f1_score": 71.33333333333334,
+          "support": 161.0
+        }
+      }
+    },
+    "valimeli_augmented": {
+      "macro_f1": 70.69102632256406,
+      "weighted_f1": 69.67738165187527,
+      "accuracy": 68.94639556377079,
+      "class_details": {
+        "Mixed_feelings": {
+          "precision": 40.625,
+          "recall": 59.09090909090909,
+          "f1_score": 48.148148148148145,
+          "support": 44.0
+        },
+        "Negative": {
+          "precision": 50.74626865671642,
+          "recall": 66.66666666666666,
+          "f1_score": 57.6271186440678,
+          "support": 51.0
+        },
+        "Positive": {
+          "precision": 82.5136612021858,
+          "recall": 67.41071428571429,
+          "f1_score": 74.2014742014742,
+          "support": 224.0
+        },
+        "category": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1_score": 100.0,
+          "support": 1.0
+        },
+        "not-malayalam": {
+          "precision": 61.904761904761905,
+          "recall": 86.66666666666667,
+          "f1_score": 72.22222222222221,
+          "support": 60.0
+        },
+        "unknown_state": {
+          "precision": 76.76056338028168,
+          "recall": 67.70186335403726,
+          "f1_score": 71.94719471947195,
+          "support": 161.0
+        }
+      }
+    }
+  }
+}

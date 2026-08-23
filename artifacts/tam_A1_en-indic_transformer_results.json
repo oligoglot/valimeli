@@ -4,17 +4,19 @@
     "experimental_arm": "A1",
     "arm_label": "ValiMeli (Phonology-Aware)",
     "direction": "en-indic",
+    "model_type": "transformer",
+    "num_parameters": 11095608,
     "epochs": 8,
     "train_samples": 250000,
     "test_samples": 11499,
     "device": "mps"
   },
   "metrics": {
-    "validation_loss": 0.6250937857798168,
-    "test_loss": 0.8627398318714565,
-    "exact_match_accuracy": 59.71823636837986,
-    "character_error_rate": 8.92804813722234,
-    "stop_voicing_accuracy": 60.66679153399514,
+    "validation_loss": 0.14263282673699515,
+    "test_loss": 0.19746209581693014,
+    "exact_match_accuracy": 59.94434298634664,
+    "character_error_rate": 9.059917557192255,
+    "stop_voicing_accuracy": 61.04139351938566,
     "direction": "en-indic"
   }
 }

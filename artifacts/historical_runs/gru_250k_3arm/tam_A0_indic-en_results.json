@@ -1,0 +1,20 @@
+{
+  "experiment_metadata": {
+    "language": "tam",
+    "experimental_arm": "A0",
+    "arm_label": "Baseline (Character)",
+    "direction": "indic-en",
+    "epochs": 8,
+    "train_samples": 250000,
+    "test_samples": 11499,
+    "device": "mps"
+  },
+  "metrics": {
+    "validation_loss": 1.0197289296558925,
+    "test_loss": 1.2099665628539191,
+    "exact_match_accuracy": 29.59387772849813,
+    "character_error_rate": 14.848895776830688,
+    "stop_voicing_accuracy": 29.200224761191233,
+    "direction": "indic-en"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "experiment_metadata": {
+    "language": "mal",
+    "experimental_arm": "A0",
+    "arm_label": "IndicXlit Baseline (Character)",
+    "direction": "en-indic",
+    "model_type": "transformer_multitask_phonology",
+    "num_parameters": 11105871,
+    "aux_lambda": 0.3,
+    "lm_weight": 0.5,
+    "epochs": 8,
+    "train_samples": 25000,
+    "test_samples": 12451,
+    "device": "mps"
+  },
+  "metrics": {
+    "validation_loss": 0.6174743870894114,
+    "test_loss": 0.6986616004486473,
+    "native_words": {
+      "exact_match_accuracy": 19.593363383523545,
+      "character_error_rate": 32.07831189551203,
+      "stop_voicing_accuracy": 20.04705882352941,
+      "count": 10427,
+      "plosive_count": 8500
+    },
+    "named_entities": {
+      "exact_match_accuracy": 4.545454545454546,
+      "character_error_rate": 54.634850777059555,
+      "stop_voicing_accuracy": 4.501607717041801,
+      "count": 2024,
+      "plosive_count": 1244
+    },
+    "combined": {
+      "exact_match_accuracy": 17.14721709099671,
+      "character_error_rate": 34.69234876437446,
+      "stop_voicing_accuracy": 18.0623973727422,
+      "count": 12451,
+      "plosive_count": 9744
+    }
+  }
+}
