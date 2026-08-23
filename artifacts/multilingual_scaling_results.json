@@ -1,0 +1,143 @@
+{
+  "metrics_by_language": {
+    "tam": {
+      "combined": {
+        "exact_match_accuracy": 63.118532046264896,
+        "character_error_rate": 8.064547639048977,
+        "count": 11499
+      },
+      "native_words": {
+        "exact_match_accuracy": 68.41548550877935,
+        "character_error_rate": 6.823456421333211,
+        "count": 9454
+      },
+      "named_entities": {
+        "exact_match_accuracy": 38.63080684596577,
+        "character_error_rate": 15.108242044861765,
+        "count": 2045
+      }
+    },
+    "mal": {
+      "combined": {
+        "exact_match_accuracy": 57.42510641715525,
+        "character_error_rate": 8.80756755895221,
+        "count": 12451
+      },
+      "native_words": {
+        "exact_match_accuracy": 62.62587513186919,
+        "character_error_rate": 6.663001054614615,
+        "count": 10427
+      },
+      "named_entities": {
+        "exact_match_accuracy": 30.632411067193676,
+        "character_error_rate": 25.16847751340944,
+        "count": 2024
+      }
+    },
+    "tel": {
+      "combined": {
+        "exact_match_accuracy": 67.55360623781677,
+        "character_error_rate": 6.489273438425982,
+        "count": 10260
+      },
+      "native_words": {
+        "exact_match_accuracy": 73.69742623979913,
+        "character_error_rate": 4.783682832857857,
+        "count": 7965
+      },
+      "named_entities": {
+        "exact_match_accuracy": 46.230936819172115,
+        "character_error_rate": 13.5752688172043,
+        "count": 2295
+      }
+    },
+    "kan": {
+      "combined": {
+        "exact_match_accuracy": 67.6713532513181,
+        "character_error_rate": 5.636511300094284,
+        "count": 11380
+      },
+      "native_words": {
+        "exact_match_accuracy": 72.96272214997833,
+        "character_error_rate": 4.276530834604489,
+        "count": 9228
+      },
+      "named_entities": {
+        "exact_match_accuracy": 44.98141263940521,
+        "character_error_rate": 13.771752590757998,
+        "count": 2152
+      }
+    },
+    "hin": {
+      "combined": {
+        "exact_match_accuracy": 53.14477848101266,
+        "character_error_rate": 11.884066313608106,
+        "count": 10112
+      },
+      "native_words": {
+        "exact_match_accuracy": 53.28476166954804,
+        "character_error_rate": 11.594561186650186,
+        "count": 8098
+      },
+      "named_entities": {
+        "exact_match_accuracy": 52.5819265143992,
+        "character_error_rate": 13.159122725151656,
+        "count": 2014
+      }
+    },
+    "ben": {
+      "combined": {
+        "exact_match_accuracy": 48.52463645348016,
+        "character_error_rate": 14.269644237070947,
+        "count": 14166
+      },
+      "native_words": {
+        "exact_match_accuracy": 52.1147641056946,
+        "character_error_rate": 12.710106573206495,
+        "count": 11467
+      },
+      "named_entities": {
+        "exact_match_accuracy": 33.271582067432384,
+        "character_error_rate": 21.400926683019897,
+        "count": 2699
+      }
+    },
+    "guj": {
+      "combined": {
+        "exact_match_accuracy": 55.97720860762294,
+        "character_error_rate": 10.153945676198104,
+        "count": 18077
+      },
+      "native_words": {
+        "exact_match_accuracy": 58.35792174470814,
+        "character_error_rate": 9.191441481038696,
+        "count": 15590
+      },
+      "named_entities": {
+        "exact_match_accuracy": 41.05347808604745,
+        "character_error_rate": 16.957683464860498,
+        "count": 2487
+      }
+    },
+    "mar": {
+      "combined": {
+        "exact_match_accuracy": 55.914684167350295,
+        "character_error_rate": 10.862348010125741,
+        "count": 12190
+      },
+      "native_words": {
+        "exact_match_accuracy": 57.42681962025317,
+        "character_error_rate": 10.276960048062481,
+        "count": 10112
+      },
+      "named_entities": {
+        "exact_match_accuracy": 48.556304138594804,
+        "character_error_rate": 14.563549342854973,
+        "count": 2078
+      }
+    }
+  },
+  "best_val_loss": 0.20689675894876322,
+  "total_training_samples": 3200000,
+  "target_vocab_size": 447
+}
