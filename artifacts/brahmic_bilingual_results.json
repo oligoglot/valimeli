@@ -1,0 +1,37 @@
+{
+  "tam": {
+    "combined": {
+      "exact_match_accuracy": 62.30976606661449,
+      "character_error_rate": 8.399593646824389,
+      "count": 11499
+    },
+    "native_words": {
+      "exact_match_accuracy": 68.23566744235244,
+      "character_error_rate": 6.890093981938923,
+      "count": 9454
+    },
+    "named_entities": {
+      "exact_match_accuracy": 34.91442542787286,
+      "character_error_rate": 16.96661450182577,
+      "count": 2045
+    }
+  },
+  "mal": {
+    "combined": {
+      "exact_match_accuracy": 45.28150349369528,
+      "character_error_rate": 17.4948000924428,
+      "count": 12451
+    },
+    "native_words": {
+      "exact_match_accuracy": 49.11288002301717,
+      "character_error_rate": 15.73809502348095,
+      "count": 10427
+    },
+    "named_entities": {
+      "exact_match_accuracy": 25.543478260869566,
+      "character_error_rate": 30.896712969330213,
+      "count": 2024
+    }
+  },
+  "best_val_loss": 0.19313416650088933
+}
