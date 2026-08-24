@@ -1,0 +1,20 @@
+{
+  "tamil": {
+    "model_name": "ValiMeli Multilingual-A1-MT (3.2M)",
+    "macro_f1": 53.89021196868674,
+    "weighted_f1": 56.19788052807883,
+    "accuracy": 51.86360031720857,
+    "positive_f1": 66.52329749103943,
+    "negative_f1": 39.285714285714285,
+    "mixed_f1": 24.935064935064936
+  },
+  "malayalam": {
+    "model_name": "IndicXlit Multilingual-A0 (3.2M)",
+    "macro_f1": 70.7971899565924,
+    "weighted_f1": 69.4260039631879,
+    "accuracy": 68.76155268022181,
+    "positive_f1": 73.30097087378641,
+    "negative_f1": 56.19834710743802,
+    "mixed_f1": 50.943396226415096
+  }
+}
