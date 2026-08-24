@@ -67,6 +67,15 @@ wheels/
 ehthumbs.db
 Thumbs.db
 
+# --- Secrets, API Keys & Private Configs ---
+.env
+.env.*
+*.env
+config.json
+secrets/
+*.key
+*.secret
+
 # --- Matplotlib & Temporary Caches ---
 mpl_cache/
 .cache/
