@@ -1,0 +1,384 @@
+{
+  "timestamp": "2026-08-24 13:47:52",
+  "sarvam_api_tested": false,
+  "tamil_battery": [
+    {
+      "roman": "kanden",
+      "target": "கண்டேன்",
+      "category": "init_stop",
+      "valimeli_output": "கண்டென்",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "thambi",
+      "target": "தம்பி",
+      "category": "init_stop",
+      "valimeli_output": "தம்பி",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "padam",
+      "target": "படம்",
+      "category": "init_stop",
+      "valimeli_output": "படம்",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "pakkam",
+      "target": "பக்கம்",
+      "category": "init_stop",
+      "valimeli_output": "பக்கம்",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "theedhum",
+      "target": "தீதும்",
+      "category": "init_stop",
+      "valimeli_output": "தீதும்",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "nandrum",
+      "target": "நன்றும்",
+      "category": "init_stop",
+      "valimeli_output": "நன்றும்",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "azhagu",
+      "target": "அழகு",
+      "category": "inter_voicing",
+      "valimeli_output": "அழகு",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "pagal",
+      "target": "பகல்",
+      "category": "inter_voicing",
+      "valimeli_output": "பகல்",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "madam",
+      "target": "மடம்",
+      "category": "inter_voicing",
+      "valimeli_output": "மடம்",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "nagaram",
+      "target": "நகரம்",
+      "category": "inter_voicing",
+      "valimeli_output": "நகரம்",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "abayam",
+      "target": "அபயம்",
+      "category": "inter_voicing",
+      "valimeli_output": "அபயம்",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "singam",
+      "target": "சிங்கம்",
+      "category": "post_nasal",
+      "valimeli_output": "சிங்கம்",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "kangal",
+      "target": "கண்கள்",
+      "category": "post_nasal",
+      "valimeli_output": "கண்கள்",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "panju",
+      "target": "பஞ்சு",
+      "category": "post_nasal",
+      "valimeli_output": "பஞ்சு",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "thangam",
+      "target": "தங்கம்",
+      "category": "post_nasal",
+      "valimeli_output": "தங்கம்",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "nandri",
+      "target": "நன்றி",
+      "category": "post_nasal",
+      "valimeli_output": "நன்றி",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "kamban",
+      "target": "கம்பன்",
+      "category": "post_nasal",
+      "valimeli_output": "கம்பன்",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "pandhu",
+      "target": "பந்து",
+      "category": "post_nasal",
+      "valimeli_output": "பந்து",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "appam",
+      "target": "அப்பம்",
+      "category": "geminate",
+      "valimeli_output": "அப்பம்",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "pathu",
+      "target": "பத்து",
+      "category": "geminate",
+      "valimeli_output": "பது",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "kattu",
+      "target": "கட்டு",
+      "category": "geminate",
+      "valimeli_output": "கட்டு",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "chittirai",
+      "target": "சித்திரை",
+      "category": "geminate",
+      "valimeli_output": "சிட்டிரை",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "thoppi",
+      "target": "தொப்பி",
+      "category": "geminate",
+      "valimeli_output": "தொப்பி",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "vetri",
+      "target": "வெற்றி",
+      "category": "geminate",
+      "valimeli_output": "வெற்றி",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "super",
+      "target": "சூப்பர்",
+      "category": "loanword",
+      "valimeli_output": "சூப்பர்",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "acting",
+      "target": "ஆக்டிங்",
+      "category": "loanword",
+      "valimeli_output": "ஆக்டிங்",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "thalaiva",
+      "target": "தலைவா",
+      "category": "colloquial",
+      "valimeli_output": "தலைவ",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "semma",
+      "target": "செம்மா",
+      "category": "colloquial",
+      "valimeli_output": "செம்மா",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "mokkai",
+      "target": "மொக்கை",
+      "category": "colloquial",
+      "valimeli_output": "மொக்கை",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "level",
+      "target": "லெவல்",
+      "category": "loanword",
+      "valimeli_output": "லெவல்",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "vera",
+      "target": "வேற",
+      "category": "colloquial",
+      "valimeli_output": "வெரா",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    }
+  ],
+  "malayalam_battery": [
+    {
+      "roman": "thampi",
+      "target": "തമ്പി",
+      "category": "native_stop",
+      "valimeli_output": "തമ്പി",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "kandu",
+      "target": "കണ്ടു",
+      "category": "native_stop",
+      "valimeli_output": "കണ്ട്",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "padam",
+      "target": "പദം",
+      "category": "native_stop",
+      "valimeli_output": "പദം",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "pakkam",
+      "target": "പക്കം",
+      "category": "geminate",
+      "valimeli_output": "പക്കം",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "azhaku",
+      "target": "അഴക്",
+      "category": "inter_voicing",
+      "valimeli_output": "അഴക്",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "chiri",
+      "target": "ചിരി",
+      "category": "init_stop",
+      "valimeli_output": "ചിരി",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "thangam",
+      "target": "തങ്കം",
+      "category": "post_nasal",
+      "valimeli_output": "തങ്കം",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "nanni",
+      "target": "നന്ദി",
+      "category": "post_nasal",
+      "valimeli_output": "നന്നി",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "kamban",
+      "target": "കമ്പൻ",
+      "category": "post_nasal",
+      "valimeli_output": "കമ്പൻ",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "panthu",
+      "target": "പന്ത്",
+      "category": "post_nasal",
+      "valimeli_output": "പന്തു",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "appam",
+      "target": "അപ്പം",
+      "category": "geminate",
+      "valimeli_output": "അപ്പം",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "kettu",
+      "target": "കെട്ട്",
+      "category": "geminate",
+      "valimeli_output": "കെട്ടു",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "thoppi",
+      "target": "തൊപ്പി",
+      "category": "geminate",
+      "valimeli_output": "തൊപ്പി",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "super",
+      "target": "സൂപ്പർ",
+      "category": "loanword",
+      "valimeli_output": "സൂപ്പർ",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "acting",
+      "target": "ആക്ടിംഗ്",
+      "category": "loanword",
+      "valimeli_output": "ആക്ടിംഗ്",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    },
+    {
+      "roman": "semma",
+      "target": "സെമ്മ",
+      "category": "colloquial",
+      "valimeli_output": "സെമ്മ",
+      "sarvam_output": "—",
+      "sarvam_latency_ms": 0.0
+    }
+  ]
+}
