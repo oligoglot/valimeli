@@ -76,6 +76,12 @@ secrets/
 *.key
 *.secret
 
+# --- Private Pulli & Commercial API Benchmarks (Excluded from ValiMeli) ---
+*sarvam*
+src/*sarvam*
+artifacts/*sarvam*
+scratch/*sarvam*
+
 # --- Matplotlib & Temporary Caches ---
 mpl_cache/
 .cache/
