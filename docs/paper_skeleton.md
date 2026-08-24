@@ -313,7 +313,7 @@ We have presented **ValiMeli**, a phonology-aware framework establishing that Ta
 
 ### Future Work
 1. **Low-Resource Sister Dravidian Languages**: Extending ValiMeli's phonotactic cluster constraints (*meym-mayakkam*, Tolkāppiyam 48–49; Venkatakrishnan et al., 2025) to generate synthetic training data for extreme low-resource Dravidian languages (Badaga, Irula, Kodava, Toda, Kota, and Tulu).
-2. **Classical Epigraphy & Historical Inscriptions (*Project Pulli*)**: Applying phonological allophony constraints to decode and transliterate ancient South Indian stone and copper-plate inscriptions.
+2. **Code-Mixed Large Language Model (LLM) Tokenisation**: Integrating phonology-aware boundary tags into subword tokenisers (BPE, WordPiece, Unigram) for South Asian foundation models (e.g., IndicBERT, Llama-Indic) to eliminate byte-fragmentation on Romanized vernacular text.
 3. **Acoustic Spectrogram Grounding**: Integrating acoustic Voice Onset Time (VOT) and formant transitions from Mozilla Common Voice into multimodal transliteration.
 
 ---
