@@ -54,7 +54,7 @@ We introduce the concept of **Orthographic Parsimony** to refute the notion of "
 - Tamil orthography is therefore an **optimal, information-theoretically parsimonious representation**: it encodes the minimal necessary graphemic inventory and delegates phonetic realisation to deterministic phonotactic decoding.
 - Crucially, as recent analyses in Dravidian NLP demonstrate (Thottingal, 2026), the perceived "deficit" in neural models for Dravidian scripts is predominantly an engineering artifact of Anglo-centric tokenisation (such as Byte-Level BPE fragmenting 3-byte UTF-8 graphemes into 15–20 noisy byte tokens, diluting distributional signals) rather than an inherent limitation of the writing system itself.
 
-### 1.3 Dravidian Stop Allophony & Script Grammar
+### 1.3 Tamil and Malayalam Stop Allophony & Script Grammar
 In classical Tamil grammatical tradition,[^2] consonants are partitioned into three classes:
 1. **Vallinam (வலி)**: Hard consonants / Plosives ($\{k, c, ʈ, t, p, r\}$ — க, ச, ட, த, ப, ற)
 2. **Mellinam (மெலி)**: Soft consonants / Nasals ($\{\ŋ, ɲ, ɳ, n, m, n̪\}$ — ங, ஞ, ண, ந, ம, ன)
@@ -62,13 +62,13 @@ In classical Tamil grammatical tradition,[^2] consonants are partitioned into th
 
 [^2]: Classical Tamil grammar (*Tolkāppiyam*, *Eluttatikāram*) establishes an indigenous metalanguage independent of Sanskritic frameworks (Niklas, 1988), distinguishing *eluttu* (graphemic-phonemic units), *uyir* (vowels), *mey* (pure consonants with *puḷḷi*), *uyirmey* (consonant-vowel composites), and *puṇarcci* (morphophonemic junction, referred to in NLP contexts parenthetically as *sandhi*).
 
-Voicing in native Dravidian roots is **allophonic and positional**:
+Voicing in native Tamil and Malayalam roots (inherited from South Dravidian I phonotactics) is **allophonic and positional**:
 - **Rule 1 (Word-Initial)**: Plosives at word onset are strictly **voiceless** $[k, t͡ʃ, ʈ, t̪, p]$ (e.g., *தம்பி* $\to$ `[t̪]ambi` / `thambi`, *பக்கம்* $\to$ `[p]akkam`).
 - **Rule 2 (Geminate / Fortis)**: Plosives doubled after a vowel are strictly **voiceless geminate** (e.g., *பக்கம்* $\to$ `pa[kk]am`, *பாட்டு* $\to$ `paa[tt]u`).
 - **Rule 3 (Post-Nasal / Lenis)**: Plosives preceded by a homorganic nasal undergo voicing assimilation (*puṇarcci*) to become **voiced** $[g, d͡ʒ, ɖ, d̪, b]$ (e.g., *தம்பி* $\to$ `tham[b]i`, *பந்து* $\to$ `pan[d̪]u` / `pandhu`).
 - **Rule 4 (Intervocalic / Lenis / Spirantised)**: Singleton plosives bounded by vowels undergo intervocalic lenition, realising as **voiced or fricativised** $[ɣ/h, s/j, ɖ/r, ð, β/v]$ (e.g., *படம்* $\to$ `pa[d]am`, *அழகு* $\to$ `azha[g]u`).
 
-Furthermore, Dravidian script grammar dictates that subword units cannot begin with dependent vowel signs (*matras*), isolated *puḷḷi / chandrakkala*, or geminated consonants (e.g. `നിലക്കടല` fragmented into `ക്കട`; Thottingal, 2026). ValiMeli's boundary tagging guarantees strict conformity to these phonotactic constraints.
+Furthermore, traditional script grammar dictates that subword units cannot begin with dependent vowel signs (*matras*), isolated *puḷḷi / chandrakkala*, or geminated consonants (e.g. `നിലക്കടല` fragmented into `ക്കട`; Thottingal, 2026). ValiMeli's boundary tagging guarantees strict conformity to these phonotactic constraints.
 
 ### 1.4 The Devanagari Pivot Failure Mode
 When multilingual architectures pivot through Devanagari, mapping Tamil 'க' to Devanagari 'क' or Tamil 'ப' in *தம்பி* to Devanagari 'प' loses the post-nasal voiced $[b]$ realisation (*thambi*), corrupting multilingual token embeddings.
@@ -366,7 +366,7 @@ By coupling ValiMeli's phonological generator with the empirical Maximum Likelih
 
 ## 8. Conclusion
 
-Our findings demonstrate that Tamil and native Malayalam orthographies are not underspecified, but governed by principled orthographic parsimony. By aligning tokenisation with native phonological structure, ValiMeli provides an explicit inductive bias for Dravidian transliteration, establishing significant performance gains in reverse transliteration and stop-voicing accuracy across millions of samples.
+Our findings demonstrate that Tamil and native Malayalam orthographies are not underspecified, but governed by principled orthographic parsimony. By aligning tokenisation with native phonological structure, ValiMeli provides an explicit inductive bias for Tamil and Malayalam transliteration, establishing significant performance gains in reverse transliteration and stop-voicing accuracy across millions of samples.
 
 ---
 
