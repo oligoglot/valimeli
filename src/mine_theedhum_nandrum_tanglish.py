@@ -102,7 +102,7 @@ def align_tanglish_to_canonical(tokens: List[Tuple[str, int]], lang: str = "ta")
     """
     aligned_pairs = []
 
-    # High-frequency conversational suffix rules for Tamil/Malayalam
+    # High-frequency conversational suffix rules for Tamil
     tam_conversions = [
         (r'anga$', 'ங்க'),
         (r'unga$', 'வுங்க'),
@@ -143,24 +143,63 @@ def align_tanglish_to_canonical(tokens: List[Tuple[str, int]], lang: str = "ta")
         (r'gnabagam$', 'ஞாபகம்'),
     ]
 
+    # High-frequency conversational suffix rules for Malayalam (Manglish)
+    mal_conversions = [
+        (r'aanu$', 'ആണ്'),
+        (r'aano$', 'ആണോ'),
+        (r'undu$', 'ഉണ്ട്'),
+        (r'undo$', 'ഉണ്ടോ'),
+        (r'illa$', 'ഇല്ല'),
+        (r'ilya$', 'ഇല്ല'),
+        (r'engil$', 'എങ്കിൽ'),
+        (r'enkil$', 'എങ്കിൽ'),
+        (r'inte$', 'ന്റെ'),
+        (r'nte$', 'ന്റെ'),
+        (r'aayirunnu$', 'ആയിരുന്നു'),
+        (r'thanne$', 'തന്നെ'),
+        (r'ippol$', 'ഇപ്പോൾ'),
+        (r'ippo$', 'ഇപ്പോ'),
+        (r'appol$', 'അപ്പോൾ'),
+        (r'appo$', 'അപ്പോ'),
+        (r'kollam$', 'കൊള്ളാം'),
+        (r'cheyyaam$', 'ചെയ്യാം'),
+        (r'cheyyam$', 'ചെയ്യാം'),
+        (r'pokaam$', 'പോകാം'),
+        (r'pokam$', 'പോകാം'),
+        (r'pokunno$', 'പോകുന്നോ'),
+        (r'varaan$', 'വരാൻ'),
+        (r'njan$', 'ഞാൻ'),
+        (r'visheshangal$', 'വിശേഷങ്ങൾ'),
+        (r'sughamaano$', 'സുഖമാണോ'),
+        (r'namaskaram$', 'നമസ്കാരം'),
+        (r'adipoli$', 'അടിപൊളി'),
+        (r'polichu$', 'പൊളിച്ചു')
+    ]
+
+    conversions = tam_conversions if lang == "ta" else mal_conversions
+
     for word, freq in tokens:
         if freq < 2:
             continue
 
         # Check direct conversational mappings
         matched_target = None
-        for pat, rep in tam_conversions:
+        for pat, rep in conversions:
             if re.search(pat, word):
                 matched_target = rep
                 break
 
-        aligned_pairs.append({
+        record = {
             "roman": word,
             "frequency": freq,
             "language": lang,
             "source": "TheedhumNandrum-FIRE2020",
             "is_conversational_colloquial": True
-        })
+        }
+        if matched_target:
+            record["indic_canonical"] = matched_target
+
+        aligned_pairs.append(record)
 
     return aligned_pairs
 
