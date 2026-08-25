@@ -1,0 +1,88 @@
+{
+  "tam": {
+    "language": "tam",
+    "samples_evaluated": 150000,
+    "total_plosive_tokens": 423442,
+    "aligned_plosive_tokens": 422025,
+    "aligner_coverage_percent": 99.67,
+    "unconditioned_entropy_bits": 0.9312,
+    "conditional_entropy_bits": 0.814,
+    "mutual_information_bits": 0.1172,
+    "entropy_reduction_percent": 12.58,
+    "contexts": {
+      "WORD_INITIAL": {
+        "entropy_bits": 0.6761,
+        "sample_count": 74105,
+        "p_voiced": 0.1782,
+        "p_voiceless": 0.8218
+      },
+      "GEMINATE": {
+        "entropy_bits": 0.6571,
+        "sample_count": 146536,
+        "p_voiced": 0.1698,
+        "p_voiceless": 0.8302
+      },
+      "POST_NASAL": {
+        "entropy_bits": 0.9453,
+        "sample_count": 37995,
+        "p_voiced": 0.6368,
+        "p_voiceless": 0.3632
+      },
+      "INTERVOCALIC": {
+        "entropy_bits": 0.9949,
+        "sample_count": 139203,
+        "p_voiced": 0.5421,
+        "p_voiceless": 0.4579
+      },
+      "OTHER": {
+        "entropy_bits": 0.9403,
+        "sample_count": 24186,
+        "p_voiced": 0.3572,
+        "p_voiceless": 0.6428
+      }
+    }
+  },
+  "mal": {
+    "language": "mal",
+    "samples_evaluated": 150000,
+    "total_plosive_tokens": 330755,
+    "aligned_plosive_tokens": 300791,
+    "aligner_coverage_percent": 90.94,
+    "unconditioned_entropy_bits": 0.7444,
+    "conditional_entropy_bits": 0.6618,
+    "mutual_information_bits": 0.0826,
+    "entropy_reduction_percent": 11.09,
+    "contexts": {
+      "WORD_INITIAL": {
+        "entropy_bits": 0.4463,
+        "sample_count": 44579,
+        "p_voiced": 0.093,
+        "p_voiceless": 0.907
+      },
+      "GEMINATE": {
+        "entropy_bits": 0.5204,
+        "sample_count": 142058,
+        "p_voiced": 0.1169,
+        "p_voiceless": 0.8831
+      },
+      "POST_NASAL": {
+        "entropy_bits": 0.9521,
+        "sample_count": 15419,
+        "p_voiced": 0.6281,
+        "p_voiceless": 0.3719
+      },
+      "INTERVOCALIC": {
+        "entropy_bits": 0.9297,
+        "sample_count": 91881,
+        "p_voiced": 0.3452,
+        "p_voiceless": 0.6548
+      },
+      "OTHER": {
+        "entropy_bits": 0.7486,
+        "sample_count": 6854,
+        "p_voiced": 0.2137,
+        "p_voiceless": 0.7863
+      }
+    }
+  }
+}
