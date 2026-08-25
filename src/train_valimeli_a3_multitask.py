@@ -278,11 +278,24 @@ def run_tanglish_test_battery(model: nn.Module, src_vocab: MultilingualVocab, tg
         print(f" {status} Input: '{rom:18s}' -> Pred: '{pred:18s}' (Target: '{target}')")
     print("-------------------------------------------\n")
 
+import subprocess
+
+def get_git_commit(repo_path: str) -> str:
+    try:
+        return subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=repo_path).decode().strip()
+    except Exception:
+        return "unknown"
+
+VALIMELI_COMMIT = get_git_commit(VALIMELI_DIR)
+PULLI_COMMIT = get_git_commit(WORKSPACE_DIR)
+
 def train_valimeli_a3():
     print("=" * 80)
     print(" VALIMELI-A3-MT 8-LANGUAGE MULTI-TASK GROUNDED TRAINING PIPELINE")
     print(f" Device: {DEVICE} | Batch Size: {BATCH_SIZE} | Epochs: {NUM_EPOCHS}")
-    print("=" * 80)
+    print(f" Git Commit ID (ValiMeli Repo): {VALIMELI_COMMIT}")
+    print(f" Git Commit ID (Pulli Repo):    {PULLI_COMMIT}")
+    print("=" * 80, flush=True)
 
     if not os.path.exists(GROUNDED_DATASET_FILE):
         print(f"❌ Error: Grounded dataset not found at {GROUNDED_DATASET_FILE}")
@@ -412,6 +425,8 @@ def train_valimeli_a3():
                 "tgt_vocab": tgt_vocab,
                 "epoch": epoch,
                 "val_loss": val_loss,
+                "git_commit_valimeli": VALIMELI_COMMIT,
+                "git_commit_pulli": PULLI_COMMIT,
                 "config": {
                     "d_model": D_MODEL,
                     "nhead": NHEAD,
