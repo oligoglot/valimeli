@@ -63,9 +63,10 @@ NHEAD = 4
 NUM_LAYERS = 6
 DIM_FEEDFORWARD = 1024
 NUM_PHONO_CLASSES = 7
-NUM_EPOCHS = 8
-LR = 7e-4
+NUM_EPOCHS = 3
+LR = 6e-4
 WEIGHT_DECAY = 1e-4
+WARMUP_STEPS = 2000
 
 LANG_CODES = ["tam", "mal", "tel", "kan", "hin", "ben", "guj", "mar"]
 LANG_PREFIXES = {

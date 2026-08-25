@@ -4,46 +4,46 @@
     "total_words_evaluated": 150000,
     "aligned_words": 142221,
     "word_alignment_rate_percent": 94.81,
-    "total_plosive_tokens": 423442,
-    "labelled_plosive_tokens": 404470,
-    "plosive_coverage_percent": 95.52,
-    "unconditioned_entropy_bits": 0.732,
-    "conditional_entropy_bits": 0.5626,
-    "mutual_information_bits": 0.1694,
-    "entropy_reduction_percent": 23.14,
-    "argmax_accuracy_always_voiceless_percent": 79.49,
-    "argmax_accuracy_context_rules_percent": 79.49,
+    "total_plosive_tokens": 349981,
+    "labelled_plosive_tokens": 334132,
+    "plosive_coverage_percent": 95.47,
+    "unconditioned_entropy_bits": 0.8066,
+    "conditional_entropy_bits": 0.6705,
+    "mutual_information_bits": 0.1361,
+    "entropy_reduction_percent": 16.87,
+    "argmax_accuracy_always_voiceless_percent": 75.29,
+    "argmax_accuracy_context_rules_percent": 75.29,
     "argmax_error_reduction_gain_percent": 0.0,
     "contexts": {
       "WORD_INITIAL": {
         "entropy_bits": 0.5135,
         "sample_count": 70139,
-        "p_voiced": 0.1136,
-        "p_voiceless": 0.8864
+        "p_voiced": 0.1145,
+        "p_voiceless": 0.8855
       },
       "GEMINATE": {
-        "entropy_bits": 0.0599,
-        "sample_count": 140676,
-        "p_voiced": 0.0076,
-        "p_voiceless": 0.9924
+        "entropy_bits": 0.0701,
+        "sample_count": 70338,
+        "p_voiced": 0.0084,
+        "p_voiceless": 0.9916
       },
       "POST_CONS": {
         "entropy_bits": 0.7741,
         "sample_count": 22692,
-        "p_voiced": 0.2281,
-        "p_voiceless": 0.7719
+        "p_voiced": 0.2277,
+        "p_voiceless": 0.7723
       },
       "INTERVOCALIC": {
         "entropy_bits": 0.9601,
         "sample_count": 133930,
-        "p_voiced": 0.3831,
-        "p_voiceless": 0.6169
+        "p_voiced": 0.383,
+        "p_voiceless": 0.617
       },
       "POST_NASAL": {
         "entropy_bits": 0.9977,
         "sample_count": 37033,
-        "p_voiced": 0.4682,
-        "p_voiceless": 0.5318
+        "p_voiced": 0.4716,
+        "p_voiceless": 0.5284
       }
     }
   },
@@ -52,34 +52,34 @@
     "total_words_evaluated": 150000,
     "aligned_words": 101379,
     "word_alignment_rate_percent": 67.59,
-    "total_plosive_tokens": 330755,
-    "labelled_plosive_tokens": 244891,
-    "plosive_coverage_percent": 74.04,
-    "unconditioned_entropy_bits": 0.4688,
-    "conditional_entropy_bits": 0.3168,
-    "mutual_information_bits": 0.152,
-    "entropy_reduction_percent": 32.42,
-    "argmax_accuracy_always_voiceless_percent": 90.01,
-    "argmax_accuracy_context_rules_percent": 90.01,
+    "total_plosive_tokens": 253932,
+    "labelled_plosive_tokens": 188978,
+    "plosive_coverage_percent": 74.42,
+    "unconditioned_entropy_bits": 0.5496,
+    "conditional_entropy_bits": 0.3897,
+    "mutual_information_bits": 0.1599,
+    "entropy_reduction_percent": 29.09,
+    "argmax_accuracy_always_voiceless_percent": 87.28,
+    "argmax_accuracy_context_rules_percent": 87.28,
     "argmax_error_reduction_gain_percent": 0.0,
     "contexts": {
       "WORD_INITIAL": {
         "entropy_bits": 0.012,
         "sample_count": 36765,
-        "p_voiced": 0.0012,
-        "p_voiceless": 0.9988
+        "p_voiced": 0.0011,
+        "p_voiceless": 0.9989
       },
       "GEMINATE": {
-        "entropy_bits": 0.0413,
-        "sample_count": 111826,
-        "p_voiced": 0.0048,
-        "p_voiceless": 0.9952
+        "entropy_bits": 0.0121,
+        "sample_count": 55913,
+        "p_voiced": 0.0011,
+        "p_voiceless": 0.9989
       },
       "POST_CONS": {
         "entropy_bits": 0.056,
         "sample_count": 5135,
-        "p_voiced": 0.007,
-        "p_voiceless": 0.993
+        "p_voiced": 0.0064,
+        "p_voiceless": 0.9936
       },
       "INTERVOCALIC": {
         "entropy_bits": 0.7498,
@@ -90,8 +90,8 @@
       "POST_NASAL": {
         "entropy_bits": 0.9999,
         "sample_count": 15539,
-        "p_voiced": 0.4917,
-        "p_voiceless": 0.5083
+        "p_voiced": 0.4948,
+        "p_voiceless": 0.5052
       }
     }
   }

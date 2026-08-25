@@ -190,9 +190,10 @@ def get_phonotactic_context(word: str, akshara_idx: int, aksharas: List[str], la
     if current[0] not in plosives:
         return "NONE"
         
+    # If this is the pure consonant first half of a geminate, skip it (label on second half)
     if virama in current:
         if akshara_idx + 1 < len(aksharas) and aksharas[akshara_idx + 1][0] == current[0]:
-            return "GEMINATE"
+            return "NONE"
             
     if akshara_idx > 0:
         prev = aksharas[akshara_idx - 1]
@@ -229,6 +230,7 @@ def run_entropy_analysis(lang: str, max_samples: int = 150000) -> Dict[str, Any]
         raise FileNotFoundError(f"Data not found: {json_path}")
         
     pairs = []
+    virama = TAMIL_VIRAMA if lang == "tam" else MALAYALAM_VIRAMA
     with open(json_path, "r", encoding="utf-8") as f:
         for line in f:
             if not line.strip(): continue
@@ -254,6 +256,9 @@ def run_entropy_analysis(lang: str, max_samples: int = 150000) -> Dict[str, Any]
         aksharas = segment_aksharas(indic, lang=lang)
         for idx, ak in enumerate(aksharas):
             if ak[0] in plosives_set:
+                # Do not count the first half of a geminate separately
+                if virama in ak and idx + 1 < len(aksharas) and aksharas[idx + 1][0] == ak[0]:
+                    continue
                 total_plosives += 1
                 
         res = align_word(aksharas, roman.lower().strip(), lang=lang, max_budget=2)
@@ -261,8 +266,10 @@ def run_entropy_analysis(lang: str, max_samples: int = 150000) -> Dict[str, Any]
             aligned_words += 1
             for idx, (ak, start_idx, end_idx, voicing) in enumerate(res):
                 if ak[0] in plosives_set and voicing is not None:
-                    labelled_plosives += 1
                     ctx = get_phonotactic_context(indic, idx, aksharas, lang=lang)
+                    if ctx == "NONE":
+                        continue
+                    labelled_plosives += 1
                     global_counts[voicing] += 1
                     context_counts[ctx][voicing] += 1
                     
