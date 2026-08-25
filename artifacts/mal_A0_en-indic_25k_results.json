@@ -1,0 +1,35 @@
+{
+  "experiment_metadata": {
+    "language": "mal",
+    "experimental_arm": "A0",
+    "arm_label": "Baseline (Character)",
+    "direction": "en-indic",
+    "model_type": "transformer_multitask_phonology",
+    "num_parameters": 11105871,
+    "aux_lambda": 0.3,
+    "epochs": 8,
+    "train_samples": 25000,
+    "test_samples": 12451,
+    "device": "mps"
+  },
+  "metrics": {
+    "validation_loss": 0.6175,
+    "native_words": {
+      "exact_match_accuracy": 19.59,
+      "character_error_rate": 32.08,
+      "stop_voicing_accuracy": 20.05,
+      "count": 10427
+    },
+    "named_entities": {
+      "exact_match_accuracy": 4.55,
+      "character_error_rate": 54.63,
+      "count": 2024
+    },
+    "combined": {
+      "exact_match_accuracy": 17.15,
+      "character_error_rate": 34.69,
+      "stop_voicing_accuracy": 18.06,
+      "count": 12451
+    }
+  }
+}
