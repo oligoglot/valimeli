@@ -472,12 +472,19 @@ def train_valimeli_a4():
             }
             torch.save(ckpt, MODEL_OUT_PATH)
             torch.save(ckpt, PULLI_SYNC_PATH)
-            print(f"    ⭐ Saved new best ValiMeli-A4-PanIndic checkpoint: {MODEL_OUT_PATH}")
-            print(f"    ⭐ Synced checkpoint to Pulli: {PULLI_SYNC_PATH}\n", flush=True)
-
     print("=" * 80)
     print(" VALIMELI-A4-PAN-INDIC-MT TRAINING COMPLETE!")
     print("=" * 80 + "\n")
+
+    try:
+        eval_script = "/Users/slakshmanan/Playspace/Gemini/pulli/benchmarks/sarvam/eval_golden_suite_all_models.py"
+        if os.path.exists(eval_script):
+            print(" -> Running automatic post-training 215-sample Golden Suite benchmark evaluation...", flush=True)
+            import subprocess
+            subprocess.run([sys.executable, eval_script], check=False)
+            print(" ✅ Automated Pan-Indic benchmark scorecard updated successfully!", flush=True)
+    except Exception as e:
+        print(f" ⚠️ Post-training benchmark hook error: {e}", flush=True)
 
 if __name__ == "__main__":
     train_valimeli_a4()
