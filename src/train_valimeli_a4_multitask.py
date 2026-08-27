@@ -272,7 +272,7 @@ def run_pan_indic_test_battery(model: nn.Module, src_vocab: Vocab, tgt_vocab: Vo
             for _ in range(30):
                 tgt_t = torch.tensor([out_ids], dtype=torch.long, device=device)
                 tgt_repr = model.pos_encoder(model.tgt_emb(tgt_t) * math.sqrt(model.d_model))
-                tgt_mask = model.transformer.generate_square_subsequent_mask(len(out_ids)).to(device)
+                tgt_mask = model.generate_square_subsequent_mask(len(out_ids), device)
                 out = model.transformer.decoder(tgt_repr, memory, tgt_mask=tgt_mask)
                 next_tok = model.fc_out(out[:, -1, :]).argmax(dim=-1).item()
                 if next_tok == tgt_vocab.stoi["<eos>"]:
