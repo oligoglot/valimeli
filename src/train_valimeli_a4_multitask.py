@@ -183,6 +183,7 @@ class ValiMeliA4MultiTaskModel(nn.Module):
         self.d_model = d_model
         self.src_emb = nn.Embedding(src_vocab_size, d_model, padding_idx=0)
         self.tgt_emb = nn.Embedding(tgt_vocab_size, d_model, padding_idx=0)
+        self.pos_encoder = PositionalEncoding(d_model)
         enc_layer = nn.TransformerEncoderLayer(
             d_model=d_model, nhead=nhead, dim_feedforward=dim_feedforward,
             dropout=0.1, batch_first=True
@@ -191,9 +192,11 @@ class ValiMeliA4MultiTaskModel(nn.Module):
             d_model=d_model, nhead=nhead, dim_feedforward=dim_feedforward,
             dropout=0.1, batch_first=True
         )
+        enc_norm = nn.LayerNorm(d_model)
+        dec_norm = nn.LayerNorm(d_model)
         self.transformer = nn.Module()
-        self.transformer.encoder = nn.TransformerEncoder(enc_layer, num_layers=num_layers, enable_nested_tensor=False)
-        self.transformer.decoder = nn.TransformerDecoder(dec_layer, num_layers=num_layers)
+        self.transformer.encoder = nn.TransformerEncoder(enc_layer, num_layers=num_layers, norm=enc_norm, enable_nested_tensor=False)
+        self.transformer.decoder = nn.TransformerDecoder(dec_layer, num_layers=num_layers, norm=dec_norm)
 
         self.fc_out = nn.Linear(d_model, tgt_vocab_size)
         self.phono_head = nn.Sequential(
