@@ -183,17 +183,17 @@ class ValiMeliA4MultiTaskModel(nn.Module):
         self.d_model = d_model
         self.src_emb = nn.Embedding(src_vocab_size, d_model, padding_idx=0)
         self.tgt_emb = nn.Embedding(tgt_vocab_size, d_model, padding_idx=0)
-        self.pos_encoder = PositionalEncoding(d_model)
-
-        self.transformer = nn.Transformer(
-            d_model=d_model,
-            nhead=nhead,
-            num_encoder_layers=num_layers,
-            num_decoder_layers=num_layers,
-            dim_feedforward=dim_feedforward,
-            dropout=0.1,
-            batch_first=True
+        enc_layer = nn.TransformerEncoderLayer(
+            d_model=d_model, nhead=nhead, dim_feedforward=dim_feedforward,
+            dropout=0.1, batch_first=True
         )
+        dec_layer = nn.TransformerDecoderLayer(
+            d_model=d_model, nhead=nhead, dim_feedforward=dim_feedforward,
+            dropout=0.1, batch_first=True
+        )
+        self.transformer = nn.Module()
+        self.transformer.encoder = nn.TransformerEncoder(enc_layer, num_layers=num_layers, enable_nested_tensor=False)
+        self.transformer.decoder = nn.TransformerDecoder(dec_layer, num_layers=num_layers)
 
         self.fc_out = nn.Linear(d_model, tgt_vocab_size)
         self.phono_head = nn.Sequential(
@@ -203,11 +203,14 @@ class ValiMeliA4MultiTaskModel(nn.Module):
             nn.Linear(128, num_phono_classes)
         )
 
+    def generate_square_subsequent_mask(self, sz: int, device: torch.device) -> torch.Tensor:
+        return torch.triu(torch.full((sz, sz), float('-inf'), device=device), diagonal=1)
+
     def forward(self, src: torch.Tensor, tgt: torch.Tensor):
         src_pad_mask = (src == 0)
         tgt_pad_mask = (tgt == 0)
         tgt_len = tgt.size(1)
-        tgt_mask = self.transformer.generate_square_subsequent_mask(tgt_len).to(src.device)
+        tgt_mask = self.generate_square_subsequent_mask(tgt_len, src.device)
 
         src_repr = self.pos_encoder(self.src_emb(src) * math.sqrt(self.d_model))
         tgt_repr = self.pos_encoder(self.tgt_emb(tgt) * math.sqrt(self.d_model))
@@ -364,8 +367,24 @@ def train_valimeli_a4():
     scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=NUM_EPOCHS, eta_min=1e-5)
 
     best_val_loss = float("inf")
+    start_epoch = 1
 
-    for epoch in range(1, NUM_EPOCHS + 1):
+    if os.path.exists(PULLI_SYNC_PATH):
+        try:
+            print(f" -> Found existing checkpoint at {PULLI_SYNC_PATH}. Resuming training...")
+            ckpt = torch.load(PULLI_SYNC_PATH, map_location=DEVICE, weights_only=False)
+            model.load_state_dict(ckpt["model_state_dict"])
+            last_batch = ckpt.get("batch", 0)
+            last_epoch = ckpt.get("epoch", 1)
+            if last_batch >= 50000:
+                start_epoch = min(last_epoch + 1, NUM_EPOCHS)
+            else:
+                start_epoch = last_epoch
+            print(f"    Loaded Epoch {last_epoch} (Batch {last_batch:,}) weights! Resuming at Epoch {start_epoch}...\n", flush=True)
+        except Exception as e:
+            print(f"    ⚠️ Could not resume from checkpoint: {e}\n", flush=True)
+
+    for epoch in range(start_epoch, NUM_EPOCHS + 1):
         t0 = time.time()
         model.train()
         running_loss = 0.0
@@ -399,6 +418,28 @@ def train_valimeli_a4():
                 avg_p = running_phono / (b_idx + 1)
                 pct = ((b_idx + 1) / total_batches) * 100.0
                 print(f"  [Epoch {epoch}/{NUM_EPOCHS}] Batch [{b_idx+1}/{total_batches}] ({pct:5.1f}%) | Loss: {avg_l:.4f} (Trans: {avg_t:.4f}, Phono: {avg_p:.4f})", flush=True)
+
+            if (b_idx + 1) % 5000 == 0:
+                mid_ckpt = {
+                    "model_state_dict": model.state_dict(),
+                    "src_vocab": src_vocab,
+                    "tgt_vocab": tgt_vocab,
+                    "epoch": epoch,
+                    "batch": b_idx + 1,
+                    "loss": running_loss / (b_idx + 1),
+                    "git_commit_valimeli": VALIMELI_COMMIT,
+                    "git_commit_pulli": PULLI_COMMIT,
+                    "config": {
+                        "d_model": D_MODEL,
+                        "nhead": NHEAD,
+                        "num_layers": NUM_LAYERS,
+                        "dim_feedforward": DIM_FEEDFORWARD,
+                        "num_phono_classes": NUM_PHONO_CLASSES
+                    }
+                }
+                torch.save(mid_ckpt, MODEL_OUT_PATH)
+                torch.save(mid_ckpt, PULLI_SYNC_PATH)
+                print(f"    💾 Checkpoint saved at Batch {b_idx+1:,} to {PULLI_SYNC_PATH}", flush=True)
 
         scheduler.step()
         epoch_time = time.time() - t0
