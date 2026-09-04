@@ -175,10 +175,10 @@ All evaluations are conducted on official Aksharantar holdout test sets using gr
 
 ### Table 3: Scaling Hierarchy of Phonological Inductive Bias (Monolingual & Bilingual)
 
-| Regime & Model Scale | Language | Baseline (A0) Exact Match | Phonology Arm (A1 / A1-MT) | $\Delta$ EM | Statistical Significance ($z$-test) |
+| Regime & Model Scale | Language | Baseline (A0) Exact Match | Phonology Arm (A1 / A1-MT) | $\Delta$ EM | Statistical Significance |
 | :--- | :--- | :---: | :---: | :---: | :---: |
-| **Low-Resource (25k Pairs, 11M Transformer)** | **Tamil** | 24.04% (Native: 27.83%) | **24.98% (Native: 28.91%)** | **+0.94%** (Native: +1.08%) | $p = .098$ (Native: $p = .100$) |
-| **Low-Resource (25k Pairs, 11M Transformer)** | **Malayalam** | 17.15% (Native: 19.59%) | **18.41% (Native: 20.85%)** | **+1.26%** (Native: +1.26%) | **$p = .009$ (Native: $p = .024$) ★** |
+| **Low-Resource (25k Pairs, Multi-seed $\mu\pm\sigma$)** | **Tamil** | $25.37\% \pm 1.65\%$ (Native: $30.92\%$) | $25.19\% \pm 0.49\%$ (Native: $30.90\%$) | $-0.18\%$ (CER: $+0.66\%$) | $p = 3.9 \times 10^{-5}$ (Paired McNemar) |
+| **Low-Resource (25k Pairs, Multi-seed $\mu\pm\sigma$)** | **Malayalam** | $17.76\% \pm 1.43\%$ (Native: $23.57\%$) | **$18.60\% \pm 1.10\%$ (Native: $24.92\%$)** | **$+0.84\%$ (Gain in 3/3 seeds, CER: $-1.24\%$)** | $p = .295$ (Paired McNemar) |
 | **Low-Capacity (250k Pairs, 1.5M BiGRU)** | **Tamil** | 58.19% | **59.72%** (A1 Tagged) | **+1.53%** | **$p = .018$ ★** |
 | **Low-Capacity (250k Pairs, 1.5M BiGRU)** | **Malayalam** | 51.08% | **52.16%** (A1 Tagged) | **+1.08%** | $p = .088$ |
 | **Standard Capacity (250k Pairs, 11M Transformer)**| **Tamil** | 59.18% | 59.94% (A1 Tagged) | +0.76% | $p = .240$ |
