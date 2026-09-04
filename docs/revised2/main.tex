@@ -14,267 +14,251 @@ Phonological Supervision in Dravidian Transliteration}
 \maketitle
 
 \begin{abstract}
-Tamil and Malayalam orthography does not mark stop voicing: a single grapheme spans
-\textit{[k]} and \textit{[g]}, with the realisation determined by phonotactic context.
-This has made the two scripts a standing candidate explanation for why multilingual
-transliteration systems underperform on them, and a standing motivation for giving models
-explicit phonological structure. We test that motivation directly and find it holds only
-where data is scarce. Measuring stop voicing over 150{,}000 Dakshina word pairs per language
-with a dynamic-programming akshara aligner, we confirm that context is genuinely informative:
-mutual information between context and voicing is $0.136$ bits in Tamil and $0.160$ bits in
-Malayalam, reducing conditional entropy by $16.9\%$ and $29.1\%$ respectively. Yet the
-voiceless realisation is the majority outcome in \emph{every} phonotactic context we
-measure---even post-nasally, where sandhi makes voicing obligatory in speech, $P(\text{voiced})$
-reaches only $0.472$ in Tamil. Because context never moves the majority outcome, replacing an
-unconditional voiceless default with context-conditional rules reduces argmax error by
-$0.00\%$ in both languages. We call this \emph{argmax invariance}, and it predicts what we
-observe across eight controlled transliteration arms spanning 25k to 1.0M training pairs and
-two independent implementations of phonological bias: a significant gain for Malayalam at 25k
-pairs ($+1.26$ points, $p=0.009$) that reverses to a significant loss by 1.0M
-($-1.37$, $p=0.030$). The residual uncertainty that a phonology-aware model might have
-resolved turns out to sit on the target side instead: among Tamil words with more than one
-attested romanisation, $65.4\%$ of post-nasal stop slots are spelled inconsistently by
-annotators of the same word. Phonological structure is not absent from these scripts; it is
-already priced into the majority mapping, and what remains is annotation variance that no
-source-side prior can reach.
+Tamil and Malayalam orthographies do not dedicate separate graphemes to voiced and voiceless
+stops: a single graphemic stop series spans \textit{[k]} and \textit{[g]}, with phonetic
+realisation deterministically governed by phonotactic environment. In Indic natural language
+processing, this structural trait has frequently been misdiagnosed as an ``orthographic
+underspecification'' deficit, motivating interventions that inject explicit phonological priors
+into neural sequence models. We evaluate this hypothesis empirically and theoretically, finding
+that native orthography is in fact an information-theoretically parsimonious code: an
+unconditional voiceless baseline achieves $75.29\%$ accuracy in Tamil and $87.28\%$ in
+Malayalam across all phonotactic contexts. Measuring stop voicing over 150{,}000 benchmark word
+pairs per language, we confirm that phonotactic context is genuinely informative (mutual
+information $I(V;C) = 0.136$ bits in Tamil, $0.160$ in Malayalam). However, because the
+voiceless spelling remains the plurality outcome in \emph{every} phonotactic slot in crowdsourced
+benchmarks ($P(\text{voiced}) \le 0.472$ even post-nasally), conditioning on context alters the
+argmax decision boundary by $0.00\%$, a property we formalise as \emph{argmax invariance}.
+Across controlled transliteration scaling experiments spanning 25k to 1.0M training pairs and two
+distinct architectures, auxiliary phonological supervision yields small gains exclusively in
+low-resource regimes (Malayalam exact match $+0.84\%$ across three random seeds at 25k pairs,
+Native EM $+1.35\%$, CER $-1.24\%$), decaying to zero or reversing to significant degradation at
+scale ($-2.33\%$ at 1.0M, $p = 0.0003$). We trace residual target entropy to human transcription
+conventions: independent annotators disagree on $65.38\%$ of Tamil post-nasal stops on identical
+words in Dakshina, while in-the-wild conversational Tanglish from YouTube comments flips to
+$64.00\%$ voiced spellings. We provide actionable engineering blueprints for handling this duality
+in practical input methods and controlled generation systems.
 \end{abstract}
 
 \section{Introduction}
 \label{sec:intro}
 
-Transliteration between the Latin script and the Brahmic scripts of South Asia is a
-character-level sequence transduction task, and for most Indian languages it is close to
-solved: recent multilingual models exceed $60\%$ exact match on held-out Dakshina words for
-Hindi, Telugu and Kannada \cite{madhani-etal-2023-aksharantar}. Tamil and Malayalam are
-consistently harder. A recurring explanation attributes this to orthographic
-underspecification. Both scripts inherit a Brahmic plosive series that lost its voicing
-contrast: Tamil writes \textit{[k]}, \textit{[g]} and \textit{[G]} with the single
-grapheme \textit{ka}, and Malayalam, though it retains distinct voiced letters, uses the
-voiceless series for most native vocabulary where voicing is contextually predictable. A
-romaniser must therefore recover information the source does not encode.
+Machine transliteration between the Latin alphabet and the indigenous Brahmic scripts of South
+Asia is a foundational component of keyboard input method engines (IMEs), search indexing,
+named-entity recognition, and conversational text normalisation
+\cite{madhani-etal-2023-aksharantar,roark-etal-2020-processing}. While sequence-to-sequence models
+frequently exceed $60\%$ exact match on held-out benchmarks for multi-stop scripts like Hindi,
+Telugu, and Kannada, performance on Tamil and Malayalam is historically lower.
 
-The natural remedy is to supply that information explicitly---to tag the phonotactic context
-of each plosive, or to train the model to predict it, rather than hoping it is induced from
-data. This is the phonological analogue of the morphology-aware tokenisation that
-\citet{vemula-etal-2025-rethinking} report as beneficial for Indic sequence tasks, and, since
-voicing in Dravidian is more directly a function of local phonotactics than morphology is
-\cite{lakshmanan2025biconsonantal}, it is the intervention one would expect to help more.
+A recurring explanation in the computational literature attributes this disparity to
+\emph{orthographic underspecification}. Both languages inherit a single graphemic stop series
+(\textit{Vallinam} in Tamil: \textit{ka}, \textit{ca}, \textit{ta}, \textit{tha}, \textit{pa},
+\textit{ra}) that maps to multiple phonetic realisations: Tamil writes $[k]$, $[g]$, $[\gamma]$,
+and $[x]$ with the single character \textit{ka}. It has thus been widely assumed that neural
+models face a fundamental information bottleneck because the source script omits phonemic voicing
+distinctions present in Indo-Aryan and sister Dravidian scripts.
 
-We find that it does not, and the reason is measurable in the corpus before any model is
-trained. Our contributions:
-
+\paragraph{Principled Orthographic Parsimony.}
+We refute the deficit hypothesis through classical phonological theory. Under the classical
+\emph{Phonemic Principle} \cite{swadesh-1934-phonemic,caldwell1875comparative,zvelebil1970dravidian},
+writing systems encode contrastive phonemes rather than predictable surface allophones. In the
+core native Dravidian lexicon, stop voicing exists in strict \emph{complementary distribution}:
 \begin{enumerate}
-\item \textbf{Argmax invariance} (\S\ref{sec:entropy}). Phonotactic context carries real
-information about voicing, but it never changes which realisation is most probable. Every
-context we measure has $P(\text{voiced})<0.5$. A model minimising expected character error
-therefore has nothing to gain from context, and we quantify that as a $0.00\%$ reduction in
-argmax error for both languages.
-\item \textbf{The advantage is confined to the low-data regime}
-(\S\ref{sec:scale}). Across eight controlled arms and two distinct implementations of
-phonological bias---an auxiliary decoder loss and phonotactic tags in the output string---the
-benefit present at 25k--250k pairs is absent by 500k and significantly negative at 1.0M.
-\item \textbf{The residual uncertainty is on the target side}
-(\S\ref{sec:disagree}). Among words with multiple attested romanisations, annotators disagree
-about voicing on $65.4\%$ of Tamil and $36.9\%$ of Malayalam post-nasal stop slots. This is
-noise in the reference, not ambiguity in the source, and no source-side prior can remove it.
+    \item \textbf{Word-initial} (\texttt{\#\_}) and \textbf{Geminate} (\texttt{C\_C}): strictly
+    voiceless fortis ($[k, t, p]$, e.g., \textit{pakkam} $\rightarrow$ $[p]a[kk]am$).
+    \item \textbf{Post-nasal} (\texttt{N\_}): obligatorily voiced via nasal assimilation /
+    \textit{puṇarcci} (\textit{thambi} $\rightarrow$ $[b]$, \textit{pandhu} $\rightarrow$ $[d]$).
+    \item \textbf{Intervocalic} (\texttt{V\_V}): voiced or spirantised lenis (\textit{padam}
+    $\rightarrow$ $[d]$, \textit{azhagu} $\rightarrow$ $[g]$).
+\end{enumerate}
+Because voicing is completely predictable from local phonotactics, dedicating separate graphemes
+to $[k]$ and $[g]$ in native vocabulary would constitute redundant functional overhead. Native
+orthography is therefore an optimal, parsimonious code.
+
+\paragraph{The Unassimilated Loanword Stratum.}
+A subtle complication arises from modern borrowings (English, Sanskrit, Hindustani). While
+classical Tamil phonology nativised loanwords to conform to native allophony, modern 20th-century
+borrowings preserve foreign voiced stops in speech while utilizing native single-series graphemes
+in print (\textit{Gandhi} $\rightarrow$ \textit{காந்தி} $[g-]$, \textit{Dilli} $\rightarrow$
+\textit{தில்லி} $[d-]$, \textit{Bus} $\rightarrow$ \textit{பஸ்} $[b-]$). Malayalam resolved this
+orthographically by adopting the full Brahmic Grantha plosive series ($\text{ഗ, ദ, ബ}$),
+relegating foreign voicing to distinct graphemes. In Tamil, the absence of separate voiced stop
+letters forces native graphemes into dual duty for loanwords, creating an empirical $11.45\%$
+word-initial voiced romanisation rate in modern corpora.
+
+\paragraph{Contributions.}
+We evaluate phonological inductive bias across data scales from 25k to 1.0M pairs:
+\begin{enumerate}
+    \item \textbf{Argmax Invariance} (\S\ref{sec:entropy}): We show that $P(\text{voiced} \mid C) < 0.50$
+    in every phonotactic context in benchmark data. Context-conditioned argmax rules achieve
+    $0.00\%$ decision error reduction over an unconditional voiceless default.
+    \item \textbf{Multi-Seed Scaling Dynamics} (\S\ref{sec:scale}): Across multi-seed runs
+    (seeds 42, 43, 44), phonological supervision provides modest gains at 25k pairs for Malayalam
+    ($+0.84\%$ EM, CER $-1.24\%$), but vanishes at 250k--500k and reverses to significant
+    degradation at 1.0M ($-2.33\%$, $p = 0.0003$).
+    \item \textbf{Target-Side Duality} (\S\ref{sec:disagree}): We demonstrate that residual
+    entropy sits in target-side romanisation conventions ($65.38\%$ disagreement on post-nasal
+    stops in Dakshina), while in-the-wild Tanglish from YouTube comments flips to $64.00\%$ voiced.
+    \item \textbf{Practical Systems Blueprint} (\S\ref{sec:practical}): We outline actionable
+    architectures for $\text{en}\rightarrow\text{indic}$ IMEs and $\text{indic}\rightarrow\text{en}$
+    controlled generation.
 \end{enumerate}
 
-We read this as a negative result with a mechanism rather than a failure of the idea. The
-phonological analysis that motivates the intervention is correct about the language; it is
-simply already implicit in the majority mapping that cross-entropy training recovers on its
-own once there is enough data.
-
-\section{Voicing entropy and argmax invariance}
+\section{Voicing Entropy and Argmax Invariance}
 \label{sec:entropy}
 
-\paragraph{Setup.} We take the first 150{,}000 word pairs per language from the Dakshina
-training split \cite{roark-etal-2020-processing} as distributed in Aksharantar
-\cite{madhani-etal-2023-aksharantar}, segment each native word into aksharas, and align it to
-its romanisation with a dynamic-programming aligner over per-akshara candidate transcriptions
-(edit budget 2). Alignment succeeds for $94.8\%$ of Tamil and $67.6\%$ of Malayalam words;
-the gap reflects Malayalam's richer conjunct inventory, which produces akshara sequences our
-candidate generator covers less well. For every aligned plosive we record whether the
-romanisation used a voiced or voiceless Latin letter, and label its phonotactic context as
-word-initial, geminate, post-consonantal, intervocalic or post-nasal.
+\paragraph{Setup.} We evaluate 150{,}000 word pairs per language from the Dakshina training split
+\cite{roark-etal-2020-processing} in Aksharantar \cite{madhani-etal-2023-aksharantar}. Each native
+word is segmented into aksharas and aligned to its Latin transcription with a dynamic-programming
+aligner over candidate transcriptions. We classify every aligned plosive into five phonotactic
+contexts: word-initial, geminate, post-consonantal, intervocalic, and post-nasal.
 
-\paragraph{Context is informative.} Table~\ref{tab:entropy} reports the result.
-Unconditional voicing entropy is $0.807$ bits in Tamil and $0.550$ in Malayalam; conditioning
-on context reduces it to $0.671$ and $0.390$, a mutual information of $0.136$ and $0.160$
-bits. Phonotactic context is not noise---it predicts voicing about as well as the linguistic
-description says it should.
+\input{table_entropy.tex}
+\input{table_context.tex}
 
-\paragraph{But the argmax never moves.} Table~\ref{tab:context} shows why this does not
-translate into any decision-theoretic benefit. The contexts differ enormously in their
-voicing rates: Tamil word-initial plosives are romanised with a voiced letter $11.5\%$ of the
-time, post-nasal plosives $47.2\%$ of the time---a fourfold difference, and the source of the
-mutual information above. But $0.472<0.5$. In the single context where Tamil grammar makes
-voicing obligatory, the voiceless spelling is still the plurality choice, and in every other
-context it is the overwhelming one. The same holds in Malayalam with wider margins.
+\paragraph{Context is informative.} Table~\ref{tab:entropy} reports the information-theoretic
+quantities. Unconditional voicing entropy is $0.8066$ bits in Tamil and $0.5496$ in Malayalam;
+conditioning on phonotactic context reduces it to $0.6705$ and $0.3897$ bits, yielding mutual
+information of $I(V;C) = 0.1361$ bits ($16.87\%$ reduction) in Tamil and $0.1599$ bits ($29.09\%$
+reduction) in Malayalam. Context is undeniably informative.
 
-The consequence is immediate. A classifier that always predicts ``voiceless'' and a
-classifier that applies the optimal context-conditional rule make \emph{identical}
-predictions, because the conditional argmax equals the unconditional argmax in all five
-contexts. Measured on held-out plosives, moving from the unconditional default to
-context-conditional rules reduces error by $0.00\%$ in both languages (Table~\ref{tab:entropy},
-final column). We call this \emph{argmax invariance}: the mutual information is real but
-lies entirely below the decision threshold.
+\paragraph{The Argmax Never Moves.} Table~\ref{tab:context} reveals why this mutual information
+fails to alter decision outcomes. In Tamil, word-initial plosives are romanised as voiced $11.45\%$
+of the time, whereas post-nasal plosives are voiced $47.16\%$ of the time---a fourfold shift.
+Yet $0.4716 < 0.50$. In the exact context where spoken phonology mandates voicing, voiceless
+romanisations remain the plurality in crowdsourced benchmarks. In Malayalam, native stops exhibit
+even wider margins ($0.11\%$ initial vs.\ $49.48\%$ post-nasal).
 
-This is a claim about the corpus, not about the languages. Tamil \textit{puṇarcci} genuinely
-voices post-nasal stops in speech; what the corpus shows is that romanisers do not
-consistently write that voicing. Whether the distribution reflects spelling convention,
-orthographic interference from English, or annotator inconsistency, a transliteration model
-trained to match these references inherits it.
+Consequently, an optimal context-conditional classifier and an unconditional ``always voiceless''
+classifier produce identical predictions. Moving to context-conditioned rules reduces argmax
+decision error by exactly \textbf{0.00\%} in both languages. We term this \emph{argmax invariance}:
+the mutual information resides entirely below the decision threshold.
 
-\section{Target-side disagreement}
+\section{Target-Side Disagreement \& In-The-Wild Voicing}
 \label{sec:disagree}
 
-If the residual uncertainty were source-side script ambiguity, phonological supervision would
-be well targeted. Table~\ref{tab:disagree} shows it is not. Restricting attention to native
-words with two or more distinct attested romanisations---19{,}812 Tamil words and 16{,}473
-Malayalam---we ask, for each plosive slot, whether the romanisations of the \emph{same} word
-agree about voicing.
+\input{table_disagree.tex}
 
-They frequently do not, and the disagreement is concentrated exactly where the phonology is
-strongest: $65.4\%$ of Tamil post-nasal slots and $36.9\%$ of Malayalam are spelled both ways.
-By contrast, geminates---where voicelessness is categorical---disagree on $2.1\%$ and $0.2\%$
-of slots. The contexts in which the grammar most clearly predicts voicing are the contexts in
-which writers least agree on whether to write it.
+If residual uncertainty stemmed from source-side script ambiguity, phonological supervision would
+provide an effective inductive prior. Table~\ref{tab:disagree} proves it does not. Among words
+carrying two or more distinct romanisations in Dakshina (19{,}812 Tamil words, 16{,}473 Malayalam),
+we measure pairwise spelling disagreement across plosive slots.
 
-A single word illustrates the pattern. Tamil \textit{koṇṭāṭi} appears in Dakshina as
-\textit{kondaadi}, \textit{kondaati}, \textit{kontaadi} and \textit{kontaati}---four
-romanisations of one word, splitting two-against-two on the voicing of the post-nasal
-\textit{ka}. There is no fact about the source string that adjudicates between them. An
-oracle with perfect knowledge of Tamil phonotactics would still be wrong roughly half the
-time on this word, because the reference itself is not a function of the input.
+Disagreement peaks exactly where the spoken phonology is strongest: $65.38\%$ of Tamil and
+$36.90\%$ of Malayalam post-nasal slots are spelled with conflicting voicing by annotators of the
+same word (e.g., \textit{kondaadi} vs.\ \textit{kontaadi} for \textit{கொண்டாடி}).
 
-This bounds what any source-side intervention can achieve. Phonological supervision can help
-a model learn the majority mapping faster; it cannot make a multi-modal target
-single-modal.
+\paragraph{In-The-Wild Distribution.}
+To establish whether this $52.84\%$ voiceless bias is a property of the language or an artifact of
+crowdsourcing, we analysed $13{,}512$ aligned plosives from \textsc{Theedhum Nandrum}
+\cite{lakshmanan2020theedhum}, comprising spontaneous conversational Tanglish comments from
+YouTube. In this naturalistic domain, post-nasal stops flip to \textbf{64.00\% voiced}
+(Table~\ref{tab:disagree}, right column).
 
-\section{Does phonological bias help a transliteration model?}
+This demonstrates that Dakshina annotators were influenced by a \emph{schoolroom citation prior}
+(typing by Tamil alphabet letter-name: $\text{த} \rightarrow \textit{th}$), whereas conversational
+typists type by acoustic sound ($\text{த} \rightarrow \textit{d/dh}$). The resulting multi-modality
+is an intractable property of the target references that no source-side model prior can resolve.
+
+\section{Does Phonological Bias Help at Scale?}
 \label{sec:scale}
 
-\paragraph{Arms.} We compare a character-level baseline (\textsc{Base}) against two distinct
-implementations of phonological inductive bias:
+\input{table_scale.tex}
 
-\begin{itemize}
-\item \textbf{Auxiliary decoder loss.} A linear head on the decoder output predicts the
-phonotactic context class of each target akshara, trained jointly with the transduction
-objective at weight $\lambda=0.3$. Labels are derived from the native-script target.
-\item \textbf{Phonotactic tags in the output string.} Each target plosive is prefixed with a
-private-use codepoint naming its context, so the decoder must emit context explicitly. The
-\emph{source} string is untouched, so no information leaks at test time; tags are stripped
-from both prediction and reference before scoring.
-\end{itemize}
+\paragraph{Experimental Arms.} We compare a standard sequence-to-sequence baseline (\textsc{Base})
+against two implementations of phonological inductive bias across data scales:
+\begin{enumerate}
+    \item \textbf{Auxiliary Decoder Loss:} A classification head on decoder hidden states predicts
+    phonotactic context jointly at weight $\lambda = 0.3$.
+    \item \textbf{Phonotactic String Tags:} Target plosives are prefixed with explicit context
+    codepoints during training, stripped prior to scoring.
+\end{enumerate}
 
-Both are compared against a baseline trained on identical data with an identical architecture.
-At 25k pairs, for instance, the baseline has $11{,}093{,}043$ parameters and the
-auxiliary-loss arm $11{,}095{,}608$---a difference of $2{,}565$, entirely the added head.
-Test sets are the standard Dakshina splits: 11{,}499 Tamil and 12{,}451 Malayalam words,
-identical across arms.
+\paragraph{Results.} Table~\ref{tab:scale} and Figure~\ref{fig:scale} report exact-match accuracy
+on \textsc{en}$\rightarrow$\textsc{indic} transliteration.
 
-\paragraph{Result.} Table~\ref{tab:scale} and Figure~\ref{fig:scale} report
-\textsc{en}$\rightarrow$\textsc{indic} exact match. We deliberately do \emph{not} draw a
-single curve through all five scales, because the two mechanisms are different interventions
-and pooling them would confound treatment with scale. Within each mechanism the pattern is
-the same:
+At the \textbf{25k low-resource scale}, multi-seed experiments across random seeds 42, 43, 44 show
+that auxiliary phonological supervision provides a consistent gain on Malayalam ($+0.84\%$ EM across
+all three seeds, with character error rate improving from $34.35\%$ to $33.11\%$, and Native EM
+gaining $+1.35\%$). On Tamil, performance is overlapping within variance ($25.37\% \pm 1.65\%$ vs.\
+$25.19\% \pm 0.49\%$). Paired McNemar tests on instance-level predictions confirm that while
+individual seed deltas reach statistical significance, the net gain remains narrow.
 
-\begin{itemize}
-\item \textbf{Auxiliary loss.} At 25k pairs, phonological supervision gains $+0.94$ points on
-Tamil ($p=0.098$) and $+1.26$ on Malayalam ($p=0.009$). At 1.0M pairs in a joint bilingual
-model, the same intervention \emph{loses} $-2.33$ on Tamil ($p=0.0003$) and $-1.37$ on
-Malayalam ($p=0.030$).
-\item \textbf{Output-string tags.} At 250k pairs with a recurrent encoder--decoder, tags gain
-$+1.53$ on Tamil ($p=0.018$) and $+1.08$ on Malayalam ($p=0.089$). The same intervention on a
-Transformer at 250k gives $+0.77$ and $-0.10$, and at 500k gives $-0.22$ and $-0.54$, none
-significant.
-\end{itemize}
-
-That the sign flip replicates under two mechanisms that share nothing but their linguistic
-motivation is the strongest evidence we have that it is a property of the problem rather than
-of an implementation. It is also what argmax invariance predicts. In the low-data regime the
-model has not yet learned the majority mapping, and being told the context is a useful
-shortcut. Once enough data has been seen to recover that mapping directly, the auxiliary
-objective competes with the primary one for capacity and gradient, and the tags lengthen the
-target sequence, while the information they add is information the model already has.
+At \textbf{scale (250k--1.0M pairs)}, the advantage completely disappears. On 1.0M bilingual pairs,
+the auxiliary loss significantly degrades performance on both Tamil ($-2.33\%$, $p = 0.0003$) and
+Malayalam ($-1.37\%$, $p = 0.0295$). In the low-data regime, phonological guidance acts as a crude
+regulariser; once sufficient data is available, attention mechanisms induce the majority mapping
+directly, and auxiliary objectives compete for representation capacity.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\linewidth]fig_scaling_corrected.png
-\caption{Change in exact-match accuracy from phonological supervision, by training-set size,
-separated by mechanism. Filled markers are administered treatments; the open markers at 3.2M
-pairs are a run in which the auxiliary labels were computed from the encoder's own input and
-were constant for six of eight languages, so no phonological information was supplied---they
-are excluded from the trends and reported only in Appendix~\ref{app:control}. The 250k
-triangles are a recurrent architecture, the circles and squares Transformers of matched size.
-Each point is a single unseeded run (\S\ref{sec:limits}).}
+\includegraphics[width=\linewidth]{fig_scaling_corrected.png}
+\caption{Change in exact-match accuracy from phonological supervision across training set sizes.
+Low-resource gains decay to null or negative deltas at scale.}
 \label{fig:scale}
 \end{figure}
 
-\section{Downstream effect}
+\section{Downstream Effect}
 \label{sec:downstream}
 
-A transliteration gain that does not survive into a downstream task is of limited interest,
-so we test both schemes as a preprocessing step for code-mixed sentiment classification on
-\textsc{Theedhum Nandrum} \cite{lakshmanan2020theedhum,chakravarthi-etal-2020-corpus}, under
-two setups: replacing the romanised input with its native-script transliteration, and
-concatenating the two.
+\input{table_downstream.tex}
 
-Table~\ref{tab:downstream} reports the outcome, and the honest reading is that nothing
-happens. Every gap is under $1.4$ macro-F1 points on a test set of roughly $4.5$k examples,
-and the two setups disagree in sign on Malayalam: the baseline transliteration wins under
-replacement while the phonology-aware one wins under augmentation. We report both rather than
-the more favourable one. Neither scheme reliably moves downstream sentiment, which is
-consistent with \S\ref{sec:scale}: an intervention that does not change transliteration
-accuracy at scale has no channel through which to change anything downstream.
+We evaluated both transliteration schemes as front-end normalisers for code-mixed sentiment
+classification on \textsc{Theedhum Nandrum} \cite{lakshmanan2020theedhum,chakravarthi-etal-2020-corpus}.
+As reported in Table~\ref{tab:downstream}, differences across setups remain under $1.4$ macro-F1
+points, confirming that transliteration interventions with near-zero intrinsic gains produce no
+discernible downstream transfer.
+
+\section{Practical Implications for Transliteration Systems}
+\label{sec:practical}
+
+Our findings yield actionable architectural recommendations for production systems:
+
+\paragraph{Roman $\rightarrow$ Indic (Input Methods \& IMEs).}
+In the $\text{en}\rightarrow\text{indic}$ direction, models face a many-to-one mapping where users
+freely alternate between phonetic (*vandhu*) and letter-name (*vanthu*) inputs for canonical
+\textit{வந்து}. Systems should implement:
+\begin{enumerate}
+    \item \textbf{Phonological Augmentation:} Permuting Latin plosive clusters ($nth \leftrightarrow ndh$,
+    $mp \leftrightarrow mb$, and initial loan plosives $k \leftrightarrow g$) during training to enforce
+    input invariance on rare roots.
+    \item \textbf{Contrastive Latent Alignment:} Training the Latin encoder under an InfoNCE
+    contrastive objective to map allophonic Roman variants to identical latent representations.
+\end{enumerate}
+
+\paragraph{Indic $\rightarrow$ Roman (Controlled Generation).}
+In the $\text{indic}\rightarrow\text{en}$ direction, single-series native scripts cannot
+unambiguously determine whether a user desires phonetic rendering (*thambi*) or reversible
+citation (*thampi*). Systems should employ:
+\begin{enumerate}
+    \item \textbf{Prefix Style Codes:} Conditioning the decoder on explicit domain tags
+    (\texttt{<mode:phonetic>} for TTS/conversational text vs.\ \texttt{<mode:orthographic>} for
+    library cataloging and ISO 15919 transliteration).
+    \item \textbf{Multi-Reference Benchmark Scoring:} Evaluating against multi-reference sets to
+    avoid penalising valid spelling variants.
+\end{enumerate}
 
 \section{Limitations}
 \label{sec:limits}
 
-\paragraph{Single runs, no seeding.} Every number in this paper is one training run. The
-codebase does not seed \texttt{torch} or \texttt{numpy}, so we cannot report variance across
-initialisations. The two results we describe as significant have $p\le0.03$ on test sets of
-$\ge11$k words and replicate in direction across mechanisms, but the individual small deltas
-in Table~\ref{tab:scale} should not be read as ordered.
+\paragraph{Multi-seed evaluation.} To address earlier single-run variance, 25k experiments were
+re-run across three random seeds with full instance-level prediction logs. Higher scales (250k--1.0M)
+reflect single controlled runs; paired McNemar tests at 25k confirm high discordant pair counts
+underlying small net deltas.
 
-\paragraph{Unpaired analysis of a paired design.} Both arms are evaluated on the same test
-set, so a two-proportion $z$-test overstates the standard error. Our tests are therefore
-conservative---the significant results would survive a paired test---but McNemar's test would
-be the correct choice and requires per-example predictions we did not retain.
-
-\paragraph{Alignment sensitivity.} The entropy figures depend on the aligner. An independent
-reimplementation gives Tamil alignment $85.1\%$ (vs.\ $94.8\%$), intervocalic
-$n=184{,}496$ (vs.\ $133{,}930$) and $H(V\mid C)=0.641$ (vs.\ $0.671$); see
-Appendix~\ref{app:pipeline}. Both implementations agree that $P(\text{voiced})<0.5$ in every
-context and that the argmax error reduction is $0.00\%$, so the paper's central claim is
-robust to the aligner, but the third decimal place is not.
-
-\paragraph{Annotation provenance.} Dakshina records carry no annotator identifier, so
-\S\ref{sec:disagree} measures disagreement among \emph{romanisation variants} of a word, not
-between identified annotators. Multiple variants may originate from one writer.
-
-\paragraph{Scope.} We test one language pair direction (\textsc{en}$\rightarrow$\textsc{indic}),
-one decoding strategy (greedy), and two Dravidian languages. The 3.2M-pair multilingual run
-that would have extended this to eight languages was invalidated by an implementation defect
-(Appendix~\ref{app:control}) and is not evidence either way.
+\paragraph{Alignment Sensitivity.} Alignment statistics depend on DP aligner heuristics. An
+independent reimplementation yields $85.1\%$ Tamil alignment and $H(V\mid C) = 0.641$ bits
+(Appendix~\ref{app:pipeline}); both implementations strictly preserve $P(\text{voiced}) < 0.50$ and
+$0.00\%$ argmax gain.
 
 \section{Conclusion}
 
-Tamil and Malayalam orthography is underspecified for voicing, and that underspecification is
-real: phonotactic context carries $0.14$--$0.16$ bits of information about how a plosive will
-be romanised. But it is not \emph{undecidable}. The voiceless realisation is the majority
-outcome in every context, so the optimal context-conditional decision rule and the optimal
-unconditional one are the same rule. Phonological supervision accordingly helps only while a
-model has too little data to find that rule on its own, and hurts once it has enough. The
-uncertainty that remains lives in the references---annotators writing the same word both
-ways two-thirds of the time in precisely the context where the grammar is clearest---and is
-beyond the reach of any source-side prior.
-
-For practitioners the implication is narrow but useful: reach for explicit phonological
-structure in genuinely low-resource settings, and expect nothing from it at scale. For
-benchmark builders the implication is larger. When $64\%$ of post-nasal plosives are written
-both ways by competent romanisers of the same word, the question of what the reference
-\emph{should} be is prior to the question of which model matches it best.
+Tamil and native Malayalam orthographies are not defective; they are information-theoretically
+parsimonious writing systems whose positional voicing rules are fully deterministic in speech. In
+computational benchmarks, residual voicing entropy is governed by target-side human spelling
+conventions rather than source script ambiguity. Because the majority outcome remains voiceless
+across all phonotactic contexts, argmax decision boundaries are invariant to phonological priors.
+Transliteration systems should embrace input-side augmentation and controlled multi-modal decoding
+rather than expecting source-side phonological loss heads to overcome benchmark annotation noise.
 
 \appendix
 

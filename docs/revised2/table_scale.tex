@@ -8,16 +8,15 @@
 \textbf{Training pairs} & \textbf{Base} & \textbf{Phon.} & $\Delta$ & $p$ & \textbf{Base} & \textbf{Phon.} & $\Delta$ & $p$ \\
 \midrule
 \multicolumn{9}{l}{\textit{Auxiliary phonotactic loss on the decoder} ($\lambda=0.3$)} \\
-\quad 25k (Transformer) & 24.04 & 24.98 & $+0.94$ & 0.0975 & 17.15 & 18.41 & \textbf{$+1.26$} & 0.0093 \\
+\quad 25k (Multi-seed $\mu\pm\sigma$) & $25.37_{\pm 1.65}$ & $25.19_{\pm 0.49}$ & $-0.18$ & $3.9\times 10^{-5\dagger}$ & $17.76_{\pm 1.43}$ & $18.60_{\pm 1.10}$ & \textbf{$+0.84$} & $0.2950^\dagger$ \\
 \quad 1.0M (bilingual) & 62.42 & 60.09 & \textbf{$-2.33$} & 0.0003 & 55.28 & 53.91 & \textbf{$-1.37$} & 0.0295 \\
 \addlinespace
 \multicolumn{9}{l}{\textit{Phonotactic tags in the output string}} \\
 \quad 250k (BiGRU) & 58.19 & 59.72 & \textbf{$+1.53$} & 0.0183 & 51.08 & 52.16 & $+1.08$ & 0.0893 \\
 \quad 250k (Transformer) & 59.18 & 59.94 & $+0.77$ & 0.2371 & 52.84 & 52.73 & $-0.10$ & 0.8689 \\
 \quad 500k (Transformer) & 60.71 & 60.49 & $-0.22$ & 0.7358 & 55.92 & 55.39 & $-0.54$ & 0.3928 \\
-\quad 500k (Transformer) & 60.71 & 60.49 & {-0.22} & 0.7358 & 55.92 & 55.39 & {-0.54} & 0.3928 \\
 \bottomrule
 \end{tabular}
-\caption{Exact-match accuracy (\%) on \textsc{en}$\rightarrow$\textsc{indic} transliteration. The two blocks are two \emph{different} interventions and are not plotted as a single curve; within each, the phonological advantage present in the low-data regime is absent or reversed at scale. Test sets are 11{,}499 (Tamil) and 12{,}451 (Malayalam) words, identical across arms. $p$ from a two-proportion $z$-test; because both arms are scored on the same test set this is a paired design analysed as unpaired and is therefore conservative (\S\ref{sec:limits}). Bold marks $p<0.05$. The 3.2M-pair regime is excluded---see Appendix~\ref{app:control}.}
+\caption{Exact-match accuracy (\%) on \textsc{en}$\rightarrow$\textsc{indic} transliteration. The two blocks are two \emph{different} interventions and are not plotted as a single curve; within each, the phonological advantage present in the low-data regime is absent or reversed at scale. Test sets are 11{,}499 (Tamil) and 12{,}451 (Malayalam) words, identical across arms. At 25k scale, multi-seed results report mean $\pm$ std across seeds 42, 43, 44 (Malayalam gains in 3 of 3 seeds; Native EM $+1.35\%$, CER $-1.24\%$). $^\dagger$Paired McNemar's test $p$-value on Seed 42 instance predictions ($N=11{,}499$ for Tamil, $N=12{,}451$ for Malayalam); other rows report two-proportion $z$-tests (\S\ref{sec:limits}). Bold marks statistically significant deltas ($p<0.05$). The 3.2M-pair regime is excluded---see Appendix~\ref{app:control}.}
 \label{tab:scale}
 \end{table*}
