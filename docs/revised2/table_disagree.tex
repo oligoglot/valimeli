@@ -1,0 +1,20 @@
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrrrr}
+\toprule
+& \multicolumn{2}{c}{\textbf{Tamil}} & \multicolumn{2}{c}{\textbf{Malayalam}} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+\textbf{Context} & \textbf{Split slots} & \textbf{\%} & \textbf{Split slots} & \textbf{\%} \\
+\midrule
+Word-initial & 1,102/9,759 & 11.29 & 22/4,458 & 0.49 \\
+Geminate & 189/8,832 & 2.14 & 14/6,822 & 0.21 \\
+Post-consonantal & 1,053/2,523 & 41.74 & 11/629 & 1.75 \\
+Intervocalic & 8,050/17,605 & 45.73 & 813/7,987 & 10.18 \\
+Post-nasal & 3,418/5,228 & 65.38 & 676/1,832 & 36.90 \\
+\midrule All contexts & 13,812/43,947 & 31.43 & 1,536/21,728 & 7.07 \\
+\bottomrule
+\end{tabular}
+\caption{Target-side spelling disagreement. Among words carrying two or more distinct romanisations in Dakshina (19{,}812 of 109{,}765 distinct Tamil words; 16{,}473 of 120{,}973 Malayalam), we count plosive slots whose romanisations are \emph{not} unanimous on voicing. Post-nasal position---where \textit{puṇarcci} makes voicing obligatory in speech---is the least consistently written context in both languages. Alignment is the same dynamic-programming akshara aligner used for Table~\ref{tab:entropy}.}
+\label{tab:disagree}
+\end{table}

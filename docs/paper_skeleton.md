@@ -1,38 +1,34 @@
-# ValiMeli: Phonology-Aware Tokenisation Bridges Inductive Bias in Tamil and Malayalam Transliteration
+# [TITLE PLACEHOLDER: e.g., When Does Phonological Inductive Bias Help? Scaling Behavior and Target-Entropy Bounds in Dravidian Transliteration]
 
 **Authors**: Anonymous (Under Peer Review / Pre-print Manuscript)  
 **Target Venue**: Transactions of the Association for Computational Linguistics (TACL) / ACL / EMNLP  
-**Keywords**: Machine Transliteration, Tamil, Malayalam, Dravidian Phonology, Phonology-Aware Tokenisation, Stop Allophony, Orthographic Parsimony, Sequence-to-Sequence, DravidianCodeMix, Multilingual Pre-training
+**Keywords**: Machine Transliteration, Tamil, Malayalam, Dravidian Phonology, Stop Allophony, Orthographic Parsimony, Annotator Disagreement, Target-Side Entropy, Argmax Invariance, Scaling Laws, Sequence-to-Sequence
 
 ---
 
 ## Abstract
 
-Multilingual sequence-to-sequence models for South Asian languages consistently exhibit a pronounced performance deficit on Tamil and Malayalam compared to Indo-Aryan languages as well as other major Dravidian languages (Telugu and Kannada). A prevalent misconception in natural language processing attributes this discrepancy to "orthographic underspecification," alleging that Tamil and Malayalam writing systems fail to distinguish voiced, voiceless, and aspirated stops. We refute this deficit hypothesis by showing that Tamil and native Malayalam orthographies are maximally specified with respect to their native phonology through **principled orthographic and phonemic parsimony**. When transliteration architectures rely on standard character tokenisers or Devanagari intermediate pivots, they discard deterministic phonotactic structure, compelling neural decoders to redundantly infer acoustic voicing distributions through high-entropy statistical fitting.
+Multilingual sequence-to-sequence models for South Asian languages frequently encounter difficulties with single-stop scripts such as Tamil and Malayalam. A prevalent hypothesis in natural language processing attributes this to "orthographic underspecification," alleging that these writing systems fail to encode voiced, voiceless, and aspirated stop distinctions. We refute this deficit hypothesis by establishing that Tamil and native Malayalam orthographies are maximally specified with respect to native phonology through **principled orthographic parsimony**: stop voicing is positional and deterministically conditioned by phonotactic environment. An unconditional baseline predicting always-voiceless stops achieves **75.29% accuracy in Tamil and 87.28% in Malayalam**.
 
-We present **ValiMeli** (*Vallinam* [Hard/Plosive] + *Mellinam* [Soft/Nasal]), a deterministic, phonology-aware tokenisation and multi-task learning framework specifically engineered for Tamil and Malayalam transliteration. ValiMeli injects context-sensitive phonological boundary conditioning into input grapheme sequences, directly encoding allophonic voicing rules without expanding vocabulary size or sacrificing exact string reversibility. We evaluate ValiMeli across a comprehensive empirical hierarchy:
-1. **Monolingual & Low-Resource Regimes (25k to 500k pairs)**: In low-resource settings (25,000 samples), ValiMeli Multi-Task (`A1-MT`) yields a decisive **+1.26% Top-1 Exact Match boost** and **-1.80% Character Error Rate (CER) reduction** over standard baselines.
-2. **Joint Bilingual Dravidian Pre-training (1.0M pairs)**: Shared Tamil–Malayalam pre-training surges out-of-vocabulary Named Entity accuracy on Tamil from **32.03% to 35.35% (+3.32% absolute gain)**.
-3. **Massive Multilingual Scaling (3.2M pairs across 8 Indic Languages)**: Co-training across 4 Dravidian (Tamil, Malayalam, Telugu, Kannada) and 4 Indo-Aryan languages (Hindi, Bengali, Gujarati, Marathi), `ValiMeli-A1-MT` achieves an all-time peak of **39.66% on Tamil Named Entities (+7.63% absolute gain over the 32.03% monolingual baseline)** and **63.41% Combined Test Exact Match**.
-4. **Downstream Sentiment on DravidianCodeMix YouTube Reviews (*Theedhum Nandrum*)**: Deploying ValiMeli as an upstream transliterator boosts downstream Tamil sentiment Macro F1 to **53.89% (+0.98% over raw text)** and Malayalam to **70.80%–71.17% (+1.31% over raw text)**.
+Through Dynamic Programming akshara alignment on official benchmark corpora (Aksharantar and Dakshina), we uncover the true source of residual voicing uncertainty: **it lives entirely in target-side Latin annotator disagreement, not in source script ambiguity**. Independent annotators disagree on **64.02% of Tamil post-nasal stops on identical words** in Dakshina (*vaathangal* vs. *thuvanggalaam*; *kandii* vs. *kontaadi*). Because empirical $P(\text{voiced} \mid C) < 0.50$ across all phonotactic contexts in crowdsourced datasets, deterministic phonological rules achieve **0.00% argmax decision error reduction (Argmax Invariance)**.
 
-We establish that while morphology-aware tokenisation assists semantic tasks, phonology-aware inductive bias serves as the governing structure for phonetic alignment in transliteration.
+We evaluate phonological inductive bias (both input stream tagging `A1` and auxiliary multi-task loss `A1-MT`) across an empirical scaling hierarchy from 25,000 to 3,200,000 pairs:
+1. **Low-Resource & Low-Capacity Regimes (25k–250k pairs)**: In data-sparse settings (25k), auxiliary phonology supervision yields significant gains on Malayalam (**+1.26% Top-1 Exact Match, $p = .009$**), while on a 1.5M BiGRU (250k), input tagging yields **+1.53% ($p = .018$)** on Tamil.
+2. **High-Capacity & Multilingual Regimes (500k–3.2M pairs)**: As model capacity (11M Transformer) and data scale increase, the advantage decays to zero ($-0.22\%$ at 500k; $-2.33\%$ under 1.0M joint bilingual training; and non-significant $+0.29\%$ Tamil, directionally negative in 7 of 8 languages at 3.2M scale).
+
+Our findings show that when benchmark performance bounds are governed by target-side annotation entropy, source-side linguistic inductive priors decay in utility as neural attention mechanisms scale.
 
 ---
 
-## 1. Introduction & Theoretical Framing
+## 1. Introduction & The Theoretical Dispute
 
-Machine transliteration across scripts is essential for named entity recognition, cross-lingual information retrieval, code-mixed text normalisation, and keyboard input methods across multilingual regions (Kunchukuttan et al., 2021; Madhani et al., 2022). In South Asia,[^1] robust phonetic mapping between indigenous scripts and the Roman alphabet is a core prerequisite for digital language technologies.
+Machine transliteration across scripts is essential for named entity recognition, cross-lingual information retrieval, code-mixed text normalisation, and keyboard input methods across multilingual regions (Kunchukuttan et al., 2021; Madhani et al., 2023). In South Asia, robust phonetic mapping between indigenous Brahmic scripts and the Roman alphabet is a core prerequisite for digital language technologies.
 
-[^1]: In NLP literature, the term "Indic" is commonly employed as a regional shorthand encompassing languages of the South Asian subcontinent across multiple distinct families (Dravidian, Indo-Aryan, Austroasiatic, and Tibeto-Burman), several of which (notably Tamil) hold trans-national native status in Sri Lanka, Singapore, and Malaysia.
-
-### 1.1 The Tamil and Malayalam Performance Anomaly in IndicXlit
-Despite recent advances in multilingual sequence-to-sequence modelling (e.g., *IndicXlit*, *IndicTrans*), benchmark evaluations reveal a persistent performance discrepancy: **Tamil (`ta`) and Malayalam (`ml`) lag significantly behind Indo-Aryan counterparts**. In the official *Aksharantar* benchmark (Madhani et al., EMNLP 2022), the 11M parameter multilingual IndicXlit Transformer achieves **74%–78% Top-1 Exact Match on Indo-Aryan languages (Hindi, Marathi, Gujarati)**, but drops to **69.78% on Tamil** and **64.73% on Malayalam**.
-
-This discrepancy stems from a specific orthographic-phonological distinction:
-- **Telugu and Kannada**: Like Indo-Aryan scripts, their modern orthographies feature distinct graphemic series for the four-way phonemic distinction in stops ($k, kh, g, gh$), inherited through Southern Brahmi/Kadamba-Chalukya traditions.
+### 1.1 The Alleged "Orthographic Underspecification" Deficit
+In Indic natural language processing literature, a recurring assertion suggests that Tamil and Malayalam writing systems exhibit an inherent performance bottleneck because they do not dedicate separate graphemes to the four-way phonemic stop distinctions ($k, kh, g, gh$) present in Indo-Aryan (Hindi, Marathi, Gujarati) and sister Dravidian scripts (Telugu, Kannada):
+- **Telugu and Kannada**: Possess explicit graphemes for unvoiced, aspirated, voiced, and voiced-aspirated stops ($\text{క/ఖ/గ/ఘ}$ and $\text{ಕ/ಖ/ಗ/ಘ}$), inherited through Kadamba-Chalukya traditions.
 - **Tamil**: Possesses only a single graphemic stop series (*Vallinam*: க, ச, ட, த, ப, ற).
-- **Malayalam**: Possesses an extended Grantha-derived script marking voicing in Sanskrit loans, but retains Dravidian phonotactics for all native inherited vocabulary (where single stops are written with the first unvoiced series but pronounced voiced in intervocalic and post-nasal positions).
+- **Malayalam**: Possesses Grantha-derived characters for Sanskrit loans, but retains single-series Dravidian phonotactics for native inherited vocabulary.
 
 ```
 +-----------------------------------------------------------------------------------+
@@ -48,273 +44,197 @@ This discrepancy stems from a specific orthographic-phonological distinction:
 +-------------------+--------------------+--------------------+---------------------+
 ```
 
-### 1.2 Orthographic & Phonemic Parsimony (Martinet's Principle of Economy)
-We introduce the concept of **Orthographic Parsimony** to refute the notion of "orthographic underspecification":
-- In phonological theory and the classical *Phonemic Principle* (Swadesh, 1934; Trubetzkoy, 1939), writing systems are designed to encode **contrastive phonemes**, not non-contrastive physical allophones.
-- Because voicing in Tamil and native Malayalam is deterministically conditioned by phonotactic environment (complementary distribution), dedicating separate graphemes to $[k]$ and $[g]$ would represent redundant functional overhead (*Martinet's Principle of Economy*, 1955).
-- Tamil orthography is therefore an **optimal, information-theoretically parsimonious representation**: it encodes the minimal necessary graphemic inventory and delegates phonetic realisation to deterministic phonotactic decoding.
-- Crucially, as recent analyses in Dravidian NLP demonstrate (Thottingal, 2026), the perceived "deficit" in neural models for Dravidian scripts is predominantly an engineering artifact of Anglo-centric tokenisation (such as Byte-Level BPE fragmenting 3-byte UTF-8 graphemes into 15–20 noisy byte tokens, diluting distributional signals) rather than an inherent limitation of the writing system itself.
+This structural difference led prior work to assume that neural models underperform on Tamil because the network must guess acoustic voicing from an "underspecified" graphemic representation.
 
-### 1.3 Tamil and Malayalam Stop Allophony & Script Grammar
-In classical Tamil grammatical tradition,[^2] consonants are partitioned into three classes:
-1. **Vallinam (வலி)**: Hard consonants / Plosives ($\{k, c, ʈ, t, p, \underline{r}\}$ — க, ச, ட, த, ப, ற)
-2. **Mellinam (மெலி)**: Soft consonants / Nasals ($\{\ŋ, ɲ, ɳ, n, m, n̪\}$ — ங, ஞ, ண, ந, ம, ன)
-3. **Idaiyinam (இடை)**: Medial consonants / Approximants ($\{j, ɾ, l, ʋ, ɻ, ɭ\}$ — ய, ர, ல, வ, ழ, ள)
+### 1.2 Principled Orthographic Parsimony
+We refute the underspecification framing through classical phonology:
+- In phonological theory and the classical *Phonemic Principle* (Swadesh, 1934; Trubetzkoy, 1939), writing systems encode **contrastive phonemes**, not non-contrastive physical allophones.
+- In native Tamil and Malayalam phonology, plosive voicing is in **complementary distribution**:
+  1. **Word-Initial (`#_`)**: Strictly voiceless $[k, t͡ʃ, ʈ, t̪, p]$ (*பக்கம்* $\to$ `[p]akkam`).
+  2. **Geminate (`C_C`)**: Strictly voiceless fortis (*பக்கம்* $\to$ `pa[kk]am`).
+  3. **Post-Nasal (`N_`)**: Voiced via nasal assimilation / *puṇarcci* (*தம்பி* $\to$ `tham[b]i`, *பந்து* $\to$ `pan[d̪]u`).
+  4. **Intervocalic (`V_V`)**: Voiced or spirantised lenis (*படம்* $\to$ `pa[d]am`, *அழகு* $\to$ `azha[g]u`).
+- Because voicing is deterministically governed by phonotactic environment, dedicating separate graphemes to $[k]$ and $[g]$ would constitute redundant functional overhead.
+- Tamil orthography is therefore an **optimal, information-theoretically parsimonious representation**.
 
-[^2]: Classical Tamil grammar (*Tolkāppiyam*, *Eluttatikāram*) establishes an indigenous metalanguage independent of Sanskritic frameworks (Niklas, 1988), distinguishing *eluttu* (graphemic-phonemic units), *uyir* (vowels), *mey* (pure consonants with *puḷḷi*), *uyirmey* (consonant-vowel composites), and *puṇarcci* (morphophonemic junction, referred to in NLP contexts parenthetically as *sandhi*).
-
-Voicing in native Tamil and Malayalam roots (inherited from South Dravidian I phonotactics) is **allophonic and positional**:
-- **Rule 1 (Word-Initial)**: Plosives at word onset are strictly **voiceless** $[k, t͡ʃ, ʈ, t̪, p]$ (e.g., *தம்பி* $\to$ `[t̪]ambi` / `thambi`, *பக்கம்* $\to$ `[p]akkam`).
-- **Rule 2 (Geminate / Fortis)**: Plosives doubled after a vowel are strictly **voiceless geminate** (e.g., *பக்கம்* $\to$ `pa[kk]am`, *பாட்டு* $\to$ `paa[tt]u`).
-- **Rule 3 (Post-Nasal / Lenis)**: Plosives preceded by a homorganic nasal undergo voicing assimilation (*puṇarcci*) to become **voiced** $[g, d͡ʒ, ɖ, d̪, b]$ (e.g., *தம்பி* $\to$ `tham[b]i`, *பந்து* $\to$ `pan[d̪]u` / `pandhu`).
-- **Rule 4 (Intervocalic / Lenis / Spirantised)**: Singleton plosives bounded by vowels undergo intervocalic lenition, realising as **voiced or fricativised** $[ɣ/h, s/j, ɖ/r, ð, β/v]$ (e.g., *படம்* $\to$ `pa[d]am`, *அழகு* $\to$ `azha[g]u`).
-
-Furthermore, traditional script grammar dictates that subword units cannot begin with dependent vowel signs (*matras*), isolated *puḷḷi / chandrakkala*, or geminated consonants (e.g. `നിലക്കടല` fragmented into `ക്കട`; Thottingal, 2026). ValiMeli's boundary tagging guarantees strict conformity to these phonotactic constraints.
-
-### 1.4 The Devanagari Pivot Failure Mode
-When multilingual architectures pivot through Devanagari, mapping Tamil 'க' to Devanagari 'क' or Tamil 'ப' in *தம்பி* to Devanagari 'प' loses the post-nasal voiced $[b]$ realisation (*thambi*), corrupting multilingual token embeddings.
+Crucially, in our matched 8-language pre-training experiments (§5), Dravidian scripts achieve higher exact match accuracy than Indo-Aryan scripts (mean combined EM **63.94% vs 53.39%**, with Telugu at 67.55% and Kannada at 67.67% leading the benchmark), disproving the assumption of an inherent Dravidian performance deficit.
 
 ---
 
 ## 2. Information-Theoretic Entropy Audit
 
-We quantify the uncertainty of plosive voicing using conditional entropy:
-$$H(\text{Voicing} \mid C) = - \sum_{v \in \{\text{voiced}, \text{voiceless}\}} P(v \mid C) \log_2 P(v \mid C)$$
+To quantify whether single-stop scripts present an information bottleneck, we formulate plosive voicing as a classification problem over aligned grapheme-to-character pairs and measure conditional entropy:
 
-```
-Table 1: Conditional Entropy of Stop Voicing on Aksharantar Corpus
-+---------------------+-------------------+---------------------+
-| Context (C)         | Unconditioned H   | ValiMeli Tagged H   |
-+---------------------+-------------------+---------------------+
-| Global (No Context) | 0.982 bits        | —                   |
-| Word-Initial        | —                 | 0.041 bits          |
-| Geminated           | —                 | 0.018 bits          |
-| Post-Nasal          | —                 | 0.062 bits          |
-| Intervocalic        | —                 | 0.089 bits          |
-+---------------------+-------------------+---------------------+
-```
-*Result*: ValiMeli reduces plosive voicing conditional entropy by **over 92%**.
+$$H(\text{Voicing} \mid C) = - \sum_{c \in \mathcal{C}} P(c) \sum_{v \in \{\text{voiced}, \text{voiceless}\}} P(v \mid c) \log_2 P(v \mid c)$$
+
+where $\mathcal{C} = \{\text{INIT}, \text{GEMINATE}, \text{POST\_CONS}, \text{INTERVOCALIC}, \text{POST\_NASAL}\}$.
+
+We compute alignments using Dynamic Programming over akshara candidate expansions on 150,000 official Aksharantar training pairs, counting geminates as single decision units.
+
+### Table 1: Information-Theoretic Voicing Entropy & Argmax Audit (Aksharantar Corpus)
+
+| Metric / Dimension | Tamil (`tam`) | Malayalam (`mal`) |
+| :--- | :---: | :---: |
+| **Total Words Evaluated** | 150,000 | 150,000 |
+| **Word-Level Alignment Rate** | 94.81% (142,221 / 150,000) | 67.59% (101,379 / 150,000) |
+| **Plosive Decisions Labeled** | 95.47% (334,132 / 349,981) | 74.42% (188,978 / 253,932) |
+| **Unconditioned Entropy $H(\text{Voicing})$** | **0.8066 bits** | **0.5496 bits** |
+| **Conditional Entropy $H(\text{Voicing} \mid \text{Context})$** | **0.6705 bits** | **0.3897 bits** |
+| **Mutual Information $I(\text{Voicing}; \text{Context})$** | **0.1361 bits** (16.87% reduction) | **0.1599 bits** (29.09% reduction) |
+| **Unconditional Baseline Argmax Accuracy (Always Voiceless)** | **75.29%** | **87.28%** |
+| **Context-Conditioned Argmax Accuracy** | **75.29%** | **87.28%** |
+| **Argmax Decision Error Reduction** | **+0.00% (No change)** | **+0.00% (No change)** |
+
+### Context-Specific Empirical Distributions:
+
+| Language | Phonotactic Context ($C$) | Sample Count ($n$) | $P(\text{Voiceless})$ | $P(\text{Voiced})$ | Context Entropy $H(V \mid C)$ |
+| :--- | :--- | :---: | :---: | :---: | :---: |
+| **Tamil** | **Word-Initial** (`#_`) | 70,139 | **88.55%** | 11.45% | 0.5135 bits |
+| **Tamil** | **Geminate** (`C_C`) | 70,338 | **99.16%** | 0.84% | 0.0701 bits |
+| **Tamil** | **Post-Consonant** (`C_`) | 22,692 | **77.23%** | 22.77% | 0.7741 bits |
+| **Tamil** | **Intervocalic** (`V_V`) | 133,930 | **61.70%** | 38.30% | 0.9601 bits |
+| **Tamil** | **Post-Nasal** (`N_`) | 37,033 | **52.84%** | 47.16% | 0.9977 bits |
+| **Malayalam** | **Word-Initial** (`#_`) | 36,765 | **99.89%** | 0.11% | 0.0120 bits |
+| **Malayalam** | **Geminate** (`C_C`) | 55,913 | **99.89%** | 0.11% | 0.0121 bits |
+| **Malayalam** | **Post-Consonant** (`C_`) | 5,135 | **99.36%** | 0.64% | 0.0560 bits |
+| **Malayalam** | **Intervocalic** (`V_V`) | 75,626 | **78.56%** | 21.44% | 0.7498 bits |
+| **Malayalam** | **Post-Nasal** (`N_`) | 15,539 | **50.83%** | 49.17% | 0.9999 bits |
 
 ---
 
-## 3. Theoretical Comparison: Phonology vs Morphology Tokenisation
+## 3. Where Residual Entropy Lives: Target Annotator Disagreement
 
-Recent literature has proposed **Morphology-Aware Tokenisation** ([arXiv:2508.08424](https://arxiv.org/abs/2508.08424)), segmenting words along grammatical morpheme boundaries (root + inflectional affixes).
+The crucial finding in Table 1 is that **$P(\text{voiceless}) > 0.50$ across every context in both languages**, including post-nasal position (where Tamil phonology dictates obligatory voicing). Consequently, conditioning on context does not alter the argmax decision boundary for any context, resulting in **0.00% argmax error reduction**.
+
+To explain why post-nasal voicing hovers near 50/50 in benchmark data, we measure pairwise annotator disagreement on identical word types within the multi-annotator Dakshina dataset (Roark et al., 2020).
+
+### Table 2: Pairwise Annotator Disagreement by Phonotactic Slot (Dakshina Benchmark)
+
+| Phonotactic Context | Tamil Disagreement (All Sources) | Tamil Disagreement (Within Dakshina) | Malayalam Disagreement (All Sources) | Malayalam Disagreement (Within Dakshina) | Linguistic Phonology Expectation |
+| :--- | :---: | :---: | :---: | :---: | :--- |
+| **Word-Initial** | 9.92% (945 / 9,529) | 9.49% (895 / 9,435) | 0.28% (10 / 3,568) | 0.29% (10 / 3,502) | Obligatory Voiceless |
+| **Geminate** | 1.62% (140 / 8,650) | 1.59% (137 / 8,605) | 0.05% (3 / 5,641) | 0.02% (1 / 5,605) | Obligatory Voiceless |
+| **Post-Consonant** | 36.10% (1,025 / 2,839) | 36.27% (1,017 / 2,804) | 1.58% (12 / 760) | 1.59% (12 / 757) | Non-nasal Clusters |
+| **Intervocalic** | 31.17% (7,993 / 25,647) | 31.05% (7,933 / 25,546) | 6.01% (783 / 13,021) | 6.05% (781 / 12,903) | Lenis / Voiced / Fricative |
+| **Post-Nasal** | **64.34% (3,323 / 5,165)** | **64.02% (3,293 / 5,144)** | **33.13% (543 / 1,639)** | **33.13% (540 / 1,630)** | **Obligatory Voiced (*Puṇarcci*)** |
+| **OVERALL ALL SLOTS** | **25.90% (13,426 / 51,830)** | **25.76% (13,275 / 51,534)** | **5.49% (1,351 / 24,629)** | **5.51% (1,344 / 24,397)** | Aggregate Latin Variance |
 
 ```
-+---------------------------------------------------------------------------+
-|               PHONOLOGY-AWARE VS MORPHOLOGY-AWARE COMPARISON              |
-+--------------------------+-----------------------+------------------------+
-| Dimension                | Morphology-Aware      | Phonology-Aware        |
-|                          | (arXiv:2508.08424)    | (ValiMeli — Ours)      |
-+--------------------------+-----------------------+------------------------+
-| Primary Task Alignment   | Semantic / Syntactic  | Acoustic / Phonetic    |
-| Inductive Target         | Morpheme Roots        | Acoustic Realisation   |
-| Vocabulary Modification  | Subword Morphemes     | Structural Context PUA |
-| Reversibility            | Heuristic Recombine   | Exact String Isomorphic|
-| Transliteration Impact   | Secondary             | Primary / Direct       |
-+--------------------------+-----------------------+------------------------+
+Examples of Latin Target Spelling Divergence on Identical Words:
+  Tamil Word:      நாடாளுமன்றத்தில் (Slot 5: ற)
+    Annotator 1:   naadaalumandraththil   (ற -> 'dr', Voiced)
+    Annotator 2:   naadaalumanraththil    (ற -> 'r',  Voiceless)
+    Annotator 3:   naataalamantratthil    (ற -> 'tr', Voiceless)
+
+  Tamil Word:      மீனாட்சிசுந்தரம் (Slot 6: த)
+    Annotators 1-4:meenaatchisundaram     (த -> 'd',  Voiced)
+    Annotator 5:   meenatchisuntharam     (த -> 'th', Voiceless)
+
+  Malayalam Word:  പങ്ക് (Slot 2: ക്)
+    Annotator 1:   pangu                  (ക് -> 'g', Voiced)
+    Annotators 2-7:pank / punk / punq     (ക് -> 'k/q', Voiceless)
 ```
 
-While morphological boundaries isolate inflections for semantic modelling, **transliteration is fundamentally a phonetic transcription problem**. A change in phonotactic context alters the target Roman character sequence regardless of morpheme boundaries. Hence, phonology-aware tokenisation provides the optimal inductive bias for transliteration.
+**Finding**: Tamil speakers do not vary on whether *நாடாளுமன்றத்தில்* or *மீனாட்சிசுந்தரம்* is pronounced voiced. The variance stems entirely from **competing crowdsourced Latin transcription conventions** (phonetic *thambi* vs. orthographic Brahmic *thampi*). Because the ambiguity resides in target label noise, injecting phonological priors onto the source input cannot alter target-side prediction accuracy.
 
 ---
 
 ## 4. The ValiMeli Architecture
 
-### 4.1 Pipeline Overview
+We evaluate two distinct mechanisms for injecting phonological inductive bias:
+
 ```
 [Raw Indic Word: 'தம்பி']
-         |
-         v
-[Uyirmey / Mey Segmentation]  --> ['த', 'ம்', 'பி']
-         |
-         v
+          │
+          ▼
 [Phonotactic Context Classifier]
-  - 'த' @ index 0  --> [INIT]   (Voiceless [t̪])
+  - 'த' @ index 0  --> [INIT]        (Voiceless [t̪])
   - 'ம்' @ index 1  --> Nasal Coda
-  - 'பி' @ index 2  --> [NASAL]  (Voiced [b])
-         |
-         v
-[PUA Tagged Stream: '[INIT]த ம் [NASAL]பி']
-         |
-         v
-[Seq2Seq Attention Encoder-Decoder]  --> 'thambi'
+  - 'பி' @ index 2  --> [POST_NASAL]  (Voiced [b])
+          │
+          ├────────────────────────────────────────┐
+          ▼                                        ▼
+   [Arm A1: Token Perturbation]             [Arm A1-MT: Auxiliary Head]
+   PUA Tagged Input:                        Unmodified Input: 'தம்பி'
+   '[INIT]த ம் [NASAL]பி'                    Encoder multi-task loss on stops:
+          │                                 L_total = L_seq2seq + lambda * L_phono
+          ▼                                        │
+[Seq2Seq Attention Decoder]                        ▼
+          └───────────────────────────────► 'thambi'
 ```
 
-### 4.2 Mathematical Formulation of Multi-Task Objective (`A1-MT`)
-To incorporate phonological supervision without altering input token strings during inference, we formulate the **ValiMeli Multi-Task Objective (`A1-MT`)**:
-$$\mathcal{L}_{\text{total}} = \mathcal{L}_{\text{seq2seq}}(\theta) + \lambda \cdot \mathcal{L}_{\text{phono}}(\theta_{\text{enc}}, \phi)$$
-where:
-- $\mathcal{L}_{\text{seq2seq}}(\theta) = -\sum_{t=1}^{T} \log P(y_t \mid y_{<t}, \mathbf{x}; \theta)$ is the standard cross-entropy loss over target characters.
-- $\mathcal{L}_{\text{phono}}(\theta_{\text{enc}}, \phi) = -\frac{1}{K} \sum_{k=1}^{K} \log P(c_k \mid \mathbf{h}_{\text{enc}, k}; \phi)$ is the auxiliary classification loss over the stop-voicing context $\mathcal{C} \in \{\text{INIT}, \text{INTER}, \text{POST\_NASAL}, \text{GEMINATE}\}$ for plosive positions.
-- $\lambda \in [0.05, 0.10]$ is a scheduled weighting parameter ensuring gradient stability.
+1. **Explicit Input Stream Perturbation (`A1`)**: Injects deterministic PUA control tokens into input sequences.
+2. **Auxiliary Multi-Task Supervision (`A1-MT`)**: Leaves token sequences intact and adds an auxiliary 7-class phonotactic classification head on encoder representations:
+   $$\mathcal{L}_{\text{total}} = \mathcal{L}_{\text{seq2seq}}(\theta) + \lambda \cdot \mathcal{L}_{\text{phono}}(\theta_{\text{enc}}, \phi)$$
 
 ---
 
-## 5. Experimental Framework
+## 5. Empirical Scaling Matrix (25,000 to 3,200,000 Pairs)
 
-We evaluate experimental conditions across a rigorous hierarchy:
-- **Target Languages**: Tamil (`tam`), Malayalam (`mal`), Telugu (`tel`), Kannada (`kan`), Hindi (`hin`), Bengali (`ben`), Gujarati (`guj`), Marathi (`mar`)
-- **Experimental Arms**:
-  - `A0`: Standard Character Baseline (IndicXlit / Aksharantar standard)
-  - `A1`: ValiMeli Phonology-Aware Tokenisation (Ours)
-  - `A1-MT`: ValiMeli Multi-Task Phonology Supervision (Ours)
-  - `A2`: Morphology-Aware Tokenisation (arXiv:2508.08424)
-- **Model Architectures**:
-  - **1.48M BiGRU Seq2Seq** (Bidirectional GRU with Bahdanau Attention, $d_{\text{hidden}}=256$)
-  - **11.30M Parameter Transformer** (6 Encoder + 6 Decoder Layers, $d_{\text{model}}=256$, 4 Attention Heads, $d_{\text{ffn}}=1024$)
-- **Corpus Scale**: From low-resource subsets (25,000 pairs) up to massive multilingual scaling across **3,200,000 pairs** evaluated on **100,135 official holdout test samples**.
+All evaluations are conducted on official Aksharantar holdout test sets using greedy 1-best decoding.
 
----
+### Table 3: Scaling Hierarchy of Phonological Inductive Bias (Monolingual & Bilingual)
 
-## 6. Empirical Results & Architectural Insights
+| Regime & Model Scale | Language | Baseline (A0) Exact Match | Phonology Arm (A1 / A1-MT) | $\Delta$ EM | Statistical Significance ($z$-test) |
+| :--- | :--- | :---: | :---: | :---: | :---: |
+| **Low-Resource (25k Pairs, 11M Transformer)** | **Tamil** | 24.04% (Native: 27.83%) | **24.98% (Native: 28.91%)** | **+0.94%** (Native: +1.08%) | $p = .098$ (Native: $p = .100$) |
+| **Low-Resource (25k Pairs, 11M Transformer)** | **Malayalam** | 17.15% (Native: 19.59%) | **18.41% (Native: 20.85%)** | **+1.26%** (Native: +1.26%) | **$p = .009$ (Native: $p = .024$) ★** |
+| **Low-Capacity (250k Pairs, 1.5M BiGRU)** | **Tamil** | 58.19% | **59.72%** (A1 Tagged) | **+1.53%** | **$p = .018$ ★** |
+| **Low-Capacity (250k Pairs, 1.5M BiGRU)** | **Malayalam** | 51.08% | **52.16%** (A1 Tagged) | **+1.08%** | $p = .088$ |
+| **Standard Capacity (250k Pairs, 11M Transformer)**| **Tamil** | 59.18% | 59.94% (A1 Tagged) | +0.76% | $p = .240$ |
+| **Standard Capacity (250k Pairs, 11M Transformer)**| **Malayalam** | **52.84%** | 52.73% (A1 Tagged) | −0.11% | $p = .862$ |
+| **Monolingual Scale (500k Pairs, 11M Transformer)**| **Tamil** | **60.71%** (Native: 66.91%) | 60.49% (Native: 66.73%) | −0.22% | $p = .733$ |
+| **Monolingual Scale (500k Pairs, 11M Transformer)**| **Malayalam** | **55.92%** (Native: 61.71%) | 55.39% (Native: 60.94%) | −0.53% | $p = .400$ |
+| **Joint Bilingual Dravidian (1.0M Pairs, 11M)** | **Tamil** | **62.42%** (Native: 68.28%) | 60.09% (Native: 65.94%) | **−2.33%** | **$p < .001$ (Significant loss)** |
+| **Joint Bilingual Dravidian (1.0M Pairs, 11M)** | **Malayalam** | **55.28%** (Native: 60.77%) | 53.91% (Native: 59.44%) | **−1.37%** | **$p = .030$ (Significant loss)** |
 
-### 6.1 Recurrent Baseline Matrix (1.48M BiGRU)
+### Table 4: 3.2M Multilingual Pre-training Matrix Across 8 Indic Languages (100,135 Test Pairs)
 
-#### Table 2: Full 12-Cell Empirical Benchmark on Aksharantar Full Holdout Test Sets (BiGRU)
-
-| Language | Direction | Experimental Arm | Val Loss | Holdout EM (%) | Holdout CER (%) | Holdout SVA (%) |
-| :--- | :--- | :--- | :---: | :---: | :---: | :---: |
-| **Tamil** | `indic-en` | Baseline (A0) | 1.0197 | 29.59% | 14.85% | 29.20% |
-| **Tamil** | `indic-en` | **ValiMeli (A1) [Ours]** | 1.0278 | 29.34% | 15.00% | 28.91% |
-| **Tamil** | `indic-en` | Morphology (A2) | 0.9817 | 28.99% | 14.89% | 28.58% |
-| **Tamil** | `en-indic` | Baseline (A0) | 0.5262 | 58.19% | 9.38% | 59.22% |
-| **Tamil** | `en-indic` | **ValiMeli (A1) [Ours]** | 0.6251 | **59.72% (+1.53%)** | **8.93% (-0.45%)** | **60.67% (+1.45%)** |
-| **Tamil** | `en-indic` | Morphology (A2) | 0.5097 | 57.24% | 9.61% | 58.17% |
-| **Malayalam** | `indic-en` | Baseline (A0) | 0.8507 | 32.58% | 11.51% | 32.41% |
-| **Malayalam** | `indic-en` | **ValiMeli (A1) [Ours]** | 0.8444 | 31.96% | 11.57% | 32.01% |
-| **Malayalam** | `indic-en` | Morphology (A2) | 0.8457 | 31.22% | 11.87% | 31.18% |
-| **Malayalam** | `en-indic` | Baseline (A0) | 0.6120 | 51.08% | 10.37% | 54.13% |
-| **Malayalam** | `en-indic` | **ValiMeli (A1) [Ours]** | 0.7330 | **52.16% (+1.08%)** | **10.23% (-0.14%)** | **55.35% (+1.22%)** |
-| **Malayalam** | `en-indic` | Morphology (A2) | 0.6331 | 51.26% | 10.49% | 54.17% |
-
-*Key Insight*: In reverse transliteration (`en-indic`), ValiMeli achieves **59.72% Top-1 EM on Tamil** (+1.53% over Baseline, +2.48% over Morphology) and **52.16% on Malayalam**, while boosting Stop-Voicing Accuracy (SVA) to **60.67%** and **55.35%**.
-
----
-
-### 6.2 11M Parameter Transformer Parity Study (IndicXlit Architecture)
-
-#### Table 3: 11M Parameter Transformer Parity Benchmark (Aksharantar Full Holdout Test Set)
-
-| Language | Direction | Experimental Arm | Val Loss | Holdout EM (%) | Holdout CER (%) | Holdout SVA (%) |
-| :--- | :--- | :--- | :---: | :---: | :---: | :---: |
-| **Tamil** | `en-indic` | Baseline (A0) [11M] | 0.1848 | 59.18% | 9.17% | 60.29% |
-| **Tamil** | `en-indic` | **ValiMeli (A1) [11M]** | **0.1426 (-22.8%)** | **59.94% (+0.76%)** | **9.06% (-0.11%)** | **61.04% (+0.75%)** |
-| **Malayalam** | `en-indic` | Baseline (A0) [11M] | 0.1975 | 52.84% | 10.09% | 55.89% |
-| **Malayalam** | `en-indic` | **ValiMeli (A1) [11M]** | **0.1730 (-12.4%)** | 52.73% | 10.26% | 55.63% |
-
----
-
-### 6.3 Monolingual IndicXlit Exact Replication Matrix (500,000 Samples)
-
-#### Table 4: 500k IndicXlit Exact Replication Matrix (Aksharantar Partitioned Benchmark)
-
-| Language | Direction | Experimental Arm | Native Words EM (%) | Named Entities EM (%) | Combined Test EM (%) | Val Loss |
-| :--- | :--- | :--- | :---: | :---: | :---: | :---: |
-| **Tamil** | `en-indic` | Baseline (A0) [500k] | 66.91% (CER 7.29%) | 32.03% (CER 18.39%) | 60.71% (CER 8.95%) | 0.1862 |
-| **Tamil** | `en-indic` | **ValiMeli (A1) [500k]** | 66.73% (CER 7.42%) | 31.64% (CER 18.07%) | 60.49% (CER 9.02%) | **0.1495 (-19.7%)** |
-| **Malayalam** | `en-indic` | Baseline (A0) [500k] | 61.71% (CER 7.06%) | 26.14% (CER 28.27%) | 55.92% (CER 9.52%) | 0.1918 |
-| **Malayalam** | `en-indic` | **ValiMeli (A1) [500k]** | 60.94% (CER 7.12%) | 26.78% (CER 27.89%) | 55.39% (CER 9.52%) | **0.1623 (-15.4%)** |
-
----
-
-### 6.4 Low-Resource Data Sparsity Matrix (25,000 Samples)
-
-#### Table 5: Low-Resource Regime Matrix (25,000 Samples, Full Holdout Test Set)
-
-| Language | Direction | Experimental Arm | Native Words EM (%) | Native Words CER (%) | Stop-Voicing Accuracy (%) | Combined EM (%) |
-| :--- | :--- | :--- | :---: | :---: | :---: | :---: |
-| **Tamil** | `en-indic` | Baseline (A0) [25k] | 27.83% | 27.19% | 28.18% | 24.04% |
-| **Tamil** | `en-indic` | **Multi-Task (A1-MT) [25k]** | **28.91% (+1.08%)** | **25.39% (-1.80%)** | **29.34% (+1.16%)** | **24.98% (+0.94%)** |
-| **Malayalam** | `en-indic` | Baseline (A0) [25k] | 19.59% | 32.08% | 20.05% | 17.15% |
-| **Malayalam** | `en-indic` | **Multi-Task (A1-MT) [25k]** | **20.85% (+1.26%)** | **31.68% (-0.40%)** | **21.35% (+1.30%)** | **18.41% (+1.26%)** |
-
----
-
-### 6.5 Joint Bilingual Dravidian Matrix (Tamil + Malayalam, 1,000,000 Pairs)
-
-#### Table 6: Joint Bilingual Dravidian Matrix vs Monolingual Baselines (Full Holdout Test Sets)
-
-| Language | Training Paradigm | Experimental Arm | Native Words EM (%) | Named Entities EM (%) | Combined Test EM (%) | Combined CER (%) |
-| :--- | :--- | :--- | :---: | :---: | :---: | :---: |
-| **Tamil** | Monolingual (500k) | Baseline (A0) | 66.91% | 32.03% | 60.71% | 8.95% |
-| **Tamil** | **Joint Bilingual (1.0M)** | **Bilingual-A0** | **68.28% (+1.37%)** | **35.35% (+3.32%!)** | **62.42% (+1.71%)** | **8.42% (-0.53%)** |
-| **Tamil** | Joint Bilingual (1.0M) | Bilingual-A1-MT | 65.94% | 33.06% | 60.09% | 8.92% |
-| **Malayalam** | Monolingual (500k) | Baseline (A0) | 61.71% | 26.14% | 55.92% | 9.52% |
-| **Malayalam** | **Joint Bilingual (1.0M)** | **Bilingual-A0** | 60.77% | **27.03% (+0.89%)** | 55.28% | **9.35% (-0.17%)** |
-| **Malayalam** | Joint Bilingual (1.0M) | Bilingual-A1-MT | 59.44% | 25.40% | 53.91% | 9.73% |
-
----
-
-### 6.6 Large-Scale Multilingual Pre-training Matrix: IndicXlit Baseline vs ValiMeli Multi-Task (3,200,000 Pairs)
-
-#### Table 10: 3.2M Multilingual Pre-training Matrix across 8 Indic Languages (100,135 Test Pairs)
-
-| Language Family | Language | ISO Code | Model Architecture | Native Words Top-1 EM (%) | Named Entities Top-1 EM (%) | Combined Test EM (%) | Combined CER (%) |
-| :--- | :--- | :---: | :--- | :---: | :---: | :---: | :---: |
-| **Dravidian** | **Tamil** | `tam` | IndicXlit Baseline (A0) | 68.42% | 38.63% | 63.12% | 8.06% |
-| **Dravidian** | **Tamil** | `tam` | **ValiMeli Multi-Task (A1-MT)** | **68.55% (+0.13%) 🏆** | **39.66% (+1.03%!) 🏆** | **63.41% (+0.29%) 🏆** | **8.06%** |
-| **Dravidian** | **Malayalam** | `mal` | **IndicXlit Baseline (A0)** | **62.63%** | **30.63%** | **57.43%** | **8.81%** |
-| **Dravidian** | **Malayalam** | `mal` | ValiMeli Multi-Task (A1-MT) | 62.16% | 29.64% | 56.87% | 9.07% |
-| **Dravidian** | Telugu | `tel` | IndicXlit Baseline (A0) | **73.70%** | **46.23%** | **67.55%** | **6.49%** |
-| **Dravidian** | Telugu | `tel` | ValiMeli Multi-Task (A1-MT) | 73.61% | 45.49% | 67.32% | 6.57% |
-| **Dravidian** | Kannada | `kan` | IndicXlit Baseline (A0) | **72.96%** | 44.98% | **67.67%** | **5.64%** |
-| **Dravidian** | Kannada | `kan` | ValiMeli Multi-Task (A1-MT) | 72.21% | **46.14% (+1.16%)** | 67.28% | 5.71% |
-| **Indo-Aryan** | Hindi | `hin` | IndicXlit Baseline (A0) | **53.28%** | **52.58%** | **53.14%** | **11.88%** |
-| **Indo-Aryan** | Hindi | `hin` | ValiMeli Multi-Task (A1-MT) | 52.35% | 52.18% | 52.31% | 12.02% |
-| **Indo-Aryan** | Bengali | `ben` | IndicXlit Baseline (A0) | **52.11%** | 33.27% | **48.52%** | **14.27%** |
-| **Indo-Aryan** | Bengali | `ben` | ValiMeli Multi-Task (A1-MT) | 51.64% | **33.53% (+0.26%)** | 48.19% | 14.30% |
-| **Indo-Aryan** | Gujarati | `guj` | IndicXlit Baseline (A0) | **58.36%** | 41.05% | **55.98%** | **10.15%** |
-| **Indo-Aryan** | Gujarati | `guj` | ValiMeli Multi-Task (A1-MT) | 57.46% | **41.38% (+0.33%)** | 55.25% | 10.23% |
-| **Indo-Aryan** | Marathi | `mar` | IndicXlit Baseline (A0) | **57.43%** | 48.56% | **55.91%** | **10.86%** |
-| **Indo-Aryan** | Marathi | `mar` | ValiMeli Multi-Task (A1-MT) | 57.03% | **49.18% (+0.62%)** | 55.69% | 10.89% |
-
-#### Key Multilingual Scaling Insights:
-1. **Tamil Reaches New State-of-the-Art Exact Match**:
-   - On Tamil, **ValiMeli Multi-Task (`A1-MT`) achieves the highest overall accuracy**, reaching **39.66% on Named Entities (+7.63% absolute gain over the 32.03% monolingual baseline)** and **63.41% on Combined Test Exact Match**.
-   - Auxiliary stop-voicing supervision guides the shared multilingual encoder to resolve allophonic voicing ambiguities in Tamil roots without degrading cross-lingual representation.
-2. **Cross-Family Phonetic Alignment**:
-   - Joint co-training with Indo-Aryan languages (which feature explicit graphemic series for voiced and aspirated stops $\text{क/ख/ग/घ}$) allows the shared encoder to ground Roman stop clusters (`b/bh`, `d/dh`, `g/gh`) in unambiguous phonetic embeddings, dramatically elevating Named Entity transfer across all Dravidian languages.
-
----
-
-### 6.7 Downstream Application: *Theedhum Nandrum* Sentiment on DravidianCodeMix
-
-When deploying our neural transliterators as an upstream preprocessing frontend for the **DravidianCodeMix FIRE 2020 YouTube Review Comments Dataset** (Lakshmanan & Ravindranath, 2020; Chakravarthi et al., 2020), downstream sentiment classification achieves decisive improvements over raw code-mixed text:
-
-#### Table 11: Best Model Downstream Sentiment Results on DravidianCodeMix
-
-| Language | Upstream Transliteration Representation | Macro F1 (%) | Weighted F1 (%) | Accuracy (%) | Positive F1 (%) | Negative F1 (%) | Mixed F1 (%) |
+| Language Family | Language | ISO Code | Test Count ($n$) | Baseline (A0) EM | Multi-Task (A1-MT) EM | $\Delta$ EM | $p$-value ($z$-test) |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Tamil-English** | Raw Code-Mixed Text (Baseline) | 52.91% | 56.00% | 51.78% | 66.58% | 40.40% | 24.04% |
-| **Tamil-English** | **ValiMeli Multi-Task (A1-MT 3.2M Stream)** | **53.89% (+0.98%!) 🏆** | **56.20% (+0.20%)** | **51.86% (+0.08%)** | 66.52% | 39.29% | **24.94% (+0.90%)** |
-| **Malayalam-English** | Raw Code-Mixed Text (Baseline) | 69.86% | 68.60% | 67.84% | 72.82% | 56.67% | 47.71% |
-| **Malayalam-English** | **IndicXlit Multilingual (A0 3.2M Stream)** | **70.80% (+0.94%!) 🏆** | **69.43% (+0.83%)** | **68.76% (+0.92%)** | **73.30%** | 56.20% | **50.94% (+3.23%!)** |
+| **Dravidian** | **Tamil** | `tam` | 11,499 | 63.12% (NE: 38.63%) | 63.41% (NE: 39.66%) | +0.29% (NE: +1.03%) | $p = .642$ ($p = .501$) |
+| **Dravidian** | **Malayalam** | `mal` | 12,451 | **57.43%** (NE: 30.63%) | 56.87% (NE: 29.64%) | −0.56% (NE: −0.99%) | $p = .377$ ($p = .492$) |
+| **Dravidian** | **Telugu** | `tel` | 10,260 | **67.55%** (NE: 46.23%) | 67.32% (NE: 45.49%) | −0.23% | $p = .721$ |
+| **Dravidian** | **Kannada** | `kan` | 11,380 | **67.67%** (NE: 44.98%) | 67.28% (NE: 46.14%) | −0.39% | $p = .534$ |
+| **Indo-Aryan** | **Hindi** | `hin` | 10,112 | **53.14%** (NE: 52.58%) | 52.31% (NE: 52.18%) | −0.83% | $p = .237$ |
+| **Indo-Aryan** | **Bengali** | `ben` | 14,166 | **48.52%** (NE: 33.27%) | 48.19% (NE: 33.53%) | −0.34% | $p = .568$ |
+| **Indo-Aryan** | **Gujarati** | `guj` | 18,077 | **55.98%** (NE: 41.05%) | 55.25% (NE: 41.38%) | −0.73% | $p = .162$ |
+| **Indo-Aryan** | **Marathi** | `mar` | 12,190 | **55.91%** (NE: 48.56%) | 55.69% (NE: 49.18%) | −0.22% | $p = .728$ |
 
 ---
 
-## 7. Theoretical Discussion: Scaling Laws & The Limits of the "Bitter Lesson"
+## 6. Downstream Application: *Theedhum Nandrum* Sentiment on DravidianCodeMix
 
-In machine learning, Sutton's "Bitter Lesson" (2019) asserts that general statistical methods leveraging compute and massive data scaling eventually surpass domain-specific human knowledge. However, our findings demonstrate that **for orthographically under-specified systems, the Bitter Lesson is fundamentally bounded**:
+We evaluate whether transliteration pre-processing assists downstream sentiment classification on YouTube review comments (FIRE 2020 DravidianCodeMix; Chakravarthi et al., 2020).
 
-1. **Information Bottleneck in Single-Stop Orthographies**:
-   - In languages like Tamil, plosive graphemes ($\text{க, ச, ட, த, ப, ற}$) represent an under-specified mapping to phonetic realizations ($k/g, c/s, t/d, p/b$).
-   - A standard character cross-entropy objective only supervises the final surface string. Increasing data volume exposes the network to conflicting foreign names, loanwords, and colloquial spelling variations, increasing gradient noise across stop tokens.
-2. **ValiMeli as an Invariant Regularizer**:
-   - The auxiliary stop-voicing head in `ValiMeli-A1-MT` acts as a structural regularizer, forcing intermediate encoder representations to cluster according to phonetic environment (`INIT`, `INTER`, `POST_NASAL`, `GEMINATE`).
-   - Consequently, even under massive 3.2M pre-training, `A1-MT` outperforms unconstrained multilingual training on Tamil by **+1.03% on Named Entities (39.66% vs 38.63%)**, proving that phonological grounding and scale are complementary.
+### Table 5: Matched Downstream Sentiment Results on DravidianCodeMix
+
+| Language | Upstream Representation | Macro F1 (%) | Weighted F1 (%) | Accuracy (%) | $\Delta$ Macro F1 vs. Raw |
+| :--- | :--- | :---: | :---: | :---: | :---: |
+| **Tamil-English** | Raw Code-Mixed Text (Baseline) | **52.91%** | 56.00% | 51.78% | — |
+| **Tamil-English** | Standard Baseline (A0 Augmented) | 52.69% | 55.67% | 51.52% | −0.22% |
+| **Tamil-English** | Phonology Transliteration (A1 Augmented) | 52.22% | 55.69% | 51.68% | −0.69% |
+| **Malayalam-English**| Raw Code-Mixed Text (Baseline) | **69.86%** | 68.60% | 67.84% | — |
+| **Malayalam-English**| Standard Baseline (A0 Augmented) | **71.17%** | 69.89% | 69.21% | **+1.31%** |
+| **Malayalam-English**| Phonology Transliteration (A1 Augmented) | 70.99% | 69.60% | 68.95% | +1.13% |
+
+*Downstream Finding*: Upstream phonological tagging yields no downstream sentiment advantage on Tamil ($-0.69\%$), aligning with the Argmax Invariance proof. Standard character augmentation provides a $+1.31\%$ gain on Malayalam.
 
 ---
 
-## 8. Conclusion & Future Directions
+## 7. Discussion: Scaling Bounds & Inductive Bias
 
-We have presented **ValiMeli**, a phonology-aware framework establishing that Tamil and Malayalam writing systems are governed by principled orthographic parsimony rather than underspecification. By aligning tokenisation and multi-task learning with native phonotactic constraints, ValiMeli establishes new state-of-the-art results on Tamil transliteration and downstream sentiment analysis.
+In machine learning, Sutton's "Bitter Lesson" posits that general methods leveraging compute and data scaling ultimately supersede domain-specific human engineering. Our results offer an empirical characterization of where this transition occurs:
 
-### Future Work
-1. **Low-Resource Sister Dravidian Languages**: Extending ValiMeli's phonotactic cluster constraints (*meym-mayakkam*, Tolkāppiyam 48–49; Venkatakrishnan et al., 2025) to generate synthetic training data for extreme low-resource Dravidian languages (Badaga, Irula, Kodava, Toda, Kota, and Tulu).
-2. **Code-Mixed Large Language Model (LLM) Tokenisation**: Integrating phonology-aware boundary tags into subword tokenisers (BPE, WordPiece, Unigram) for South Asian foundation models (e.g., IndicBERT, Llama-Indic) to eliminate byte-fragmentation on Romanized vernacular text.
-3. **Acoustic Spectrogram Grounding**: Integrating acoustic Voice Onset Time (VOT) and formant transitions from Mozilla Common Voice into multimodal transliteration.
+1. **Low-Resource Regime**: When data is insufficient to estimate transition marginals ($N \le 25\text{k}$), phonological inductive bias acts as an effective regularizer, yielding statistically significant gains (+1.26% on Malayalam, $p = .009$).
+2. **High-Resource Saturation**: As data scales to $\ge 500\text{k}$ and models reach 11M parameters, self-attention parameters directly learn the subword positional distributions.
+3. **The Target-Noise Bound**: Because residual uncertainty is driven by multi-modal Latin spelling habits among human annotators (64.02% disagreement), hard-coded source-side phonetic priors cannot bridge the target-side entropy gap.
+
+---
+
+## 8. Conclusion
+
+We establish that Tamil and Malayalam writing systems are governed by principled orthographic parsimony rather than underspecification. By measuring pairwise annotator disagreement and conditional voicing entropy, we prove that residual uncertainty in transliteration benchmarks originates from multi-dialectal Latin Romanization conventions. Consequently, phonological inductive biases exhibit a monotone decay across scale, confirming that scaling bounds in transliteration are governed by target annotation entropy.
 
 ---
 
@@ -323,15 +243,11 @@ We have presented **ValiMeli**, a phonology-aware framework establishing that Ta
 - Chakravarthi, B. R., Muralidaran, V., Priyadharshini, R., Suryawanshi, S., Navaneethakrishnan, S., Ponnusamy, J., & Kumaresan, P. K. (2020). *Corpus Creation for Sentiment Analysis in Code-Mixed Tamil-English Text*. In Proceedings of the 1st Workshop on Dravidian Language Technologies in ACL 2020, pp. 61–67.
 - Kunchukuttan, A., Kakwani, D., Golla, S., Bhattacharyya, P., Khapra, M. M., & Kumar, P. (2021). *AI4Bharat-IndicXlit: Multilingual Transliteration for Indian Languages*. Transactions of the Association for Computational Linguistics (TACL), 9, 1374–1390.
 - Lakshmanan, B. L., & Ravindranath, S. K. (2020). *Theedhum Nandrum @ Dravidian-CodeMix-FIRE2020: A Sentiment Polarity Classifier for YouTube Comments with Code-switching between Tamil, Malayalam and English*. In Working Notes of FIRE 2020 - Forum for Information Retrieval Evaluation, CEUR Workshop Proceedings, vol. 2826, pp. 542–547.
-- Madhani, Y., Seshadri, P., Parikh, T., Kunchukuttan, A., Kumar, P., & Khapra, M. M. (2022). *Aksharantar: Towards Building Open Datasets for Indic Language Transliteration*. In Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing (EMNLP), pp. 11621–11634.
-- Martinet, A. (1955). *Économie des changements phonétiques: Traité de phonologie diachronique*. Francke.
-- Niklas, U. (1988). *Introduction to Tamil Grammatical Theory*. Bulletin de l'École française d'Extrême-Orient (BEFEO), 77(1), 165–188.
-- Ramesh, G., Doddapaneni, S., Bheemambika, A., Kunchukuttan, A., Kumar, P., & Khapra, M. M. (2022). *IndicTrans: Towards High-Quality and Accessible Machine Translation for Indian Languages*. In Proceedings of ACL 2022.
-- Roark, B., Wolf-Sonkin, L., Kirov, C., Gibson, S., Chase, M., & Murphy, N. (2020). *Processing South Asian Languages in the Dakshina Dataset*. In Proceedings of the 12th Language Resources and Evaluation Conference (LREC 2020), pp. 6806–6814.
+- Madhani, Y., Seshadri, P., Parikh, T., Kunchukuttan, A., Kumar, P., & Khapra, M. M. (2023). *Aksharantar: Towards Building Open Datasets for Indic Language Transliteration*. In Findings of the Association for Computational Linguistics: EMNLP 2023, pp. 40–57.
+- Roark, B., Wolf-Sonkin, L., Kirov, C., Gibson, S., Chase, M., & Murphy, N. (2020). *Processing South Asian Languages in the Dakshina Dataset*. In Proceedings of the 12th Language Resources and Evaluation Conference (LREC 2020), pp. 2413–2423.
 - Sutton, R. (2019). *The Bitter Lesson*. In Incomplete Ideas (Essays on Computing).
 - Swadesh, M. (1934). *The Phonemic Principle*. Language, 10(2), 117–129.
-- Thottingal, S. (2026). *The Broken Token: Tokenization for Malayalam Language Models*. Swathanthra Malayalam Computing (SMC). URL: https://thottingal.in/blog/2026/02/27/malayalam-tokenizer-llm/
-- Tolkāppiyar (c. 300 BCE). *Tolkāppiyam: Eluttatikāram (Phonology and Orthography)*.
+- Thottingal, S. (2026). *The Broken Token: Tokenization for Malayalam Language Models*. Swathanthra Malayalam Computing (SMC).
 - Trubetzkoy, N. S. (1939). *Grundzüge der Phonologie*. Travaux du Cercle Linguistique de Prague.
 - Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł., & Polosukhin, I. (2017). *Attention is All You Need*. In Advances in Neural Information Processing Systems (NeurIPS 2017), pp. 5998–6008.
-- Venkatakrishnan, R., Kumarasamy, R., & Lakshmanan, B. (2025). *Pattern of Biconsonantal Clusters in Old Tamil Texts*. International Journal of Dravidian Linguistics (IJDL), 54(1), 1–32. Code: https://github.com/oligoglot/mayal
+- Vemula, S. et al. (2025). *Rethinking Tokenization for Rich Morphology: The Dominance of Unigram over BPE and Morphological Alignment*. arXiv:2508.08424.

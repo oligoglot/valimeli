@@ -1,0 +1,23 @@
+\begin{table*}[t]
+\centering
+\small
+\begin{tabular}{lrrrrrrrr}
+\toprule
+& \multicolumn{4}{c}{\textbf{Tamil}} & \multicolumn{4}{c}{\textbf{Malayalam}} \\
+\cmidrule(lr){2-5}\cmidrule(lr){6-9}
+\textbf{Training pairs} & \textbf{Base} & \textbf{Phon.} & $\Delta$ & $p$ & \textbf{Base} & \textbf{Phon.} & $\Delta$ & $p$ \\
+\midrule
+\multicolumn{9}{l}{\textit{Auxiliary phonotactic loss on the decoder} ($\lambda=0.3$)} \\
+\quad 25k (Transformer) & 24.04 & 24.98 & $+0.94$ & 0.0975 & 17.15 & 18.41 & \textbf{$+1.26$} & 0.0093 \\
+\quad 1.0M (bilingual) & 62.42 & 60.09 & \textbf{$-2.33$} & 0.0003 & 55.28 & 53.91 & \textbf{$-1.37$} & 0.0295 \\
+\addlinespace
+\multicolumn{9}{l}{\textit{Phonotactic tags in the output string}} \\
+\quad 250k (BiGRU) & 58.19 & 59.72 & \textbf{$+1.53$} & 0.0183 & 51.08 & 52.16 & $+1.08$ & 0.0893 \\
+\quad 250k (Transformer) & 59.18 & 59.94 & $+0.77$ & 0.2371 & 52.84 & 52.73 & $-0.10$ & 0.8689 \\
+\quad 500k (Transformer) & 60.71 & 60.49 & $-0.22$ & 0.7358 & 55.92 & 55.39 & $-0.54$ & 0.3928 \\
+\quad 500k (Transformer) & 60.71 & 60.49 & {-0.22} & 0.7358 & 55.92 & 55.39 & {-0.54} & 0.3928 \\
+\bottomrule
+\end{tabular}
+\caption{Exact-match accuracy (\%) on \textsc{en}$\rightarrow$\textsc{indic} transliteration. The two blocks are two \emph{different} interventions and are not plotted as a single curve; within each, the phonological advantage present in the low-data regime is absent or reversed at scale. Test sets are 11{,}499 (Tamil) and 12{,}451 (Malayalam) words, identical across arms. $p$ from a two-proportion $z$-test; because both arms are scored on the same test set this is a paired design analysed as unpaired and is therefore conservative (\S\ref{sec:limits}). Bold marks $p<0.05$. The 3.2M-pair regime is excluded---see Appendix~\ref{app:control}.}
+\label{tab:scale}
+\end{table*}
