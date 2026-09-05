@@ -74,18 +74,19 @@ def build_alignment():
             plosive_details.append(("ச (initial)", "[tʃ] / [s]", "Voiceless", "s / ch"))
             plosive_details.append(("ங்கு (post-nasal)", "[ŋɡ]", "Obligatorily Voiced [ɡ]", "ng / ngg"))
 
-        for ak, ipa_seg, v_state, rom in plosive_details:
+        for el, ipa_seg, v_state, rom in plosive_details:
             table.append({
                 "Word": word,
                 "Wiktionary_IPA": ipa,
-                "Slot": ak,
+                "Eluttu_Slot": el,
+                "Slot": el, # Backwards compatibility
                 "IPA_Segment": ipa_seg,
                 "Voicing_State": v_state,
                 "Roman_Spellings": rom,
                 "Audio_File": audio
             })
 
-    print(f"{'Tamil Word':<12} | {'Slot Context':<20} | {'IPA Segment':<14} | {'Voicing State':<26} | {'Wiktionary IPA':<20} | {'Commons Audio':<30}")
+    print(f"{'Tamil Word':<12} | {'Eḻuttu Slot Context':<20} | {'IPA Segment':<14} | {'Voicing State':<26} | {'Wiktionary IPA':<20} | {'Commons Audio':<30}")
     print("-" * 140)
     for r in table:
         print(f"{r['Word']:<12} | {r['Slot']:<20} | {r['IPA_Segment']:<14} | {r['Voicing_State']:<26} | {r['Wiktionary_IPA']:<20} | {r['Audio_File']:<30}")

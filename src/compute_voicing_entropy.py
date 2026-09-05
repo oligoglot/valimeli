@@ -4,7 +4,7 @@ Project ValiMeli — Information-Theoretic Conditional Voicing Entropy Audit
 ==========================================================================
 Computes the empirical conditional entropy H(Voicing | Phonotactic Context)
 and argmax error reduction for plosives in Tamil and Malayalam using a 
-Dynamic Programming (DP) akshara aligner over Aksharantar data.
+Dynamic Programming (DP) eḻuttu aligner over Aksharantar data.
 
 Outputs verified entropy metrics and coverage to artifacts/voicing_entropy_results.json.
 """
@@ -20,15 +20,25 @@ WORKSPACE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SCRATCH_DATA_DIR = os.path.join(WORKSPACE_DIR, "scratch", "valimeli", "data")
 ARTIFACTS_DIR = os.path.join(WORKSPACE_DIR, "artifacts")
 
-TAMIL_PLOSIVES = {'க', 'ச', 'ட', 'த', 'ப', 'ற'}
-TAMIL_NASALS = {'ங', 'ஞ', 'ண', 'ந', 'ம', 'ன'}
+# Tamil Grammatical Terms (Tolkāppiyam, Niklas 1988)
+# - Eḻuttu (எழுத்து): Basic orthographic / syllabic grapheme unit
+# - Puḷḷi (புள்ளி): Virama / dot indicating pure consonant
+# - Vallinam (வல்லினம்): Hard stops / plosives
+# - Mellinam (மெல்லினம்): Soft nasals
+# - Puṇarcci (புணர்ச்சி): Morphophonemic juncture / sandhi
+
+TAMIL_VALLINAM = {'க', 'ச', 'ட', 'த', 'ப', 'ற'}
+TAMIL_PLOSIVES = TAMIL_VALLINAM
+TAMIL_MELLINAM = {'ங', 'ஞ', 'ண', 'ந', 'ம', 'ன'}
+TAMIL_NASALS = TAMIL_MELLINAM
 TAMIL_VOWEL_SIGNS = {
     '\u0bbe': ['aa', 'a'], '\u0bbf': ['i', 'ee', 'e'], '\u0bc0': ['ee', 'ii', 'i'],
     '\u0bc1': ['u', 'oo'], '\u0bc2': ['oo', 'uu', 'u'], '\u0bc6': ['e'],
     '\u0bc7': ['e', 'ee', 'ae'], '\u0bc8': ['ai', 'ay', 'ey'],
     '\u0bca': ['o'], '\u0bcb': ['o', 'oo', 'oa'], '\u0bcc': ['au', 'av', 'ow']
 }
-TAMIL_VIRAMA = '\u0bcd'
+TAMIL_PULLI = '\u0bcd'
+TAMIL_VIRAMA = TAMIL_PULLI
 
 MALAYALAM_PLOSIVES = {'ക', 'ച', 'ട', 'ത', 'പ', 'റ'}
 MALAYALAM_NASALS = {'ങ', 'ഞ', 'ണ', 'ന', 'മ'}
@@ -38,7 +48,8 @@ MALAYALAM_VOWEL_SIGNS = {
     '\u0d46': ['e'], '\u0d47': ['e', 'ee', 'ae'], '\u0d48': ['ai', 'ay', 'ey'],
     '\u0d4a': ['o'], '\u0d4b': ['o', 'oo', 'oa'], '\u0d4c': ['au', 'av', 'ow']
 }
-MALAYALAM_VIRAMA = '\u0d4d'
+MALAYALAM_CHANDRAKKALA = '\u0d4d'
+MALAYALAM_VIRAMA = MALAYALAM_CHANDRAKKALA
 
 CONSONANT_MAP_TAMIL = {
     'க': {'voiceless': ['k', 'c', 'q', 'ck', 'kh', 'x'], 'voiced': ['g', 'gh']},
@@ -64,7 +75,7 @@ CONSONANT_MAP_MALAYALAM = {
     'ങ': {'all': ['ng', 'n']}, 'ഞ': {'all': ['nj', 'ny', 'n']},
     'ണ': {'all': ['n', 'nn']}, 'ന': {'all': ['n', 'nh']}, 'മ': {'all': ['m', 'mm']},
     'യ': {'all': ['y']}, 'ര': {'all': ['r', 'rr']}, 'ല': {'all': ['l', 'll']}, 'വ': {'all': ['v', 'w']},
-    'ഴ': {'all': ['zh', 'z', 'l', 'r']}, 'ള': {'all': ['l', 'll']},
+    'ழ': {'all': ['zh', 'z', 'l', 'r']}, 'ള': {'all': ['l', 'll']},
     'ശ': {'all': ['sh', 's']}, 'ഷ': {'all': ['sh', 's']}, 'സ': {'all': ['s']}, 'ഹ': {'all': ['h']}, 'ജ': {'all': ['j']}
 }
 
@@ -77,16 +88,17 @@ VOWEL_LETTERS_TAMIL = {
 VOWEL_LETTERS_MALAYALAM = {
     'അ': ['a', 'u'], 'ആ': ['aa', 'a'], 'ഇ': ['i', 'e'], 'ഈ': ['ee', 'ii', 'i'],
     'ഉ': ['u', 'oo'], 'ഊ': ['oo', 'uu', 'u'], 'ഋ': ['ri', 'ru'], 'എ': ['e'],
-    'ഏ': ['e', 'ee', 'ae'], 'ഐ': ['ai', 'ay'], 'ഒ': ['o'], 'ഓ': ['o', 'oo'], 'ഔ': ['au', 'av', 'ow']
+    'ഏ': ['e', 'ee', 'ae'], 'ഐ': ['ai', 'ay'], 'ஒ': ['o'], 'ഓ': ['o', 'oo'], 'ഔ': ['au', 'av', 'ow']
 }
 
-def segment_aksharas(word: str, lang: str = "tam") -> List[str]:
+def segment_eluttu(word: str, lang: str = "tam") -> List[str]:
+    """Segments a native word into eḻuttu (syllabic graphemic units)."""
     vowel_signs = TAMIL_VOWEL_SIGNS if lang == "tam" else MALAYALAM_VOWEL_SIGNS
-    virama = TAMIL_VIRAMA if lang == "tam" else MALAYALAM_VIRAMA
+    pulli = TAMIL_PULLI if lang == "tam" else MALAYALAM_CHANDRAKKALA
     units = []
     current = ""
     for char in word:
-        if char in vowel_signs or char == virama:
+        if char in vowel_signs or char == pulli:
             current += char
         else:
             if current:
@@ -96,20 +108,24 @@ def segment_aksharas(word: str, lang: str = "tam") -> List[str]:
         units.append(current)
     return units
 
-def get_akshara_candidates(ak: str, lang: str = "tam") -> List[Tuple[str, Optional[str]]]:
-    virama = TAMIL_VIRAMA if lang == "tam" else MALAYALAM_VIRAMA
+# Backwards compatibility alias
+segment_aksharas = segment_eluttu
+
+def get_eluttu_candidates(el: str, lang: str = "tam") -> List[Tuple[str, Optional[str]]]:
+    """Generates Romanization candidates for an individual eḻuttu."""
+    pulli = TAMIL_PULLI if lang == "tam" else MALAYALAM_CHANDRAKKALA
     vowel_signs = TAMIL_VOWEL_SIGNS if lang == "tam" else MALAYALAM_VOWEL_SIGNS
     c_map = CONSONANT_MAP_TAMIL if lang == "tam" else CONSONANT_MAP_MALAYALAM
     v_letters = VOWEL_LETTERS_TAMIL if lang == "tam" else VOWEL_LETTERS_MALAYALAM
     
-    if ak in v_letters:
-        return [(v, None) for v in v_letters[ak]]
+    if el in v_letters:
+        return [(v, None) for v in v_letters[el]]
         
-    base_char = ak[0]
-    has_virama = virama in ak
+    base_char = el[0]
+    has_pulli = pulli in el
     
-    vowel_cands = [""] if has_virama else ["a", "u", ""]
-    for char in ak[1:]:
+    vowel_cands = [""] if has_pulli else ["a", "u", ""]
+    for char in el[1:]:
         if char in vowel_signs:
             vowel_cands = vowel_signs[char]
             
@@ -133,6 +149,9 @@ def get_akshara_candidates(ak: str, lang: str = "tam") -> List[Tuple[str, Option
                 
     return candidates
 
+# Backwards compatibility alias
+get_akshara_candidates = get_eluttu_candidates
+
 def edit_distance(s1: str, s2: str) -> int:
     m, n = len(s1), len(s2)
     dp = [[0] * (n + 1) for _ in range(m + 1)]
@@ -144,21 +163,22 @@ def edit_distance(s1: str, s2: str) -> int:
             dp[i][j] = min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + cost)
     return dp[m][n]
 
-def align_word(aksharas: List[str], roman: str, lang: str = "tam", max_budget: int = 2) -> Optional[List[Tuple[str, int, int, Optional[str]]]]:
-    n_ak = len(aksharas)
+def align_word(eluttukkal: List[str], roman: str, lang: str = "tam", max_budget: int = 2) -> Optional[List[Tuple[str, int, int, Optional[str]]]]:
+    """Aligns an eḻuttu sequence to a Latin transliteration string via dynamic programming."""
+    n_el = len(eluttukkal)
     n_rom = len(roman)
     
-    ak_cands = [get_akshara_candidates(ak, lang=lang) for ak in aksharas]
-    dp = [[(float('inf'), -1, -1) for _ in range(n_rom + 1)] for _ in range(n_ak + 1)]
+    el_cands = [get_eluttu_candidates(el, lang=lang) for el in eluttukkal]
+    dp = [[(float('inf'), -1, -1) for _ in range(n_rom + 1)] for _ in range(n_el + 1)]
     dp[0][0] = (0, 0, -1)
     
-    for i in range(n_ak):
+    for i in range(n_el):
         for j in range(n_rom + 1):
             curr_cost, _, _ = dp[i][j]
             if curr_cost == float('inf'):
                 continue
                 
-            for c_idx, (cand_str, _) in enumerate(ak_cands[i]):
+            for c_idx, (cand_str, _) in enumerate(el_cands[i]):
                 len_cand = len(cand_str)
                 for k in range(j, min(n_rom + 1, j + len_cand + 3)):
                     span = roman[j:k]
@@ -166,50 +186,51 @@ def align_word(aksharas: List[str], roman: str, lang: str = "tam", max_budget: i
                     if curr_cost + cost < dp[i + 1][k][0]:
                         dp[i + 1][k] = (curr_cost + cost, j, c_idx)
                         
-    best_total_cost, prev_j, best_cand_idx = dp[n_ak][n_rom]
+    best_total_cost, prev_j, best_cand_idx = dp[n_el][n_rom]
     if best_total_cost > max_budget:
         return None
         
     alignment = []
     curr_j = n_rom
-    for i in range(n_ak, 0, -1):
+    for i in range(n_el, 0, -1):
         cost, p_j, c_idx = dp[i][curr_j]
-        cand_str, voicing = ak_cands[i - 1][c_idx]
-        alignment.append((aksharas[i - 1], p_j, curr_j, voicing))
+        cand_str, voicing = el_cands[i - 1][c_idx]
+        alignment.append((eluttukkal[i - 1], p_j, curr_j, voicing))
         curr_j = p_j
         
     alignment.reverse()
     return alignment
 
-def get_phonotactic_context(word: str, akshara_idx: int, aksharas: List[str], lang: str = "tam") -> str:
-    plosives = TAMIL_PLOSIVES if lang == "tam" else MALAYALAM_PLOSIVES
-    nasals = TAMIL_NASALS if lang == "tam" else MALAYALAM_NASALS
-    virama = TAMIL_VIRAMA if lang == "tam" else MALAYALAM_VIRAMA
+def get_phonotactic_context(word: str, eluttu_idx: int, eluttukkal: List[str], lang: str = "tam") -> str:
+    """Computes the phonotactic context of a plosive (vallinam) eḻuttu."""
+    plosives = TAMIL_VALLINAM if lang == "tam" else MALAYALAM_PLOSIVES
+    nasals = TAMIL_MELLINAM if lang == "tam" else MALAYALAM_NASALS
+    pulli = TAMIL_PULLI if lang == "tam" else MALAYALAM_CHANDRAKKALA
     
-    current = aksharas[akshara_idx]
+    current = eluttukkal[eluttu_idx]
     if current[0] not in plosives:
         return "NONE"
         
     # If this is the pure consonant first half of a geminate, skip it (label on second half)
-    if virama in current:
-        if akshara_idx + 1 < len(aksharas) and aksharas[akshara_idx + 1][0] == current[0]:
+    if pulli in current:
+        if eluttu_idx + 1 < len(eluttukkal) and eluttukkal[eluttu_idx + 1][0] == current[0]:
             return "NONE"
             
-    if akshara_idx > 0:
-        prev = aksharas[akshara_idx - 1]
-        if virama in prev and prev[0] == current[0]:
+    if eluttu_idx > 0:
+        prev = eluttukkal[eluttu_idx - 1]
+        if pulli in prev and prev[0] == current[0]:
             return "GEMINATE"
-        if virama in prev and prev[0] in nasals:
+        if pulli in prev and prev[0] in nasals:
             return "POST_NASAL"
-        if virama in prev:
+        if pulli in prev:
             return "POST_CONS"
             
-    if akshara_idx == 0:
+    if eluttu_idx == 0:
         return "WORD_INITIAL"
         
-    if akshara_idx > 0:
-        prev = aksharas[akshara_idx - 1]
-        if virama not in prev:
+    if eluttu_idx > 0:
+        prev = eluttukkal[eluttu_idx - 1]
+        if pulli not in prev:
             return "INTERVOCALIC"
             
     return "OTHER"
@@ -230,7 +251,7 @@ def run_entropy_analysis(lang: str, max_samples: int = 150000) -> Dict[str, Any]
         raise FileNotFoundError(f"Data not found: {json_path}")
         
     pairs = []
-    virama = TAMIL_VIRAMA if lang == "tam" else MALAYALAM_VIRAMA
+    pulli = TAMIL_PULLI if lang == "tam" else MALAYALAM_CHANDRAKKALA
     with open(json_path, "r", encoding="utf-8") as f:
         for line in f:
             if not line.strip(): continue
@@ -250,23 +271,23 @@ def run_entropy_analysis(lang: str, max_samples: int = 150000) -> Dict[str, Any]
     
     global_counts = Counter()
     context_counts = defaultdict(Counter)
-    plosives_set = TAMIL_PLOSIVES if lang == "tam" else MALAYALAM_PLOSIVES
+    plosives_set = TAMIL_VALLINAM if lang == "tam" else MALAYALAM_PLOSIVES
     
     for indic, roman, src in pairs:
-        aksharas = segment_aksharas(indic, lang=lang)
-        for idx, ak in enumerate(aksharas):
-            if ak[0] in plosives_set:
+        eluttukkal = segment_eluttu(indic, lang=lang)
+        for idx, el in enumerate(eluttukkal):
+            if el[0] in plosives_set:
                 # Do not count the first half of a geminate separately
-                if virama in ak and idx + 1 < len(aksharas) and aksharas[idx + 1][0] == ak[0]:
+                if pulli in el and idx + 1 < len(eluttukkal) and eluttukkal[idx + 1][0] == el[0]:
                     continue
                 total_plosives += 1
                 
-        res = align_word(aksharas, roman.lower().strip(), lang=lang, max_budget=2)
+        res = align_word(eluttukkal, roman.lower().strip(), lang=lang, max_budget=2)
         if res is not None:
             aligned_words += 1
-            for idx, (ak, start_idx, end_idx, voicing) in enumerate(res):
-                if ak[0] in plosives_set and voicing is not None:
-                    ctx = get_phonotactic_context(indic, idx, aksharas, lang=lang)
+            for idx, (el, start_idx, end_idx, voicing) in enumerate(res):
+                if el[0] in plosives_set and voicing is not None:
+                    ctx = get_phonotactic_context(indic, idx, eluttukkal, lang=lang)
                     if ctx == "NONE":
                         continue
                     labelled_plosives += 1

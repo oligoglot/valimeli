@@ -18,8 +18,8 @@ SCRATCH_DATA_DIR = os.path.join(WORKSPACE_DIR, "scratch", "valimeli", "data")
 ARTIFACTS_DIR = os.path.join(WORKSPACE_DIR, "artifacts")
 
 from compute_voicing_entropy import (
-    segment_aksharas, align_word, get_phonotactic_context,
-    TAMIL_PLOSIVES, TAMIL_NASALS, TAMIL_VIRAMA
+    segment_eluttu, align_word, get_phonotactic_context,
+    TAMIL_VALLINAM, TAMIL_MELLINAM, TAMIL_PULLI
 )
 
 def load_tamil_lexicon(max_samples: int = 250000) -> Dict[str, str]:
@@ -66,13 +66,13 @@ def analyze_theedhum_nandrum():
                 if not indic:
                     continue
                     
-                aksharas = segment_aksharas(indic, lang="tam")
-                res = align_word(aksharas, w, lang="tam", max_budget=2)
+                eluttukkal = segment_eluttu(indic, lang="tam")
+                res = align_word(eluttukkal, w, lang="tam", max_budget=2)
                 if res is not None:
                     aligned_tokens += 1
-                    for idx, (ak, s, e, voicing) in enumerate(res):
-                        if ak[0] in TAMIL_PLOSIVES and voicing is not None:
-                            ctx = get_phonotactic_context(indic, idx, aksharas, lang="tam")
+                    for idx, (el, s, e, voicing) in enumerate(res):
+                        if el[0] in TAMIL_VALLINAM and voicing is not None:
+                            ctx = get_phonotactic_context(indic, idx, eluttukkal, lang="tam")
                             if ctx != "NONE":
                                 context_counts[ctx][voicing] += 1
                                 

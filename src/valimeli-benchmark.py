@@ -78,13 +78,23 @@ os.makedirs(DOCS_DIR, exist_ok=True)
 # 2. LINGUISTIC RULES & PHONOLOGY TARGET GENERATOR
 # =====================================================================
 
-TAMIL_PLOSIVES = {'க', 'ச', 'ட', 'த', 'ப', 'ற'}
-TAMIL_NASALS = {'ங', 'ஞ', 'ண', 'ந', 'ம', 'ன'}
+# Tamil Grammatical Terms (Tolkāppiyam, Niklas 1988)
+# - Eḻuttu (எழுத்து): Basic orthographic / syllabic grapheme unit
+# - Puḷḷi (புள்ளி): Virama / dot indicating pure consonant
+# - Vallinam (வல்லினம்): Hard stops / plosives
+# - Mellinam (மெல்லினம்): Soft nasals
+# - Puṇarcci (புணர்ச்சி): Morphophonemic juncture / sandhi
+
+TAMIL_VALLINAM = {'க', 'ச', 'ட', 'த', 'ப', 'ற'}
+TAMIL_PLOSIVES = TAMIL_VALLINAM
+TAMIL_MELLINAM = {'ங', 'ஞ', 'ண', 'ந', 'ம', 'ன'}
+TAMIL_NASALS = TAMIL_MELLINAM
 TAMIL_VOWEL_SIGNS = {
     '\u0bbe', '\u0bbf', '\u0bc0', '\u0bc1', '\u0bc2', 
     '\u0bc6', '\u0bc7', '\u0bc8', '\u0bca', '\u0bcb', '\u0bcc'
 }
-TAMIL_VIRAMA = '\u0bcd'
+TAMIL_PULLI = '\u0bcd'
+TAMIL_VIRAMA = TAMIL_PULLI
 
 MALAYALAM_PLOSIVES = {'ക', 'ച', 'ട', 'ത', 'പ', 'റ'}
 MALAYALAM_NASALS = {'ങ', 'ഞ', 'ണ', 'ന', 'മ'}
@@ -92,7 +102,8 @@ MALAYALAM_VOWEL_SIGNS = {
     '\u0d3e', '\u0d3f', '\u0d40', '\u0d41', '\u0d42', '\u0d43', '\u0d44',
     '\u0d46', '\u0d47', '\u0d48', '\u0d4a', '\u0d4b', '\u0d4c'
 }
-MALAYALAM_VIRAMA = '\u0d4d'
+MALAYALAM_CHANDRAKKALA = '\u0d4d'
+MALAYALAM_VIRAMA = MALAYALAM_CHANDRAKKALA
 
 PHONO_NONE = 0
 PHONO_INIT = 1
@@ -101,13 +112,14 @@ PHONO_NASAL = 3
 PHONO_INTER = 4
 PHONO_DEF = 5
 
-def segment_aksharas(word: str, lang: str = "tam") -> List[str]:
+def segment_eluttu(word: str, lang: str = "tam") -> List[str]:
+    """Segments a native word into eḻuttu (syllabic graphemic units)."""
     vowel_signs = TAMIL_VOWEL_SIGNS if lang == "tam" else MALAYALAM_VOWEL_SIGNS
-    virama = TAMIL_VIRAMA if lang == "tam" else MALAYALAM_VIRAMA
+    pulli = TAMIL_PULLI if lang == "tam" else MALAYALAM_CHANDRAKKALA
     units = []
     current = ""
     for char in word:
-        if char in vowel_signs or char == virama:
+        if char in vowel_signs or char == pulli:
             current += char
         else:
             if current:
@@ -117,44 +129,48 @@ def segment_aksharas(word: str, lang: str = "tam") -> List[str]:
         units.append(current)
     return units
 
-def get_phonotactic_label(word: str, akshara_idx: int, aksharas: List[str], lang: str = "tam") -> int:
-    plosives = TAMIL_PLOSIVES if lang == "tam" else MALAYALAM_PLOSIVES
-    nasals = TAMIL_NASALS if lang == "tam" else MALAYALAM_NASALS
-    virama = TAMIL_VIRAMA if lang == "tam" else MALAYALAM_VIRAMA
+# Backwards compatibility alias
+segment_aksharas = segment_eluttu
+
+def get_phonotactic_label(word: str, eluttu_idx: int, eluttukkal: List[str], lang: str = "tam") -> int:
+    """Computes the phonotactic label for a plosive (vallinam) eḻuttu."""
+    plosives = TAMIL_VALLINAM if lang == "tam" else MALAYALAM_PLOSIVES
+    nasals = TAMIL_MELLINAM if lang == "tam" else MALAYALAM_NASALS
+    pulli = TAMIL_PULLI if lang == "tam" else MALAYALAM_CHANDRAKKALA
     
-    current = aksharas[akshara_idx]
+    current = eluttukkal[eluttu_idx]
     if current[0] not in plosives:
         return PHONO_NONE
         
-    if virama in current:
-        if akshara_idx + 1 < len(aksharas) and aksharas[akshara_idx + 1][0] == current[0]:
+    if pulli in current:
+        if eluttu_idx + 1 < len(eluttukkal) and eluttukkal[eluttu_idx + 1][0] == current[0]:
             return PHONO_GEM
             
-    if akshara_idx > 0:
-        prev = aksharas[akshara_idx - 1]
-        if virama in prev and prev[0] == current[0]:
+    if eluttu_idx > 0:
+        prev = eluttukkal[eluttu_idx - 1]
+        if pulli in prev and prev[0] == current[0]:
             return PHONO_GEM
-        if virama in prev and prev[0] in nasals:
+        if pulli in prev and prev[0] in nasals:
             return PHONO_NASAL
             
-    if virama in current:
+    if pulli in current:
         return PHONO_DEF
-    if akshara_idx == 0:
+    if eluttu_idx == 0:
         return PHONO_INIT
-    if akshara_idx > 0:
-        prev = aksharas[akshara_idx - 1]
-        if virama not in prev:
+    if eluttu_idx > 0:
+        prev = eluttukkal[eluttu_idx - 1]
+        if pulli not in prev:
             return PHONO_INTER
             
     return PHONO_DEF
 
 def generate_char_level_phonology_labels(word: str, lang: str = "tam") -> List[int]:
-    aksharas = segment_aksharas(word, lang=lang)
+    eluttukkal = segment_eluttu(word, lang=lang)
     labels = []
-    for idx, ak in enumerate(aksharas):
-        phono_label = get_phonotactic_label(word, idx, aksharas, lang=lang)
+    for idx, el in enumerate(eluttukkal):
+        phono_label = get_phonotactic_label(word, idx, eluttukkal, lang=lang)
         labels.append(phono_label)
-        for _ in range(len(ak) - 1):
+        for _ in range(len(el) - 1):
             labels.append(PHONO_NONE)
     return labels
 

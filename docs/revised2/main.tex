@@ -51,9 +51,9 @@ Telugu, and Kannada, performance on Tamil and Malayalam is historically lower.
 
 A recurring explanation in the computational literature attributes this disparity to
 \emph{orthographic underspecification}. Both languages inherit a single graphemic stop series
-(\textit{Vallinam} in Tamil: \textit{ka}, \textit{ca}, \textit{ta}, \textit{tha}, \textit{pa},
+(\textit{vallinam} in the autonomous Tamil metalinguistic tradition, \citealt{niklas1988tamil}: \textit{ka}, \textit{ca}, \textit{ta}, \textit{tha}, \textit{pa},
 \textit{ra}) that maps to multiple phonetic realisations: Tamil writes $[k]$, $[g]$, $[\gamma]$,
-and $[x]$ with the single character \textit{ka}. It has thus been widely assumed that neural
+and $[x]$ with the single grapheme \textit{ka}. It has thus been widely assumed that neural
 models face a fundamental information bottleneck because the source script omits phonemic voicing
 distinctions present in Indo-Aryan and sister Dravidian scripts.
 
@@ -108,7 +108,7 @@ We evaluate phonological inductive bias across data scales from 25k to 1.0M pair
 
 \paragraph{Setup.} We evaluate 150{,}000 word pairs per language from the Dakshina training split
 \cite{roark-etal-2020-processing} in Aksharantar \cite{madhani-etal-2023-aksharantar}. Each native
-word is segmented into aksharas and aligned to its Latin transcription with a dynamic-programming
+word is segmented into \textit{e\d{l}uttu} units (syllabic graphemic units, \citealt{niklas1988tamil}) and aligned to its Latin transcription with a dynamic-programming
 aligner over candidate transcriptions. We classify every aligned plosive into five phonotactic
 contexts: word-initial, geminate, post-consonantal, intervocalic, and post-nasal.
 
@@ -265,7 +265,7 @@ rather than expecting source-side phonological loss heads to overcome benchmark 
 \section{Entropy pipeline divergence}
 \label{app:pipeline}
 
-Two independent implementations of the akshara aligner produce different alignment rates and
+Two independent implementations of the \textit{e\d{l}uttu} aligner produce different alignment rates and
 different intervocalic slot counts, and therefore different entropies to the second decimal.
 The primary implementation reported in Table~\ref{tab:entropy} aligns $94.8\%$ of Tamil
 words; the reimplementation aligns $85.1\%$ and, being more permissive about intervocalic
