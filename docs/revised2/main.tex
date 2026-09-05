@@ -118,7 +118,7 @@ orthography is therefore an optimal, parsimonious code.
 To demonstrate that complementary voicing is a physically grounded property of spoken speech rather than a theoretical abstraction, we analysed acoustic waveforms and Short-Time Fourier Transform (STFT) spectrograms from native speaker recordings in the Wikimedia Commons / Lingua Libre repository\footnote{Audio recordings sourced from the Lingua Libre project on Wikimedia Commons, contributed by native speakers (\textit{User:Sriveenkat}, \textit{User:Manimaran96}, \textit{User:StarlitNocturne}) under the Creative Commons Attribution-ShareAlike 4.0 International license (CC BY-SA 4.0).} (Figure~\ref{fig:spectrogram} and Table~\ref{tab:acoustic_alignment}).
 As illustrated in Figure~\ref{fig:spectrogram}, word-initial plosives (\textit{pa\d{t}am} / \textit{padam} $[p-]$) and geminates exhibit a sharp absence of low-frequency periodic energy followed by an extended silent closure gap ($\approx 170$\,ms in \textit{pakkam} $[pɐkːɐm]$). In stark contrast, post-nasal plosives (\textit{tampi} / \textit{thambi} $[t̪ɐmbi]$, \textit{maruntu} / \textit{marundhu} $[mɐɾɯnd̪ɯ]$) and intervocalic plosives exhibit an unbroken low-frequency fundamental voicing bar ($F_0 < 300$\,Hz) bridging the nasal and plosive segments. Spoken acoustics confirm $100\%$ deterministic complementary voicing in native words.
 
-To support future research in Dravidian phonetics, text-to-speech (TTS), speech recognition (ASR), and phonetic typing IMEs, we curate and release the \textsc{ValiMeli-Speech} corpus: an open, phonotactically annotated dataset of $5{,}324$ native spoken Tamil audio recordings ($14{,}718$ plosive slots systematically categorized into word-initial, geminate, post-nasal, and intervocalic environments) with full speaker attributions and direct audio stream URLs under CC BY-SA 4.0.
+To support future research in Dravidian phonetics, text-to-speech (TTS), speech recognition (ASR), and phonetic typing IMEs, we curate and release the \textsc{ValiMeli-Speech} corpus: an open, phonotactically annotated dataset of $5{,}324$ native spoken Tamil audio recordings ($14{,}718$ plosive slots systematically categorised into word-initial, geminate, post-nasal, and intervocalic environments) with full speaker attributions and direct audio stream URLs under CC BY-SA 4.0.
 
 \begin{figure*}[t]
 \centering
@@ -132,7 +132,7 @@ To support future research in Dravidian phonetics, text-to-speech (TTS), speech 
 \paragraph{The Unassimilated Loanword Stratum.}
 A subtle complication arises from modern borrowings (English, Sanskrit, Hindustani). While
 classical Tamil phonology nativised loanwords to conform to native allophony,\footnote{Even in modern proper nouns, Tamil phonotactics often naturally nativise foreign clusters in speech: for instance, \textit{Imphal} $[ɪmp^hɑːl]$ written in Tamil script as \textit{imp\={a}l} (\textit{இம்பால்}) is naturally articulated as $[imbaːl]$ with post-nasal voicing by monolingual and bilingual speakers alike, unless speakers intentionally preserve foreign source phonology through formal English education. In crowdsourced benchmarks, this duality splits annotators between acoustic phonetic spelling (\textit{imbaal}) and source orthography (\textit{imphal}).} modern 20th-century
-borrowings preserve foreign voiced stops in speech while utilizing native single-series graphemes
+borrowings preserve foreign voiced stops in speech while utilising native single-series graphemes
 in print (\textit{Gandhi} $\rightarrow$ \textit{k\={a}nti} $[g-]$, \textit{Dilli} $\rightarrow$
 \textit{tilli} $[d-]$, \textit{Bus} $\rightarrow$ \textit{pas} $[b-]$). Malayalam resolved this
 orthographically by adopting the full Brahmic Grantha plosive series (\textit{ga}, \textit{da}, \textit{ba}),
@@ -294,7 +294,7 @@ citation (*thampi*). Systems should employ:
 \section{Limitations}
 \label{sec:limits}
 
-\paragraph{Multi-seed evaluation.} To ensure statistical robustness against initialization variance, 25k low-resource experiments were conducted across three random seeds with full instance-level paired prediction logs. Higher scales (250k--1.0M) reflect controlled single runs; paired McNemar tests at 25k confirm high discordant pair counts underlying small net deltas.
+\paragraph{Multi-seed evaluation.} To ensure statistical robustness against initialisation variance, 25k low-resource experiments were conducted across three random seeds with full instance-level paired prediction logs. Higher scales (250k--1.0M) reflect controlled single runs; paired McNemar tests at 25k confirm high discordant pair counts underlying small net deltas.
 
 \paragraph{Alignment Coverage.} The dynamic programming aligner aligns $94.81\%$ of Tamil and $65.31\%$ of Malayalam pairs within a conservative edit distance budget ($d \le 2$). Unaligned pairs predominantly comprise extreme typographical noise, multi-word loan expressions, or colloquial clippings in crowdsourced benchmark data.
 
@@ -307,6 +307,14 @@ conventions rather than source script ambiguity. Because the majority outcome re
 across all phonotactic contexts, argmax decision boundaries are invariant to phonological priors.
 Transliteration systems should embrace input-side augmentation and controlled multi-modal decoding
 rather than expecting source-side phonological loss heads to overcome benchmark annotation noise.
+
+\section*{Use of AI-Assisted Technologies}
+During the preparation and execution of this research, the author utilised AI-assisted systems for specialised research workflows:
+\begin{itemize}
+    \item \textbf{Anthropic Claude}: Utilised during the conceptualisation and planning phases for initial data availability assessments and experimental design ideation, and subsequently served as an automated peer reviewer providing critical interpretation checks, structural critique, and prose feedback on working drafts.
+    \item \textbf{Google Antigravity / Gemini}: Utilised as an agentic pair-programming assistant for implementing data processing scripts, orchestrating multi-seed PyTorch benchmarking pipelines, harvesting Wikimedia Commons speech corpora, and formatting \LaTeX\ typography and bibliography assets.
+\end{itemize}
+The author conceived the research questions, directed the experimental methodology, derived the theoretical proofs and information-theoretic formulations, verified all empirical data artifacts, authored the final prose, and takes full scientific and legal responsibility for the integrity and conclusions of this publication.
 
 \bibliographystyle{plainnat}
 \bibliography{references}
