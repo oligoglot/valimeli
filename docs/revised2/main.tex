@@ -9,33 +9,51 @@
 
 \ifPDFTeX
   \usepackage{newunicodechar}
-  % Clean ISO 15919 transliteration fallback for Indic glyphs under standard pdfLaTeX
-  \newunicodechar{ṅ}{\.{n}}
-  \newunicodechar{ŋ}{\ng}
-  \newunicodechar{ḻ}{\underline{l}}
-  \newunicodechar{ṭ}{\d{t}}
-  \newunicodechar{ṇ}{\d{n}}
-  \newunicodechar{ṟ}{\b{r}}
-  \newunicodechar{ḍ}{\d{d}}
-  \newunicodechar{ḷ}{\d{l}}
-  \newunicodechar{ṣ}{\d{s}}
-  \newunicodechar{ś}{\'{s}}
-  \newunicodechar{ā}{\={a}}
-  \newunicodechar{ō}{\={o}}
-  \newunicodechar{ī}{\={i}}
-  \newunicodechar{ū}{\={u}}
-  \newunicodechar{ē}{\={e}}
-  \newunicodechar{š}{\v{s}}
-  \newunicodechar{č}{\v{c}}
-  \newunicodechar{ž}{\v{z}}
+  % Clean ISO 15919 transliteration and IPA fallbacks under standard pdfLaTeX
+  \newunicodechar{ṅ}{\ifmmode\text{\.{n}}\else\.{n}\fi}
+  \newunicodechar{ŋ}{\ifmmode\text{{\fontencoding{T1}\selectfont\ng}}\else{\fontencoding{T1}\selectfont\ng}\fi}
+  \newunicodechar{ɡ}{g}
+  \newunicodechar{ɖ}{\ifmmode\text{\d{d}}\else\d{d}\fi}
+  \newunicodechar{ː}{:}
+  \newunicodechar{ḻ}{\ifmmode\text{\underline{l}}\else\underline{l}\fi}
+  \newunicodechar{ṭ}{\ifmmode\text{\d{t}}\else\d{t}\fi}
+  \newunicodechar{ṇ}{\ifmmode\text{\d{n}}\else\d{n}\fi}
+  \newunicodechar{ṟ}{\ifmmode\text{\b{r}}\else\b{r}\fi}
+  \newunicodechar{ḍ}{\ifmmode\text{\d{d}}\else\d{d}\fi}
+  \newunicodechar{ḷ}{\ifmmode\text{\d{l}}\else\d{l}\fi}
+  \newunicodechar{ṣ}{\ifmmode\text{\d{s}}\else\d{s}\fi}
+  \newunicodechar{ś}{\ifmmode\text{\'{s}}\else\'{s}\fi}
+  \newunicodechar{ā}{\ifmmode\text{\={a}}\else\={a}\fi}
+  \newunicodechar{ō}{\ifmmode\text{\={o}}\else\={o}\fi}
+  \newunicodechar{ī}{\ifmmode\text{\={i}}\else\={i}\fi}
+  \newunicodechar{ū}{\ifmmode\text{\={u}}\else\={u}\fi}
+  \newunicodechar{ē}{\ifmmode\text{\={e}}\else\={e}\fi}
+  \newunicodechar{š}{\ifmmode\text{\v{s}}\else\v{s}\fi}
+  \newunicodechar{č}{\ifmmode\text{\v{c}}\else\v{c}\fi}
+  \newunicodechar{ž}{\ifmmode\text{\v{z}}\else\v{z}\fi}
   \newunicodechar{γ}{\ensuremath{\gamma}}
+  \newunicodechar{ɣ}{\ensuremath{\gamma}}
+  \newunicodechar{ɐ}{a}
+  \newunicodechar{̪}{}
+  \newunicodechar{ɾ}{r}
+  \newunicodechar{ɯ}{u}
+  \newunicodechar{ɪ}{i}
+  \newunicodechar{ɑ}{a}
   \newunicodechar{க}{ka}
   \newunicodechar{ச}{ca}
   \newunicodechar{ட}{ta}
   \newunicodechar{த}{tha}
   \newunicodechar{ப}{pa}
   \newunicodechar{ற}{ra}
-  \newunicodechar{க}{k}
+  \newunicodechar{வ}{va}
+  \newunicodechar{ந}{na}
+  \newunicodechar{்}{}
+  \newunicodechar{ு}{u}
+  \newunicodechar{ி}{i}
+  \newunicodechar{ா}{a}
+  \newunicodechar{ல}{la}
+  \newunicodechar{ம}{ma}
+  \newunicodechar{இ}{I}
   \newunicodechar{ക}{ka}
   \newunicodechar{ച}{ca}
   \newunicodechar{ട}{ta}
