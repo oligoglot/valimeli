@@ -21,12 +21,12 @@ processing, this structural trait has frequently been misdiagnosed as an ``ortho
 underspecification'' deficit, motivating interventions that inject explicit phonological priors
 into neural sequence models. We evaluate this hypothesis empirically and theoretically, finding
 that native orthography is in fact an information-theoretically parsimonious code: an
-unconditional voiceless baseline achieves $75.29\%$ accuracy in Tamil and $87.28\%$ in
+unconditional voiceless baseline achieves $75.29\%$ accuracy in Tamil and $87.24\%$ in
 Malayalam across all phonotactic contexts. Measuring stop voicing over 150{,}000 benchmark word
 pairs per language, we confirm that phonotactic context is genuinely informative (mutual
-information $I(V;C) = 0.136$ bits in Tamil, $0.160$ in Malayalam). However, because the
+information $I(V;C) = 0.136$ bits in Tamil, $0.159$ in Malayalam). However, because the
 voiceless spelling remains the plurality outcome in \emph{every} phonotactic slot in crowdsourced
-benchmarks ($P(\text{voiced}) \le 0.472$ even post-nasally), conditioning on context alters the
+benchmarks ($P(\text{voiced}) \le 0.490$ even post-nasally), conditioning on context alters the
 argmax decision boundary by $0.00\%$, a property we formalise as \emph{argmax invariance}.
 Across controlled transliteration scaling experiments spanning 25k to 1.0M training pairs and two
 distinct architectures, auxiliary phonological supervision yields small gains exclusively in
@@ -129,9 +129,9 @@ contexts: word-initial, geminate, post-consonantal, intervocalic, and post-nasal
 \input{table_context.tex}
 
 \paragraph{Context is informative.} Table~\ref{tab:entropy} reports the information-theoretic
-quantities. Unconditional voicing entropy is $0.8066$ bits in Tamil and $0.5496$ in Malayalam;
-conditioning on phonotactic context reduces it to $0.6705$ and $0.3897$ bits, yielding mutual
-information of $I(V;C) = 0.1361$ bits ($16.87\%$ reduction) in Tamil and $0.1599$ bits ($29.09\%$
+quantities. Unconditional voicing entropy is $0.8066$ bits in Tamil and $0.5509$ in Malayalam;
+conditioning on phonotactic context reduces it to $0.6705$ and $0.3922$ bits, yielding mutual
+information of $I(V;C) = 0.1361$ bits ($16.87\%$ reduction) in Tamil and $0.1587$ bits ($28.81\%$
 reduction) in Malayalam. Context is undeniably informative.
 
 \paragraph{The Argmax Never Moves.} Table~\ref{tab:context} reveals why this mutual information
