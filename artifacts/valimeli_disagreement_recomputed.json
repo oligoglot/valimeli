@@ -29,28 +29,28 @@
   "mal": {
     "WORD_INITIAL": {
       "disagreements": 73,
-      "total_pairs": 10489,
-      "rate_pct": 0.7
+      "total_pairs": 10312,
+      "rate_pct": 0.71
     },
     "GEMINATE": {
       "disagreements": 13,
-      "total_pairs": 14386,
+      "total_pairs": 14126,
       "rate_pct": 0.09
     },
     "POST_CONS": {
-      "disagreements": 27,
-      "total_pairs": 1898,
-      "rate_pct": 1.42
+      "disagreements": 30,
+      "total_pairs": 1869,
+      "rate_pct": 1.61
     },
     "INTERVOCALIC": {
-      "disagreements": 1297,
-      "total_pairs": 15536,
-      "rate_pct": 8.35
+      "disagreements": 1282,
+      "total_pairs": 15318,
+      "rate_pct": 8.37
     },
     "POST_NASAL": {
-      "disagreements": 1232,
-      "total_pairs": 3992,
-      "rate_pct": 30.86
+      "disagreements": 1210,
+      "total_pairs": 3946,
+      "rate_pct": 30.66
     }
   }
 }

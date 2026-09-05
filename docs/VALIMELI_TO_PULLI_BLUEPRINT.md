@@ -27,7 +27,7 @@ Crowdworkers and human writers disagree **64.3% of the time on post-nasal stops*
 ### The Pulli Architectural Solution:
 1. **`PulliAugment`**: Synthesizes all empirical human spelling permutations during training.
 2. **`PulliPhoneticContrastiveLoss`**: Enforces InfoNCE contrastive invariance on the Latin encoder so all spelling variants map to an identical latent embedding $\mathbf{z}$.
-3. **Target Control Codes**: Uses decoder prefix tokens to deterministically output **Modern Unicode**, **1:1 Epigraphical Readings**, or **Classical Tolkāppiyam Sandhi**.
+3. **Target Control Codes**: Uses decoder prefix tokens to deterministically output **Modern Unicode**, **1:1 Epigraphical Readings**, or **Classical Tolkāppiyam Puṇarcci (sandhi)**.
 
 ---
 
@@ -183,7 +183,7 @@ Add these special tokens to `pulli/src/vocab.py` and prepend them to the target 
 ```python
 TASK_CANONICAL_UNICODE = "__canonical__"     # Output: Modern Tamil Unicode (வந்து)
 TASK_EPIGRAPHIC_1TO1   = "__epigraphic__"    # Output: Literal stone reading (வ-ந-த)
-TASK_CLASSICAL_SANDHI  = "__tolkappiyam__"   # Output: Tolkāppiyam morphophonemic form (வந்தனன்)
+TASK_CLASSICAL_PUNARCCI = "__tolkappiyam__"   # Output: Tolkāppiyam morphophonemic puṇarcci (sandhi) form (வந்தனன்)
 TASK_PHONETIC_IPA      = "__ipa__"           # Output: IPA transcription [ʋɐnd̪ɯ]
 ```
 
