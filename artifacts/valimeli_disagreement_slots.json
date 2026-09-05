@@ -1,0 +1,56 @@
+{
+  "tam": {
+    "WORD_INITIAL": {
+      "split_slots": 855,
+      "total_slots": 8328,
+      "rate_pct": 10.27
+    },
+    "GEMINATE": {
+      "split_slots": 150,
+      "total_slots": 8067,
+      "rate_pct": 1.86
+    },
+    "POST_CONS": {
+      "split_slots": 1013,
+      "total_slots": 2222,
+      "rate_pct": 45.59
+    },
+    "INTERVOCALIC": {
+      "split_slots": 7745,
+      "total_slots": 16042,
+      "rate_pct": 48.28
+    },
+    "POST_NASAL": {
+      "split_slots": 3287,
+      "total_slots": 4746,
+      "rate_pct": 69.26
+    }
+  },
+  "mal": {
+    "WORD_INITIAL": {
+      "split_slots": 21,
+      "total_slots": 3555,
+      "rate_pct": 0.59
+    },
+    "GEMINATE": {
+      "split_slots": 7,
+      "total_slots": 5482,
+      "rate_pct": 0.13
+    },
+    "POST_CONS": {
+      "split_slots": 12,
+      "total_slots": 530,
+      "rate_pct": 2.26
+    },
+    "INTERVOCALIC": {
+      "split_slots": 792,
+      "total_slots": 6624,
+      "rate_pct": 11.96
+    },
+    "POST_NASAL": {
+      "split_slots": 648,
+      "total_slots": 1587,
+      "rate_pct": 40.83
+    }
+  }
+}
