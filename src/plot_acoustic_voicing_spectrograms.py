@@ -12,50 +12,46 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
 
-# Load Tamil font on macOS
-tamil_font_path = "/System/Library/Fonts/Supplemental/Tamil Sangam MN.ttc"
-if os.path.exists(tamil_font_path):
-    tamil_font_prop = fm.FontProperties(fname=tamil_font_path)
-    plt.rcParams['font.family'] = tamil_font_prop.get_name()
-    matplotlib.font_manager.fontManager.addfont(tamil_font_path)
-else:
-    tamil_font_prop = None
+# Use Arial Unicode MS as primary font (contains both Tamil and full IPA glyph sets)
+matplotlib.rcParams['font.family'] = 'sans-serif'
+matplotlib.rcParams['font.sans-serif'] = ['Arial Unicode MS', 'Tamil Sangam MN', 'Helvetica', 'DejaVu Sans']
+tamil_font_prop = None
 
 AUDIO_DIR = "artifacts/audio_samples"
 OUT_IMG = "artifacts/acoustic_voicing_spectrograms.png"
 
 EXAMPLES = [
     {
-        "word": "படம் (padam)",
+        "word": "படம் / paṭam (padam) [pɐɖɐm]",
         "file": "LL-Q5885 (tam)-Sriveenkat-படம்.wav",
-        "title": "படம்: Initial [p] (Voiceless Gap) vs. Intervocalic [d] (Voiced Flap)",
+        "title": "படம் / paṭam (padam): Initial [p] (Voiceless Gap) vs. Intervocalic [ɖ] (Voiced Flap)",
         "annotations": [
             ("Initial [p]: Voiceless burst / no low F0", 0.15, 0.25),
-            ("Intervocalic [d]: Voicing periodicity", 0.38, 0.50)
+            ("Intervocalic [ɖ]: Voicing periodicity", 0.38, 0.50)
         ]
     },
     {
-        "word": "பக்கம் (pakkam)",
+        "word": "பக்கம் / pakkam [pɐkːɐm]",
         "file": "LL-Q5885 (tam)-Sriveenkat-பக்கம்.wav",
-        "title": "பக்கம்: Geminate [kk] (Long Silent Voiceless Closure Gap ~170ms)",
+        "title": "பக்கம் / pakkam: Geminate [kː] (Silent Voiceless Closure Gap ≈170ms)",
         "annotations": [
-            ("Geminate [kk]: ~170ms Silent Closure", 0.35, 0.52)
+            ("Geminate [kː]: ≈170ms Silent Closure", 0.35, 0.52)
         ]
     },
     {
-        "word": "தம்பி (thambi)",
+        "word": "தம்பி / tampi (thambi) [t̪ɐmbi]",
         "file": "LL-Q5885 (tam)-Sriveenkat-தம்பி.wav",
-        "title": "தம்பி: Post-Nasal [mb] (Unbroken Low-F0 Voicing Bar Across Nasal+Stop)",
+        "title": "தம்பி / tampi (thambi): Post-Nasal [mb] (Unbroken Low-F0 Voicing Bar Across Nasal+Stop)",
         "annotations": [
             ("Post-nasal [mb]: Continuous Voicing Bar", 0.25, 0.45)
         ]
     },
     {
-        "word": "மருந்து (marundhu)",
+        "word": "மருந்து / maruntu (marundhu) [mɐɾɯnd̪ɯ]",
         "file": "LL-Q5885 (tam)-Sriveenkat-மருந்து.wav",
-        "title": "மருந்து: Post-Nasal [ndh] (Obligatory Dental Stop Voicing in Speech)",
+        "title": "மருந்து / maruntu (marundhu): Post-Nasal [nd̪] (Continuous Low-F0 Dental Voicing Bar)",
         "annotations": [
-            ("Post-nasal [ndh]: Continuous Low-F0 Voicing", 0.35, 0.55)
+            ("Post-nasal [nd̪]: Continuous Low-F0 Voicing", 0.35, 0.55)
         ]
     }
 ]
@@ -123,8 +119,11 @@ def run_acoustic_plotting():
         })
         
     plt.savefig(OUT_IMG, dpi=200, bbox_inches='tight')
+    doc_out = "docs/revised2/acoustic_voicing_spectrograms.png"
+    if os.path.exists("docs/revised2"):
+        plt.savefig(doc_out, dpi=200, bbox_inches='tight')
     plt.close()
-    print(f"\n✓ Saved Acoustic Spectrogram Figure to {OUT_IMG}")
+    print(f"\n✓ Saved Acoustic Spectrogram Figure to {OUT_IMG} and {doc_out}")
 
 if __name__ == "__main__":
     run_acoustic_plotting()
