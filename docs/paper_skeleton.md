@@ -10,7 +10,7 @@
 
 Multilingual sequence-to-sequence models for South Asian languages frequently encounter difficulties with single-stop scripts such as Tamil and Malayalam. A prevalent hypothesis in natural language processing attributes this to "orthographic underspecification," alleging that these writing systems fail to encode voiced, voiceless, and aspirated stop distinctions. We refute this deficit hypothesis by establishing that Tamil and native Malayalam orthographies are maximally specified with respect to native phonology through **principled orthographic parsimony**: stop voicing is positional and deterministically conditioned by phonotactic environment. An unconditional baseline predicting always-voiceless stops achieves **75.29% accuracy in Tamil and 87.28% in Malayalam**.
 
-Through Dynamic Programming *eḻuttu* (syllabic grapheme) alignment on official benchmark corpora (Aksharantar and Dakshina), we uncover the true source of residual voicing uncertainty: **it lives entirely in target-side Latin annotator disagreement, not in source script ambiguity**. Independent annotators disagree on **64.02% of Tamil post-nasal stops on identical words** in Dakshina (*vaathangal* vs. *thuvanggalaam*; *kandii* vs. *kontaadi*). Because empirical $P(\text{voiced} \mid C) < 0.50$ across all phonotactic contexts in crowdsourced datasets, deterministic phonological rules achieve **0.00% argmax decision error reduction (Argmax Invariance)**.
+Through Dynamic Programming *eḻuttu* (syllabic grapheme / *akṣara*) alignment on official benchmark corpora (Aksharantar and Dakshina), we uncover the true source of residual voicing uncertainty: **it lives entirely in target-side Latin annotator disagreement, not in source script ambiguity**. Independent annotators disagree on **64.02% of Tamil post-nasal stops on identical words** in Dakshina (*vaathangal* vs. *thuvanggalaam*; *kandii* vs. *kontaadi*). Because empirical $P(\text{voiced} \mid C) < 0.50$ across all phonotactic contexts in crowdsourced datasets, deterministic phonological rules achieve **0.00% argmax decision error reduction (Argmax Invariance)**.
 
 We evaluate phonological inductive bias (both input stream tagging `A1` and auxiliary multi-task loss `A1-MT`) across an empirical scaling hierarchy from 25,000 to 3,200,000 pairs:
 1. **Low-Resource & Low-Capacity Regimes (25k–250k pairs)**: In data-sparse settings (25k), auxiliary phonology supervision yields significant gains on Malayalam (**+1.26% Top-1 Exact Match, $p = .009$**), while on a 1.5M BiGRU (250k), input tagging yields **+1.53% ($p = .018$)** on Tamil.
@@ -27,7 +27,7 @@ Machine transliteration across scripts is essential for named entity recognition
 ### 1.1 The Alleged "Orthographic Underspecification" Deficit
 In Indic natural language processing literature, a recurring assertion suggests that Tamil and Malayalam writing systems exhibit an inherent performance bottleneck because they do not dedicate separate graphemes to the four-way phonemic stop distinctions ($k, kh, g, gh$) present in Indo-Aryan (Hindi, Marathi, Gujarati) and sister Dravidian scripts (Telugu, Kannada):
 - **Telugu and Kannada**: Possess explicit graphemes for unvoiced, aspirated, voiced, and voiced-aspirated stops ($\text{క/ఖ/గ/ఘ}$ and $\text{ಕ/ಖ/ಗ/ಘ}$), inherited through Kadamba-Chalukya traditions.
-- **Tamil**: In accordance with the classical Tamil metalinguistic framework (*Tolkāppiyam*, Niklas 1988), Tamil possesses only a single graphemic stop series (*Vallinam*: க, ச, ட, த, ப, ற), where each *eḻuttu* (syllabic grapheme) represents a positional allophone.
+- **Tamil**: In accordance with the classical Tamil metalinguistic framework (*Tolkāppiyam*, Niklas 1988), Tamil possesses only a single graphemic stop series (*Vallinam* / plosives: க, ச, ட, த, ப, ற), where each *eḻuttu* (syllabic grapheme / *akṣara*) represents a positional allophone.
 - **Malayalam**: Possesses Grantha-derived characters for Sanskrit loans, but retains single-series Dravidian phonotactics for native inherited vocabulary.
 
 ```
@@ -52,7 +52,7 @@ We refute the underspecification framing through classical phonology:
 - In native Tamil and Malayalam phonology, plosive voicing is in **complementary distribution**:
   1. **Word-Initial (`#_`)**: Strictly voiceless $[k, t͡ʃ, ʈ, t̪, p]$ (*பக்கம்* $\to$ `[p]akkam`).
   2. **Geminate (`C_C`)**: Strictly voiceless fortis (*பக்கம்* $\to$ `pa[kk]am`).
-  3. **Post-Nasal (`N_`)**: Voiced via nasal assimilation / *puṇarcci* (*தம்பி* $\to$ `tham[b]i`, *பந்து* $\to$ `pan[d̪]u`).
+  3. **Post-Nasal (`N_`)**: Voiced via nasal assimilation / *puṇarcci* (morphophonemic *sandhi*; e.g. *தம்பி* $\to$ `tham[b]i`, *பந்து* $\to$ `pan[d̪]u`).
   4. **Intervocalic (`V_V`)**: Voiced or spirantised lenis (*படம்* $\to$ `pa[d]am`, *அழகு* $\to$ `azha[g]u`).
 - Because voicing is deterministically governed by phonotactic environment, dedicating separate graphemes to $[k]$ and $[g]$ would constitute redundant functional overhead.
 - Tamil orthography is therefore an **optimal, information-theoretically parsimonious representation**.

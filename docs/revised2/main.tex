@@ -66,7 +66,7 @@ core native Dravidian lexicon, stop voicing exists in strict \emph{complementary
     \item \textbf{Word-initial} (\texttt{\#\_}) and \textbf{Geminate} (\texttt{C\_C}): strictly
     voiceless fortis ($[k, t, p]$, e.g., \textit{pakkam} $\rightarrow$ $[p]a[kk]am$).
     \item \textbf{Post-nasal} (\texttt{N\_}): obligatorily voiced via nasal assimilation /
-    \textit{puṇarcci} (\textit{thambi} $\rightarrow$ $[b]$, \textit{pandhu} $\rightarrow$ $[d]$).
+    \textit{puṇarcci} (morphophonemic \textit{sandhi}; e.g., \textit{thambi} $\rightarrow$ $[b]$, \textit{pandhu} $\rightarrow$ $[d]$).
     \item \textbf{Intervocalic} (\texttt{V\_V}): voiced or spirantised lenis (\textit{padam}
     $\rightarrow$ $[d]$, \textit{azhagu} $\rightarrow$ $[g]$).
 \end{enumerate}
@@ -76,7 +76,7 @@ orthography is therefore an optimal, parsimonious code.
 
 \paragraph{The Unassimilated Loanword Stratum.}
 A subtle complication arises from modern borrowings (English, Sanskrit, Hindustani). While
-classical Tamil phonology nativised loanwords to conform to native allophony, modern 20th-century
+classical Tamil phonology nativised loanwords to conform to native allophony,\footnote{Even in modern proper nouns, Tamil phonotactics often naturally nativise foreign clusters in speech: for instance, \textit{Imphal} $[ɪmp^hɑːl]$ written in Tamil script as \textit{இம்பால்} is naturally articulated as $[imbaːl]$ with post-nasal voicing by monolingual and bilingual speakers alike, unless speakers intentionally preserve foreign source phonology through formal English education. In crowdsourced benchmarks, this duality splits annotators between acoustic phonetic spelling (\textit{imbaal}) and source orthography (\textit{imphal}).} modern 20th-century
 borrowings preserve foreign voiced stops in speech while utilizing native single-series graphemes
 in print (\textit{Gandhi} $\rightarrow$ \textit{காந்தி} $[g-]$, \textit{Dilli} $\rightarrow$
 \textit{தில்லி} $[d-]$, \textit{Bus} $\rightarrow$ \textit{பஸ்} $[b-]$). Malayalam resolved this
@@ -108,7 +108,7 @@ We evaluate phonological inductive bias across data scales from 25k to 1.0M pair
 
 \paragraph{Setup.} We evaluate 150{,}000 word pairs per language from the Dakshina training split
 \cite{roark-etal-2020-processing} in Aksharantar \cite{madhani-etal-2023-aksharantar}. Each native
-word is segmented into \textit{e\d{l}uttu} units (syllabic graphemic units, \citealt{niklas1988tamil}) and aligned to its Latin transcription with a dynamic-programming
+word is segmented into \textit{e\d{l}uttu} units (syllabic graphemic units / \textit{ak\d{s}aras}, \citealt{niklas1988tamil}) and aligned to its Latin transcription with a dynamic-programming
 aligner over candidate transcriptions. We classify every aligned plosive into five phonotactic
 contexts: word-initial, geminate, post-consonantal, intervocalic, and post-nasal.
 
