@@ -50,48 +50,48 @@
   "mal": {
     "language": "mal",
     "total_words_evaluated": 150000,
-    "aligned_words": 101379,
-    "word_alignment_rate_percent": 67.59,
+    "aligned_words": 97965,
+    "word_alignment_rate_percent": 65.31,
     "total_plosive_tokens": 253932,
-    "labelled_plosive_tokens": 188978,
-    "plosive_coverage_percent": 74.42,
-    "unconditioned_entropy_bits": 0.5496,
-    "conditional_entropy_bits": 0.3897,
-    "mutual_information_bits": 0.1599,
-    "entropy_reduction_percent": 29.09,
-    "argmax_accuracy_always_voiceless_percent": 87.28,
-    "argmax_accuracy_context_rules_percent": 87.28,
+    "labelled_plosive_tokens": 181655,
+    "plosive_coverage_percent": 71.54,
+    "unconditioned_entropy_bits": 0.5509,
+    "conditional_entropy_bits": 0.3922,
+    "mutual_information_bits": 0.1587,
+    "entropy_reduction_percent": 28.81,
+    "argmax_accuracy_always_voiceless_percent": 87.24,
+    "argmax_accuracy_context_rules_percent": 87.24,
     "argmax_error_reduction_gain_percent": 0.0,
     "contexts": {
       "WORD_INITIAL": {
-        "entropy_bits": 0.012,
-        "sample_count": 36765,
+        "entropy_bits": 0.0125,
+        "sample_count": 35235,
         "p_voiced": 0.0011,
         "p_voiceless": 0.9989
       },
       "GEMINATE": {
-        "entropy_bits": 0.0121,
-        "sample_count": 55913,
-        "p_voiced": 0.0011,
-        "p_voiceless": 0.9989
+        "entropy_bits": 0.0134,
+        "sample_count": 53437,
+        "p_voiced": 0.0012,
+        "p_voiceless": 0.9988
       },
       "POST_CONS": {
-        "entropy_bits": 0.056,
-        "sample_count": 5135,
-        "p_voiced": 0.0064,
-        "p_voiceless": 0.9936
+        "entropy_bits": 0.0588,
+        "sample_count": 4992,
+        "p_voiced": 0.0068,
+        "p_voiceless": 0.9932
       },
       "INTERVOCALIC": {
-        "entropy_bits": 0.7498,
-        "sample_count": 75626,
-        "p_voiced": 0.2144,
-        "p_voiceless": 0.7856
+        "entropy_bits": 0.7506,
+        "sample_count": 72934,
+        "p_voiced": 0.2148,
+        "p_voiceless": 0.7852
       },
       "POST_NASAL": {
-        "entropy_bits": 0.9999,
-        "sample_count": 15539,
-        "p_voiced": 0.4948,
-        "p_voiceless": 0.5052
+        "entropy_bits": 0.9997,
+        "sample_count": 15057,
+        "p_voiced": 0.4901,
+        "p_voiceless": 0.5099
       }
     }
   }
