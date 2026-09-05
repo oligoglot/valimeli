@@ -1,56 +1,114 @@
 {
   "tam": {
-    "WORD_INITIAL": {
-      "disagreements": 3474,
-      "total_pairs": 39416,
-      "rate_pct": 8.81
+    "slots": {
+      "WORD_INITIAL": {
+        "split_slots": 855,
+        "total_slots": 8328,
+        "rate_pct": 10.27
+      },
+      "GEMINATE": {
+        "split_slots": 150,
+        "total_slots": 8067,
+        "rate_pct": 1.86
+      },
+      "POST_CONS": {
+        "split_slots": 1013,
+        "total_slots": 2222,
+        "rate_pct": 45.59
+      },
+      "INTERVOCALIC": {
+        "split_slots": 7745,
+        "total_slots": 16042,
+        "rate_pct": 48.28
+      },
+      "POST_NASAL": {
+        "split_slots": 3287,
+        "total_slots": 4746,
+        "rate_pct": 69.26
+      }
     },
-    "GEMINATE": {
-      "disagreements": 562,
-      "total_pairs": 26236,
-      "rate_pct": 2.14
-    },
-    "POST_CONS": {
-      "disagreements": 3465,
-      "total_pairs": 13216,
-      "rate_pct": 26.22
-    },
-    "INTERVOCALIC": {
-      "disagreements": 19908,
-      "total_pairs": 62398,
-      "rate_pct": 31.9
-    },
-    "POST_NASAL": {
-      "disagreements": 9107,
-      "total_pairs": 20463,
-      "rate_pct": 44.5
+    "pairs": {
+      "WORD_INITIAL": {
+        "disagreements": 3474,
+        "total_pairs": 39416,
+        "rate_pct": 8.81
+      },
+      "GEMINATE": {
+        "disagreements": 562,
+        "total_pairs": 26236,
+        "rate_pct": 2.14
+      },
+      "POST_CONS": {
+        "disagreements": 3465,
+        "total_pairs": 13216,
+        "rate_pct": 26.22
+      },
+      "INTERVOCALIC": {
+        "disagreements": 19908,
+        "total_pairs": 62398,
+        "rate_pct": 31.9
+      },
+      "POST_NASAL": {
+        "disagreements": 9107,
+        "total_pairs": 20463,
+        "rate_pct": 44.5
+      }
     }
   },
   "mal": {
-    "WORD_INITIAL": {
-      "disagreements": 73,
-      "total_pairs": 10312,
-      "rate_pct": 0.71
+    "slots": {
+      "WORD_INITIAL": {
+        "split_slots": 21,
+        "total_slots": 3555,
+        "rate_pct": 0.59
+      },
+      "GEMINATE": {
+        "split_slots": 7,
+        "total_slots": 5482,
+        "rate_pct": 0.13
+      },
+      "POST_CONS": {
+        "split_slots": 12,
+        "total_slots": 530,
+        "rate_pct": 2.26
+      },
+      "INTERVOCALIC": {
+        "split_slots": 792,
+        "total_slots": 6624,
+        "rate_pct": 11.96
+      },
+      "POST_NASAL": {
+        "split_slots": 648,
+        "total_slots": 1587,
+        "rate_pct": 40.83
+      }
     },
-    "GEMINATE": {
-      "disagreements": 13,
-      "total_pairs": 14126,
-      "rate_pct": 0.09
-    },
-    "POST_CONS": {
-      "disagreements": 30,
-      "total_pairs": 1869,
-      "rate_pct": 1.61
-    },
-    "INTERVOCALIC": {
-      "disagreements": 1282,
-      "total_pairs": 15318,
-      "rate_pct": 8.37
-    },
-    "POST_NASAL": {
-      "disagreements": 1210,
-      "total_pairs": 3946,
-      "rate_pct": 30.66
+    "pairs": {
+      "WORD_INITIAL": {
+        "disagreements": 73,
+        "total_pairs": 10312,
+        "rate_pct": 0.71
+      },
+      "GEMINATE": {
+        "disagreements": 13,
+        "total_pairs": 14126,
+        "rate_pct": 0.09
+      },
+      "POST_CONS": {
+        "disagreements": 30,
+        "total_pairs": 1869,
+        "rate_pct": 1.61
+      },
+      "INTERVOCALIC": {
+        "disagreements": 1282,
+        "total_pairs": 15318,
+        "rate_pct": 8.37
+      },
+      "POST_NASAL": {
+        "disagreements": 1210,
+        "total_pairs": 3946,
+        "rate_pct": 30.66
+      }
     }
   }
 }

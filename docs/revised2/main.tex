@@ -10,21 +10,6 @@
 \ifPDFTeX
   \usepackage{newunicodechar}
   % Clean ISO 15919 transliteration fallback for Indic glyphs under standard pdfLaTeX
-  \newunicodechar{ப}{pa}
-  \newunicodechar{ட}{\d{t}a}
-  \newunicodechar{ம}{ma}
-  \newunicodechar{க}{ka}
-  \newunicodechar{்}{}
-  \newunicodechar{த}{ta}
-  \newunicodechar{ி}{i}
-  \newunicodechar{ந}{na}
-  \newunicodechar{ு}{u}
-  \newunicodechar{ர}{ra}
-  \newunicodechar{ழ}{\underline{l}a}
-  \newunicodechar{ள}{\d{l}a}
-  \newunicodechar{ய}{ya}
-  \newunicodechar{ா}{\={a}}
-  \newunicodechar{ங}{\.{n}a}
   \newunicodechar{ṅ}{\.{n}}
   \newunicodechar{ŋ}{\ng}
   \newunicodechar{ḻ}{\underline{l}}
@@ -32,23 +17,39 @@
   \newunicodechar{ṇ}{\d{n}}
   \newunicodechar{ṟ}{\b{r}}
   \newunicodechar{ḍ}{\d{d}}
-  \newunicodechar{ோ}{\={o}}
-  \newunicodechar{ல}{la}
-  \newunicodechar{வ}{va}
-  \newunicodechar{ன}{\b{n}a}
-  \newunicodechar{ண}{\d{n}a}
+  \newunicodechar{ḷ}{\d{l}}
+  \newunicodechar{ṣ}{\d{s}}
+  \newunicodechar{ś}{\'{s}}
+  \newunicodechar{ā}{\={a}}
+  \newunicodechar{ō}{\={o}}
+  \newunicodechar{ī}{\={i}}
+  \newunicodechar{ū}{\={u}}
+  \newunicodechar{ē}{\={e}}
+  \newunicodechar{š}{\v{s}}
+  \newunicodechar{č}{\v{c}}
+  \newunicodechar{ž}{\v{z}}
+  \newunicodechar{γ}{\ensuremath{\gamma}}
+  \newunicodechar{க}{ka}
   \newunicodechar{ச}{ca}
-  \newunicodechar{இ}{i}
-  \newunicodechar{அ}{a}
-  \newunicodechar{ஸ}{sa}
+  \newunicodechar{ட}{ta}
+  \newunicodechar{த}{tha}
+  \newunicodechar{ப}{pa}
+  \newunicodechar{ற}{ra}
+  \newunicodechar{க}{k}
+  \newunicodechar{ക}{ka}
+  \newunicodechar{ച}{ca}
+  \newunicodechar{ട}{ta}
+  \newunicodechar{ത}{tha}
+  \newunicodechar{പ}{pa}
+  \newunicodechar{റ}{ra}
   \newunicodechar{ഗ}{ga}
   \newunicodechar{ദ}{da}
   \newunicodechar{ബ}{ba}
 \fi
 
-\title{Underspecified but Not Undecidable: Argmax Invariance Bounds the Value of\\
+\title{Underspecified but Not Undecidable: Argmax Invariance and the Limits of\\
 Phonological Supervision in Dravidian Transliteration}
-\author{}
+\author{BalaSundaraRaman Lakshmanan}
 \date{}
 
 \begin{document}
@@ -67,17 +68,18 @@ Malayalam across all phonotactic contexts. Measuring stop voicing over 150{,}000
 pairs per language confirms that phonotactic context is genuinely informative (mutual
 information $I(V;C) = 0.136$ bits in Tamil, $0.159$ in Malayalam). However, because the
 voiceless spelling remains the plurality outcome in \emph{every} phonotactic slot in crowdsourced
-benchmarks ($P(\text{voiced}) \le 0.490$ even post-nasally), conditioning on context alters the
+benchmarks ($P(\text{voiced}) < 0.50$ in all contexts), conditioning on context alters the
 argmax decision boundary by $0.00\%$, a property formalised here as \emph{argmax invariance}.
 Across controlled $\text{en}\rightarrow\text{indic}$ transliteration scaling experiments spanning 25k to 1.0M training pairs and two
-distinct architectures, auxiliary phonological supervision yields small gains exclusively in
-low-resource regimes (Malayalam exact match $+0.84\%$ across three random seeds at 25k pairs,
-Native EM $+1.35\%$, CER $-1.24\%$), decaying to zero or reversing to significant degradation at
-scale ($-2.33\%$ at 1.0M, $p = 0.0003$). Residual target entropy in $\text{indic}\rightarrow\text{en}$ benchmarks traces to human transcription
-conventions: independent annotators disagree on $65.38\%$ of Tamil post-nasal stops on identical
-words in Dakshina, while in-the-wild conversational Tanglish from YouTube comments flips to
-$64.00\%$ voiced spellings. Finally, this work provides actionable engineering blueprints for handling this duality
-in practical input methods ($\text{en}\rightarrow\text{indic}$) and controlled generation ($\text{indic}\rightarrow\text{en}$), and releases the open \textsc{ValiMeli-Speech} corpus ($5{,}324$ phonotactically annotated spoken Tamil tokens) under CC BY-SA 4.0.
+distinct architectures, auxiliary phonological supervision yields no measurable gain at low resource scales
+(Malayalam exact match $+0.15$ points, Tamil $-0.14$, across three random seeds at 25k pairs; paired McNemar $p = 0.90$ and $0.59$)
+and reverses to significant degradation at 1.0M pairs ($-2.33\%$ on Tamil, $p = 0.0003$). Residual target entropy in
+$\text{indic}\rightarrow\text{en}$ benchmarks traces to human transcription conventions: independent annotators disagree on
+$65.38\%$ of Tamil post-nasal plosive slots on identical words in Dakshina. In contrast, conversational Tanglish from
+YouTube comments exhibits an empirical $64.00\%$ voiced spelling rate post-nasally. Finally, this work provides actionable
+engineering blueprints for handling this duality in practical input methods ($\text{en}\rightarrow\text{indic}$) and controlled
+generation ($\text{indic}\rightarrow\text{en}$), and releases the open \textsc{ValiMeli-Speech} index ($5{,}325$ phonotactically
+annotated spoken Tamil audio recordings with full speaker attributions and direct audio stream URLs) under CC BY-SA 4.0.
 \end{abstract}
 
 \section{Introduction}
@@ -99,7 +101,7 @@ distinctions present in Indo-Aryan and sister Dravidian scripts.
 
 \paragraph{Principled Orthographic Parsimony.}
 Classical phonological theory refutes the deficit hypothesis. Under the classical
-\emph{Phonemic Principle} \cite{swadesh-1934-phonemic,caldwell1875comparative,zvelebil1970dravidian},
+\emph{Phonemic Principle} \cite{swadesh-1934-phonemic,caldwell1875comparative,zvelebil1970dravidian,lakshmanan2025biconsonantal},
 writing systems encode contrastive phonemes rather than predictable surface allophones. In the
 core native Dravidian lexicon, stop voicing exists in strict \emph{complementary distribution}:
 \begin{enumerate}
@@ -114,16 +116,16 @@ Because voicing is completely predictable from local phonotactics, dedicating se
 to $[k]$ and $[g]$ in native vocabulary would constitute redundant functional overhead. Native
 orthography is therefore an optimal, parsimonious code.
 
-\paragraph{Acoustic Confirmation from Native Speech.}
-To demonstrate that complementary voicing is a physically grounded property of spoken speech rather than a theoretical abstraction, acoustic waveforms and Short-Time Fourier Transform (STFT) spectrograms were analysed from native speaker recordings in the Wikimedia Commons / Lingua Libre repository\footnote{Audio recordings sourced from the Lingua Libre project on Wikimedia Commons, contributed by native speakers (\textit{User:Sriveenkat}, \textit{User:Manimaran96}, \textit{User:StarlitNocturne}) under the Creative Commons Attribution-ShareAlike 4.0 International license (CC BY-SA 4.0).} (Figure~\ref{fig:spectrogram} and Table~\ref{tab:acoustic_alignment}).
-As illustrated in Figure~\ref{fig:spectrogram}, word-initial plosives (\textit{pa\d{t}am} / \textit{padam} $[p-]$) and geminates exhibit a sharp absence of low-frequency periodic energy followed by an extended silent closure gap ($\approx 170$\,ms in \textit{pakkam} $[pɐkːɐm]$). In stark contrast, post-nasal plosives (\textit{tampi} / \textit{thambi} $[t̪ɐmbi]$, \textit{maruntu} / \textit{marundhu} $[mɐɾɯnd̪ɯ]$) and intervocalic plosives exhibit an unbroken low-frequency fundamental voicing bar ($F_0 < 300$\,Hz) bridging the nasal and plosive segments. Spoken acoustics confirm $100\%$ deterministic complementary voicing in native words.
+\paragraph{Acoustic Realisation in Native Speech.}
+To illustrate that complementary voicing is a physically grounded property of spoken speech rather than a theoretical abstraction, acoustic waveforms and Short-Time Fourier Transform (STFT) spectrograms from native speaker recordings in the Wikimedia Commons / Lingua Libre repository\footnote{Audio recordings sourced from the Lingua Libre project on Wikimedia Commons, contributed by native speakers (\textit{User:Sriveenkat}, \textit{User:Manimaran96}, \textit{User:StarlitNocturne}) under the Creative Commons Attribution-ShareAlike 4.0 International license (CC BY-SA 4.0).} were examined (Figure~\ref{fig:spectrogram} and Table~\ref{tab:acoustic_alignment}).
+As illustrated in Figure~\ref{fig:spectrogram}, word-initial plosives (\textit{pa\d{t}am} / \textit{padam} $[p-]$) and geminates exhibit an absence of low-frequency periodic energy followed by silent closure gaps in geminates (\textit{pakkam} $[pɐkːɐm]$). In stark contrast, post-nasal plosives (\textit{tampi} / \textit{thambi} $[t̪ɐmbi]$, \textit{maruntu} / \textit{marundhu} $[mɐɾɯnd̪ɯ]$) and intervocalic plosives exhibit continuous fundamental voicing energy bridging the nasal and plosive segments. In nine illustrative recordings from a native speaker, voicing is acoustically realised as predicted across word-initial, geminate, post-nasal, and intervocalic contexts.
 
-To support future research in Dravidian phonetics, text-to-speech (TTS), speech recognition (ASR), and phonetic typing IMEs, this paper curates and releases the \textsc{ValiMeli-Speech} corpus: an open, phonotactically annotated dataset of $5{,}324$ native spoken Tamil audio recordings ($14{,}718$ plosive slots systematically categorised into word-initial, geminate, post-nasal, and intervocalic environments) with full speaker attributions and direct audio stream URLs under CC BY-SA 4.0.
+To support future research in Dravidian phonetics, text-to-speech (TTS), speech recognition (ASR), and phonetic typing IMEs, this paper curates and releases the \textsc{ValiMeli-Speech} index: an open, phonotactically annotated index of $5{,}325$ native spoken Tamil audio recordings ($11{,}590$ plosive slots systematically categorised into word-initial, geminate, post-nasal, and intervocalic environments, with $96.0\%$ contributed by primary native speaker \textit{User:Sriveenkat} across 8 contributors) with full speaker attributions and direct audio stream URLs under CC BY-SA 4.0.
 
 \begin{figure*}[t]
 \centering
 \includegraphics[width=0.92\linewidth]{acoustic_voicing_spectrograms.png}
-\caption{Acoustic waveforms and STFT spectrograms of native Tamil speech recordings (Lingua Libre corpus). Voicing is physically evident in the continuous low-frequency voicing bar ($F_0 < 300$\,Hz) during post-nasal (\textit{tampi} / \textit{thambi} $[mb]$, \textit{maruntu} / \textit{marundhu} $[nd\textsubscript{\textasciitilde}]$) and intervocalic contexts (\textit{pa\d{t}am} / \textit{padam} $[\text{\d{d}}]$), contrasted with the $\approx 170$\,ms voiceless silent closure gap in geminates (\textit{pakkam} $[kː]$). Panels indicate native Tamil script, standard ISO 15919 romanisation, colloquial spelling, and phonetic IPA.}
+\caption{Acoustic waveforms and STFT spectrograms of native Tamil speech recordings (Lingua Libre corpus). Voicing is physically evident in the continuous low-frequency periodic energy during post-nasal (\textit{tampi} / \textit{thambi} $[mb]$, \textit{maruntu} / \textit{marundhu} $[nd\textsubscript{\textasciitilde}]$) and intervocalic contexts (\textit{pa\d{t}am} / \textit{padam} $[\text{\d{d}}]$), contrasted with the silent closure gap in geminates (\textit{pakkam} $[kː]$). Panels indicate native Tamil script, standard ISO 15919 romanisation, colloquial spelling, and phonetic IPA.}
 \label{fig:spectrogram}
 \end{figure*}
 
@@ -137,8 +139,8 @@ in print (\textit{Gandhi} $\rightarrow$ \textit{k\={a}nti} $[g-]$, \textit{Dilli
 \textit{tilli} $[d-]$, \textit{Bus} $\rightarrow$ \textit{pas} $[b-]$). Malayalam resolved this
 orthographically by adopting the full Brahmic Grantha plosive series (\textit{ga}, \textit{da}, \textit{ba}),
 relegating foreign voicing to distinct graphemes. In Tamil, the absence of separate voiced stop
-letters forces native graphemes into dual duty for loanwords, creating an empirical $11.45\%$
-word-initial voiced romanisation rate in modern corpora.
+letters forces native graphemes into dual duty for loanwords, creating an empirical $10.27\%$
+word-initial voiced romanisation rate in modern multi-reference corpora.
 
 \paragraph{Contributions.}
 The empirical evaluation examines phonological inductive bias across data scales from 25k to 1.0M pairs:
@@ -148,12 +150,12 @@ The empirical evaluation examines phonological inductive bias across data scales
     $0.00\%$ decision error reduction over an unconditional voiceless default.
     \item \textbf{Multi-Seed Scaling Dynamics} (\S\ref{sec:scale}): Across multi-seed runs
     (seeds 42, 43, 44), phonological supervision yields overlapping performance at 25k low-resource
-    pairs ($\Delta \le 0.15\%$, $p \ge 0.58$), decays across intermediate scales, and reverses to
+    pairs ($\Delta \le 0.15$ points, $p \ge 0.58$), decays across intermediate scales, and reverses to
     significant degradation at 1.0M ($-2.33\%$, $p = 0.0003$).
     \item \textbf{Target-Side Duality} (\S\ref{sec:disagree}): Empirical auditing demonstrates that residual
     entropy sits in target-side romanisation conventions ($65.38\%$ disagreement on post-nasal
-    stops in Dakshina), while in-the-wild Tanglish from YouTube comments flips to $64.00\%$ voiced.
-    \item \textbf{Open Speech Corpus \& Systems Blueprint} (\S\ref{sec:intro}, \S\ref{sec:practical}): This study curates and releases the \textsc{ValiMeli-Speech} dataset ($5{,}324$ phonotactically annotated spoken Tamil tokens under CC BY-SA 4.0) and outlines actionable architectures for $\text{en}\rightarrow\text{indic}$ IMEs and $\text{indic}\rightarrow\text{en}$ controlled generation.
+    plosive slots in Dakshina), while in-the-wild Tanglish from YouTube comments exhibits a $64.00\%$ voiced spelling rate.
+    \item \textbf{Open Speech Index \& Systems Blueprint} (\S\ref{sec:intro}, \S\ref{sec:practical}): This study curates and releases the \textsc{ValiMeli-Speech} index ($5{,}325$ phonotactically annotated spoken Tamil tokens under CC BY-SA 4.0) and outlines actionable architectures for $\text{en}\rightarrow\text{indic}$ IMEs and $\text{indic}\rightarrow\text{en}$ controlled generation.
 \end{enumerate}
 
 \section{Voicing Entropy and Argmax Invariance}
@@ -179,7 +181,7 @@ fails to alter decision outcomes. In Tamil, word-initial plosives are romanised 
 of the time, whereas post-nasal plosives are voiced $47.16\%$ of the time---a fourfold shift.
 Yet $0.4716 < 0.50$. In the exact context where spoken phonology mandates voicing, voiceless
 romanisations remain the plurality in crowdsourced benchmarks. In Malayalam, native stops exhibit
-even wider margins ($0.11\%$ initial vs.\ $49.48\%$ post-nasal).
+a similar distribution ($0.11\%$ initial vs.\ $49.01\%$ post-nasal). In Malayalam, alignment coverage reaches $65.31\%$ under a conservative edit-distance threshold ($d \le 2$), reflecting its richer conjunct inventory, Sanskrit loan strata, and colloquial transcription variations in crowdsourced data.
 
 Consequently, an optimal context-conditional classifier and an unconditional ``always voiceless''
 classifier produce identical predictions. Moving to context-conditioned rules reduces argmax
@@ -194,10 +196,10 @@ the mutual information resides entirely below the decision threshold.
 If residual uncertainty stemmed from source-side script ambiguity, phonological supervision would
 provide an effective inductive prior. Table~\ref{tab:disagree} proves it does not. Among words
 carrying two or more distinct romanisations in Dakshina (19{,}812 Tamil words, 16{,}473 Malayalam),
-pairwise spelling disagreement across plosive slots is measured.
+slot-level spelling disagreement across plosive slots is measured.
 
-Disagreement peaks exactly where the spoken phonology is strongest: $65.38\%$ of Tamil and
-$36.90\%$ of Malayalam post-nasal slots are spelled with conflicting voicing by annotators of the
+Disagreement peaks exactly where the spoken phonology is strongest: $69.26\%$ of Tamil and
+$40.83\%$ of Malayalam post-nasal slots are spelled with conflicting voicing across references of the
 same word (e.g., \textit{kondaadi} vs.\ \textit{kontaadi} for \textit{ko\d{n}\d{t}\={a}\d{t}i}).
 
 \paragraph{In-The-Wild Distribution.}
@@ -205,7 +207,7 @@ To establish whether this $52.84\%$ voiceless bias is a property of the language
 crowdsourcing, analysis of $13{,}512$ aligned plosives from \textsc{Theedhum Nandrum}
 \cite{lakshmanan2020theedhum}, comprising spontaneous conversational Tanglish comments from
 YouTube, reveals that in this naturalistic domain, post-nasal stops flip to \textbf{64.00\% voiced}
-(Table~\ref{tab:disagree}, right column).
+(Table~\ref{tab:disagree}, right column; overall wild voicing rate $24.67\%$).
 
 This demonstrates that Dakshina annotators were influenced by a \emph{schoolroom citation prior}
 (typing by letter-name across all phonotactic contexts regardless of voicing: e.g., mapping the dental plosive \textit{t/ta} $\rightarrow$ \texttt{th/tha}), whereas conversational
@@ -231,11 +233,11 @@ on \textsc{en}$\rightarrow$\textsc{indic} transliteration.
 
 At the \textbf{25k low-resource scale}, multi-seed experiments across random seeds 42, 43, 44 show
 that auxiliary phonological supervision yields overlapping performance within seed variance for both
-Malayalam ($18.86\% \pm 0.96\%$ vs.\ $19.00\% \pm 1.17\%$, $\Delta = +0.14\%$) and Tamil ($25.21\% \pm 1.15\%$ vs.\
-$25.07\% \pm 1.08\%$, $\Delta = -0.14\%$). Paired McNemar tests on instance-level predictions ($N=11{,}499$ for Tamil,
+Malayalam ($18.86\% \pm 1.17\%$ vs.\ $19.00\% \pm 1.44\%$, $\Delta = +0.14\%$) and Tamil ($25.21\% \pm 1.41\%$ vs.\
+$25.07\% \pm 1.33\%$, $\Delta = -0.14\%$). Paired McNemar tests on instance-level predictions ($N=11{,}499$ for Tamil,
 $N=12{,}451$ for Malayalam) reveal over $1{,}620$ discordant prediction pairs per language with no statistically
-significant net advantage ($p = 0.585$ and $p = 0.901$), confirming that auxiliary phonotactic heads do not alter the
-underlying argmax decision boundaries.
+significant net advantage ($p = 0.585$ and $p = 0.901$; across all three seeds, $p \ge 0.29$ for Tamil and $p \ge 0.12$ for Malayalam),
+confirming that auxiliary phonotactic heads do not alter the underlying argmax decision boundaries.
 
 At \textbf{scale (250k--1.0M pairs)}, the advantage completely disappears. On 1.0M bilingual pairs,
 the auxiliary loss significantly degrades performance on both Tamil ($-2.33\%$, $p = 0.0003$) and
@@ -243,11 +245,13 @@ Malayalam ($-1.37\%$, $p = 0.0295$). In the low-data regime, phonological guidan
 regulariser; once sufficient data is available, attention mechanisms induce the majority mapping
 directly, and auxiliary objectives compete for representation capacity.
 
+\paragraph{Comparison with Morphology-Aware Tokenisation.}
+It is instructive to contrast phonotactic string tags with morphology-aware segmentation \cite{vemula-etal-2025-rethinking}. On 250k BiGRU runs, phonology-aware string tags improve exact match across all four evaluation partitions (+0.35 to +2.48 points over character baselines), whereas morphology-aware segmentation degrades performance in three of four partitions due to subword boundary fragmentation. However, as model capacity and data scale increase to Transformers at 500k and 1.0M pairs, both inductive biases are superseded by direct self-attention over characters.
+
 \begin{figure}[t]
 \centering
-\includegraphics[width=\linewidth]{fig_scaling_corrected.png}
-\caption{Change in exact-match accuracy from phonological supervision across training set sizes.
-Low-resource gains decay to null or negative deltas at scale.}
+\includegraphics[width=\linewidth]{fig_effects_corrected.png}
+\caption{Empirical effect sizes (change in exact-match accuracy in points) from phonological supervision across ten matched comparisons. Filled markers denote statistically significant deltas ($p < 0.05$); hollow markers denote non-significant differences. Error bars at 25k represent the range of deltas across random seeds 42, 43, 44. Low-resource deltas are statistically indistinguishable from zero, and supervision degrades performance at 1.0M scale.}
 \label{fig:scale}
 \end{figure}
 
@@ -294,9 +298,9 @@ citation (*thampi*). Systems should employ:
 \section{Limitations}
 \label{sec:limits}
 
-\paragraph{Multi-seed evaluation.} To ensure statistical robustness against initialisation variance, 25k low-resource experiments were conducted across three random seeds with full instance-level paired prediction logs. Higher scales (250k--1.0M) reflect controlled single runs; paired McNemar tests at 25k confirm high discordant pair counts underlying small net deltas.
+\paragraph{Multi-seed evaluation.} To ensure statistical robustness against initialisation variance, 25k low-resource experiments were conducted across three random seeds with full instance-level paired prediction logs. Across all three seeds, paired McNemar tests show non-significant deltas ($p \in [0.296, 0.625]$ for Tamil, $p \in [0.125, 0.901]$ for Malayalam) with high discordant pair counts ($>1{,}620$) underlying small net shifts. Higher scales (250k--1.0M) reflect controlled single runs evaluated with two-proportion $z$-tests.
 
-\paragraph{Alignment Coverage.} The dynamic programming aligner aligns $94.81\%$ of Tamil and $65.31\%$ of Malayalam pairs within a conservative edit distance budget ($d \le 2$). Unaligned pairs predominantly comprise extreme typographical noise, multi-word loan expressions, or colloquial clippings in crowdsourced benchmark data.
+\paragraph{Alignment Coverage.} The dynamic programming aligner aligns $94.81\%$ of Tamil and $65.31\%$ of Malayalam pairs within a conservative edit distance budget ($d \le 2$). Unaligned pairs predominantly comprise extreme typographical noise, multi-word loan expressions, complex Sanskrit conjunct clusters, or colloquial clippings in crowdsourced benchmark data.
 
 \section{Conclusion}
 

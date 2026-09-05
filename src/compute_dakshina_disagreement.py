@@ -250,8 +250,10 @@ def compute_dakshina_disagreement(lang: str):
     multi_ref_words = {k: v for k, v in word_to_romans.items() if len(v) > 1}
     plosives_set = TAMIL_VALLINAM if lang == "tam" else MALAYALAM_PLOSIVES
 
-    context_disagree = defaultdict(int)
-    context_total = defaultdict(int)
+    context_pair_disagree = defaultdict(int)
+    context_pair_total = defaultdict(int)
+    context_slot_disagree = defaultdict(int)
+    context_slot_total = defaultdict(int)
 
     for indic, romans in multi_ref_words.items():
         eluttukkal = segment_eluttu(indic, lang=lang)
@@ -270,30 +272,59 @@ def compute_dakshina_disagreement(lang: str):
             if len(observations) >= 2:
                 ctx = observations[0][0]
                 voicings = [obs[1] for obs in observations]
+                
+                # Slot-level count (fraction of unique plosive slots with split romanisations)
+                context_slot_total[ctx] += 1
+                if len(set(voicings)) > 1:
+                    context_slot_disagree[ctx] += 1
+                
+                # Pair-level count (fraction of pairwise comparisons that disagree)
                 for i in range(len(voicings)):
                     for j in range(i + 1, len(voicings)):
-                        context_total[ctx] += 1
+                        context_pair_total[ctx] += 1
                         if voicings[i] != voicings[j]:
-                            context_disagree[ctx] += 1
+                            context_pair_disagree[ctx] += 1
 
-    results = {}
+    slot_results = {}
+    pair_results = {}
     for ctx in ["WORD_INITIAL", "GEMINATE", "POST_CONS", "INTERVOCALIC", "POST_NASAL"]:
-        tot = context_total[ctx]
-        dis = context_disagree[ctx]
-        rate = round((dis / tot) * 100, 2) if tot > 0 else 0.0
-        results[ctx] = {"disagreements": dis, "total_pairs": tot, "rate_pct": rate}
+        s_tot = context_slot_total[ctx]
+        s_dis = context_slot_disagree[ctx]
+        s_rate = round((s_dis / s_tot) * 100, 2) if s_tot > 0 else 0.0
+        slot_results[ctx] = {"split_slots": s_dis, "total_slots": s_tot, "rate_pct": s_rate}
 
-    return results
+        p_tot = context_pair_total[ctx]
+        p_dis = context_pair_disagree[ctx]
+        p_rate = round((p_dis / p_tot) * 100, 2) if p_tot > 0 else 0.0
+        pair_results[ctx] = {"disagreements": p_dis, "total_pairs": p_tot, "rate_pct": p_rate}
+
+    return {"slots": slot_results, "pairs": pair_results}
 
 def main():
     os.makedirs(ARTIFACTS_DIR, exist_ok=True)
-    out_file = os.path.join(ARTIFACTS_DIR, "valimeli_disagreement_recomputed.json")
     all_res = {}
+    slots_res = {}
+    pairs_res = {}
     for lang in ["tam", "mal"]:
-        all_res[lang] = compute_dakshina_disagreement(lang)
-    with open(out_file, "w", encoding="utf-8") as f:
+        res = compute_dakshina_disagreement(lang)
+        all_res[lang] = res
+        slots_res[lang] = res["slots"]
+        pairs_res[lang] = res["pairs"]
+        
+    out_all = os.path.join(ARTIFACTS_DIR, "valimeli_disagreement_recomputed.json")
+    out_slots = os.path.join(ARTIFACTS_DIR, "valimeli_disagreement_slots.json")
+    out_pairs = os.path.join(ARTIFACTS_DIR, "valimeli_disagreement_pairs.json")
+    
+    with open(out_all, "w", encoding="utf-8") as f:
         json.dump(all_res, f, indent=2)
-    print(f"Saved: {out_file}")
+    with open(out_slots, "w", encoding="utf-8") as f:
+        json.dump(slots_res, f, indent=2)
+    with open(out_pairs, "w", encoding="utf-8") as f:
+        json.dump(pairs_res, f, indent=2)
+        
+    print(f"Saved: {out_all}")
+    print(f"Saved: {out_slots}")
+    print(f"Saved: {out_pairs}")
 
 if __name__ == "__main__":
     main()

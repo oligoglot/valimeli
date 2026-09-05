@@ -8,7 +8,7 @@
 \textbf{Training pairs} & \textbf{Base} & \textbf{Phon.} & $\Delta$ & $p$ & \textbf{Base} & \textbf{Phon.} & $\Delta$ & $p$ \\
 \midrule
 \multicolumn{9}{l}{\textit{Auxiliary phonotactic loss on the decoder} ($\lambda=0.3$)} \\
-\quad 25k (Multi-seed $\mu\pm\sigma$) & $25.21_{\pm 1.15}$ & $25.07_{\pm 1.08}$ & $-0.14$ & $0.585^\dagger$ & $18.86_{\pm 0.96}$ & $19.00_{\pm 1.17}$ & $+0.14$ & $0.901^\dagger$ \\
+\quad 25k (Multi-seed $\mu\pm s$) & $25.21_{\pm 1.41}$ & $25.07_{\pm 1.33}$ & $-0.14$ & $0.585^\dagger$ & $18.86_{\pm 1.17}$ & $19.00_{\pm 1.44}$ & $+0.14$ & $0.901^\dagger$ \\
 \quad 1.0M (bilingual) & 62.42 & 60.09 & \textbf{$-2.33$} & 0.0003 & 55.28 & 53.91 & \textbf{$-1.37$} & 0.0295 \\
 \addlinespace
 \multicolumn{9}{l}{\textit{Phonotactic tags in the output string}} \\
@@ -17,6 +17,6 @@
 \quad 500k (Transformer) & 60.71 & 60.49 & $-0.22$ & 0.7358 & 55.92 & 55.39 & $-0.54$ & 0.3928 \\
 \bottomrule
 \end{tabular}
-\caption{Exact-match accuracy (\%) on \textsc{en}$\rightarrow$\textsc{indic} transliteration. The two blocks are two \emph{different} interventions and are not plotted as a single curve; within each, the phonological advantage present in the low-data regime is absent or reversed at scale. Test sets are 11{,}499 (Tamil) and 12{,}451 (Malayalam) words, identical across arms. At 25k scale, multi-seed results report mean $\pm$ std across seeds 42, 43, 44 (Malayalam gains in 3 of 3 seeds; Native EM $+1.35\%$, CER $-1.24\%$). $^\dagger$Paired McNemar's test $p$-value on Seed 42 instance predictions ($N=11{,}499$ for Tamil, $N=12{,}451$ for Malayalam); other rows report two-proportion $z$-tests (\S\ref{sec:limits}). Bold marks statistically significant deltas ($p<0.05$).}
+\caption{Exact-match accuracy (\%) on \textsc{en}$\rightarrow$\textsc{indic} transliteration across ten matched comparisons. The two blocks represent two distinct intervention mechanisms. Test sets are 11{,}499 (Tamil) and 12{,}451 (Malayalam) words, identical across arms. At 25k scale, multi-seed results report mean $\pm$ sample standard deviation ($s$, $N=3$ seeds). $^\dagger$Paired McNemar's test on Seed 42 instance predictions ($N=11{,}499$ for Tamil, $N=12{,}451$ for Malayalam; across all seeds, $p \ge 0.29$ for Tamil and $p \ge 0.12$ for Malayalam); other rows report two-proportion $z$-tests (\S\ref{sec:limits}). Bold marks statistically significant deltas ($p<0.05$).}
 \label{tab:scale}
 \end{table*}
