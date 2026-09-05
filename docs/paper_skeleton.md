@@ -10,7 +10,7 @@
 
 Multilingual sequence-to-sequence models for South Asian languages frequently encounter difficulties with single-stop scripts such as Tamil and Malayalam. A prevalent hypothesis in natural language processing attributes this to "orthographic underspecification," alleging that these writing systems fail to encode voiced, voiceless, and aspirated stop distinctions. We refute this deficit hypothesis by establishing that Tamil and native Malayalam orthographies are maximally specified with respect to native phonology through **principled orthographic parsimony**: stop voicing is positional and deterministically conditioned by phonotactic environment. An unconditional baseline predicting always-voiceless stops achieves **75.29% accuracy in Tamil and 87.28% in Malayalam**.
 
-Through Dynamic Programming akshara alignment on official benchmark corpora (Aksharantar and Dakshina), we uncover the true source of residual voicing uncertainty: **it lives entirely in target-side Latin annotator disagreement, not in source script ambiguity**. Independent annotators disagree on **64.02% of Tamil post-nasal stops on identical words** in Dakshina (*vaathangal* vs. *thuvanggalaam*; *kandii* vs. *kontaadi*). Because empirical $P(\text{voiced} \mid C) < 0.50$ across all phonotactic contexts in crowdsourced datasets, deterministic phonological rules achieve **0.00% argmax decision error reduction (Argmax Invariance)**.
+Through Dynamic Programming *eḻuttu* (syllabic grapheme) alignment on official benchmark corpora (Aksharantar and Dakshina), we uncover the true source of residual voicing uncertainty: **it lives entirely in target-side Latin annotator disagreement, not in source script ambiguity**. Independent annotators disagree on **64.02% of Tamil post-nasal stops on identical words** in Dakshina (*vaathangal* vs. *thuvanggalaam*; *kandii* vs. *kontaadi*). Because empirical $P(\text{voiced} \mid C) < 0.50$ across all phonotactic contexts in crowdsourced datasets, deterministic phonological rules achieve **0.00% argmax decision error reduction (Argmax Invariance)**.
 
 We evaluate phonological inductive bias (both input stream tagging `A1` and auxiliary multi-task loss `A1-MT`) across an empirical scaling hierarchy from 25,000 to 3,200,000 pairs:
 1. **Low-Resource & Low-Capacity Regimes (25k–250k pairs)**: In data-sparse settings (25k), auxiliary phonology supervision yields significant gains on Malayalam (**+1.26% Top-1 Exact Match, $p = .009$**), while on a 1.5M BiGRU (250k), input tagging yields **+1.53% ($p = .018$)** on Tamil.
@@ -27,7 +27,7 @@ Machine transliteration across scripts is essential for named entity recognition
 ### 1.1 The Alleged "Orthographic Underspecification" Deficit
 In Indic natural language processing literature, a recurring assertion suggests that Tamil and Malayalam writing systems exhibit an inherent performance bottleneck because they do not dedicate separate graphemes to the four-way phonemic stop distinctions ($k, kh, g, gh$) present in Indo-Aryan (Hindi, Marathi, Gujarati) and sister Dravidian scripts (Telugu, Kannada):
 - **Telugu and Kannada**: Possess explicit graphemes for unvoiced, aspirated, voiced, and voiced-aspirated stops ($\text{క/ఖ/గ/ఘ}$ and $\text{ಕ/ಖ/ಗ/ಘ}$), inherited through Kadamba-Chalukya traditions.
-- **Tamil**: Possesses only a single graphemic stop series (*Vallinam*: க, ச, ட, த, ப, ற).
+- **Tamil**: In accordance with the classical Tamil metalinguistic framework (*Tolkāppiyam*, Niklas 1988), Tamil possesses only a single graphemic stop series (*Vallinam*: க, ச, ட, த, ப, ற), where each *eḻuttu* (syllabic grapheme) represents a positional allophone.
 - **Malayalam**: Possesses Grantha-derived characters for Sanskrit loans, but retains single-series Dravidian phonotactics for native inherited vocabulary.
 
 ```
@@ -69,7 +69,7 @@ $$H(\text{Voicing} \mid C) = - \sum_{c \in \mathcal{C}} P(c) \sum_{v \in \{\text
 
 where $\mathcal{C} = \{\text{INIT}, \text{GEMINATE}, \text{POST\_CONS}, \text{INTERVOCALIC}, \text{POST\_NASAL}\}$.
 
-We compute alignments using Dynamic Programming over akshara candidate expansions on 150,000 official Aksharantar training pairs, counting geminates as single decision units.
+We compute alignments using Dynamic Programming over *eḻuttu* candidate expansions on 150,000 official Aksharantar training pairs, counting geminates as single decision units.
 
 ### Table 1: Information-Theoretic Voicing Entropy & Argmax Audit (Aksharantar Corpus)
 
@@ -244,6 +244,7 @@ We establish that Tamil and Malayalam writing systems are governed by principled
 - Kunchukuttan, A., Kakwani, D., Golla, S., Bhattacharyya, P., Khapra, M. M., & Kumar, P. (2021). *AI4Bharat-IndicXlit: Multilingual Transliteration for Indian Languages*. Transactions of the Association for Computational Linguistics (TACL), 9, 1374–1390.
 - Lakshmanan, B. L., & Ravindranath, S. K. (2020). *Theedhum Nandrum @ Dravidian-CodeMix-FIRE2020: A Sentiment Polarity Classifier for YouTube Comments with Code-switching between Tamil, Malayalam and English*. In Working Notes of FIRE 2020 - Forum for Information Retrieval Evaluation, CEUR Workshop Proceedings, vol. 2826, pp. 542–547.
 - Madhani, Y., Seshadri, P., Parikh, T., Kunchukuttan, A., Kumar, P., & Khapra, M. M. (2023). *Aksharantar: Towards Building Open Datasets for Indic Language Transliteration*. In Findings of the Association for Computational Linguistics: EMNLP 2023, pp. 40–57.
+- Niklas, U. (1988). *Introduction to Tamil Prosody*. Bulletin de l'École française d'Extrême-Orient (BEFEO), 77(1), 165–227.
 - Roark, B., Wolf-Sonkin, L., Kirov, C., Gibson, S., Chase, M., & Murphy, N. (2020). *Processing South Asian Languages in the Dakshina Dataset*. In Proceedings of the 12th Language Resources and Evaluation Conference (LREC 2020), pp. 2413–2423.
 - Sutton, R. (2019). *The Bitter Lesson*. In Incomplete Ideas (Essays on Computing).
 - Swadesh, M. (1934). *The Phonemic Principle*. Language, 10(2), 117–129.

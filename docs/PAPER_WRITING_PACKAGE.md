@@ -20,7 +20,7 @@ This paper refutes the underspecification hypothesis through three interconnecte
 
 ## 2. Table 1: Information-Theoretic Voicing Entropy & Argmax Audit
 
-*Computed via Dynamic Programming akshara-to-roman alignment over 150,000 Aksharantar training pairs per language, with geminates counted as single decisions. Exact artifact: `artifacts/voicing_entropy_results.json`.*
+*Computed via Dynamic Programming eḻuttu-to-roman alignment over 150,000 Aksharantar training pairs per language, with geminates counted as single decisions. Exact artifact: `artifacts/voicing_entropy_results.json`.*
 
 | Metric / Dimension | Tamil (`tam`) | Malayalam (`mal`) |
 | :--- | :---: | :---: |
@@ -53,7 +53,7 @@ This paper refutes the underspecification hypothesis through three interconnecte
 
 ## 3. Table 2: The Annotator Disagreement Matrix (Dakshina Benchmark)
 
-*Measures the probability that two independent annotators disagree on the Romanization voicing of the exact same akshara slot for identical word types.*
+*Measures the probability that two independent annotators disagree on the Romanization voicing of the exact same eḻuttu slot for identical word types.*
 
 | Phonotactic Context | Tamil Disagreement (All Sources) | Tamil Disagreement (Within Dakshina) | Malayalam Disagreement (All Sources) | Malayalam Disagreement (Within Dakshina) | Linguistic Phonology Expectation |
 | :--- | :---: | :---: | :---: | :---: | :--- |

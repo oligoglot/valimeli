@@ -432,11 +432,12 @@ def train_stage(model_name: str, d_model: int, nhead: int, num_layers: int, dim_
     print("=" * 90)
 
     # 1. Load Dataset into Memory Partitioned by Language
-    print(f" -> Loading Master Pan-Indic Dataset from {PAN_INDIC_DATASET_FILE}...")
+    print(f" -> Loading Master Pan-Indic Dataset from {PAN_INDIC_DATASET_FILE}...", flush=True)
     items_by_lang: Dict[str, List[Tuple[str, str]]] = {l: [] for l in LANG_TAG_LIST}
     src_vocab = AtomicVocab()
     tgt_vocab = AtomicVocab()
 
+    count = 0
     with gzip.open(PAN_INDIC_DATASET_FILE, "rt", encoding="utf-8") as f:
         for line in f:
             obj = json.loads(line)
@@ -449,9 +450,12 @@ def train_stage(model_name: str, d_model: int, nhead: int, num_layers: int, dim_
 
             for ch in r: src_vocab.add_token(ch)
             for ch in i: tgt_vocab.add_token(ch)
+            count += 1
+            if count % 5000000 == 0:
+                print(f"    ... loaded {count:,d} / 27,000,000 pairs", flush=True)
 
-    print(f"    ✓ Total Pairs Loaded: {sum(len(v) for v in items_by_lang.values()):,d}")
-    print(f"    ✓ Vocab Sizes: Source={len(src_vocab)}, Target={len(tgt_vocab)}")
+    print(f"    ✓ Total Pairs Loaded: {sum(len(v) for v in items_by_lang.values()):,d}", flush=True)
+    print(f"    ✓ Vocab Sizes: Source={len(src_vocab)}, Target={len(tgt_vocab)}", flush=True)
 
     # 2. Build Temperature-Balanced Dataset (6.0M balanced pairs per epoch)
     train_dataset = PanIndicBalancedDataset(items_by_lang, src_vocab, tgt_vocab, total_samples=6000000, is_train=True)
@@ -528,7 +532,21 @@ def train_stage(model_name: str, d_model: int, nhead: int, num_layers: int, dim_
                 avg_l = total_loss / b_idx
                 avg_t = total_trans / b_idx
                 avg_p = total_phono / b_idx
-                print(f"  [Epoch {epoch}/{num_epochs}] Batch [{b_idx:>5d}/{num_batches}] ({b_idx/num_batches*100:>5.1f}%) | Loss: {avg_l:.4f} (Trans: {avg_t:.4f}, Phono: {avg_p:.4f}) | {elapsed:.0f}s")
+                print(f"  [Epoch {epoch}/{num_epochs}] Batch [{b_idx:>5d}/{num_batches}] ({b_idx/num_batches*100:>5.1f}%) | Loss: {avg_l:.4f} (Trans: {avg_t:.4f}, Phono: {avg_p:.4f}) | {elapsed:.0f}s", flush=True)
+                # Periodic intermediate safeguard save
+                torch.save({
+                    "model_name": model_name,
+                    "epoch": epoch,
+                    "batch": b_idx,
+                    "d_model": d_model,
+                    "nhead": nhead,
+                    "num_layers": num_layers,
+                    "dim_feedforward": dim_feedforward,
+                    "model_state_dict": model.state_dict(),
+                    "src_vocab": src_vocab,
+                    "tgt_vocab": tgt_vocab,
+                    "val_loss": best_val_loss
+                }, save_path)
 
         # Validation Step
         model.eval()
@@ -542,7 +560,7 @@ def train_stage(model_name: str, d_model: int, nhead: int, num_layers: int, dim_
                 val_loss += (l_t + 0.15 * l_p).item()
 
         avg_val_loss = val_loss / len(val_loader)
-        print(f"\n=== EPOCH {epoch}/{num_epochs} SUMMARY | Train Loss: {total_loss/num_batches:.4f} | Val Loss: {avg_val_loss:.4f} ===")
+        print(f"\n=== EPOCH {epoch}/{num_epochs} SUMMARY | Train Loss: {total_loss/num_batches:.4f} | Val Loss: {avg_val_loss:.4f} ===", flush=True)
 
         # Run Test Battery
         run_validation_battery(model, src_vocab, tgt_vocab, DEVICE)
@@ -562,9 +580,9 @@ def train_stage(model_name: str, d_model: int, nhead: int, num_layers: int, dim_
                 "tgt_vocab": tgt_vocab,
                 "val_loss": best_val_loss
             }, save_path)
-            print(f"  💾 Saved New Best Model to {save_path} (Val Loss: {best_val_loss:.4f})")
+            print(f"  💾 Saved New Best Model to {save_path} (Val Loss: {best_val_loss:.4f})", flush=True)
 
-    print(f"\n✅ {model_name} Training Complete! Final Model Saved: {save_path}")
+    print(f"\n✅ {model_name} Training Complete! Final Model Saved: {save_path}", flush=True)
 
 # =====================================================================
 # 9. MAIN CONTINUOUS PIPELINE
