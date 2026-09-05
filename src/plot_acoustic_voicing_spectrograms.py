@@ -37,25 +37,25 @@ EXAMPLES = [
     {
         "word": "பக்கம் (pakkam)",
         "file": "LL-Q5885 (tam)-Sriveenkat-பக்கம்.wav",
-        "title": "பக்கம்: Geminate [kk] (Long Silent Voiceless Closure Gap)",
+        "title": "பக்கம்: Geminate [kk] (Long Silent Voiceless Closure Gap ~170ms)",
         "annotations": [
-            ("Geminate [kk]: ~150ms Silent Closure", 0.35, 0.52)
+            ("Geminate [kk]: ~170ms Silent Closure", 0.35, 0.52)
         ]
     },
     {
-        "word": "இம்பால் (imbaal)",
-        "file": "LL-Q5885 (tam)-Sriveenkat-இம்பால்.wav",
-        "title": "இம்பால்: Post-Nasal [mb] (Unbroken Voicing Bar across Nasal+Stop)",
+        "word": "தம்பி (thambi)",
+        "file": "LL-Q5885 (tam)-Sriveenkat-தம்பி.wav",
+        "title": "தம்பி: Post-Nasal [mb] (Unbroken Low-F0 Voicing Bar Across Nasal+Stop)",
         "annotations": [
-            ("Post-nasal [mb]: Continuous Low-F0 Voicing Bar", 0.28, 0.48)
+            ("Post-nasal [mb]: Continuous Voicing Bar", 0.25, 0.45)
         ]
     },
     {
-        "word": "இலக்குவன் (ilakkuvan)",
-        "file": "LL-Q5885 (tam)-Sriveenkat-இலக்குவன்.wav",
-        "title": "இலக்குவன்: Classical Geminate [kk] (Silent Voiceless Fortis)",
+        "word": "மருந்து (marundhu)",
+        "file": "LL-Q5885 (tam)-Sriveenkat-மருந்து.wav",
+        "title": "மருந்து: Post-Nasal [ndh] (Obligatory Dental Stop Voicing in Speech)",
         "annotations": [
-            ("Geminate [kk]: Extended Voiceless Closure", 0.40, 0.60)
+            ("Post-nasal [ndh]: Continuous Low-F0 Voicing", 0.35, 0.55)
         ]
     }
 ]
