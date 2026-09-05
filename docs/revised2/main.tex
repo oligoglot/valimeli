@@ -69,15 +69,15 @@ information $I(V;C) = 0.136$ bits in Tamil, $0.159$ in Malayalam). However, beca
 voiceless spelling remains the plurality outcome in \emph{every} phonotactic slot in crowdsourced
 benchmarks ($P(\text{voiced}) \le 0.490$ even post-nasally), conditioning on context alters the
 argmax decision boundary by $0.00\%$, a property we formalise as \emph{argmax invariance}.
-Across controlled transliteration scaling experiments spanning 25k to 1.0M training pairs and two
+Across controlled $\text{en}\rightarrow\text{indic}$ transliteration scaling experiments spanning 25k to 1.0M training pairs and two
 distinct architectures, auxiliary phonological supervision yields small gains exclusively in
 low-resource regimes (Malayalam exact match $+0.84\%$ across three random seeds at 25k pairs,
 Native EM $+1.35\%$, CER $-1.24\%$), decaying to zero or reversing to significant degradation at
-scale ($-2.33\%$ at 1.0M, $p = 0.0003$). We trace residual target entropy to human transcription
+scale ($-2.33\%$ at 1.0M, $p = 0.0003$). We trace residual target entropy in $\text{indic}\rightarrow\text{en}$ benchmarks to human transcription
 conventions: independent annotators disagree on $65.38\%$ of Tamil post-nasal stops on identical
 words in Dakshina, while in-the-wild conversational Tanglish from YouTube comments flips to
 $64.00\%$ voiced spellings. We provide actionable engineering blueprints for handling this duality
-in practical input methods, and open-source the \textsc{ValiMeli-Speech} corpus ($5{,}324$ phonotactically annotated spoken Tamil tokens) under CC BY-SA 4.0.
+in practical input methods ($\text{en}\rightarrow\text{indic}$) and controlled generation ($\text{indic}\rightarrow\text{en}$), and open-source the \textsc{ValiMeli-Speech} corpus ($5{,}324$ phonotactically annotated spoken Tamil tokens) under CC BY-SA 4.0.
 \end{abstract}
 
 \section{Introduction}
@@ -302,10 +302,10 @@ citation (*thampi*). Systems should employ:
 
 Tamil and native Malayalam orthographies are not defective; they are information-theoretically
 parsimonious writing systems whose positional voicing rules are fully deterministic in speech. In
-computational benchmarks, residual voicing entropy is governed by target-side human spelling
-conventions rather than source script ambiguity. Because the majority outcome remains voiceless
+computational benchmarks, residual voicing entropy in $\text{indic}\rightarrow\text{en}$ Romanisation is governed by target-side human spelling
+conventions rather than source script ambiguity. In $\text{en}\rightarrow\text{indic}$ input methods, the many-to-one mapping collapses allophonic Roman variants into deterministic native graphemes. Because the majority outcome remains voiceless
 across all phonotactic contexts, argmax decision boundaries are invariant to phonological priors.
-Transliteration systems should embrace input-side augmentation and controlled multi-modal decoding
+Transliteration systems should embrace input-side augmentation for IMEs ($\text{en}\rightarrow\text{indic}$) and controlled multi-modal decoding for Romanisation ($\text{indic}\rightarrow\text{en}$)
 rather than expecting source-side phonological loss heads to overcome benchmark annotation noise.
 
 \section*{Use of AI-Assisted Technologies}
