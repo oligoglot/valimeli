@@ -77,7 +77,7 @@ scale ($-2.33\%$ at 1.0M, $p = 0.0003$). We trace residual target entropy to hum
 conventions: independent annotators disagree on $65.38\%$ of Tamil post-nasal stops on identical
 words in Dakshina, while in-the-wild conversational Tanglish from YouTube comments flips to
 $64.00\%$ voiced spellings. We provide actionable engineering blueprints for handling this duality
-in practical input methods and controlled generation systems.
+in practical input methods, and open-source the \textsc{ValiMeli-Speech} corpus ($5{,}324$ phonotactically annotated spoken Tamil tokens) under CC BY-SA 4.0.
 \end{abstract}
 
 \section{Introduction}
@@ -115,8 +115,10 @@ to $[k]$ and $[g]$ in native vocabulary would constitute redundant functional ov
 orthography is therefore an optimal, parsimonious code.
 
 \paragraph{Acoustic Confirmation from Native Speech.}
-To demonstrate that complementary voicing is a physically grounded property of spoken speech rather than a theoretical abstraction, we analysed acoustic waveforms and Short-Time Fourier Transform (STFT) spectrograms from native speaker recordings in the Wikimedia Commons / Lingua Libre repository\footnote{Audio recordings sourced from the Lingua Libre project on Wikimedia Commons, contributed by native speakers (\textit{User:Sriveenkat}, \textit{User:Manimaran96}, \textit{User:StarlitNocturne}) under the Creative Commons Attribution-ShareAlike 4.0 International license (CC BY-SA 4.0). A complete manifest of $5{,}324$ indexed spoken tokens is provided in the repository.} (Figure~\ref{fig:spectrogram} and Table~\ref{tab:acoustic_alignment}).
+To demonstrate that complementary voicing is a physically grounded property of spoken speech rather than a theoretical abstraction, we analysed acoustic waveforms and Short-Time Fourier Transform (STFT) spectrograms from native speaker recordings in the Wikimedia Commons / Lingua Libre repository\footnote{Audio recordings sourced from the Lingua Libre project on Wikimedia Commons, contributed by native speakers (\textit{User:Sriveenkat}, \textit{User:Manimaran96}, \textit{User:StarlitNocturne}) under the Creative Commons Attribution-ShareAlike 4.0 International license (CC BY-SA 4.0).} (Figure~\ref{fig:spectrogram} and Table~\ref{tab:acoustic_alignment}).
 As illustrated in Figure~\ref{fig:spectrogram}, word-initial plosives (\textit{pa\d{t}am} / \textit{padam} $[p-]$) and geminates exhibit a sharp absence of low-frequency periodic energy followed by an extended silent closure gap ($\approx 170$\,ms in \textit{pakkam} $[pɐkːɐm]$). In stark contrast, post-nasal plosives (\textit{tampi} / \textit{thambi} $[t̪ɐmbi]$, \textit{maruntu} / \textit{marundhu} $[mɐɾɯnd̪ɯ]$) and intervocalic plosives exhibit an unbroken low-frequency fundamental voicing bar ($F_0 < 300$\,Hz) bridging the nasal and plosive segments. Spoken acoustics confirm $100\%$ deterministic complementary voicing in native words.
+
+To support future research in Dravidian phonetics, text-to-speech (TTS), speech recognition (ASR), and phonetic typing IMEs, we curate and release the \textsc{ValiMeli-Speech} corpus: an open, phonotactically annotated dataset of $5{,}324$ native spoken Tamil audio recordings ($14{,}718$ plosive slots systematically categorized into word-initial, geminate, post-nasal, and intervocalic environments) with full speaker attributions and direct audio stream URLs under CC BY-SA 4.0.
 
 \begin{figure*}[t]
 \centering
@@ -151,9 +153,7 @@ We evaluate phonological inductive bias across data scales from 25k to 1.0M pair
     \item \textbf{Target-Side Duality} (\S\ref{sec:disagree}): We demonstrate that residual
     entropy sits in target-side romanisation conventions ($65.38\%$ disagreement on post-nasal
     stops in Dakshina), while in-the-wild Tanglish from YouTube comments flips to $64.00\%$ voiced.
-    \item \textbf{Practical Systems Blueprint} (\S\ref{sec:practical}): We outline actionable
-    architectures for $\text{en}\rightarrow\text{indic}$ IMEs and $\text{indic}\rightarrow\text{en}$
-    controlled generation.
+    \item \textbf{Open Speech Corpus \& Systems Blueprint} (\S\ref{sec:intro}, \S\ref{sec:practical}): We curate and open-source the \textsc{ValiMeli-Speech} dataset ($5{,}324$ phonotactically annotated spoken Tamil tokens under CC BY-SA 4.0) and outline actionable architectures for $\text{en}\rightarrow\text{indic}$ IMEs and $\text{indic}\rightarrow\text{en}$ controlled generation.
 \end{enumerate}
 
 \section{Voicing Entropy and Argmax Invariance}
