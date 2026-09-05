@@ -2,8 +2,45 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{times,latexsym,url,graphicx,booktabs,amsmath,amssymb,microtype}
+\usepackage{natbib}
 \usepackage[hidelinks]{hyperref}
 \usepackage[margin=1in]{geometry}
+\usepackage{iftex}
+
+\ifPDFTeX
+  \usepackage{newunicodechar}
+  % Fallback character rendering for Indic scripts under standard pdfLaTeX (Overleaf default)
+  \newunicodechar{ப}{[pa]}
+  \newunicodechar{ட}{[\d{d}a]}
+  \newunicodechar{ம}{[ma]}
+  \newunicodechar{க}{[ka]}
+  \newunicodechar{்}{[\textsubscript{.}]}
+  \newunicodechar{த}{[ta]}
+  \newunicodechar{ி}{[i]}
+  \newunicodechar{ந}{[na]}
+  \newunicodechar{ு}{[u]}
+  \newunicodechar{ர}{[ra]}
+  \newunicodechar{ழ}{[\underline{l}a]}
+  \newunicodechar{ள}{[\d{l}a]}
+  \newunicodechar{ய}{[ya]}
+  \newunicodechar{ா}{[\={a}]}
+  \newunicodechar{ங}{[\ng a]}
+  \newunicodechar{ோ}{[\={o}]}
+  \newunicodechar{ல}{[la]}
+  \newunicodechar{வ}{[va]}
+  \newunicodechar{ன}{[\b{n}a]}
+  \newunicodechar{ண}{[\d{n}a]}
+  \newunicodechar{ச}{[ca]}
+  \newunicodechar{இ}{[I]}
+  \newunicodechar{அ}{[A]}
+  \newunicodechar{பு}{[pu]}
+  \newunicodechar{கொ}{[ko]}
+  \newunicodechar{க}{[ka]}
+  \newunicodechar{ஸ}{[sa]}
+  \newunicodechar{ഗ}{[ga]}
+  \newunicodechar{ദ}{[da]}
+  \newunicodechar{ബ}{[ba]}
+\fi
 
 \title{Underspecified but Not Undecidable: Argmax Invariance Bounds the Value of\\
 Phonological Supervision in Dravidian Transliteration}
@@ -45,14 +82,13 @@ in practical input methods and controlled generation systems.
 Machine transliteration between the Latin alphabet and the indigenous Brahmic scripts of South
 Asia is a foundational component of keyboard input method engines (IMEs), search indexing,
 named-entity recognition, and conversational text normalisation
-\cite{madhani-etal-2023-aksharantar,roark-etal-2020-processing}. While sequence-to-sequence models
+\cite{madhani-etal-2023-aksharantar,roark-etal-2020-processing,kunchukuttan-etal-2021-indicxlit}. While sequence-to-sequence models
 frequently exceed $60\%$ exact match on held-out benchmarks for multi-stop scripts like Hindi,
 Telugu, and Kannada, performance on Tamil and Malayalam is historically lower.
 
 A recurring explanation in the computational literature attributes this disparity to
 \emph{orthographic underspecification}. Both languages inherit a single graphemic stop series
-(\textit{vallinam} / hard plosives in the autonomous Tamil metalinguistic tradition, \citealt{niklas1988tamil}: \textit{ka}, \textit{ca}, \textit{ta}, \textit{tha}, \textit{pa},
-\textit{ra}) that maps to multiple phonetic realisations: Tamil writes $[k]$, $[g]$, $[\gamma]$,
+(\textit{vallinam} / hard plosives in the autonomous Tamil metalinguistic tradition, \citealt{niklas1988tamil}: \textit{ka}, \textit{ca}, \textit{\d{t}a}, \textit{ta}, \textit{pa}, \textit{\b{r}a}) that maps to multiple phonetic realisations: Tamil writes $[k]$, $[g]$, $[\gamma]$,
 and $[x]$ with the single grapheme \textit{ka}. It has thus been widely assumed that neural
 models face a fundamental information bottleneck because the source script omits phonemic voicing
 distinctions present in Indo-Aryan and sister Dravidian scripts.
@@ -255,7 +291,7 @@ citation (*thampi*). Systems should employ:
 
 \paragraph{Multi-seed evaluation.} To ensure statistical robustness against initialization variance, 25k low-resource experiments were conducted across three random seeds with full instance-level paired prediction logs. Higher scales (250k--1.0M) reflect controlled single runs; paired McNemar tests at 25k confirm high discordant pair counts underlying small net deltas.
 
-\paragraph{Alignment Coverage.} The dynamic programming aligner aligns $94.81\%$ of Tamil and $67.59\%$ of Malayalam pairs within a conservative edit distance budget ($d \le 2$). Unaligned pairs predominantly comprise extreme typographical noise, multi-word loan expressions, or colloquial clippings in crowdsourced benchmark data.
+\paragraph{Alignment Coverage.} The dynamic programming aligner aligns $94.81\%$ of Tamil and $65.31\%$ of Malayalam pairs within a conservative edit distance budget ($d \le 2$). Unaligned pairs predominantly comprise extreme typographical noise, multi-word loan expressions, or colloquial clippings in crowdsourced benchmark data.
 
 \section{Conclusion}
 
@@ -267,7 +303,7 @@ across all phonotactic contexts, argmax decision boundaries are invariant to pho
 Transliteration systems should embrace input-side augmentation and controlled multi-modal decoding
 rather than expecting source-side phonological loss heads to overcome benchmark annotation noise.
 
-\bibliographystyle{plain}
+\bibliographystyle{plainnat}
 \bibliography{references}
 
 \end{document}
