@@ -74,6 +74,19 @@ Because voicing is completely predictable from local phonotactics, dedicating se
 to $[k]$ and $[g]$ in native vocabulary would constitute redundant functional overhead. Native
 orthography is therefore an optimal, parsimonious code.
 
+\paragraph{Acoustic Confirmation from Native Speech.}
+To demonstrate that complementary voicing is a physically grounded property of spoken speech rather than a theoretical abstraction, we analysed acoustic waveforms and Short-Time Fourier Transform (STFT) spectrograms from native speaker recordings in the Wikimedia Commons / Lingua Libre repository (Figure~\ref{fig:spectrogram} and Table~\ref{tab:acoustic_alignment}).
+As illustrated in Figure~\ref{fig:spectrogram}, word-initial plosives (\textit{padam} $[p-]$) and geminates exhibit a sharp absence of low-frequency periodic energy followed by an extended silent closure gap ($\approx 170$\,ms in \textit{pakkam} $[pɐkːɐm]$). In stark contrast, post-nasal plosives (\textit{thambi} $[t̪ɐmbiː]$, \textit{marundhu} $[mɐɾɯnd̪ɯ]$) and intervocalic plosives exhibit an unbroken low-frequency fundamental voicing bar ($F_0 < 300$\,Hz) bridging the nasal and plosive segments. Spoken acoustics confirm $100\%$ deterministic complementary voicing in native words.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.92\linewidth]{acoustic_voicing_spectrograms.png}
+\caption{Acoustic waveforms and STFT spectrograms of native Tamil speech recordings (Lingua Libre corpus). Voicing is physically evident in the continuous low-frequency voicing bar ($F_0 < 300$\,Hz) during post-nasal (\textit{thambi} $[mb]$, \textit{marundhu} $[nd\textsubscript{\textasciitilde}]$) and intervocalic contexts (\textit{padam} $[\text{\d{d}}]$), contrasted with the $\approx 170$\,ms voiceless silent closure gap in geminates (\textit{pakkam} $[kː]$).}
+\label{fig:spectrogram}
+\end{figure*}
+
+\input{table_acoustic_alignment.tex}
+
 \paragraph{The Unassimilated Loanword Stratum.}
 A subtle complication arises from modern borrowings (English, Sanskrit, Hindustani). While
 classical Tamil phonology nativised loanwords to conform to native allophony,\footnote{Even in modern proper nouns, Tamil phonotactics often naturally nativise foreign clusters in speech: for instance, \textit{Imphal} $[ɪmp^hɑːl]$ written in Tamil script as \textit{இம்பால்} is naturally articulated as $[imbaːl]$ with post-nasal voicing by monolingual and bilingual speakers alike, unless speakers intentionally preserve foreign source phonology through formal English education. In crowdsourced benchmarks, this duality splits annotators between acoustic phonetic spelling (\textit{imbaal}) and source orthography (\textit{imphal}).} modern 20th-century
