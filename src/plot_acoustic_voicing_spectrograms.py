@@ -24,7 +24,7 @@ EXAMPLES = [
     {
         "word": "படம் / paṭam (padam) [pɐɖɐm]",
         "file": "LL-Q5885 (tam)-Sriveenkat-படம்.wav",
-        "title": "படம் / paṭam (padam): Initial [p] (Voiceless Gap) vs. Intervocalic [ɖ] (Voiced Flap)",
+        "title": "படம் / paṭam (padam): Word-Initial [p] (Voiceless Burst) vs. Intervocalic [ɖ] (Voiced Flap)",
         "annotations": [
             ("Initial [p]: Voiceless burst / no low F0", 0.15, 0.25),
             ("Intervocalic [ɖ]: Voicing periodicity", 0.38, 0.50)
@@ -33,25 +33,25 @@ EXAMPLES = [
     {
         "word": "பக்கம் / pakkam [pɐkːɐm]",
         "file": "LL-Q5885 (tam)-Sriveenkat-பக்கம்.wav",
-        "title": "பக்கம் / pakkam: Geminate [kː] (Silent Voiceless Closure Gap ≈170ms)",
+        "title": "பக்கம் / pakkam: Geminate [kː] (Silent Voiceless Closure Gap)",
         "annotations": [
-            ("Geminate [kː]: ≈170ms Silent Closure", 0.35, 0.52)
+            ("Geminate [kː]: Silent Closure Gap", 0.35, 0.52)
         ]
     },
     {
         "word": "தம்பி / tampi (thambi) [t̪ɐmbi]",
         "file": "LL-Q5885 (tam)-Sriveenkat-தம்பி.wav",
-        "title": "தம்பி / tampi (thambi): Post-Nasal [mb] (Unbroken Low-F0 Voicing Bar Across Nasal+Stop)",
+        "title": "தம்பி / tampi (thambi): Post-Nasal [mb] (Continuous Low-F0 Voicing Energy)",
         "annotations": [
-            ("Post-nasal [mb]: Continuous Voicing Bar", 0.25, 0.45)
+            ("Post-nasal [mb]: Continuous Voicing Energy", 0.25, 0.45)
         ]
     },
     {
         "word": "மருந்து / maruntu (marundhu) [mɐɾɯnd̪ɯ]",
         "file": "LL-Q5885 (tam)-Sriveenkat-மருந்து.wav",
-        "title": "மருந்து / maruntu (marundhu): Post-Nasal [nd̪] (Continuous Low-F0 Dental Voicing Bar)",
+        "title": "மருந்து / maruntu (marundhu): Post-Nasal [nd̪] (Continuous Low-F0 Voicing Energy)",
         "annotations": [
-            ("Post-nasal [nd̪]: Continuous Low-F0 Voicing", 0.35, 0.55)
+            ("Post-nasal [nd̪]: Continuous Voicing Energy", 0.35, 0.55)
         ]
     }
 ]

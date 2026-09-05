@@ -315,6 +315,14 @@ def main():
     out_slots = os.path.join(ARTIFACTS_DIR, "valimeli_disagreement_slots.json")
     out_pairs = os.path.join(ARTIFACTS_DIR, "valimeli_disagreement_pairs.json")
     
+    # Include metadata on multi-reference word counts
+    meta_info = {
+        "multi_reference_words": {"tam": 19812, "mal": 16473},
+        "description": "Dakshina multi-annotator slot-level and pair-level disagreement analysis across phonotactic contexts"
+    }
+    slots_res["_metadata"] = meta_info
+    pairs_res["_metadata"] = meta_info
+
     with open(out_all, "w", encoding="utf-8") as f:
         json.dump(all_res, f, indent=2)
     with open(out_slots, "w", encoding="utf-8") as f:

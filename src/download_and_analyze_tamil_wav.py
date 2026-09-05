@@ -26,6 +26,8 @@ os.makedirs(AUDIO_DIR, exist_ok=True)
 WORDS_TO_ANALYZE = [
     ("படம்", "LL-Q5885 (tam)-Sriveenkat-படம்.wav"),
     ("பக்கம்", "LL-Q5885 (tam)-Sriveenkat-பக்கம்.wav"),
+    ("தம்பி", "LL-Q5885 (tam)-Sriveenkat-தம்பி.wav"),
+    ("மருந்து", "LL-Q5885 (tam)-Sriveenkat-மருந்து.wav"),
     ("இலக்குவன்", "LL-Q5885 (tam)-Sriveenkat-இலக்குவன்.wav"),
     ("அடி", "LL-Q5885 (tam)-Sriveenkat-அடி.wav"),
     ("புலிகள்", "LL-Q5885 (tam)-Sriveenkat-புலிகள்.wav"),

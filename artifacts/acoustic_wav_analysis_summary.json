@@ -24,6 +24,30 @@
     }
   },
   {
+    "word": "தம்பி",
+    "filename": "LL-Q5885 (tam)-Sriveenkat-தம்பி.wav",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/a/a6/LL-Q5885_%28tam%29-Sriveenkat-%E0%AE%A4%E0%AE%AE%E0%AF%8D%E0%AE%AA%E0%AE%BF.wav?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "local_path": "artifacts/audio_samples/LL-Q5885 (tam)-Sriveenkat-தம்பி.wav",
+    "stats": {
+      "duration_sec": 0.9691609977324263,
+      "sample_rate": 44100,
+      "total_samples": 42738,
+      "peak_amplitude": 27289.0
+    }
+  },
+  {
+    "word": "மருந்து",
+    "filename": "LL-Q5885 (tam)-Sriveenkat-மருந்து.wav",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/0/08/LL-Q5885_%28tam%29-Sriveenkat-%E0%AE%AE%E0%AE%B0%E0%AF%81%E0%AE%A8%E0%AF%8D%E0%AE%A4%E0%AF%81.wav?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "local_path": "artifacts/audio_samples/LL-Q5885 (tam)-Sriveenkat-மருந்து.wav",
+    "stats": {
+      "duration_sec": 1.3145578231292516,
+      "sample_rate": 44100,
+      "total_samples": 57970,
+      "peak_amplitude": 9901.0
+    }
+  },
+  {
     "word": "இலக்குவன்",
     "filename": "LL-Q5885 (tam)-Sriveenkat-இலக்குவன்.wav",
     "url": "https://upload.wikimedia.org/wikipedia/commons/0/03/LL-Q5885_%28tam%29-Sriveenkat-%E0%AE%87%E0%AE%B2%E0%AE%95%E0%AF%8D%E0%AE%95%E0%AF%81%E0%AE%B5%E0%AE%A9%E0%AF%8D.wav?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
