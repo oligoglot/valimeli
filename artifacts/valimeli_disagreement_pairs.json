@@ -52,5 +52,12 @@
       "total_pairs": 3946,
       "rate_pct": 30.66
     }
+  },
+  "_metadata": {
+    "multi_reference_words": {
+      "tam": 19812,
+      "mal": 16473
+    },
+    "description": "Dakshina multi-annotator slot-level and pair-level disagreement analysis across phonotactic contexts"
   }
 }
