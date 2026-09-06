@@ -288,6 +288,24 @@ Use a robust, cross-engine preamble compatible with **pdfLaTeX**, **XeLaTeX**, a
 ### B. Computational Linguistics (ACL Anthology / IEEE)
 * Use standard ACL BibTeX templates with `\citet{...}` and `\citep{...}`.
 
+### C. Research Integrity: Research as a Truth-Seeking Exercise
+
+> [!CAUTION]
+> **RESEARCH IS ESSENTIALLY A TRUTH-SEEKING EXERCISE. FABRICATING ANYTHING IS COMPLETELY UNACCEPTABLE.**
+> Scientific publication exists solely to report genuine, verified truth. Fabricating, inventing, or synthesizing ANY empirical data point, speaker attribution, phonetic value, acoustic metric, theoretical step, or scholarly citation is an intolerable violation of research integrity.
+
+1. **Zero-Fabrication Across All Dimensions**:
+   - **Empirical Numbers & Data**: Every figure, acoustic duration, pitch track, percentage, and statistical test MUST be programmatically derived from real data through audited, reproducible code and saved in frozen artifact files.
+   - **Primary Sources & Citations**: Every citation must be verified against an authoritative index (ACL Anthology, Crossref, arXiv API, DBLP, LSA, or publisher site). Verify DOIs by direct resolution; verify festschrifts, books, and theses against library catalogs or scanned primary pages.
+2. **Mandatory User Escalation ("Ask Me If You Can't Get Something")**:
+   - If a citation, DOI, baseline number, or paper cannot be found or verified: **STOP AND ASK THE USER IMMEDIATELY**.
+   - State plainly what cannot be located and request primary materials or guidance. Never substitute a plausible-sounding placeholder.
+3. **Strict Attribution & Provenance Separation**:
+   - Never attribute numbers from internal experiments or replications to an external publication.
+   - Internal baselines must be explicitly presented as *this work's replication baseline* (pointing directly to the project's own artifacts and result tables).
+
+
+
 ---
 
 ## 9. Ethics, Fieldwork Consent & Multi-Tool AI Assistance Disclosures

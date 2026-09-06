@@ -1,0 +1,86 @@
+{
+  "dataset": "Aksharantar Malayalam Training Set (first 150k)",
+  "total_evaluated_pairs": 150000,
+  "aligned_pairs": 97965,
+  "alignment_coverage_pct": 65.31,
+  "unaligned_pairs": 52035,
+  "unaligned_pct": 34.69,
+  "loanword_marker_analysis": {
+    "loanword_graphemes_tested": [
+      "ഋ",
+      "ഌ",
+      "ഖ",
+      "ഗ",
+      "ഘ",
+      "ഛ",
+      "ജ",
+      "ഝ",
+      "ഠ",
+      "ഡ",
+      "ഢ",
+      "ഥ",
+      "ദ",
+      "ധ",
+      "ഫ",
+      "ബ",
+      "ഭ",
+      "ശ",
+      "ഷ",
+      "സ",
+      "ഹ",
+      "ൠ",
+      "ൡ"
+    ],
+    "aligned_loanword_rate_pct": 42.73,
+    "unaligned_loanword_rate_pct": 84.49,
+    "odds_ratio": 7.3,
+    "chi2_statistic": 24203.8,
+    "p_value": 0.0
+  },
+  "complex_conjunct_analysis": {
+    "aligned_complex_conjunct_rate_pct": 51.01,
+    "unaligned_complex_conjunct_rate_pct": 46.17
+  },
+  "top_loanword_graphemes_in_corpus": [
+    [
+      "സ",
+      34524
+    ],
+    [
+      "ദ",
+      13731
+    ],
+    [
+      "ഗ",
+      11508
+    ],
+    [
+      "ബ",
+      10753
+    ],
+    [
+      "ഷ",
+      9717
+    ],
+    [
+      "ശ",
+      9493
+    ],
+    [
+      "ജ",
+      8514
+    ],
+    [
+      "ഹ",
+      7757
+    ],
+    [
+      "ഡ",
+      6884
+    ],
+    [
+      "ധ",
+      6266
+    ]
+  ]
+}

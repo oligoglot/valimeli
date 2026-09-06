@@ -1,0 +1,1676 @@
+{
+  "sample_size": 160,
+  "per_context_metrics": {
+    "Word-Initial (#_)": {
+      "n": 40,
+      "tp": 0,
+      "fp": 0,
+      "tn": 40,
+      "fn": 0,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "specificity": 1.0,
+      "false_positive_rate": 0.0
+    },
+    "Geminate (C_C)": {
+      "n": 40,
+      "tp": 0,
+      "fp": 12,
+      "tn": 28,
+      "fn": 0,
+      "accuracy": 0.7,
+      "precision": 0.0,
+      "recall": 0.0,
+      "specificity": 0.7,
+      "false_positive_rate": 0.3
+    },
+    "Post-Nasal (N_)": {
+      "n": 40,
+      "tp": 37,
+      "fp": 0,
+      "tn": 0,
+      "fn": 3,
+      "accuracy": 0.925,
+      "precision": 1.0,
+      "recall": 0.925,
+      "specificity": 0.0,
+      "false_positive_rate": 1.0
+    },
+    "Intervocalic (V_V)": {
+      "n": 40,
+      "tp": 28,
+      "fp": 0,
+      "tn": 11,
+      "fn": 1,
+      "accuracy": 0.975,
+      "precision": 1.0,
+      "recall": 0.9655,
+      "specificity": 1.0,
+      "false_positive_rate": 0.0
+    }
+  },
+  "overall_metrics": {
+    "n": 160,
+    "tp": 65,
+    "fp": 12,
+    "tn": 79,
+    "fn": 4,
+    "accuracy": 0.9,
+    "precision": 0.8442,
+    "recall": 0.942,
+    "specificity": 0.8681,
+    "f1_score": 0.8904,
+    "false_positive_rate": 0.1319
+  },
+  "sample_slots": {
+    "Word-Initial (#_)": [
+      {
+        "word": "புலிகள்",
+        "eluttu": "பு",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.957,
+        "low_f0": 0.367,
+        "closure_ms": 37.7,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "கல்யாணங்களோடு",
+        "eluttu": "க",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.574,
+        "low_f0": 0.181,
+        "closure_ms": 43.5,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "தெற்கு",
+        "eluttu": "தெ",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.319,
+        "low_f0": 0.161,
+        "closure_ms": 37.7,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "பல",
+        "eluttu": "ப",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.135,
+        "low_f0": 0.054,
+        "closure_ms": 40.0,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "பாலியல்",
+        "eluttu": "பா",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.255,
+        "low_f0": 0.139,
+        "closure_ms": 37.7,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "கேள்வி",
+        "eluttu": "கே",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.0,
+        "low_f0": 0.034,
+        "closure_ms": 40.0,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "தன்வந்தரி",
+        "eluttu": "த",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.234,
+        "low_f0": 0.113,
+        "closure_ms": 37.7,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "கடிகளுக்கு",
+        "eluttu": "க",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.702,
+        "low_f0": 0.445,
+        "closure_ms": 37.7,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "கல்",
+        "eluttu": "க",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.277,
+        "low_f0": 0.093,
+        "closure_ms": 55.1,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "கிளைக்கு",
+        "eluttu": "கி",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.827,
+        "low_f0": 0.551,
+        "closure_ms": 40.0,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "தன்",
+        "eluttu": "த",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.617,
+        "low_f0": 0.213,
+        "closure_ms": 37.7,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "செடி",
+        "eluttu": "செ",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.085,
+        "low_f0": 0.054,
+        "closure_ms": 101.6,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "காளான்",
+        "eluttu": "கா",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.213,
+        "low_f0": 0.141,
+        "closure_ms": 46.4,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "பூனை",
+        "eluttu": "பூ",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.596,
+        "closure_ms": 37.7,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "கும்பிடு",
+        "eluttu": "கு",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.745,
+        "low_f0": 0.571,
+        "closure_ms": 37.7,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "கோமி",
+        "eluttu": "கோ",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.489,
+        "low_f0": 0.165,
+        "closure_ms": 37.7,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "சிலப்பதிகாரம்",
+        "eluttu": "சி",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.234,
+        "low_f0": 0.096,
+        "closure_ms": 37.7,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "கயிறுகளுடைய",
+        "eluttu": "க",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.319,
+        "low_f0": 0.151,
+        "closure_ms": 43.5,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "போன்ற",
+        "eluttu": "போ",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.34,
+        "low_f0": 0.141,
+        "closure_ms": 37.7,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "குண்டிகளால்",
+        "eluttu": "கு",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.83,
+        "low_f0": 0.513,
+        "closure_ms": 37.7,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "கத்திகளால்",
+        "eluttu": "க",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.66,
+        "low_f0": 0.297,
+        "closure_ms": 43.5,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "கீர்த்தி",
+        "eluttu": "கீ",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.553,
+        "low_f0": 0.431,
+        "closure_ms": 55.1,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "தாத்தாவுடைய",
+        "eluttu": "தா",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.298,
+        "low_f0": 0.16,
+        "closure_ms": 37.7,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "குடிநீர்",
+        "eluttu": "கு",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.894,
+        "low_f0": 0.469,
+        "closure_ms": 37.7,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "சந்தோஷம்",
+        "eluttu": "ச",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.213,
+        "low_f0": 0.087,
+        "closure_ms": 37.7,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "கங்காரு",
+        "eluttu": "க",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.362,
+        "low_f0": 0.26,
+        "closure_ms": 37.7,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "கோட்டூர்புரம்",
+        "eluttu": "கோ",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.66,
+        "low_f0": 0.236,
+        "closure_ms": 37.7,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "பல்",
+        "eluttu": "ப",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.0,
+        "low_f0": 0.05,
+        "closure_ms": 40.0,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "செல்வி",
+        "eluttu": "செ",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.128,
+        "low_f0": 0.063,
+        "closure_ms": 37.7,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "பட்டாம்பூச்சி",
+        "eluttu": "ப",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.362,
+        "low_f0": 0.139,
+        "closure_ms": 37.7,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "சன்னல்",
+        "eluttu": "ச",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.064,
+        "low_f0": 0.028,
+        "closure_ms": 37.7,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "பெண்டாட்டியால்",
+        "eluttu": "பெ",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.979,
+        "low_f0": 0.3,
+        "closure_ms": 37.7,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "கல்யாணத்தால்",
+        "eluttu": "க",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.809,
+        "low_f0": 0.366,
+        "closure_ms": 61.0,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "போர்டு",
+        "eluttu": "போ",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.851,
+        "low_f0": 0.285,
+        "closure_ms": 37.7,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "சமூக",
+        "eluttu": "ச",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.327,
+        "low_f0": 0.195,
+        "closure_ms": 40.0,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "கோவலனுக்கு",
+        "eluttu": "கோ",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.404,
+        "low_f0": 0.167,
+        "closure_ms": 52.2,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "கட்டம்",
+        "eluttu": "க",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.319,
+        "low_f0": 0.117,
+        "closure_ms": 37.7,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "தாமரை",
+        "eluttu": "தா",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.234,
+        "low_f0": 0.1,
+        "closure_ms": 37.7,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "தேசத்திலிருந்து",
+        "eluttu": "தே",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.8,
+        "closure_ms": 95.8,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "குருத்து",
+        "eluttu": "கு",
+        "context": "Word-Initial (#_)",
+        "vb_ratio": 0.638,
+        "low_f0": 0.285,
+        "closure_ms": 63.9,
+        "detector_pred": false,
+        "ground_truth": false
+      }
+    ],
+    "Geminate (C_C)": [
+      {
+        "word": "இலக்குவன்",
+        "eluttu": "க்கு",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.537,
+        "low_f0": 0.301,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": false
+      },
+      {
+        "word": "வகுப்பால்",
+        "eluttu": "ப்பா",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.687,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": false
+      },
+      {
+        "word": "கடிகளுக்கு",
+        "eluttu": "க்கு",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.981,
+        "low_f0": 0.461,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": false
+      },
+      {
+        "word": "மலையாளத்துடைய",
+        "eluttu": "த்து",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.37,
+        "low_f0": 0.219,
+        "closure_ms": 46.4,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "கிளைக்கு",
+        "eluttu": "க்கு",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.817,
+        "low_f0": 0.399,
+        "closure_ms": 141.3,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "அட்டைகளால்",
+        "eluttu": "ட்டை",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.889,
+        "low_f0": 0.472,
+        "closure_ms": 116.1,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "அனுப்பு",
+        "eluttu": "ப்பு",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.981,
+        "low_f0": 0.723,
+        "closure_ms": 87.1,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "எப்போது",
+        "eluttu": "ப்போ",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.648,
+        "low_f0": 0.327,
+        "closure_ms": 72.6,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "எப்படி",
+        "eluttu": "ப்ப",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.407,
+        "low_f0": 0.235,
+        "closure_ms": 0.0,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "இடியாப்பம்",
+        "eluttu": "ப்ப",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.5,
+        "low_f0": 0.195,
+        "closure_ms": 66.8,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "அன்பளிப்பு",
+        "eluttu": "ப்பு",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.87,
+        "low_f0": 0.425,
+        "closure_ms": 69.7,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "சிலப்பதிகாரம்",
+        "eluttu": "ப்ப",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.6,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": false
+      },
+      {
+        "word": "நிலத்தை",
+        "eluttu": "த்தை",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.704,
+        "low_f0": 0.276,
+        "closure_ms": 87.1,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "ஆரம்பத்திடம்",
+        "eluttu": "த்தி",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.778,
+        "low_f0": 0.415,
+        "closure_ms": 63.9,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "கத்திகளால்",
+        "eluttu": "த்தி",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.944,
+        "low_f0": 0.455,
+        "closure_ms": 107.4,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "இருதயத்திலிருந்து",
+        "eluttu": "த்தி",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.796,
+        "low_f0": 0.203,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": false
+      },
+      {
+        "word": "கீர்த்தி",
+        "eluttu": "த்தி",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.839,
+        "closure_ms": 69.7,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "இறைவனுக்கு",
+        "eluttu": "க்கு",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.783,
+        "low_f0": 0.673,
+        "closure_ms": 77.3,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "தாத்தாவுடைய",
+        "eluttu": "த்தா",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.685,
+        "low_f0": 0.37,
+        "closure_ms": 130.6,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "மற்ற",
+        "eluttu": "ற்ற",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.667,
+        "low_f0": 0.271,
+        "closure_ms": 84.2,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "கோட்டூர்புரம்",
+        "eluttu": "ட்டூ",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.683,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": false
+      },
+      {
+        "word": "எட்டாம்படை",
+        "eluttu": "ட்டா",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.907,
+        "low_f0": 0.409,
+        "closure_ms": 55.1,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "பட்டாம்பூச்சி",
+        "eluttu": "ட்டா",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.241,
+        "low_f0": 0.101,
+        "closure_ms": 55.1,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "பட்டாம்பூச்சி",
+        "eluttu": "ச்சி",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.444,
+        "low_f0": 0.305,
+        "closure_ms": 49.3,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "பெண்டாட்டியால்",
+        "eluttu": "ட்டி",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.759,
+        "low_f0": 0.379,
+        "closure_ms": 121.9,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "இட்டாநகர்",
+        "eluttu": "ட்டா",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.889,
+        "low_f0": 0.504,
+        "closure_ms": 130.6,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "நிறுவனத்தின்",
+        "eluttu": "த்தி",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.778,
+        "low_f0": 0.439,
+        "closure_ms": 26.1,
+        "detector_pred": true,
+        "ground_truth": false
+      },
+      {
+        "word": "எட்டுத்தொகை",
+        "eluttu": "ட்டு",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.796,
+        "low_f0": 0.436,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": false
+      },
+      {
+        "word": "எட்டுத்தொகை",
+        "eluttu": "த்தொ",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.963,
+        "low_f0": 0.547,
+        "closure_ms": 55.1,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "கல்யாணத்தால்",
+        "eluttu": "த்தா",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.741,
+        "low_f0": 0.361,
+        "closure_ms": 66.8,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "எசுப்பானியம்",
+        "eluttu": "ப்பா",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.648,
+        "low_f0": 0.446,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": false
+      },
+      {
+        "word": "அத்தியூர்",
+        "eluttu": "த்தி",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.889,
+        "low_f0": 0.504,
+        "closure_ms": 66.8,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "கோவலனுக்கு",
+        "eluttu": "க்கு",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.587,
+        "closure_ms": 92.9,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "கட்டம்",
+        "eluttu": "ட்ட",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.222,
+        "low_f0": 0.069,
+        "closure_ms": 87.1,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "தேசத்திலிருந்து",
+        "eluttu": "த்தி",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.389,
+        "low_f0": 0.172,
+        "closure_ms": 5.8,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "இரைப்பை",
+        "eluttu": "ப்பை",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.944,
+        "low_f0": 0.337,
+        "closure_ms": 104.5,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "குருத்து",
+        "eluttu": "த்து",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.833,
+        "low_f0": 0.464,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": false
+      },
+      {
+        "word": "ஒழுக்கத்துக்கு",
+        "eluttu": "க்க",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.907,
+        "low_f0": 0.443,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": false
+      },
+      {
+        "word": "ஒழுக்கத்துக்கு",
+        "eluttu": "த்து",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.741,
+        "low_f0": 0.507,
+        "closure_ms": 26.1,
+        "detector_pred": true,
+        "ground_truth": false
+      },
+      {
+        "word": "ஒழுக்கத்துக்கு",
+        "eluttu": "க்கு",
+        "context": "Geminate (C_C)",
+        "vb_ratio": 0.778,
+        "low_f0": 0.394,
+        "closure_ms": 130.6,
+        "detector_pred": false,
+        "ground_truth": false
+      }
+    ],
+    "Post-Nasal (N_)": [
+      {
+        "word": "மருமகன்களுடைய",
+        "eluttu": "ன்க",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 0.63,
+        "low_f0": 0.342,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "கல்யாணங்களோடு",
+        "eluttu": "ங்க",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 0.87,
+        "low_f0": 0.641,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "இம்பால்",
+        "eluttu": "ம்பா",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.859,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "தன்வந்தரி",
+        "eluttu": "ந்த",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.865,
+        "closure_ms": 34.8,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "வெண்பா",
+        "eluttu": "ண்பா",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 0.944,
+        "low_f0": 0.613,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "கும்பிடு",
+        "eluttu": "ம்பி",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.692,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "அங்கே",
+        "eluttu": "ங்கே",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.741,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "அன்பளிப்பு",
+        "eluttu": "ன்ப",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 0.778,
+        "low_f0": 0.572,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "மீன்காரன்",
+        "eluttu": "ன்கா",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.874,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "இங்கு",
+        "eluttu": "ங்கு",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.855,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "வந்தது",
+        "eluttu": "ந்த",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.467,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "போன்ற",
+        "eluttu": "ன்ற",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.863,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "குண்டிகளால்",
+        "eluttu": "ண்டி",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.796,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "ஆரம்பத்திடம்",
+        "eluttu": "ம்ப",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 0.796,
+        "low_f0": 0.324,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "இருதயத்திலிருந்து",
+        "eluttu": "ந்து",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.67,
+        "closure_ms": 5.8,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "எங்கள்",
+        "eluttu": "ங்க",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.601,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "எண்கோணம்",
+        "eluttu": "ண்கோ",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 0.667,
+        "low_f0": 0.358,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "சந்தோஷம்",
+        "eluttu": "ந்தோ",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 0.5,
+        "low_f0": 0.298,
+        "closure_ms": 11.6,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "கங்காரு",
+        "eluttu": "ங்கா",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 0.944,
+        "low_f0": 0.438,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "எட்டாம்படை",
+        "eluttu": "ம்ப",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.666,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "பட்டாம்பூச்சி",
+        "eluttu": "ம்பூ",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 0.889,
+        "low_f0": 0.674,
+        "closure_ms": 37.7,
+        "detector_pred": false,
+        "ground_truth": true
+      },
+      {
+        "word": "இலங்கை",
+        "eluttu": "ங்கை",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 0.556,
+        "low_f0": 0.306,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "பெண்டாட்டியால்",
+        "eluttu": "ண்டா",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.907,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "தேசத்திலிருந்து",
+        "eluttu": "ந்து",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 0.926,
+        "low_f0": 0.465,
+        "closure_ms": 8.7,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "தந்தை",
+        "eluttu": "ந்தை",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.785,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "பச்சோந்தி",
+        "eluttu": "ந்தி",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.696,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "இந்த",
+        "eluttu": "ந்த",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 0.556,
+        "low_f0": 0.448,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "திங்கட்கிழமை",
+        "eluttu": "ங்க",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 0.833,
+        "low_f0": 0.605,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "எந்த",
+        "eluttu": "ந்த",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 0.926,
+        "low_f0": 0.56,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "காந்தாரம்",
+        "eluttu": "ந்தா",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 0.185,
+        "low_f0": 0.169,
+        "closure_ms": 0.0,
+        "detector_pred": false,
+        "ground_truth": true
+      },
+      {
+        "word": "சென்று",
+        "eluttu": "ன்று",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.782,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "திருப்பல்லாண்டு",
+        "eluttu": "ண்டு",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.735,
+        "closure_ms": 43.5,
+        "detector_pred": false,
+        "ground_truth": true
+      },
+      {
+        "word": "அஞ்சு",
+        "eluttu": "ஞ்சு",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 0.967,
+        "low_f0": 0.753,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "முன்பு",
+        "eluttu": "ன்பு",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.917,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "வந்து",
+        "eluttu": "ந்து",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 0.926,
+        "low_f0": 0.607,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "நஞ்சுக்கொடி",
+        "eluttu": "ஞ்சு",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 0.963,
+        "low_f0": 0.515,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "விலங்கை",
+        "eluttu": "ங்கை",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.544,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "பிரான்சு",
+        "eluttu": "ன்சு",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 0.444,
+        "low_f0": 0.37,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "ஆரம்பத்தில்",
+        "eluttu": "ம்ப",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 0.778,
+        "low_f0": 0.266,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "உதடுகளிடமிருந்து",
+        "eluttu": "ந்து",
+        "context": "Post-Nasal (N_)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.6,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      }
+    ],
+    "Intervocalic (V_V)": [
+      {
+        "word": "ஓடல்",
+        "eluttu": "ட",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.333,
+        "low_f0": 0.301,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "அடி",
+        "eluttu": "டி",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.167,
+        "low_f0": 0.078,
+        "closure_ms": 0.0,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "புலிகள்",
+        "eluttu": "க",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.463,
+        "low_f0": 0.161,
+        "closure_ms": 0.0,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "மகளின்",
+        "eluttu": "க",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.574,
+        "low_f0": 0.317,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "மருமகன்களுடைய",
+        "eluttu": "க",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.315,
+        "low_f0": 0.212,
+        "closure_ms": 0.0,
+        "detector_pred": false,
+        "ground_truth": true
+      },
+      {
+        "word": "மருமகன்களுடைய",
+        "eluttu": "டை",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.5,
+        "low_f0": 0.203,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "மேகாலயா",
+        "eluttu": "கா",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.556,
+        "low_f0": 0.362,
+        "closure_ms": 2.9,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "கல்யாணங்களோடு",
+        "eluttu": "டு",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.944,
+        "low_f0": 0.31,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "முகநூல்",
+        "eluttu": "க",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.75,
+        "low_f0": 0.309,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "அவனியாபுரம்",
+        "eluttu": "பு",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.148,
+        "low_f0": 0.111,
+        "closure_ms": 5.8,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "வகுப்பால்",
+        "eluttu": "கு",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.556,
+        "low_f0": 0.369,
+        "closure_ms": 5.8,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "அநீதி",
+        "eluttu": "தி",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.818,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "கடிகளுக்கு",
+        "eluttu": "டி",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.963,
+        "low_f0": 0.625,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "கடிகளுக்கு",
+        "eluttu": "க",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.519,
+        "low_f0": 0.297,
+        "closure_ms": 8.7,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "மாதவன்",
+        "eluttu": "த",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.463,
+        "low_f0": 0.346,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "அடிமுடி",
+        "eluttu": "டி",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.833,
+        "low_f0": 0.492,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "அடிமுடி",
+        "eluttu": "டி",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.833,
+        "low_f0": 0.492,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "முடிகளே",
+        "eluttu": "டி",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.571,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "முடிகளே",
+        "eluttu": "க",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.426,
+        "low_f0": 0.16,
+        "closure_ms": 0.0,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "மலையாளத்துடைய",
+        "eluttu": "டை",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.352,
+        "low_f0": 0.13,
+        "closure_ms": 0.0,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "வரைகிறாள்",
+        "eluttu": "கி",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.983,
+        "low_f0": 0.561,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "வரைகிறாள்",
+        "eluttu": "றா",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.65,
+        "low_f0": 0.376,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "செடி",
+        "eluttu": "டி",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.787,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "அட்டைகளால்",
+        "eluttu": "க",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.444,
+        "low_f0": 0.18,
+        "closure_ms": 0.0,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "மீது",
+        "eluttu": "து",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.56,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "கும்பிடு",
+        "eluttu": "டு",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.481,
+        "low_f0": 0.191,
+        "closure_ms": 0.0,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "எப்போது",
+        "eluttu": "து",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.87,
+        "low_f0": 0.474,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "எப்படி",
+        "eluttu": "டி",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.463,
+        "low_f0": 0.326,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "மேசை",
+        "eluttu": "சை",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.537,
+        "low_f0": 0.223,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "இடியாப்பம்",
+        "eluttu": "டி",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.796,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "சிலப்பதிகாரம்",
+        "eluttu": "தி",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.778,
+        "low_f0": 0.419,
+        "closure_ms": 23.2,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "சிலப்பதிகாரம்",
+        "eluttu": "கா",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.741,
+        "low_f0": 0.252,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "முறையாக",
+        "eluttu": "றை",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.241,
+        "low_f0": 0.098,
+        "closure_ms": 0.0,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "முறையாக",
+        "eluttu": "க",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.185,
+        "low_f0": 0.091,
+        "closure_ms": 8.7,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "அடிமைகளிடம்",
+        "eluttu": "டி",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.926,
+        "low_f0": 0.659,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "அடிமைகளிடம்",
+        "eluttu": "க",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.468,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "அடிமைகளிடம்",
+        "eluttu": "ட",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.926,
+        "low_f0": 0.659,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "வந்தது",
+        "eluttu": "து",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.463,
+        "low_f0": 0.153,
+        "closure_ms": 0.0,
+        "detector_pred": false,
+        "ground_truth": false
+      },
+      {
+        "word": "கயிறுகளுடைய",
+        "eluttu": "று",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 1.0,
+        "low_f0": 0.427,
+        "closure_ms": 0.0,
+        "detector_pred": true,
+        "ground_truth": true
+      },
+      {
+        "word": "கயிறுகளுடைய",
+        "eluttu": "க",
+        "context": "Intervocalic (V_V)",
+        "vb_ratio": 0.259,
+        "low_f0": 0.127,
+        "closure_ms": 37.7,
+        "detector_pred": false,
+        "ground_truth": false
+      }
+    ]
+  }
+}
