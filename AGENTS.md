@@ -31,3 +31,11 @@ Science and research exist solely to uncover, verify, and document what is true.
 ## 4. Strict Attribution & Provenance Separation
 - Never attribute internal experimental results or replication baselines to external papers.
 - Clearly separate what is independently replicated in this work from what is published in prior literature.
+
+## 5. Standing Instruction: Commonwealth English Spelling
+- All manuscripts, tables, documentation, code comments, and project artifacts must strictly adhere to Commonwealth (British/International) English spelling conventions.
+- Use *-ise* / *-isation* instead of *-ize* / *-ization* (e.g., *analysed*, *characterised*, *tokenisation*, *realisation*, *standardised*, *formalisation*, *romanisation*).
+- Use *-our* instead of *-or* (e.g., *behaviour*, *colour*, *honour*).
+- Use double consonants where standard (e.g., *modelling*, *labelled*).
+- Use *-re* instead of *-er* where standard (e.g., *centre*).
+- Exception: The single phrase "an optimal context-conditional classifier" preserves "optimal" in its mathematical Bayes-optimal decision sense; proper nouns, and verbatim bibliographic quotes are also preserved.
