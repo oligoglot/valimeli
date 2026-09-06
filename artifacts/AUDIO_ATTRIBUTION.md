@@ -1,9 +1,9 @@
 # Audio Data Attribution & License Notice
 
-This project utilizes spoken audio pronunciations from the **Wikimedia Commons / Lingua Libre** repository.
+This project utilises spoken audio pronunciations from the **Wikimedia Commons / Lingua Libre** repository.
 
 ## License Terms
-All audio recordings indexed and analyzed in this study are licensed under the **[Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/)**.
+All audio recordings indexed and analysed in this study are licensed under the **[Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/)**.
 
 ## Contributors & Speakers
 We gratefully acknowledge the Lingua Libre project contributors and native Tamil speakers for their open-access recordings:

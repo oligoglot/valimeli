@@ -1,12 +1,12 @@
 # Project ValiMeli (வலி–മെലി)
-### Phonology-Aware Tokenization for Dravidian Transliteration
+### Phonology-Aware Tokenisation for Dravidian Transliteration
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-ee4c2c.svg)](https://pytorch.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Dataset: Aksharantar](https://img.shields.io/badge/Dataset-AI4Bharat%20Aksharantar-green.svg)](https://huggingface.co/datasets/ai4bharat/Aksharantar)
 
-**Project ValiMeli** (*Vallinam* [Hard] + *Mellinam* [Soft]) addresses the fundamental inductive bias gap in Dravidian machine transliteration (Tamil and Malayalam). By replacing naive character-level tokenizers and lossy Devanagari pivots with deterministic, context-sensitive phonotactic tags (`[INIT]`, `[GEM]`, `[NASAL]`, `[INTER]`), ValiMeli collapses stop-voicing ambiguity and delivers superior sequence-to-sequence convergence.
+**Project ValiMeli** (*Vallinam* [Hard] + *Mellinam* [Soft]) addresses the fundamental inductive bias gap in Dravidian machine transliteration (Tamil and Malayalam). By replacing naive character-level tokenisers and lossy Devanagari pivots with deterministic, context-sensitive phonotactic tags (`[INIT]`, `[GEM]`, `[NASAL]`, `[INTER]`), ValiMeli collapses stop-voicing ambiguity and delivers superior sequence-to-sequence convergence.
 
 ---
 
@@ -81,7 +81,7 @@ valimeli/
 │       ├── data/                  # Extracted JSON splits (tam_train, tam_test, etc.)
 │       └── grid_run.log           # Full log of high-compute benchmark execution
 ├── src/                           # Core source codebase
-│   ├── valimeli-benchmark.py      # Standardized Seq2Seq benchmarking engine (v4)
+│   ├── valimeli-benchmark.py      # Standardised Seq2Seq benchmarking engine (v4)
 │   ├── test_linguistics.py        # Unit tests for Tamil/Malayalam phonotactic rules
 │   ├── plot_results.py            # Publication plotting engine (300 DPI bar/loss charts)
 │   ├── plot_attention.py          # Bahdanau attention weight heatmap extractor
@@ -97,8 +97,8 @@ valimeli/
 ## 🔬 Scientific Publications & Outreach Dossiers
 
 - **Manuscript Pre-print Layout**: [`docs/paper_skeleton.md`](docs/paper_skeleton.md)
-  - Theoretical formalization of Dravidian Stop Allophony.
-  - Comparative analysis with Morphology-Aware Tokenization ([arXiv:2508.08424](https://arxiv.org/abs/2508.08424)).
+  - Theoretical formalisation of Dravidian Stop Allophony.
+  - Comparative analysis with Morphology-Aware Tokenisation ([arXiv:2508.08424](https://arxiv.org/abs/2508.08424)).
   - Information-theoretic entropy audit ($H(\text{Voicing} \mid \text{Context})$).
 - **Outreach Strategy Dossier**: [`docs/outreach_strategy.md`](docs/outreach_strategy.md)
   - Tailored communications for **Anoop Kunchukuttan & AI4Bharat**, **Niranjan Nayak**, **Sarvam AI**, and **Malaikkannan & Saama AI**.
@@ -108,4 +108,4 @@ valimeli/
 ---
 
 ## ⚖️ License
-MIT License. Open for academic research and foundational model tokenizer integrations.
+MIT License. Open for academic research and foundational model tokeniser integrations.

@@ -56,7 +56,7 @@ Conducted across Seeds 42, 43, 44 on canonical holdout test sets ($N = 11{,}499$
 ## 3. Linguistic & Orthographic Nuances (Must Follow in Pulli)
 
 ### A. The Unicode/ISCII Storage Artifact vs. Native Phonology
-* **Trap**: In the Brahmic ISCII/Unicode digital model, vowel-bearing syllables (*uyirmey*, e.g., `ம` `U+0BAE`) are base codepoints, requiring a combining virāma/puḷḷi (`்` `U+0BCD`) to strip the vowel to produce pure consonants (`ம்`). Naive segmenters incorrectly tokenize `படம்` into `[pa][ṭa][ma][.]` or `pat.ama`.
+* **Trap**: In the Brahmic ISCII/Unicode digital model, vowel-bearing syllables (*uyirmey*, e.g., `ம` `U+0BAE`) are base codepoints, requiring a combining virāma/puḷḷi (`்` `U+0BCD`) to strip the vowel to produce pure consonants (`ம்`). Naive segmenters incorrectly tokenise `படம்` into `[pa][ṭa][ma][.]` or `pat.ama`.
 * **Linguistic Truth**: In *Tolkāppiyam*, pure consonants (*meyyeḻuttu*) are the primary phonemic units ($/m/$). The word **படம்** (*paṭam*) consists of exactly 3 *eḻuttukkaḷ*:
   $$\text{ப} \ ([pa]) \quad + \quad \text{ட} \ ([\text{ɖ}a]) \quad + \quad \text{ம்} \ ([m]) \implies \mathbf{pa\text{-}\d{t}a\text{-}m \ (pa\d{t}am)}$$
 * **Rule for Pulli**: Never decompose coda consonants into sub-syllabic base + virāma strings.
@@ -92,7 +92,7 @@ All linguistic examples must follow the format:
 ## 5. LaTeX & Paper Hygiene
 
 1. **Commonwealth English**: Full British English spelling standard strictly enforced (*categorised*, *utilising*, *initialisation*, *modelling*, *optimised*, *parsimonious*, *realisation*, *analysed*, *behaviour*).
-2. **0-Error Overleaf Compilation**: Standardized on `\usepackage{natbib}`, `\bibliographystyle{plainnat}`, and `\newunicodechar` fallbacks for `ṅ` (`\.{n}`), `ŋ` (`\ng`), `ḻ` (`\underline{l}`), `ṭ` (`\d{t}`), `ṇ` (`\d{n}`), `ṟ` (`\b{r}`), and `ḍ` (`\d{d}`).
+2. **0-Error Overleaf Compilation**: Standardised on `\usepackage{natbib}`, `\bibliographystyle{plainnat}`, and `\newunicodechar` fallbacks for `ṅ` (`\.{n}`), `ŋ` (`\ng`), `ḻ` (`\underline{l}`), `ṭ` (`\d{t}`), `ṇ` (`\d{n}`), `ṟ` (`\b{r}`), and `ḍ` (`\d{d}`).
 3. **AI Assistance Disclosure**: Explicit statement added before the bibliography detailing the distinct roles of **Anthropic Claude** (ideation, planning, and peer review) and **Google Antigravity / Gemini** (agentic coding, multi-seed benchmarking, audio manifests, and LaTeX typography).
 
 ---
@@ -102,7 +102,7 @@ All linguistic examples must follow the format:
 Two permanent skills are installed in the workspace ([`.agents/skills/`](file:///Users/slakshmanan/Playspace/Gemini/valimeli/.agents/skills/)) and globally (`~/.gemini/config/skills/`):
 
 1. **`empirical-nlp-research-methodology`**:
-   - Theoretical bounding before modeling ($H(Y), H(Y\mid X), I(X;Y)$, Argmax Invariance).
+   - Theoretical bounding before modelling ($H(Y), H(Y\mid X), I(X;Y)$, Argmax Invariance).
    - Multi-seed low-resource protocols ($\mu \pm \sigma$, Seeds 42, 43, 44).
    - Paired McNemar significance testing on instance prediction logs.
    - Dual-domain (benchmark vs. in-the-wild) distribution auditing.
