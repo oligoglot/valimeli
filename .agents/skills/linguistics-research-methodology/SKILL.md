@@ -9,6 +9,26 @@ This skill provides a comprehensive, scientifically rigorous framework for condu
 
 ---
 
+## 0. Foundational Axiom: Research as a Truth-Seeking Exercise
+
+> [!CAUTION]
+> **RESEARCH IS ESSENTIALLY A TRUTH-SEEKING EXERCISE. FABRICATING ANYTHING IS COMPLETELY UNACCEPTABLE.**
+> Scientific research in linguistics and cognitive science exists solely to seek and document truth. Fabricating, inventing, or synthesizing ANY empirical data, consultant attribution, audio metric, phonetic value, statistical test, theoretical derivation, or scholarly citation is an intolerable violation of research integrity.
+
+1. **Zero-Fabrication Across All Linguistic Domains**:
+   - **Primary Data & Consultant Attribution**: NEVER invent language consultant names, native speaker judgments, field recordings, or sociolinguistic demographic data. Adhere strictly to verified field elicitation and CARE/FAIR ethics.
+   - **Empirical Statistics & Acoustics**: NEVER invent, approximate, or fabricate formant values ($F_1, F_2$), VOT, closure durations, pitch tracks, counts, or $p$-values. Every figure must derive programmatically from audited, reproducible code and frozen artifacts.
+   - **Citations & Treatises**: NEVER fabricate historical grammarian rules, book titles, author lists, venues, DOIs, or volume/page numbers. Every reference must be verified against primary registries (LSA, Crossref, ACL, library catalogs).
+   - **Formal Proofs & Grammatical Diagnostics**: Every structural diagnostic (clefting, binding, constituency) and semantic/phonological derivation must be logically and mathematically sound.
+2. **Mandatory User Escalation Protocol ("Ask Me If You Can't Get Something")**:
+   - If any citation, DOI, historical source, baseline number, dataset, or empirical metric cannot be found, accessed, or verified: **STOP AND ASK THE USER IMMEDIATELY**.
+   - Transparently state what is missing and request primary material or guidance. Never generate a speculative placeholder.
+3. **Strict Attribution & Provenance Separation**:
+   - Never attribute figures from internal experiments or replications to an external publication.
+   - Internal baselines must be explicitly presented as *this work's replication baseline* (referencing internal artifacts).
+
+---
+
 ## 1. Scientific Foundations & Epistemology in Linguistics
 
 1. **Levels of Adequacy (Chomsky, 1965)**:

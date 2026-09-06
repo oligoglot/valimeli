@@ -1,4 +1,12 @@
 {
+  "_metadata": {
+    "corpus": "Theedhum Nandrum Code-Mixed Sentiment Dataset (FIRE 2020)",
+    "approx_total_examples": 4500,
+    "test_support": {
+      "tamil": 1261,
+      "malayalam": 1082
+    }
+  },
   "tam": {
     "1. Raw Code-Mixed Text (No Transliteration)": {
       "macro_f1": 52.90610809798487,

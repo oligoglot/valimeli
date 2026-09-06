@@ -12,6 +12,27 @@ This skill provides a domain-general, scientifically rigorous framework for cond
 
 ---
 
+## 0. Foundational Axiom: Research as a Truth-Seeking Exercise
+
+> [!CAUTION]
+> **RESEARCH IS ESSENTIALLY A TRUTH-SEEKING EXERCISE. FABRICATING ANYTHING IS COMPLETELY UNACCEPTABLE.**
+> The foundation of scientific inquiry is absolute epistemic honesty. Fabricating, inventing, or synthesizing ANY empirical data, benchmark metric, sample count, model output, statistical test, linguistic phenomenon, theoretical proof step, or academic citation is a catastrophic breach of research integrity.
+
+1. **Zero-Fabrication Across All Dimensions**:
+   - **Empirical Numbers & Metrics**: NEVER guess, approximate, or fabricate a number, percentage, count, variance, or $p$-value. Every number must originate from frozen, traceable computational artifacts produced by real code executed on real data.
+   - **Citations & Literature**: NEVER fabricate or guess paper titles, author lists, venues, DOIs, URLs, or external findings. Every citation must be resolved against authoritative primary registries (ACL Anthology, Crossref, arXiv API, DBLP, PubMed).
+   - **Linguistic Claims**: Ground all phonetic, phonological, orthographic, or grammatical claims in verified primary corpora, acoustic signals, or authoritative treatises.
+   - **Mathematical Rigor**: Every theoretical derivation must be mathematically sound with all boundary conditions and assumptions explicitly declared.
+2. **Mandatory User Escalation Protocol ("Ask Me If You Can't Get Something")**:
+   - If any citation, DOI, baseline number, dataset, or empirical metric cannot be found, accessed, or verified: **STOP AND ASK THE USER IMMEDIATELY**.
+   - Transparently state what is missing and ask the user to provide the reference, PDF, or data. Never supply a plausible-sounding proxy or speculative answer.
+3. **Strict Attribution & Provenance Separation**:
+   - Never attribute figures from internal experiments or replications to an external publication.
+   - Internal baselines must be explicitly presented as *this work's replication baseline* (pointing directly to the project's own artifacts and result tables).
+   - External benchmark results must be quoted directly from the verified primary publication with exact page/table citation.
+
+---
+
 ## 1. Theoretical & Information-Theoretic Bounding Before Modeling
 
 Before proposing neural architectural modifications, prompt pipelines, or auxiliary loss objectives, establish the mathematical and information-theoretic limits of the task:
