@@ -1,0 +1,3790 @@
+{
+  "corpus_name": "Wikimedia Commons / Lingua Libre Tamil Speech Acoustic Features",
+  "total_analyzed_waveforms": 5325,
+  "total_indexed_waveforms": 5325,
+  "total_processing_time_seconds": 4375.5,
+  "user_agent_attribution": "Configured Research User-Agent (Wikimedia Commons Compliant)",
+  "phonotactic_acoustic_distributions": {
+    "Word-Initial (#_)": {
+      "total_slots": 2131,
+      "slot_mean_voicing_bar_ratio": 0.483,
+      "slot_std_voicing_bar_ratio": 0.311,
+      "slot_mean_low_f0_energy": 0.267,
+      "slot_std_low_f0_energy": 0.2156,
+      "slot_mean_silent_closure_ms": 44.0,
+      "slot_std_silent_closure_ms": 15.9
+    },
+    "Geminate (C_C)": {
+      "total_slots": 2386,
+      "slot_mean_voicing_bar_ratio": 0.702,
+      "slot_std_voicing_bar_ratio": 0.258,
+      "slot_mean_low_f0_energy": 0.4065,
+      "slot_std_low_f0_energy": 0.1966,
+      "slot_mean_silent_closure_ms": 50.5,
+      "slot_std_silent_closure_ms": 41.7
+    },
+    "Post-Nasal (N_)": {
+      "total_slots": 1507,
+      "slot_mean_voicing_bar_ratio": 0.788,
+      "slot_std_voicing_bar_ratio": 0.246,
+      "slot_mean_low_f0_energy": 0.5053,
+      "slot_std_low_f0_energy": 0.2179,
+      "slot_mean_silent_closure_ms": 4.7,
+      "slot_std_silent_closure_ms": 16.8
+    },
+    "Intervocalic (V_V)": {
+      "total_slots": 5566,
+      "slot_mean_voicing_bar_ratio": 0.654,
+      "slot_std_voicing_bar_ratio": 0.287,
+      "slot_mean_low_f0_energy": 0.3727,
+      "slot_std_low_f0_energy": 0.1961,
+      "slot_mean_silent_closure_ms": 18.8,
+      "slot_std_silent_closure_ms": 33.1
+    }
+  },
+  "sample_waveforms": [
+    {
+      "id": 1,
+      "word": "ஓடல்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-ஓடல்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "ட",
+          "base_grapheme": "ட",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.377,
+            0.534
+          ],
+          "slot_voicing_bar_ratio": 0.333,
+          "slot_mean_low_f0_energy": 0.3015,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1837
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.056,
+        "voicing_bar_ratio": 0.652,
+        "mean_low_f0_energy": 0.3235,
+        "max_silent_gap_ms": 243.8
+      }
+    },
+    {
+      "id": 2,
+      "word": "ஏழு",
+      "speaker": "Plantman",
+      "file_title": "File:LL-Q5885 (tam)-Plantman-ஏழு.wav",
+      "phonotactic_slots": [],
+      "acoustic_features": {
+        "sample_rate": 48000,
+        "duration_seconds": 0.989,
+        "voicing_bar_ratio": 0.896,
+        "mean_low_f0_energy": 0.4428,
+        "max_silent_gap_ms": 229.3
+      }
+    },
+    {
+      "id": 5,
+      "word": "மகளின்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-மகளின்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "க",
+          "base_grapheme": "க",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.345,
+            0.502
+          ],
+          "slot_voicing_bar_ratio": 0.574,
+          "slot_mean_low_f0_energy": 0.3172,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1182
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.222,
+        "voicing_bar_ratio": 0.839,
+        "mean_low_f0_energy": 0.5162,
+        "max_silent_gap_ms": 255.4
+      }
+    },
+    {
+      "id": 4,
+      "word": "புலிகள்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-புலிகள்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "பு",
+          "base_grapheme": "ப",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.241,
+            0.377
+          ],
+          "slot_voicing_bar_ratio": 0.957,
+          "slot_mean_low_f0_energy": 0.3675,
+          "slot_silent_closure_ms": 37.7,
+          "slot_mean_rms": 0.1013
+        },
+        {
+          "eluttu": "க",
+          "base_grapheme": "க",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.61,
+            0.766
+          ],
+          "slot_voicing_bar_ratio": 0.463,
+          "slot_mean_low_f0_energy": 0.1607,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1201
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.222,
+        "voicing_bar_ratio": 0.82,
+        "mean_low_f0_energy": 0.3675,
+        "max_silent_gap_ms": 287.3
+      }
+    },
+    {
+      "id": 3,
+      "word": "அடி",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-அடி.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "டி",
+          "base_grapheme": "ட",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.662,
+            0.819
+          ],
+          "slot_voicing_bar_ratio": 0.167,
+          "slot_mean_low_f0_energy": 0.0784,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1067
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.5,
+        "voicing_bar_ratio": 0.533,
+        "mean_low_f0_energy": 0.3227,
+        "max_silent_gap_ms": 310.6
+      }
+    },
+    {
+      "id": 7,
+      "word": "மேகாலயா",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-மேகாலயா.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "கா",
+          "base_grapheme": "க",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.531,
+            0.688
+          ],
+          "slot_voicing_bar_ratio": 0.556,
+          "slot_mean_low_f0_energy": 0.3622,
+          "slot_silent_closure_ms": 2.9,
+          "slot_mean_rms": 0.1236
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.558,
+        "voicing_bar_ratio": 0.5,
+        "mean_low_f0_energy": 0.2646,
+        "max_silent_gap_ms": 240.9
+      }
+    },
+    {
+      "id": 8,
+      "word": "கல்யாணங்களோடு",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-கல்யாணங்களோடு.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "க",
+          "base_grapheme": "க",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.18,
+            0.316
+          ],
+          "slot_voicing_bar_ratio": 0.574,
+          "slot_mean_low_f0_energy": 0.1813,
+          "slot_silent_closure_ms": 43.5,
+          "slot_mean_rms": 0.0687
+        },
+        {
+          "eluttu": "ங்க",
+          "base_grapheme": "க",
+          "context": "Post-Nasal (N_)",
+          "expected_voicing": "Voiced",
+          "slot_time_window_sec": [
+            0.798,
+            0.955
+          ],
+          "slot_voicing_bar_ratio": 0.87,
+          "slot_mean_low_f0_energy": 0.6406,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1069
+        },
+        {
+          "eluttu": "டு",
+          "base_grapheme": "ட",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            1.306,
+            1.463
+          ],
+          "slot_voicing_bar_ratio": 0.944,
+          "slot_mean_low_f0_energy": 0.3103,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.0941
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.785,
+        "voicing_bar_ratio": 0.862,
+        "mean_low_f0_energy": 0.3991,
+        "max_silent_gap_ms": 229.3
+      }
+    },
+    {
+      "id": 6,
+      "word": "மருமகன்களுடைய",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-மருமகன்களுடைய.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "க",
+          "base_grapheme": "க",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.644,
+            0.801
+          ],
+          "slot_voicing_bar_ratio": 0.315,
+          "slot_mean_low_f0_energy": 0.2117,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1462
+        },
+        {
+          "eluttu": "ன்க",
+          "base_grapheme": "க",
+          "context": "Post-Nasal (N_)",
+          "expected_voicing": "Voiced",
+          "slot_time_window_sec": [
+            0.781,
+            0.938
+          ],
+          "slot_voicing_bar_ratio": 0.63,
+          "slot_mean_low_f0_energy": 0.3424,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1368
+        },
+        {
+          "eluttu": "டை",
+          "base_grapheme": "ட",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            1.46,
+            1.617
+          ],
+          "slot_voicing_bar_ratio": 0.5,
+          "slot_mean_low_f0_energy": 0.2032,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1026
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 2.069,
+        "voicing_bar_ratio": 0.613,
+        "mean_low_f0_energy": 0.3567,
+        "max_silent_gap_ms": 174.1
+      }
+    },
+    {
+      "id": 10,
+      "word": "தெற்கு",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-தெற்கு.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "தெ",
+          "base_grapheme": "த",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.197,
+            0.334
+          ],
+          "slot_voicing_bar_ratio": 0.319,
+          "slot_mean_low_f0_energy": 0.1609,
+          "slot_silent_closure_ms": 37.7,
+          "slot_mean_rms": 0.1549
+        },
+        {
+          "eluttu": "ற்",
+          "base_grapheme": "ற",
+          "context": "Coda / Pure Consonant",
+          "expected_voicing": "Voiceless Default",
+          "slot_time_window_sec": [
+            0.403,
+            0.56
+          ],
+          "slot_voicing_bar_ratio": 0.852,
+          "slot_mean_low_f0_energy": 0.403,
+          "slot_silent_closure_ms": 121.9,
+          "slot_mean_rms": 0.0093
+        },
+        {
+          "eluttu": "கு",
+          "base_grapheme": "க",
+          "context": "Post-Consonantal / Other",
+          "expected_voicing": "Voiceless Default",
+          "slot_time_window_sec": [
+            0.601,
+            0.758
+          ],
+          "slot_voicing_bar_ratio": 0.778,
+          "slot_mean_low_f0_energy": 0.2529,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.0694
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.048,
+        "voicing_bar_ratio": 0.798,
+        "mean_low_f0_energy": 0.3712,
+        "max_silent_gap_ms": 235.1
+      }
+    },
+    {
+      "id": 12,
+      "word": "மேலும்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-மேலும்.wav",
+      "phonotactic_slots": [],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.019,
+        "voicing_bar_ratio": 0.925,
+        "mean_low_f0_energy": 0.4754,
+        "max_silent_gap_ms": 220.6
+      }
+    },
+    {
+      "id": 11,
+      "word": "பல",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-பல.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "ப",
+          "base_grapheme": "ப",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.203,
+            0.341
+          ],
+          "slot_voicing_bar_ratio": 0.135,
+          "slot_mean_low_f0_energy": 0.0538,
+          "slot_silent_closure_ms": 40.0,
+          "slot_mean_rms": 0.1517
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 48000,
+        "duration_seconds": 1.096,
+        "voicing_bar_ratio": 0.351,
+        "mean_low_f0_energy": 0.1766,
+        "max_silent_gap_ms": 242.7
+      }
+    },
+    {
+      "id": 9,
+      "word": "இம்பால்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-இம்பால்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "ம்பா",
+          "base_grapheme": "ப",
+          "context": "Post-Nasal (N_)",
+          "expected_voicing": "Voiced",
+          "slot_time_window_sec": [
+            0.316,
+            0.473
+          ],
+          "slot_voicing_bar_ratio": 1.0,
+          "slot_mean_low_f0_energy": 0.859,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1279
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.143,
+        "voicing_bar_ratio": 0.707,
+        "mean_low_f0_energy": 0.4218,
+        "max_silent_gap_ms": 240.9
+      }
+    },
+    {
+      "id": 13,
+      "word": "பாலியல்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-பாலியல்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "பா",
+          "base_grapheme": "ப",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.2,
+            0.337
+          ],
+          "slot_voicing_bar_ratio": 0.255,
+          "slot_mean_low_f0_energy": 0.1391,
+          "slot_silent_closure_ms": 37.7,
+          "slot_mean_rms": 0.1445
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.135,
+        "voicing_bar_ratio": 0.663,
+        "mean_low_f0_energy": 0.3267,
+        "max_silent_gap_ms": 238.0
+      }
+    },
+    {
+      "id": 14,
+      "word": "முகநூல்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-முகநூல்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "க",
+          "base_grapheme": "க",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.349,
+            0.509
+          ],
+          "slot_voicing_bar_ratio": 0.75,
+          "slot_mean_low_f0_energy": 0.3091,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1459
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 48000,
+        "duration_seconds": 1.227,
+        "voicing_bar_ratio": 0.754,
+        "mean_low_f0_energy": 0.4216,
+        "max_silent_gap_ms": 186.7
+      }
+    },
+    {
+      "id": 16,
+      "word": "கேள்வி",
+      "speaker": "Felixyog",
+      "file_title": "File:LL-Q5885 (tam)-Felixyog-கேள்வி.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "கே",
+          "base_grapheme": "க",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.256,
+            0.395
+          ],
+          "slot_voicing_bar_ratio": 0.0,
+          "slot_mean_low_f0_energy": 0.034,
+          "slot_silent_closure_ms": 40.0,
+          "slot_mean_rms": 0.121
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 48000,
+        "duration_seconds": 1.053,
+        "voicing_bar_ratio": 0.57,
+        "mean_low_f0_energy": 0.339,
+        "max_silent_gap_ms": 296.0
+      }
+    },
+    {
+      "id": 19,
+      "word": "அநீதி",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-அநீதி.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "தி",
+          "base_grapheme": "த",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.63,
+            0.787
+          ],
+          "slot_voicing_bar_ratio": 1.0,
+          "slot_mean_low_f0_energy": 0.8176,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1751
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.222,
+        "voicing_bar_ratio": 0.93,
+        "mean_low_f0_energy": 0.5531,
+        "max_silent_gap_ms": 299.0
+      }
+    },
+    {
+      "id": 17,
+      "word": "இலக்குவன்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-இலக்குவன்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "க்கு",
+          "base_grapheme": "க",
+          "context": "Geminate (C_C)",
+          "expected_voicing": "Voiceless Fortis",
+          "slot_time_window_sec": [
+            0.395,
+            0.551
+          ],
+          "slot_voicing_bar_ratio": 0.537,
+          "slot_mean_low_f0_energy": 0.3007,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1628
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.407,
+        "voicing_bar_ratio": 0.821,
+        "mean_low_f0_energy": 0.4151,
+        "max_silent_gap_ms": 307.7
+      }
+    },
+    {
+      "id": 15,
+      "word": "அவனியாபுரம்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-அவனியாபுரம்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "பு",
+          "base_grapheme": "ப",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.888,
+            1.045
+          ],
+          "slot_voicing_bar_ratio": 0.148,
+          "slot_mean_low_f0_energy": 0.111,
+          "slot_silent_closure_ms": 5.8,
+          "slot_mean_rms": 0.1897
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.683,
+        "voicing_bar_ratio": 0.623,
+        "mean_low_f0_energy": 0.3503,
+        "max_silent_gap_ms": 238.0
+      }
+    },
+    {
+      "id": 18,
+      "word": "வகுப்பால்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-வகுப்பால்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "கு",
+          "base_grapheme": "க",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.189,
+            0.345
+          ],
+          "slot_voicing_bar_ratio": 0.556,
+          "slot_mean_low_f0_energy": 0.3693,
+          "slot_silent_closure_ms": 5.8,
+          "slot_mean_rms": 0.0869
+        },
+        {
+          "eluttu": "ப்பா",
+          "base_grapheme": "ப",
+          "context": "Geminate (C_C)",
+          "expected_voicing": "Voiceless Fortis",
+          "slot_time_window_sec": [
+            0.438,
+            0.595
+          ],
+          "slot_voicing_bar_ratio": 1.0,
+          "slot_mean_low_f0_energy": 0.6873,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.0852
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.251,
+        "voicing_bar_ratio": 0.777,
+        "mean_low_f0_energy": 0.5111,
+        "max_silent_gap_ms": 104.5
+      }
+    },
+    {
+      "id": 20,
+      "word": "தன்வந்தரி",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-தன்வந்தரி.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "த",
+          "base_grapheme": "த",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.253,
+            0.389
+          ],
+          "slot_voicing_bar_ratio": 0.234,
+          "slot_mean_low_f0_energy": 0.1128,
+          "slot_silent_closure_ms": 37.7,
+          "slot_mean_rms": 0.1408
+        },
+        {
+          "eluttu": "ந்த",
+          "base_grapheme": "த",
+          "context": "Post-Nasal (N_)",
+          "expected_voicing": "Voiced",
+          "slot_time_window_sec": [
+            0.679,
+            0.836
+          ],
+          "slot_voicing_bar_ratio": 1.0,
+          "slot_mean_low_f0_energy": 0.8645,
+          "slot_silent_closure_ms": 34.8,
+          "slot_mean_rms": 0.0812
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.593,
+        "voicing_bar_ratio": 0.836,
+        "mean_low_f0_energy": 0.5164,
+        "max_silent_gap_ms": 351.2
+      }
+    },
+    {
+      "id": 22,
+      "word": "மாதவன்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-மாதவன்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "த",
+          "base_grapheme": "த",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.453,
+            0.61
+          ],
+          "slot_voicing_bar_ratio": 0.463,
+          "slot_mean_low_f0_energy": 0.3464,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1134
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.155,
+        "voicing_bar_ratio": 0.674,
+        "mean_low_f0_energy": 0.4086,
+        "max_silent_gap_ms": 217.7
+      }
+    },
+    {
+      "id": 21,
+      "word": "கடிகளுக்கு",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-கடிகளுக்கு.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "க",
+          "base_grapheme": "க",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.192,
+            0.328
+          ],
+          "slot_voicing_bar_ratio": 0.702,
+          "slot_mean_low_f0_energy": 0.4454,
+          "slot_silent_closure_ms": 37.7,
+          "slot_mean_rms": 0.0757
+        },
+        {
+          "eluttu": "டி",
+          "base_grapheme": "ட",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.366,
+            0.522
+          ],
+          "slot_voicing_bar_ratio": 0.963,
+          "slot_mean_low_f0_energy": 0.6252,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1018
+        },
+        {
+          "eluttu": "க",
+          "base_grapheme": "க",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.221,
+            0.377
+          ],
+          "slot_voicing_bar_ratio": 0.519,
+          "slot_mean_low_f0_energy": 0.2966,
+          "slot_silent_closure_ms": 8.7,
+          "slot_mean_rms": 0.1179
+        },
+        {
+          "eluttu": "க்கு",
+          "base_grapheme": "க",
+          "context": "Geminate (C_C)",
+          "expected_voicing": "Voiceless Fortis",
+          "slot_time_window_sec": [
+            1.091,
+            1.248
+          ],
+          "slot_voicing_bar_ratio": 0.981,
+          "slot_mean_low_f0_energy": 0.4606,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.0489
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.703,
+        "voicing_bar_ratio": 0.866,
+        "mean_low_f0_energy": 0.4906,
+        "max_silent_gap_ms": 229.3
+      }
+    },
+    {
+      "id": 23,
+      "word": "வாய்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-வாய்.wav",
+      "phonotactic_slots": [],
+      "acoustic_features": {
+        "sample_rate": 48000,
+        "duration_seconds": 0.883,
+        "voicing_bar_ratio": 0.688,
+        "mean_low_f0_energy": 0.4188,
+        "max_silent_gap_ms": 250.7
+      }
+    },
+    {
+      "id": 24,
+      "word": "கல்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-கல்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "க",
+          "base_grapheme": "க",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.267,
+            0.403
+          ],
+          "slot_voicing_bar_ratio": 0.277,
+          "slot_mean_low_f0_energy": 0.0927,
+          "slot_silent_closure_ms": 55.1,
+          "slot_mean_rms": 0.0574
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.036,
+        "voicing_bar_ratio": 0.653,
+        "mean_low_f0_energy": 0.3267,
+        "max_silent_gap_ms": 333.8
+      }
+    },
+    {
+      "id": 26,
+      "word": "முடிகளே",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-முடிகளே.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "டி",
+          "base_grapheme": "ட",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.435,
+            0.592
+          ],
+          "slot_voicing_bar_ratio": 1.0,
+          "slot_mean_low_f0_energy": 0.571,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1368
+        },
+        {
+          "eluttu": "க",
+          "base_grapheme": "க",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.656,
+            0.813
+          ],
+          "slot_voicing_bar_ratio": 0.426,
+          "slot_mean_low_f0_energy": 0.1602,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1225
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.257,
+        "voicing_bar_ratio": 0.783,
+        "mean_low_f0_energy": 0.4475,
+        "max_silent_gap_ms": 235.1
+      }
+    },
+    {
+      "id": 25,
+      "word": "அடிமுடி",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-அடிமுடி.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "டி",
+          "base_grapheme": "ட",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.342,
+            0.499
+          ],
+          "slot_voicing_bar_ratio": 0.833,
+          "slot_mean_low_f0_energy": 0.492,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1489
+        },
+        {
+          "eluttu": "டி",
+          "base_grapheme": "ட",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.342,
+            0.499
+          ],
+          "slot_voicing_bar_ratio": 0.833,
+          "slot_mean_low_f0_energy": 0.492,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1489
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.407,
+        "voicing_bar_ratio": 0.794,
+        "mean_low_f0_energy": 0.4847,
+        "max_silent_gap_ms": 301.9
+      }
+    },
+    {
+      "id": 30,
+      "word": "தன்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-தன்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "த",
+          "base_grapheme": "த",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.235,
+            0.372
+          ],
+          "slot_voicing_bar_ratio": 0.617,
+          "slot_mean_low_f0_energy": 0.2131,
+          "slot_silent_closure_ms": 37.7,
+          "slot_mean_rms": 0.1332
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.129,
+        "voicing_bar_ratio": 0.698,
+        "mean_low_f0_energy": 0.3792,
+        "max_silent_gap_ms": 272.8
+      }
+    },
+    {
+      "id": 27,
+      "word": "மலையாளத்துடைய",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-மலையாளத்துடைய.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "த்து",
+          "base_grapheme": "த",
+          "context": "Geminate (C_C)",
+          "expected_voicing": "Voiceless Fortis",
+          "slot_time_window_sec": [
+            0.656,
+            0.813
+          ],
+          "slot_voicing_bar_ratio": 0.37,
+          "slot_mean_low_f0_energy": 0.2188,
+          "slot_silent_closure_ms": 46.4,
+          "slot_mean_rms": 0.0779
+        },
+        {
+          "eluttu": "டை",
+          "base_grapheme": "ட",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            1.027,
+            1.184
+          ],
+          "slot_voicing_bar_ratio": 0.352,
+          "slot_mean_low_f0_energy": 0.1304,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.0905
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.587,
+        "voicing_bar_ratio": 0.435,
+        "mean_low_f0_energy": 0.2344,
+        "max_silent_gap_ms": 232.2
+      }
+    },
+    {
+      "id": 31,
+      "word": "செடி",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-செடி.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "செ",
+          "base_grapheme": "ச",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.113,
+            0.25
+          ],
+          "slot_voicing_bar_ratio": 0.085,
+          "slot_mean_low_f0_energy": 0.0539,
+          "slot_silent_closure_ms": 101.6,
+          "slot_mean_rms": 0.0092
+        },
+        {
+          "eluttu": "டி",
+          "base_grapheme": "ட",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.444,
+            0.601
+          ],
+          "slot_voicing_bar_ratio": 1.0,
+          "slot_mean_low_f0_energy": 0.7869,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1337
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.036,
+        "voicing_bar_ratio": 0.622,
+        "mean_low_f0_energy": 0.3391,
+        "max_silent_gap_ms": 272.8
+      }
+    },
+    {
+      "id": 28,
+      "word": "வரைகிறாள்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-வரைகிறாள்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "கி",
+          "base_grapheme": "க",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.475,
+            0.635
+          ],
+          "slot_voicing_bar_ratio": 0.983,
+          "slot_mean_low_f0_energy": 0.5615,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1556
+        },
+        {
+          "eluttu": "றா",
+          "base_grapheme": "ற",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.648,
+            0.808
+          ],
+          "slot_voicing_bar_ratio": 0.65,
+          "slot_mean_low_f0_energy": 0.3755,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1582
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 48000,
+        "duration_seconds": 1.395,
+        "voicing_bar_ratio": 0.686,
+        "mean_low_f0_energy": 0.3762,
+        "max_silent_gap_ms": 346.7
+      }
+    },
+    {
+      "id": 29,
+      "word": "கிளைக்கு",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-கிளைக்கு.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "கி",
+          "base_grapheme": "க",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.256,
+            0.395
+          ],
+          "slot_voicing_bar_ratio": 0.827,
+          "slot_mean_low_f0_energy": 0.5506,
+          "slot_silent_closure_ms": 40.0,
+          "slot_mean_rms": 0.0818
+        },
+        {
+          "eluttu": "க்கு",
+          "base_grapheme": "க",
+          "context": "Geminate (C_C)",
+          "expected_voicing": "Voiceless Fortis",
+          "slot_time_window_sec": [
+            0.565,
+            0.725
+          ],
+          "slot_voicing_bar_ratio": 0.817,
+          "slot_mean_low_f0_energy": 0.3992,
+          "slot_silent_closure_ms": 141.3,
+          "slot_mean_rms": 0.006
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 48000,
+        "duration_seconds": 1.224,
+        "voicing_bar_ratio": 0.793,
+        "mean_low_f0_energy": 0.4123,
+        "max_silent_gap_ms": 296.0
+      }
+    },
+    {
+      "id": 32,
+      "word": "அட்டைகளால்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-அட்டைகளால்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "ட்டை",
+          "base_grapheme": "ட",
+          "context": "Geminate (C_C)",
+          "expected_voicing": "Voiceless Fortis",
+          "slot_time_window_sec": [
+            0.284,
+            0.441
+          ],
+          "slot_voicing_bar_ratio": 0.889,
+          "slot_mean_low_f0_energy": 0.4724,
+          "slot_silent_closure_ms": 116.1,
+          "slot_mean_rms": 0.0105
+        },
+        {
+          "eluttu": "க",
+          "base_grapheme": "க",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.618,
+            0.775
+          ],
+          "slot_voicing_bar_ratio": 0.444,
+          "slot_mean_low_f0_energy": 0.1804,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1169
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.306,
+        "voicing_bar_ratio": 0.717,
+        "mean_low_f0_energy": 0.3058,
+        "max_silent_gap_ms": 240.9
+      }
+    },
+    {
+      "id": 33,
+      "word": "காளான்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-காளான்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "கா",
+          "base_grapheme": "க",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.197,
+            0.334
+          ],
+          "slot_voicing_bar_ratio": 0.213,
+          "slot_mean_low_f0_energy": 0.1411,
+          "slot_silent_closure_ms": 46.4,
+          "slot_mean_rms": 0.0898
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.117,
+        "voicing_bar_ratio": 0.511,
+        "mean_low_f0_energy": 0.2781,
+        "max_silent_gap_ms": 235.1
+      }
+    },
+    {
+      "id": 34,
+      "word": "வெண்பா",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-வெண்பா.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "ண்பா",
+          "base_grapheme": "ப",
+          "context": "Post-Nasal (N_)",
+          "expected_voicing": "Voiced",
+          "slot_time_window_sec": [
+            0.348,
+            0.505
+          ],
+          "slot_voicing_bar_ratio": 0.944,
+          "slot_mean_low_f0_energy": 0.6132,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1386
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.082,
+        "voicing_bar_ratio": 0.636,
+        "mean_low_f0_energy": 0.3764,
+        "max_silent_gap_ms": 220.6
+      }
+    },
+    {
+      "id": 36,
+      "word": "வரும்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-வரும்.wav",
+      "phonotactic_slots": [],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 0.902,
+        "voicing_bar_ratio": 0.722,
+        "mean_low_f0_energy": 0.4324,
+        "max_silent_gap_ms": 209.0
+      }
+    },
+    {
+      "id": 35,
+      "word": "மீது",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-மீது.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "து",
+          "base_grapheme": "த",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.517,
+            0.673
+          ],
+          "slot_voicing_bar_ratio": 1.0,
+          "slot_mean_low_f0_energy": 0.5601,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1424
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.045,
+        "voicing_bar_ratio": 0.927,
+        "mean_low_f0_energy": 0.4769,
+        "max_silent_gap_ms": 226.4
+      }
+    },
+    {
+      "id": 37,
+      "word": "பூனை",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-பூனை.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "பூ",
+          "base_grapheme": "ப",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.206,
+            0.342
+          ],
+          "slot_voicing_bar_ratio": 1.0,
+          "slot_mean_low_f0_energy": 0.5955,
+          "slot_silent_closure_ms": 37.7,
+          "slot_mean_rms": 0.1456
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 0.987,
+        "voicing_bar_ratio": 0.824,
+        "mean_low_f0_energy": 0.4327,
+        "max_silent_gap_ms": 243.8
+      }
+    },
+    {
+      "id": 38,
+      "word": "கும்பிடு",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-கும்பிடு.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "கு",
+          "base_grapheme": "க",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.2,
+            0.337
+          ],
+          "slot_voicing_bar_ratio": 0.745,
+          "slot_mean_low_f0_energy": 0.5712,
+          "slot_silent_closure_ms": 37.7,
+          "slot_mean_rms": 0.1307
+        },
+        {
+          "eluttu": "ம்பி",
+          "base_grapheme": "ப",
+          "context": "Post-Nasal (N_)",
+          "expected_voicing": "Voiced",
+          "slot_time_window_sec": [
+            0.366,
+            0.522
+          ],
+          "slot_voicing_bar_ratio": 1.0,
+          "slot_mean_low_f0_energy": 0.6918,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.233
+        },
+        {
+          "eluttu": "டு",
+          "base_grapheme": "ட",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.7,
+            0.856
+          ],
+          "slot_voicing_bar_ratio": 0.481,
+          "slot_mean_low_f0_energy": 0.1912,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1415
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.135,
+        "voicing_bar_ratio": 0.811,
+        "mean_low_f0_energy": 0.4462,
+        "max_silent_gap_ms": 238.0
+      }
+    },
+    {
+      "id": 39,
+      "word": "அனுப்பு",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-அனுப்பு.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "ப்பு",
+          "base_grapheme": "ப",
+          "context": "Geminate (C_C)",
+          "expected_voicing": "Voiceless Fortis",
+          "slot_time_window_sec": [
+            0.517,
+            0.673
+          ],
+          "slot_voicing_bar_ratio": 0.981,
+          "slot_mean_low_f0_energy": 0.723,
+          "slot_silent_closure_ms": 87.1,
+          "slot_mean_rms": 0.0433
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.193,
+        "voicing_bar_ratio": 0.825,
+        "mean_low_f0_energy": 0.4088,
+        "max_silent_gap_ms": 240.9
+      }
+    },
+    {
+      "id": 40,
+      "word": "எப்போது",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-எப்போது.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "ப்போ",
+          "base_grapheme": "ப",
+          "context": "Geminate (C_C)",
+          "expected_voicing": "Voiceless Fortis",
+          "slot_time_window_sec": [
+            0.308,
+            0.464
+          ],
+          "slot_voicing_bar_ratio": 0.648,
+          "slot_mean_low_f0_energy": 0.327,
+          "slot_silent_closure_ms": 72.6,
+          "slot_mean_rms": 0.0471
+        },
+        {
+          "eluttu": "து",
+          "base_grapheme": "த",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.717,
+            0.874
+          ],
+          "slot_voicing_bar_ratio": 0.87,
+          "slot_mean_low_f0_energy": 0.4744,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.0333
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.181,
+        "voicing_bar_ratio": 0.739,
+        "mean_low_f0_energy": 0.342,
+        "max_silent_gap_ms": 235.1
+      }
+    },
+    {
+      "id": 41,
+      "word": "அங்கே",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-அங்கே.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "ங்கே",
+          "base_grapheme": "க",
+          "context": "Post-Nasal (N_)",
+          "expected_voicing": "Voiced",
+          "slot_time_window_sec": [
+            0.412,
+            0.569
+          ],
+          "slot_voicing_bar_ratio": 1.0,
+          "slot_mean_low_f0_energy": 0.7413,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.0664
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.222,
+        "voicing_bar_ratio": 0.57,
+        "mean_low_f0_energy": 0.2933,
+        "max_silent_gap_ms": 316.4
+      }
+    },
+    {
+      "id": 44,
+      "word": "கோமி",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-கோமி.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "கோ",
+          "base_grapheme": "க",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.206,
+            0.342
+          ],
+          "slot_voicing_bar_ratio": 0.489,
+          "slot_mean_low_f0_energy": 0.1645,
+          "slot_silent_closure_ms": 37.7,
+          "slot_mean_rms": 0.1743
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.059,
+        "voicing_bar_ratio": 0.847,
+        "mean_low_f0_energy": 0.3772,
+        "max_silent_gap_ms": 243.8
+      }
+    },
+    {
+      "id": 42,
+      "word": "எப்படி",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-எப்படி.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "ப்ப",
+          "base_grapheme": "ப",
+          "context": "Geminate (C_C)",
+          "expected_voicing": "Voiceless Fortis",
+          "slot_time_window_sec": [
+            0.247,
+            0.403
+          ],
+          "slot_voicing_bar_ratio": 0.407,
+          "slot_mean_low_f0_energy": 0.235,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1333
+        },
+        {
+          "eluttu": "டி",
+          "base_grapheme": "ட",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.563,
+            0.72
+          ],
+          "slot_voicing_bar_ratio": 0.463,
+          "slot_mean_low_f0_energy": 0.326,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1502
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.129,
+        "voicing_bar_ratio": 0.573,
+        "mean_low_f0_energy": 0.3089,
+        "max_silent_gap_ms": 310.6
+      }
+    },
+    {
+      "id": 43,
+      "word": "மேசை",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-மேசை.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "சை",
+          "base_grapheme": "ச",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.711,
+            0.868
+          ],
+          "slot_voicing_bar_ratio": 0.537,
+          "slot_mean_low_f0_energy": 0.2228,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.0811
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.222,
+        "voicing_bar_ratio": 0.74,
+        "mean_low_f0_energy": 0.3092,
+        "max_silent_gap_ms": 211.9
+      }
+    },
+    {
+      "id": 45,
+      "word": "இடியாப்பம்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-இடியாப்பம்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "டி",
+          "base_grapheme": "ட",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.267,
+            0.424
+          ],
+          "slot_voicing_bar_ratio": 1.0,
+          "slot_mean_low_f0_energy": 0.7961,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.0716
+        },
+        {
+          "eluttu": "ப்ப",
+          "base_grapheme": "ப",
+          "context": "Geminate (C_C)",
+          "expected_voicing": "Voiceless Fortis",
+          "slot_time_window_sec": [
+            0.566,
+            0.723
+          ],
+          "slot_voicing_bar_ratio": 0.5,
+          "slot_mean_low_f0_energy": 0.1946,
+          "slot_silent_closure_ms": 66.8,
+          "slot_mean_rms": 0.0766
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.172,
+        "voicing_bar_ratio": 0.754,
+        "mean_low_f0_energy": 0.437,
+        "max_silent_gap_ms": 235.1
+      }
+    },
+    {
+      "id": 46,
+      "word": "அன்பளிப்பு",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-அன்பளிப்பு.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "ன்ப",
+          "base_grapheme": "ப",
+          "context": "Post-Nasal (N_)",
+          "expected_voicing": "Voiced",
+          "slot_time_window_sec": [
+            0.276,
+            0.432
+          ],
+          "slot_voicing_bar_ratio": 0.778,
+          "slot_mean_low_f0_energy": 0.5717,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.0778
+        },
+        {
+          "eluttu": "ப்பு",
+          "base_grapheme": "ப",
+          "context": "Geminate (C_C)",
+          "expected_voicing": "Voiceless Fortis",
+          "slot_time_window_sec": [
+            0.644,
+            0.801
+          ],
+          "slot_voicing_bar_ratio": 0.87,
+          "slot_mean_low_f0_energy": 0.4254,
+          "slot_silent_closure_ms": 69.7,
+          "slot_mean_rms": 0.05
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.216,
+        "voicing_bar_ratio": 0.778,
+        "mean_low_f0_energy": 0.4374,
+        "max_silent_gap_ms": 243.8
+      }
+    },
+    {
+      "id": 47,
+      "word": "மீன்காரன்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-மீன்காரன்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "ன்கா",
+          "base_grapheme": "க",
+          "context": "Post-Nasal (N_)",
+          "expected_voicing": "Voiced",
+          "slot_time_window_sec": [
+            0.461,
+            0.618
+          ],
+          "slot_voicing_bar_ratio": 1.0,
+          "slot_mean_low_f0_energy": 0.8743,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1468
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.425,
+        "voicing_bar_ratio": 0.813,
+        "mean_low_f0_energy": 0.5498,
+        "max_silent_gap_ms": 235.1
+      }
+    },
+    {
+      "id": 49,
+      "word": "இங்கு",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-இங்கு.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "ங்கு",
+          "base_grapheme": "க",
+          "context": "Post-Nasal (N_)",
+          "expected_voicing": "Voiced",
+          "slot_time_window_sec": [
+            0.372,
+            0.528
+          ],
+          "slot_voicing_bar_ratio": 1.0,
+          "slot_mean_low_f0_energy": 0.8546,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.2947
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.193,
+        "voicing_bar_ratio": 0.973,
+        "mean_low_f0_energy": 0.5076,
+        "max_silent_gap_ms": 235.1
+      }
+    },
+    {
+      "id": 53,
+      "word": "நிலத்தை",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-நிலத்தை.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "த்தை",
+          "base_grapheme": "த",
+          "context": "Geminate (C_C)",
+          "expected_voicing": "Voiceless Fortis",
+          "slot_time_window_sec": [
+            0.377,
+            0.534
+          ],
+          "slot_voicing_bar_ratio": 0.704,
+          "slot_mean_low_f0_energy": 0.2762,
+          "slot_silent_closure_ms": 87.1,
+          "slot_mean_rms": 0.0553
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 0.989,
+        "voicing_bar_ratio": 0.83,
+        "mean_low_f0_energy": 0.4415,
+        "max_silent_gap_ms": 185.8
+      }
+    },
+    {
+      "id": 48,
+      "word": "சிலப்பதிகாரம்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-சிலப்பதிகாரம்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "சி",
+          "base_grapheme": "ச",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.192,
+            0.328
+          ],
+          "slot_voicing_bar_ratio": 0.234,
+          "slot_mean_low_f0_energy": 0.0955,
+          "slot_silent_closure_ms": 37.7,
+          "slot_mean_rms": 0.0401
+        },
+        {
+          "eluttu": "ப்ப",
+          "base_grapheme": "ப",
+          "context": "Geminate (C_C)",
+          "expected_voicing": "Voiceless Fortis",
+          "slot_time_window_sec": [
+            0.424,
+            0.58
+          ],
+          "slot_voicing_bar_ratio": 1.0,
+          "slot_mean_low_f0_energy": 0.5996,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1373
+        },
+        {
+          "eluttu": "தி",
+          "base_grapheme": "த",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.659,
+            0.816
+          ],
+          "slot_voicing_bar_ratio": 0.778,
+          "slot_mean_low_f0_energy": 0.4188,
+          "slot_silent_closure_ms": 23.2,
+          "slot_mean_rms": 0.1328
+        },
+        {
+          "eluttu": "கா",
+          "base_grapheme": "க",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.816,
+            0.972
+          ],
+          "slot_voicing_bar_ratio": 0.741,
+          "slot_mean_low_f0_energy": 0.2523,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.167
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.419,
+        "voicing_bar_ratio": 0.719,
+        "mean_low_f0_energy": 0.3727,
+        "max_silent_gap_ms": 229.3
+      }
+    },
+    {
+      "id": 50,
+      "word": "முறையாக",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-முறையாக.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "றை",
+          "base_grapheme": "ற",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.464,
+            0.621
+          ],
+          "slot_voicing_bar_ratio": 0.241,
+          "slot_mean_low_f0_energy": 0.0982,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1677
+        },
+        {
+          "eluttu": "க",
+          "base_grapheme": "க",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.981,
+            1.138
+          ],
+          "slot_voicing_bar_ratio": 0.185,
+          "slot_mean_low_f0_energy": 0.0914,
+          "slot_silent_closure_ms": 8.7,
+          "slot_mean_rms": 0.0502
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.384,
+        "voicing_bar_ratio": 0.517,
+        "mean_low_f0_energy": 0.3016,
+        "max_silent_gap_ms": 240.9
+      }
+    },
+    {
+      "id": 52,
+      "word": "வந்தது",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-வந்தது.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "ந்த",
+          "base_grapheme": "த",
+          "context": "Post-Nasal (N_)",
+          "expected_voicing": "Voiced",
+          "slot_time_window_sec": [
+            0.331,
+            0.488
+          ],
+          "slot_voicing_bar_ratio": 1.0,
+          "slot_mean_low_f0_energy": 0.4668,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1104
+        },
+        {
+          "eluttu": "து",
+          "base_grapheme": "த",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.679,
+            0.836
+          ],
+          "slot_voicing_bar_ratio": 0.463,
+          "slot_mean_low_f0_energy": 0.153,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1651
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.184,
+        "voicing_bar_ratio": 0.722,
+        "mean_low_f0_energy": 0.3502,
+        "max_silent_gap_ms": 238.0
+      }
+    },
+    {
+      "id": 51,
+      "word": "அடிமைகளிடம்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-அடிமைகளிடம்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "டி",
+          "base_grapheme": "ட",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.258,
+            0.415
+          ],
+          "slot_voicing_bar_ratio": 0.926,
+          "slot_mean_low_f0_energy": 0.6591,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.0991
+        },
+        {
+          "eluttu": "க",
+          "base_grapheme": "க",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.708,
+            0.865
+          ],
+          "slot_voicing_bar_ratio": 1.0,
+          "slot_mean_low_f0_energy": 0.4682,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1172
+        },
+        {
+          "eluttu": "ட",
+          "base_grapheme": "ட",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.258,
+            0.415
+          ],
+          "slot_voicing_bar_ratio": 0.926,
+          "slot_mean_low_f0_energy": 0.6591,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.0991
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.5,
+        "voicing_bar_ratio": 0.912,
+        "mean_low_f0_energy": 0.5565,
+        "max_silent_gap_ms": 171.2
+      }
+    },
+    {
+      "id": 55,
+      "word": "நாடுகளோடு",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-நாடுகளோடு.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "டு",
+          "base_grapheme": "ட",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.334,
+            0.491
+          ],
+          "slot_voicing_bar_ratio": 0.407,
+          "slot_mean_low_f0_energy": 0.3407,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1374
+        },
+        {
+          "eluttu": "க",
+          "base_grapheme": "க",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.52,
+            0.676
+          ],
+          "slot_voicing_bar_ratio": 0.815,
+          "slot_mean_low_f0_energy": 0.3192,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1113
+        },
+        {
+          "eluttu": "டு",
+          "base_grapheme": "ட",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.334,
+            0.491
+          ],
+          "slot_voicing_bar_ratio": 0.407,
+          "slot_mean_low_f0_energy": 0.3407,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1374
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.12,
+        "voicing_bar_ratio": 0.761,
+        "mean_low_f0_energy": 0.3685,
+        "max_silent_gap_ms": 180.0
+      }
+    },
+    {
+      "id": 54,
+      "word": "கயிறுகளுடைய",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-கயிறுகளுடைய.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "க",
+          "base_grapheme": "க",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.18,
+            0.316
+          ],
+          "slot_voicing_bar_ratio": 0.319,
+          "slot_mean_low_f0_energy": 0.1506,
+          "slot_silent_closure_ms": 43.5,
+          "slot_mean_rms": 0.0913
+        },
+        {
+          "eluttu": "று",
+          "base_grapheme": "ற",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.473,
+            0.63
+          ],
+          "slot_voicing_bar_ratio": 1.0,
+          "slot_mean_low_f0_energy": 0.4272,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.0935
+        },
+        {
+          "eluttu": "க",
+          "base_grapheme": "க",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.186,
+            0.342
+          ],
+          "slot_voicing_bar_ratio": 0.259,
+          "slot_mean_low_f0_energy": 0.1271,
+          "slot_silent_closure_ms": 37.7,
+          "slot_mean_rms": 0.1013
+        },
+        {
+          "eluttu": "டை",
+          "base_grapheme": "ட",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.955,
+            1.112
+          ],
+          "slot_voicing_bar_ratio": 0.5,
+          "slot_mean_low_f0_energy": 0.1784,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.0595
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.509,
+        "voicing_bar_ratio": 0.674,
+        "mean_low_f0_energy": 0.274,
+        "max_silent_gap_ms": 217.7
+      }
+    },
+    {
+      "id": 56,
+      "word": "போன்ற",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-போன்ற.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "போ",
+          "base_grapheme": "ப",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.2,
+            0.337
+          ],
+          "slot_voicing_bar_ratio": 0.34,
+          "slot_mean_low_f0_energy": 0.1405,
+          "slot_silent_closure_ms": 37.7,
+          "slot_mean_rms": 0.2611
+        },
+        {
+          "eluttu": "ன்ற",
+          "base_grapheme": "ற",
+          "context": "Post-Nasal (N_)",
+          "expected_voicing": "Voiced",
+          "slot_time_window_sec": [
+            0.447,
+            0.604
+          ],
+          "slot_voicing_bar_ratio": 1.0,
+          "slot_mean_low_f0_energy": 0.8628,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1999
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.074,
+        "voicing_bar_ratio": 0.647,
+        "mean_low_f0_energy": 0.3847,
+        "max_silent_gap_ms": 240.9
+      }
+    },
+    {
+      "id": 57,
+      "word": "ஜூன்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-ஜூன்.wav",
+      "phonotactic_slots": [],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.036,
+        "voicing_bar_ratio": 0.929,
+        "mean_low_f0_energy": 0.5036,
+        "max_silent_gap_ms": 269.9
+      }
+    },
+    {
+      "id": 59,
+      "word": "எதாவது",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-எதாவது.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "தா",
+          "base_grapheme": "த",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.345,
+            0.502
+          ],
+          "slot_voicing_bar_ratio": 0.63,
+          "slot_mean_low_f0_energy": 0.409,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.0776
+        },
+        {
+          "eluttu": "து",
+          "base_grapheme": "த",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.731,
+            0.888
+          ],
+          "slot_voicing_bar_ratio": 0.889,
+          "slot_mean_low_f0_energy": 0.465,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.0416
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.245,
+        "voicing_bar_ratio": 0.726,
+        "mean_low_f0_energy": 0.3763,
+        "max_silent_gap_ms": 232.2
+      }
+    },
+    {
+      "id": 58,
+      "word": "இராகவன்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-இராகவன்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "க",
+          "base_grapheme": "க",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.499,
+            0.659
+          ],
+          "slot_voicing_bar_ratio": 0.467,
+          "slot_mean_low_f0_energy": 0.2067,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1596
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 48000,
+        "duration_seconds": 1.224,
+        "voicing_bar_ratio": 0.714,
+        "mean_low_f0_energy": 0.4414,
+        "max_silent_gap_ms": 309.3
+      }
+    },
+    {
+      "id": 60,
+      "word": "குண்டிகளால்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-குண்டிகளால்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "கு",
+          "base_grapheme": "க",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.203,
+            0.34
+          ],
+          "slot_voicing_bar_ratio": 0.83,
+          "slot_mean_low_f0_energy": 0.513,
+          "slot_silent_closure_ms": 37.7,
+          "slot_mean_rms": 0.0797
+        },
+        {
+          "eluttu": "ண்டி",
+          "base_grapheme": "ட",
+          "context": "Post-Nasal (N_)",
+          "expected_voicing": "Voiced",
+          "slot_time_window_sec": [
+            0.354,
+            0.511
+          ],
+          "slot_voicing_bar_ratio": 1.0,
+          "slot_mean_low_f0_energy": 0.7957,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1273
+        },
+        {
+          "eluttu": "க",
+          "base_grapheme": "க",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.2,
+            0.357
+          ],
+          "slot_voicing_bar_ratio": 0.833,
+          "slot_mean_low_f0_energy": 0.534,
+          "slot_silent_closure_ms": 40.6,
+          "slot_mean_rms": 0.0837
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.341,
+        "voicing_bar_ratio": 0.882,
+        "mean_low_f0_energy": 0.485,
+        "max_silent_gap_ms": 240.9
+      }
+    },
+    {
+      "id": 61,
+      "word": "ஆரம்பத்திடம்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-ஆரம்பத்திடம்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "ம்ப",
+          "base_grapheme": "ப",
+          "context": "Post-Nasal (N_)",
+          "expected_voicing": "Voiced",
+          "slot_time_window_sec": [
+            0.374,
+            0.531
+          ],
+          "slot_voicing_bar_ratio": 0.796,
+          "slot_mean_low_f0_energy": 0.3235,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1776
+        },
+        {
+          "eluttu": "த்தி",
+          "base_grapheme": "த",
+          "context": "Geminate (C_C)",
+          "expected_voicing": "Voiceless Fortis",
+          "slot_time_window_sec": [
+            0.624,
+            0.781
+          ],
+          "slot_voicing_bar_ratio": 0.778,
+          "slot_mean_low_f0_energy": 0.4147,
+          "slot_silent_closure_ms": 63.9,
+          "slot_mean_rms": 0.0826
+        },
+        {
+          "eluttu": "ட",
+          "base_grapheme": "ட",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.958,
+            1.115
+          ],
+          "slot_voicing_bar_ratio": 0.87,
+          "slot_mean_low_f0_energy": 0.3486,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1035
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.434,
+        "voicing_bar_ratio": 0.888,
+        "mean_low_f0_energy": 0.4635,
+        "max_silent_gap_ms": 243.8
+      }
+    },
+    {
+      "id": 63,
+      "word": "ஏசாயா",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-ஏசாயா.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "சா",
+          "base_grapheme": "ச",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.377,
+            0.534
+          ],
+          "slot_voicing_bar_ratio": 0.222,
+          "slot_mean_low_f0_energy": 0.1587,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1792
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.23,
+        "voicing_bar_ratio": 0.439,
+        "mean_low_f0_energy": 0.2,
+        "max_silent_gap_ms": 243.8
+      }
+    },
+    {
+      "id": 62,
+      "word": "அறுவடைகளை",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-அறுவடைகளை.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "று",
+          "base_grapheme": "ற",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.331,
+            0.488
+          ],
+          "slot_voicing_bar_ratio": 0.926,
+          "slot_mean_low_f0_energy": 0.3903,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1491
+        },
+        {
+          "eluttu": "டை",
+          "base_grapheme": "ட",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.668,
+            0.824
+          ],
+          "slot_voicing_bar_ratio": 0.444,
+          "slot_mean_low_f0_energy": 0.2293,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.2315
+        },
+        {
+          "eluttu": "க",
+          "base_grapheme": "க",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.891,
+            1.048
+          ],
+          "slot_voicing_bar_ratio": 0.759,
+          "slot_mean_low_f0_energy": 0.3204,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.0927
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.509,
+        "voicing_bar_ratio": 0.701,
+        "mean_low_f0_energy": 0.2822,
+        "max_silent_gap_ms": 243.8
+      }
+    },
+    {
+      "id": 65,
+      "word": "அவதாரம்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-அவதாரம்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "தா",
+          "base_grapheme": "த",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.493,
+            0.65
+          ],
+          "slot_voicing_bar_ratio": 0.315,
+          "slot_mean_low_f0_energy": 0.1312,
+          "slot_silent_closure_ms": 46.4,
+          "slot_mean_rms": 0.1048
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.407,
+        "voicing_bar_ratio": 0.504,
+        "mean_low_f0_energy": 0.2834,
+        "max_silent_gap_ms": 301.9
+      }
+    },
+    {
+      "id": 64,
+      "word": "கத்திகளால்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-கத்திகளால்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "க",
+          "base_grapheme": "க",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.183,
+            0.319
+          ],
+          "slot_voicing_bar_ratio": 0.66,
+          "slot_mean_low_f0_energy": 0.2971,
+          "slot_silent_closure_ms": 43.5,
+          "slot_mean_rms": 0.1088
+        },
+        {
+          "eluttu": "த்தி",
+          "base_grapheme": "த",
+          "context": "Geminate (C_C)",
+          "expected_voicing": "Voiceless Fortis",
+          "slot_time_window_sec": [
+            0.284,
+            0.441
+          ],
+          "slot_voicing_bar_ratio": 0.944,
+          "slot_mean_low_f0_energy": 0.4554,
+          "slot_silent_closure_ms": 107.4,
+          "slot_mean_rms": 0.0313
+        },
+        {
+          "eluttu": "க",
+          "base_grapheme": "க",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.189,
+            0.345
+          ],
+          "slot_voicing_bar_ratio": 0.685,
+          "slot_mean_low_f0_energy": 0.292,
+          "slot_silent_closure_ms": 49.3,
+          "slot_mean_rms": 0.0969
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.37,
+        "voicing_bar_ratio": 0.854,
+        "mean_low_f0_energy": 0.3695,
+        "max_silent_gap_ms": 220.6
+      }
+    },
+    {
+      "id": 68,
+      "word": "எங்கள்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-எங்கள்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "ங்க",
+          "base_grapheme": "க",
+          "context": "Post-Nasal (N_)",
+          "expected_voicing": "Voiced",
+          "slot_time_window_sec": [
+            0.415,
+            0.572
+          ],
+          "slot_voicing_bar_ratio": 1.0,
+          "slot_mean_low_f0_energy": 0.6009,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1989
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.407,
+        "voicing_bar_ratio": 0.735,
+        "mean_low_f0_energy": 0.3923,
+        "max_silent_gap_ms": 374.4
+      }
+    },
+    {
+      "id": 66,
+      "word": "மகாபாரதம்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-மகாபாரதம்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "கா",
+          "base_grapheme": "க",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.154,
+            0.311
+          ],
+          "slot_voicing_bar_ratio": 1.0,
+          "slot_mean_low_f0_energy": 0.7365,
+          "slot_silent_closure_ms": 37.7,
+          "slot_mean_rms": 0.0447
+        },
+        {
+          "eluttu": "பா",
+          "base_grapheme": "ப",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.461,
+            0.618
+          ],
+          "slot_voicing_bar_ratio": 0.093,
+          "slot_mean_low_f0_energy": 0.077,
+          "slot_silent_closure_ms": 26.1,
+          "slot_mean_rms": 0.1351
+        },
+        {
+          "eluttu": "த",
+          "base_grapheme": "த",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.923,
+            1.08
+          ],
+          "slot_voicing_bar_ratio": 0.37,
+          "slot_mean_low_f0_energy": 0.1141,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1788
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.532,
+        "voicing_bar_ratio": 0.656,
+        "mean_low_f0_energy": 0.3528,
+        "max_silent_gap_ms": 162.5
+      }
+    },
+    {
+      "id": 71,
+      "word": "இயேசு",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-இயேசு.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "சு",
+          "base_grapheme": "ச",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.633,
+            0.789
+          ],
+          "slot_voicing_bar_ratio": 0.0,
+          "slot_mean_low_f0_energy": 0.0003,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1519
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.175,
+        "voicing_bar_ratio": 0.725,
+        "mean_low_f0_energy": 0.3533,
+        "max_silent_gap_ms": 232.2
+      }
+    },
+    {
+      "id": 69,
+      "word": "எண்கோணம்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-எண்கோணம்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "ண்கோ",
+          "base_grapheme": "க",
+          "context": "Post-Nasal (N_)",
+          "expected_voicing": "Voiced",
+          "slot_time_window_sec": [
+            0.322,
+            0.479
+          ],
+          "slot_voicing_bar_ratio": 0.667,
+          "slot_mean_low_f0_energy": 0.358,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1217
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.315,
+        "voicing_bar_ratio": 0.692,
+        "mean_low_f0_energy": 0.3659,
+        "max_silent_gap_ms": 339.6
+      }
+    },
+    {
+      "id": 70,
+      "word": "கீர்த்தி",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-கீர்த்தி.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "கீ",
+          "base_grapheme": "க",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.168,
+            0.305
+          ],
+          "slot_voicing_bar_ratio": 0.553,
+          "slot_mean_low_f0_energy": 0.4307,
+          "slot_silent_closure_ms": 55.1,
+          "slot_mean_rms": 0.0847
+        },
+        {
+          "eluttu": "த்தி",
+          "base_grapheme": "த",
+          "context": "Geminate (C_C)",
+          "expected_voicing": "Voiceless Fortis",
+          "slot_time_window_sec": [
+            0.554,
+            0.711
+          ],
+          "slot_voicing_bar_ratio": 1.0,
+          "slot_mean_low_f0_energy": 0.8394,
+          "slot_silent_closure_ms": 69.7,
+          "slot_mean_rms": 0.0309
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.175,
+        "voicing_bar_ratio": 0.892,
+        "mean_low_f0_energy": 0.5696,
+        "max_silent_gap_ms": 206.1
+      }
+    },
+    {
+      "id": 67,
+      "word": "இருதயத்திலிருந்து",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-இருதயத்திலிருந்து.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "த",
+          "base_grapheme": "த",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.456,
+            0.612
+          ],
+          "slot_voicing_bar_ratio": 0.741,
+          "slot_mean_low_f0_energy": 0.2011,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.2184
+        },
+        {
+          "eluttu": "த்தி",
+          "base_grapheme": "த",
+          "context": "Geminate (C_C)",
+          "expected_voicing": "Voiceless Fortis",
+          "slot_time_window_sec": [
+            0.627,
+            0.784
+          ],
+          "slot_voicing_bar_ratio": 0.796,
+          "slot_mean_low_f0_energy": 0.203,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1564
+        },
+        {
+          "eluttu": "ந்து",
+          "base_grapheme": "த",
+          "context": "Post-Nasal (N_)",
+          "expected_voicing": "Voiced",
+          "slot_time_window_sec": [
+            1.318,
+            1.474
+          ],
+          "slot_voicing_bar_ratio": 1.0,
+          "slot_mean_low_f0_energy": 0.6699,
+          "slot_silent_closure_ms": 5.8,
+          "slot_mean_rms": 0.0274
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.927,
+        "voicing_bar_ratio": 0.824,
+        "mean_low_f0_energy": 0.3682,
+        "max_silent_gap_ms": 232.2
+      }
+    },
+    {
+      "id": 73,
+      "word": "எருசலேம்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-எருசலேம்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "ச",
+          "base_grapheme": "ச",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.525,
+            0.682
+          ],
+          "slot_voicing_bar_ratio": 0.296,
+          "slot_mean_low_f0_energy": 0.1868,
+          "slot_silent_closure_ms": 2.9,
+          "slot_mean_rms": 0.1037
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.204,
+        "voicing_bar_ratio": 0.827,
+        "mean_low_f0_energy": 0.4467,
+        "max_silent_gap_ms": 217.7
+      }
+    },
+    {
+      "id": 75,
+      "word": "குடிநீர்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-குடிநீர்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "கு",
+          "base_grapheme": "க",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.203,
+            0.34
+          ],
+          "slot_voicing_bar_ratio": 0.894,
+          "slot_mean_low_f0_energy": 0.469,
+          "slot_silent_closure_ms": 37.7,
+          "slot_mean_rms": 0.1284
+        },
+        {
+          "eluttu": "டி",
+          "base_grapheme": "ட",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.363,
+            0.52
+          ],
+          "slot_voicing_bar_ratio": 1.0,
+          "slot_mean_low_f0_energy": 0.5312,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1602
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.14,
+        "voicing_bar_ratio": 0.82,
+        "mean_low_f0_energy": 0.4564,
+        "max_silent_gap_ms": 240.9
+      }
+    },
+    {
+      "id": 72,
+      "word": "இறைவனுக்கு",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-இறைவனுக்கு.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "றை",
+          "base_grapheme": "ற",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.315,
+            0.475
+          ],
+          "slot_voicing_bar_ratio": 0.283,
+          "slot_mean_low_f0_energy": 0.1385,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.2051
+        },
+        {
+          "eluttu": "க்கு",
+          "base_grapheme": "க",
+          "context": "Geminate (C_C)",
+          "expected_voicing": "Voiceless Fortis",
+          "slot_time_window_sec": [
+            0.768,
+            0.928
+          ],
+          "slot_voicing_bar_ratio": 0.783,
+          "slot_mean_low_f0_energy": 0.6733,
+          "slot_silent_closure_ms": 77.3,
+          "slot_mean_rms": 0.0217
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 48000,
+        "duration_seconds": 1.48,
+        "voicing_bar_ratio": 0.737,
+        "mean_low_f0_energy": 0.3987,
+        "max_silent_gap_ms": 301.3
+      }
+    },
+    {
+      "id": 74,
+      "word": "தாத்தாவுடைய",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-தாத்தாவுடைய.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "தா",
+          "base_grapheme": "த",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.203,
+            0.34
+          ],
+          "slot_voicing_bar_ratio": 0.298,
+          "slot_mean_low_f0_energy": 0.1596,
+          "slot_silent_closure_ms": 37.7,
+          "slot_mean_rms": 0.0896
+        },
+        {
+          "eluttu": "த்தா",
+          "base_grapheme": "த",
+          "context": "Geminate (C_C)",
+          "expected_voicing": "Voiceless Fortis",
+          "slot_time_window_sec": [
+            0.38,
+            0.537
+          ],
+          "slot_voicing_bar_ratio": 0.685,
+          "slot_mean_low_f0_energy": 0.3697,
+          "slot_silent_closure_ms": 130.6,
+          "slot_mean_rms": 0.0039
+        },
+        {
+          "eluttu": "டை",
+          "base_grapheme": "ட",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.908,
+            1.065
+          ],
+          "slot_voicing_bar_ratio": 0.481,
+          "slot_mean_low_f0_energy": 0.1546,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.0593
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.451,
+        "voicing_bar_ratio": 0.57,
+        "mean_low_f0_energy": 0.2596,
+        "max_silent_gap_ms": 240.9
+      }
+    },
+    {
+      "id": 82,
+      "word": "என்ன",
+      "speaker": "StarlitNocturne",
+      "file_title": "File:LL-Q5885 (tam)-StarlitNocturne-என்ன.wav",
+      "phonotactic_slots": [],
+      "acoustic_features": {
+        "sample_rate": 16000,
+        "duration_seconds": 0.918,
+        "voicing_bar_ratio": 0.773,
+        "mean_low_f0_energy": 0.3831,
+        "max_silent_gap_ms": 224.0
+      }
+    },
+    {
+      "id": 77,
+      "word": "மற்ற",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-மற்ற.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "ற்ற",
+          "base_grapheme": "ற",
+          "context": "Geminate (C_C)",
+          "expected_voicing": "Voiceless Fortis",
+          "slot_time_window_sec": [
+            0.403,
+            0.56
+          ],
+          "slot_voicing_bar_ratio": 0.667,
+          "slot_mean_low_f0_energy": 0.2705,
+          "slot_silent_closure_ms": 84.2,
+          "slot_mean_rms": 0.0268
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.225,
+        "voicing_bar_ratio": 0.568,
+        "mean_low_f0_energy": 0.298,
+        "max_silent_gap_ms": 226.4
+      }
+    },
+    {
+      "id": 76,
+      "word": "சந்தோஷம்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-சந்தோஷம்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "ச",
+          "base_grapheme": "ச",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.194,
+            0.331
+          ],
+          "slot_voicing_bar_ratio": 0.213,
+          "slot_mean_low_f0_energy": 0.0869,
+          "slot_silent_closure_ms": 37.7,
+          "slot_mean_rms": 0.0441
+        },
+        {
+          "eluttu": "ந்தோ",
+          "base_grapheme": "த",
+          "context": "Post-Nasal (N_)",
+          "expected_voicing": "Voiced",
+          "slot_time_window_sec": [
+            0.311,
+            0.467
+          ],
+          "slot_voicing_bar_ratio": 0.5,
+          "slot_mean_low_f0_energy": 0.2978,
+          "slot_silent_closure_ms": 11.6,
+          "slot_mean_rms": 0.111
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.225,
+        "voicing_bar_ratio": 0.729,
+        "mean_low_f0_energy": 0.3982,
+        "max_silent_gap_ms": 232.2
+      }
+    },
+    {
+      "id": 83,
+      "word": "ஒல்லி",
+      "speaker": "StarlitNocturne",
+      "file_title": "File:LL-Q5885 (tam)-StarlitNocturne-ஒல்லி.wav",
+      "phonotactic_slots": [],
+      "acoustic_features": {
+        "sample_rate": 16000,
+        "duration_seconds": 0.984,
+        "voicing_bar_ratio": 0.731,
+        "mean_low_f0_energy": 0.4126,
+        "max_silent_gap_ms": 232.0
+      }
+    },
+    {
+      "id": 80,
+      "word": "வ",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-வ.wav",
+      "phonotactic_slots": [],
+      "acoustic_features": {
+        "sample_rate": 48000,
+        "duration_seconds": 0.883,
+        "voicing_bar_ratio": 0.56,
+        "mean_low_f0_energy": 0.2895,
+        "max_silent_gap_ms": 336.0
+      }
+    },
+    {
+      "id": 79,
+      "word": "ஆழிகளை",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-ஆழிகளை.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "க",
+          "base_grapheme": "க",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.688,
+            0.845
+          ],
+          "slot_voicing_bar_ratio": 0.685,
+          "slot_mean_low_f0_energy": 0.2925,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.0959
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.233,
+        "voicing_bar_ratio": 0.679,
+        "mean_low_f0_energy": 0.3143,
+        "max_silent_gap_ms": 232.2
+      }
+    },
+    {
+      "id": 78,
+      "word": "கங்காரு",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-கங்காரு.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "க",
+          "base_grapheme": "க",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.206,
+            0.342
+          ],
+          "slot_voicing_bar_ratio": 0.362,
+          "slot_mean_low_f0_energy": 0.2598,
+          "slot_silent_closure_ms": 37.7,
+          "slot_mean_rms": 0.1249
+        },
+        {
+          "eluttu": "ங்கா",
+          "base_grapheme": "க",
+          "context": "Post-Nasal (N_)",
+          "expected_voicing": "Voiced",
+          "slot_time_window_sec": [
+            0.351,
+            0.508
+          ],
+          "slot_voicing_bar_ratio": 0.944,
+          "slot_mean_low_f0_energy": 0.4384,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1415
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.364,
+        "voicing_bar_ratio": 0.716,
+        "mean_low_f0_energy": 0.389,
+        "max_silent_gap_ms": 243.8
+      }
+    },
+    {
+      "id": 84,
+      "word": "பல்",
+      "speaker": "StarlitNocturne",
+      "file_title": "File:LL-Q5885 (tam)-StarlitNocturne-பல்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "ப",
+          "base_grapheme": "ப",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.184,
+            0.32
+          ],
+          "slot_voicing_bar_ratio": 0.0,
+          "slot_mean_low_f0_energy": 0.0497,
+          "slot_silent_closure_ms": 40.0,
+          "slot_mean_rms": 0.1187
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 16000,
+        "duration_seconds": 0.832,
+        "voicing_bar_ratio": 0.28,
+        "mean_low_f0_energy": 0.1654,
+        "max_silent_gap_ms": 224.0
+      }
+    },
+    {
+      "id": 81,
+      "word": "கோட்டூர்புரம்",
+      "speaker": "Manimaran96",
+      "file_title": "File:LL-Q5885 (tam)-Manimaran96-கோட்டூர்புரம்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "கோ",
+          "base_grapheme": "க",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.209,
+            0.345
+          ],
+          "slot_voicing_bar_ratio": 0.66,
+          "slot_mean_low_f0_energy": 0.2359,
+          "slot_silent_closure_ms": 37.7,
+          "slot_mean_rms": 0.0908
+        },
+        {
+          "eluttu": "ட்டூ",
+          "base_grapheme": "ட",
+          "context": "Geminate (C_C)",
+          "expected_voicing": "Voiceless Fortis",
+          "slot_time_window_sec": [
+            0.351,
+            0.508
+          ],
+          "slot_voicing_bar_ratio": 1.0,
+          "slot_mean_low_f0_energy": 0.6832,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1543
+        },
+        {
+          "eluttu": "பு",
+          "base_grapheme": "ப",
+          "context": "Post-Consonantal / Other",
+          "expected_voicing": "Voiceless Default",
+          "slot_time_window_sec": [
+            0.789,
+            0.946
+          ],
+          "slot_voicing_bar_ratio": 1.0,
+          "slot_mean_low_f0_energy": 0.5651,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.0711
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.5,
+        "voicing_bar_ratio": 0.953,
+        "mean_low_f0_energy": 0.5149,
+        "max_silent_gap_ms": 284.4
+      }
+    },
+    {
+      "id": 89,
+      "word": "சன்னல்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-சன்னல்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "ச",
+          "base_grapheme": "ச",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.189,
+            0.325
+          ],
+          "slot_voicing_bar_ratio": 0.064,
+          "slot_mean_low_f0_energy": 0.0278,
+          "slot_silent_closure_ms": 37.7,
+          "slot_mean_rms": 0.0403
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.097,
+        "voicing_bar_ratio": 0.694,
+        "mean_low_f0_energy": 0.3196,
+        "max_silent_gap_ms": 238.0
+      }
+    },
+    {
+      "id": 87,
+      "word": "செல்வி",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-செல்வி.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "செ",
+          "base_grapheme": "ச",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.16,
+            0.296
+          ],
+          "slot_voicing_bar_ratio": 0.128,
+          "slot_mean_low_f0_energy": 0.0634,
+          "slot_silent_closure_ms": 37.7,
+          "slot_mean_rms": 0.0314
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.167,
+        "voicing_bar_ratio": 0.733,
+        "mean_low_f0_energy": 0.4343,
+        "max_silent_gap_ms": 200.3
+      }
+    },
+    {
+      "id": 90,
+      "word": "அவளை",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-அவளை.wav",
+      "phonotactic_slots": [],
+      "acoustic_features": {
+        "sample_rate": 48000,
+        "duration_seconds": 1.139,
+        "voicing_bar_ratio": 0.617,
+        "mean_low_f0_energy": 0.3033,
+        "max_silent_gap_ms": 277.3
+      }
+    },
+    {
+      "id": 85,
+      "word": "எட்டாம்படை",
+      "speaker": "Manimaran96",
+      "file_title": "File:LL-Q5885 (tam)-Manimaran96-எட்டாம்படை.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "ட்டா",
+          "base_grapheme": "ட",
+          "context": "Geminate (C_C)",
+          "expected_voicing": "Voiceless Fortis",
+          "slot_time_window_sec": [
+            0.284,
+            0.441
+          ],
+          "slot_voicing_bar_ratio": 0.907,
+          "slot_mean_low_f0_energy": 0.4089,
+          "slot_silent_closure_ms": 55.1,
+          "slot_mean_rms": 0.0445
+        },
+        {
+          "eluttu": "ம்ப",
+          "base_grapheme": "ப",
+          "context": "Post-Nasal (N_)",
+          "expected_voicing": "Voiced",
+          "slot_time_window_sec": [
+            0.601,
+            0.758
+          ],
+          "slot_voicing_bar_ratio": 1.0,
+          "slot_mean_low_f0_energy": 0.6659,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.0991
+        },
+        {
+          "eluttu": "டை",
+          "base_grapheme": "ட",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.839,
+            0.996
+          ],
+          "slot_voicing_bar_ratio": 0.778,
+          "slot_mean_low_f0_energy": 0.4036,
+          "slot_silent_closure_ms": 8.7,
+          "slot_mean_rms": 0.0616
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.315,
+        "voicing_bar_ratio": 0.913,
+        "mean_low_f0_energy": 0.4264,
+        "max_silent_gap_ms": 261.2
+      }
+    },
+    {
+      "id": 91,
+      "word": "இலங்கை",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-இலங்கை.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "ங்கை",
+          "base_grapheme": "க",
+          "context": "Post-Nasal (N_)",
+          "expected_voicing": "Voiced",
+          "slot_time_window_sec": [
+            0.406,
+            0.563
+          ],
+          "slot_voicing_bar_ratio": 0.556,
+          "slot_mean_low_f0_energy": 0.306,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1792
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.222,
+        "voicing_bar_ratio": 0.733,
+        "mean_low_f0_energy": 0.4224,
+        "max_silent_gap_ms": 339.6
+      }
+    },
+    {
+      "id": 86,
+      "word": "ராமநாதன்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-ராமநாதன்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "த",
+          "base_grapheme": "த",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.775,
+            0.932
+          ],
+          "slot_voicing_bar_ratio": 0.741,
+          "slot_mean_low_f0_energy": 0.3833,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.0664
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.352,
+        "voicing_bar_ratio": 0.842,
+        "mean_low_f0_energy": 0.4152,
+        "max_silent_gap_ms": 223.5
+      }
+    },
+    {
+      "id": 88,
+      "word": "பட்டாம்பூச்சி",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-பட்டாம்பூச்சி.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "ப",
+          "base_grapheme": "ப",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.282,
+            0.418
+          ],
+          "slot_voicing_bar_ratio": 0.362,
+          "slot_mean_low_f0_energy": 0.1385,
+          "slot_silent_closure_ms": 37.7,
+          "slot_mean_rms": 0.096
+        },
+        {
+          "eluttu": "ட்டா",
+          "base_grapheme": "ட",
+          "context": "Geminate (C_C)",
+          "expected_voicing": "Voiceless Fortis",
+          "slot_time_window_sec": [
+            0.357,
+            0.514
+          ],
+          "slot_voicing_bar_ratio": 0.241,
+          "slot_mean_low_f0_energy": 0.1008,
+          "slot_silent_closure_ms": 55.1,
+          "slot_mean_rms": 0.0478
+        },
+        {
+          "eluttu": "ம்பூ",
+          "base_grapheme": "ப",
+          "context": "Post-Nasal (N_)",
+          "expected_voicing": "Voiced",
+          "slot_time_window_sec": [
+            0.67,
+            0.827
+          ],
+          "slot_voicing_bar_ratio": 0.889,
+          "slot_mean_low_f0_energy": 0.6737,
+          "slot_silent_closure_ms": 37.7,
+          "slot_mean_rms": 0.0443
+        },
+        {
+          "eluttu": "ச்சி",
+          "base_grapheme": "ச",
+          "context": "Geminate (C_C)",
+          "expected_voicing": "Voiceless Fortis",
+          "slot_time_window_sec": [
+            0.987,
+            1.144
+          ],
+          "slot_voicing_bar_ratio": 0.444,
+          "slot_mean_low_f0_energy": 0.3046,
+          "slot_silent_closure_ms": 49.3,
+          "slot_mean_rms": 0.0173
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.593,
+        "voicing_bar_ratio": 0.575,
+        "mean_low_f0_energy": 0.3612,
+        "max_silent_gap_ms": 319.3
+      }
+    },
+    {
+      "id": 92,
+      "word": "இவை",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-இவை.wav",
+      "phonotactic_slots": [],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.129,
+        "voicing_bar_ratio": 0.805,
+        "mean_low_f0_energy": 0.4977,
+        "max_silent_gap_ms": 255.4
+      }
+    },
+    {
+      "id": 98,
+      "word": "இனி",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-இனி.wav",
+      "phonotactic_slots": [],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.007,
+        "voicing_bar_ratio": 0.909,
+        "mean_low_f0_energy": 0.4923,
+        "max_silent_gap_ms": 235.1
+      }
+    },
+    {
+      "id": 95,
+      "word": "இட்டாநகர்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-இட்டாநகர்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "ட்டா",
+          "base_grapheme": "ட",
+          "context": "Geminate (C_C)",
+          "expected_voicing": "Voiceless Fortis",
+          "slot_time_window_sec": [
+            0.299,
+            0.456
+          ],
+          "slot_voicing_bar_ratio": 0.889,
+          "slot_mean_low_f0_energy": 0.5045,
+          "slot_silent_closure_ms": 130.6,
+          "slot_mean_rms": 0.006
+        },
+        {
+          "eluttu": "க",
+          "base_grapheme": "க",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.758,
+            0.914
+          ],
+          "slot_voicing_bar_ratio": 0.778,
+          "slot_mean_low_f0_energy": 0.3678,
+          "slot_silent_closure_ms": 8.7,
+          "slot_mean_rms": 0.0408
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.291,
+        "voicing_bar_ratio": 0.684,
+        "mean_low_f0_energy": 0.331,
+        "max_silent_gap_ms": 240.9
+      }
+    },
+    {
+      "id": 99,
+      "word": "எது",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-எது.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "து",
+          "base_grapheme": "த",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.377,
+            0.534
+          ],
+          "slot_voicing_bar_ratio": 1.0,
+          "slot_mean_low_f0_energy": 0.6968,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.0944
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 0.876,
+        "voicing_bar_ratio": 0.886,
+        "mean_low_f0_energy": 0.4933,
+        "max_silent_gap_ms": 229.3
+      }
+    },
+    {
+      "id": 93,
+      "word": "அகரமுதலி",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-அகரமுதலி.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "க",
+          "base_grapheme": "க",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.351,
+            0.508
+          ],
+          "slot_voicing_bar_ratio": 0.667,
+          "slot_mean_low_f0_energy": 0.4192,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1067
+        },
+        {
+          "eluttu": "த",
+          "base_grapheme": "த",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.853,
+            1.01
+          ],
+          "slot_voicing_bar_ratio": 0.87,
+          "slot_mean_low_f0_energy": 0.5147,
+          "slot_silent_closure_ms": 37.7,
+          "slot_mean_rms": 0.0345
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.405,
+        "voicing_bar_ratio": 0.739,
+        "mean_low_f0_energy": 0.4385,
+        "max_silent_gap_ms": 240.9
+      }
+    },
+    {
+      "id": 96,
+      "word": "நிறுவனத்தின்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-நிறுவனத்தின்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "று",
+          "base_grapheme": "ற",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.36,
+            0.517
+          ],
+          "slot_voicing_bar_ratio": 0.759,
+          "slot_mean_low_f0_energy": 0.2915,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1837
+        },
+        {
+          "eluttu": "த்தி",
+          "base_grapheme": "த",
+          "context": "Geminate (C_C)",
+          "expected_voicing": "Voiceless Fortis",
+          "slot_time_window_sec": [
+            0.697,
+            0.853
+          ],
+          "slot_voicing_bar_ratio": 0.778,
+          "slot_mean_low_f0_energy": 0.4392,
+          "slot_silent_closure_ms": 26.1,
+          "slot_mean_rms": 0.0513
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.436,
+        "voicing_bar_ratio": 0.849,
+        "mean_low_f0_energy": 0.4683,
+        "max_silent_gap_ms": 229.3
+      }
+    },
+    {
+      "id": 97,
+      "word": "எட்டுத்தொகை",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-எட்டுத்தொகை.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "ட்டு",
+          "base_grapheme": "ட",
+          "context": "Geminate (C_C)",
+          "expected_voicing": "Voiceless Fortis",
+          "slot_time_window_sec": [
+            0.238,
+            0.395
+          ],
+          "slot_voicing_bar_ratio": 0.796,
+          "slot_mean_low_f0_energy": 0.436,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.1734
+        },
+        {
+          "eluttu": "த்தொ",
+          "base_grapheme": "த",
+          "context": "Geminate (C_C)",
+          "expected_voicing": "Voiceless Fortis",
+          "slot_time_window_sec": [
+            0.589,
+            0.746
+          ],
+          "slot_voicing_bar_ratio": 0.963,
+          "slot_mean_low_f0_energy": 0.5474,
+          "slot_silent_closure_ms": 55.1,
+          "slot_mean_rms": 0.0947
+        },
+        {
+          "eluttu": "கை",
+          "base_grapheme": "க",
+          "context": "Intervocalic (V_V)",
+          "expected_voicing": "Voiced / Lenis",
+          "slot_time_window_sec": [
+            0.94,
+            1.097
+          ],
+          "slot_voicing_bar_ratio": 0.241,
+          "slot_mean_low_f0_energy": 0.1163,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.0929
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.393,
+        "voicing_bar_ratio": 0.804,
+        "mean_low_f0_energy": 0.4126,
+        "max_silent_gap_ms": 223.5
+      }
+    },
+    {
+      "id": 94,
+      "word": "பெண்டாட்டியால்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-பெண்டாட்டியால்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "பெ",
+          "base_grapheme": "ப",
+          "context": "Word-Initial (#_)",
+          "expected_voicing": "Voiceless",
+          "slot_time_window_sec": [
+            0.2,
+            0.337
+          ],
+          "slot_voicing_bar_ratio": 0.979,
+          "slot_mean_low_f0_energy": 0.3005,
+          "slot_silent_closure_ms": 37.7,
+          "slot_mean_rms": 0.0943
+        },
+        {
+          "eluttu": "ண்டா",
+          "base_grapheme": "ட",
+          "context": "Post-Nasal (N_)",
+          "expected_voicing": "Voiced",
+          "slot_time_window_sec": [
+            0.369,
+            0.525
+          ],
+          "slot_voicing_bar_ratio": 1.0,
+          "slot_mean_low_f0_energy": 0.9071,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.0687
+        },
+        {
+          "eluttu": "ட்டி",
+          "base_grapheme": "ட",
+          "context": "Geminate (C_C)",
+          "expected_voicing": "Voiceless Fortis",
+          "slot_time_window_sec": [
+            0.705,
+            0.862
+          ],
+          "slot_voicing_bar_ratio": 0.759,
+          "slot_mean_low_f0_energy": 0.3793,
+          "slot_silent_closure_ms": 121.9,
+          "slot_mean_rms": 0.0064
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.596,
+        "voicing_bar_ratio": 0.734,
+        "mean_low_f0_energy": 0.4199,
+        "max_silent_gap_ms": 238.0
+      }
+    },
+    {
+      "id": 100,
+      "word": "வர்தமானன்",
+      "speaker": "Sriveenkat",
+      "file_title": "File:LL-Q5885 (tam)-Sriveenkat-வர்தமானன்.wav",
+      "phonotactic_slots": [
+        {
+          "eluttu": "த",
+          "base_grapheme": "த",
+          "context": "Post-Consonantal / Other",
+          "expected_voicing": "Voiceless Default",
+          "slot_time_window_sec": [
+            0.392,
+            0.549
+          ],
+          "slot_voicing_bar_ratio": 0.833,
+          "slot_mean_low_f0_energy": 0.689,
+          "slot_silent_closure_ms": 0.0,
+          "slot_mean_rms": 0.0982
+        }
+      ],
+      "acoustic_features": {
+        "sample_rate": 44100,
+        "duration_seconds": 1.274,
+        "voicing_bar_ratio": 0.79,
+        "mean_low_f0_energy": 0.563,
+        "max_silent_gap_ms": 194.5
+      }
+    }
+  ]
+}

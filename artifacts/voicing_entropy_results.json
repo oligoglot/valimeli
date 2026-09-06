@@ -1,0 +1,98 @@
+{
+  "tam": {
+    "language": "tam",
+    "total_words_evaluated": 150000,
+    "aligned_words": 142221,
+    "word_alignment_rate_percent": 94.81,
+    "total_plosive_tokens": 349981,
+    "labelled_plosive_tokens": 334132,
+    "plosive_coverage_percent": 95.47,
+    "unconditioned_entropy_bits": 0.8066,
+    "conditional_entropy_bits": 0.6705,
+    "mutual_information_bits": 0.1361,
+    "entropy_reduction_percent": 16.87,
+    "argmax_accuracy_always_voiceless_percent": 75.29,
+    "argmax_accuracy_context_rules_percent": 75.29,
+    "argmax_error_reduction_gain_percent": 0.0,
+    "contexts": {
+      "WORD_INITIAL": {
+        "entropy_bits": 0.5135,
+        "sample_count": 70139,
+        "p_voiced": 0.1145,
+        "p_voiceless": 0.8855
+      },
+      "GEMINATE": {
+        "entropy_bits": 0.0701,
+        "sample_count": 70338,
+        "p_voiced": 0.0084,
+        "p_voiceless": 0.9916
+      },
+      "POST_CONS": {
+        "entropy_bits": 0.7741,
+        "sample_count": 22692,
+        "p_voiced": 0.2277,
+        "p_voiceless": 0.7723
+      },
+      "INTERVOCALIC": {
+        "entropy_bits": 0.9601,
+        "sample_count": 133930,
+        "p_voiced": 0.383,
+        "p_voiceless": 0.617
+      },
+      "POST_NASAL": {
+        "entropy_bits": 0.9977,
+        "sample_count": 37033,
+        "p_voiced": 0.4716,
+        "p_voiceless": 0.5284
+      }
+    }
+  },
+  "mal": {
+    "language": "mal",
+    "total_words_evaluated": 150000,
+    "aligned_words": 97965,
+    "word_alignment_rate_percent": 65.31,
+    "total_plosive_tokens": 253932,
+    "labelled_plosive_tokens": 181655,
+    "plosive_coverage_percent": 71.54,
+    "unconditioned_entropy_bits": 0.5509,
+    "conditional_entropy_bits": 0.3922,
+    "mutual_information_bits": 0.1587,
+    "entropy_reduction_percent": 28.81,
+    "argmax_accuracy_always_voiceless_percent": 87.24,
+    "argmax_accuracy_context_rules_percent": 87.24,
+    "argmax_error_reduction_gain_percent": 0.0,
+    "contexts": {
+      "WORD_INITIAL": {
+        "entropy_bits": 0.0125,
+        "sample_count": 35235,
+        "p_voiced": 0.0011,
+        "p_voiceless": 0.9989
+      },
+      "GEMINATE": {
+        "entropy_bits": 0.0134,
+        "sample_count": 53437,
+        "p_voiced": 0.0012,
+        "p_voiceless": 0.9988
+      },
+      "POST_CONS": {
+        "entropy_bits": 0.0588,
+        "sample_count": 4992,
+        "p_voiced": 0.0068,
+        "p_voiceless": 0.9932
+      },
+      "INTERVOCALIC": {
+        "entropy_bits": 0.7506,
+        "sample_count": 72934,
+        "p_voiced": 0.2148,
+        "p_voiceless": 0.7852
+      },
+      "POST_NASAL": {
+        "entropy_bits": 0.9997,
+        "sample_count": 15057,
+        "p_voiced": 0.4901,
+        "p_voiceless": 0.5099
+      }
+    }
+  }
+}

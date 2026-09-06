@@ -1,0 +1,27 @@
+{
+  "WORD_INITIAL": {
+    "n": 5130,
+    "p_voiceless": 85.19,
+    "p_voiced": 14.81
+  },
+  "GEMINATE": {
+    "n": 1980,
+    "p_voiceless": 97.68,
+    "p_voiced": 2.32
+  },
+  "POST_CONS": {
+    "n": 516,
+    "p_voiceless": 83.33,
+    "p_voiced": 16.67
+  },
+  "INTERVOCALIC": {
+    "n": 4208,
+    "p_voiceless": 67.51,
+    "p_voiced": 32.49
+  },
+  "POST_NASAL": {
+    "n": 1678,
+    "p_voiceless": 36.0,
+    "p_voiced": 64.0
+  }
+}

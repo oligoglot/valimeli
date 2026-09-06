@@ -1,0 +1,87 @@
+{
+  "corpus": "Wikimedia Commons / Lingua Libre Tamil Spoken Speech",
+  "total_analyzed_waveforms": 5325,
+  "total_plosive_slots": 12435,
+  "acoustic_voicing_entropy": {
+    "H_V_unconditional_bits": 0.9906,
+    "H_V_given_C_bits": 0.7555,
+    "I_V_C_mutual_info_bits": 0.2351,
+    "entropy_reduction_pct": 23.73,
+    "unconditional_p_voiced": 0.4429,
+    "phonotactic_rule_accuracy_pct": 70.29
+  },
+  "per_context_distributions": {
+    "Coda / Pure Consonant": {
+      "n_slots": 519,
+      "n_voiced": 211,
+      "n_voiceless": 308,
+      "p_voiced": 0.4066,
+      "entropy_bits": 0.9747,
+      "context_weight": 0.0417,
+      "mean_vb_ratio": 0.684,
+      "mean_low_f0": 0.3837,
+      "mean_closure_ms": 37.0,
+      "phonological_match": true
+    },
+    "Geminate (C_C)": {
+      "n_slots": 2386,
+      "n_voiced": 721,
+      "n_voiceless": 1665,
+      "p_voiced": 0.3022,
+      "entropy_bits": 0.8839,
+      "context_weight": 0.1919,
+      "mean_vb_ratio": 0.702,
+      "mean_low_f0": 0.4065,
+      "mean_closure_ms": 50.5,
+      "phonological_match": true
+    },
+    "Intervocalic (V_V)": {
+      "n_slots": 5566,
+      "n_voiced": 3160,
+      "n_voiceless": 2406,
+      "p_voiced": 0.5677,
+      "entropy_bits": 0.9867,
+      "context_weight": 0.4476,
+      "mean_vb_ratio": 0.654,
+      "mean_low_f0": 0.3727,
+      "mean_closure_ms": 18.8,
+      "phonological_match": true
+    },
+    "Post-Consonantal / Other": {
+      "n_slots": 326,
+      "n_voiced": 127,
+      "n_voiceless": 199,
+      "p_voiced": 0.3896,
+      "entropy_bits": 0.9645,
+      "context_weight": 0.0262,
+      "mean_vb_ratio": 0.601,
+      "mean_low_f0": 0.3299,
+      "mean_closure_ms": 34.6,
+      "phonological_match": true
+    },
+    "Post-Nasal (N_)": {
+      "n_slots": 1507,
+      "n_voiced": 1283,
+      "n_voiceless": 224,
+      "p_voiced": 0.8514,
+      "entropy_bits": 0.6064,
+      "context_weight": 0.1212,
+      "mean_vb_ratio": 0.788,
+      "mean_low_f0": 0.5053,
+      "mean_closure_ms": 4.7,
+      "phonological_match": true
+    },
+    "Word-Initial (#_)": {
+      "n_slots": 2131,
+      "n_voiced": 6,
+      "n_voiceless": 2125,
+      "p_voiced": 0.0028,
+      "entropy_bits": 0.0279,
+      "context_weight": 0.1714,
+      "mean_vb_ratio": 0.483,
+      "mean_low_f0": 0.267,
+      "mean_closure_ms": 44.0,
+      "phonological_match": true
+    }
+  }
+}

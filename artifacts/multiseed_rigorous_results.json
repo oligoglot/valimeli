@@ -1,0 +1,245 @@
+{
+  "metadata": {
+    "git_commit": "b2057b8a0e0a2da0ed3a5a6dbd285b45e69b7d11",
+    "git_dirty": false,
+    "pytorch_version": "2.13.0",
+    "python_version": "3.14.6",
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "scales": [
+      25000
+    ],
+    "timestamp": "2026-09-05 17:09:59"
+  },
+  "summary": {
+    "25k": {
+      "tam": {
+        "A0": {
+          "mean_em": 25.21,
+          "std_em": 1.15,
+          "mean_cer": 28.49,
+          "mean_native_em": 30.69,
+          "runs_em": [
+            26.8,
+            24.11,
+            24.72
+          ]
+        },
+        "A1-MT": {
+          "mean_em": 25.07,
+          "std_em": 1.08,
+          "mean_cer": 28.52,
+          "mean_native_em": 30.22,
+          "runs_em": [
+            26.6,
+            24.28,
+            24.33
+          ]
+        },
+        "delta_em": -0.14
+      },
+      "mal": {
+        "A0": {
+          "mean_em": 18.86,
+          "std_em": 0.96,
+          "mean_cer": 32.71,
+          "mean_native_em": 24.86,
+          "runs_em": [
+            19.24,
+            19.79,
+            17.54
+          ]
+        },
+        "A1-MT": {
+          "mean_em": 19.0,
+          "std_em": 1.17,
+          "mean_cer": 32.89,
+          "mean_native_em": 25.26,
+          "runs_em": [
+            19.28,
+            20.28,
+            17.45
+          ]
+        },
+        "delta_em": 0.15
+      }
+    }
+  },
+  "mcnemar_paired_tests": {
+    "25k": {
+      "tam": {
+        "contingency_matrix": {
+          "n00": 7617,
+          "n01_A1_wins": 800,
+          "n10_A0_wins": 823,
+          "n11": 2259
+        },
+        "discordant_total": 1623,
+        "mcnemar_chi2": 0.2982,
+        "exact_mcnemar_p_value": 0.585018,
+        "net_gain": -23
+      },
+      "mal": {
+        "contingency_matrix": {
+          "n00": 9239,
+          "n01_A1_wins": 817,
+          "n10_A0_wins": 811,
+          "n11": 1584
+        },
+        "discordant_total": 1628,
+        "mcnemar_chi2": 0.0154,
+        "exact_mcnemar_p_value": 0.901383,
+        "net_gain": 6
+      }
+    }
+  },
+  "all_individual_runs": [
+    {
+      "lang": "tam",
+      "arm": "A0",
+      "scale": 25000,
+      "seed": 42,
+      "duration_seconds": 130.9,
+      "test_em": 26.8,
+      "test_cer": 27.57,
+      "native_em": 32.92,
+      "named_entities_em": 17.79,
+      "prediction_file": "/Users/slakshmanan/Playspace/Gemini/valimeli/artifacts/predictions/predictions_tam_A0_25k_seed42.jsonl"
+    },
+    {
+      "lang": "tam",
+      "arm": "A1-MT",
+      "scale": 25000,
+      "seed": 42,
+      "duration_seconds": 193.6,
+      "test_em": 26.6,
+      "test_cer": 27.96,
+      "native_em": 31.97,
+      "named_entities_em": 18.7,
+      "prediction_file": "/Users/slakshmanan/Playspace/Gemini/valimeli/artifacts/predictions/predictions_tam_A1-MT_25k_seed42.jsonl"
+    },
+    {
+      "lang": "tam",
+      "arm": "A0",
+      "scale": 25000,
+      "seed": 43,
+      "duration_seconds": 169.3,
+      "test_em": 24.11,
+      "test_cer": 28.95,
+      "native_em": 29.02,
+      "named_entities_em": 16.87,
+      "prediction_file": "/Users/slakshmanan/Playspace/Gemini/valimeli/artifacts/predictions/predictions_tam_A0_25k_seed43.jsonl"
+    },
+    {
+      "lang": "tam",
+      "arm": "A1-MT",
+      "scale": 25000,
+      "seed": 43,
+      "duration_seconds": 162.5,
+      "test_em": 24.28,
+      "test_cer": 28.74,
+      "native_em": 29.27,
+      "named_entities_em": 16.94,
+      "prediction_file": "/Users/slakshmanan/Playspace/Gemini/valimeli/artifacts/predictions/predictions_tam_A1-MT_25k_seed43.jsonl"
+    },
+    {
+      "lang": "tam",
+      "arm": "A0",
+      "scale": 25000,
+      "seed": 44,
+      "duration_seconds": 161.2,
+      "test_em": 24.72,
+      "test_cer": 28.94,
+      "native_em": 30.13,
+      "named_entities_em": 16.74,
+      "prediction_file": "/Users/slakshmanan/Playspace/Gemini/valimeli/artifacts/predictions/predictions_tam_A0_25k_seed44.jsonl"
+    },
+    {
+      "lang": "tam",
+      "arm": "A1-MT",
+      "scale": 25000,
+      "seed": 44,
+      "duration_seconds": 159.4,
+      "test_em": 24.33,
+      "test_cer": 28.87,
+      "native_em": 29.42,
+      "named_entities_em": 16.85,
+      "prediction_file": "/Users/slakshmanan/Playspace/Gemini/valimeli/artifacts/predictions/predictions_tam_A1-MT_25k_seed44.jsonl"
+    },
+    {
+      "lang": "mal",
+      "arm": "A0",
+      "scale": 25000,
+      "seed": 42,
+      "duration_seconds": 174.7,
+      "test_em": 19.24,
+      "test_cer": 31.54,
+      "native_em": 25.61,
+      "named_entities_em": 14.08,
+      "prediction_file": "/Users/slakshmanan/Playspace/Gemini/valimeli/artifacts/predictions/predictions_mal_A0_25k_seed42.jsonl"
+    },
+    {
+      "lang": "mal",
+      "arm": "A1-MT",
+      "scale": 25000,
+      "seed": 42,
+      "duration_seconds": 173.6,
+      "test_em": 19.28,
+      "test_cer": 32.7,
+      "native_em": 25.7,
+      "named_entities_em": 14.09,
+      "prediction_file": "/Users/slakshmanan/Playspace/Gemini/valimeli/artifacts/predictions/predictions_mal_A1-MT_25k_seed42.jsonl"
+    },
+    {
+      "lang": "mal",
+      "arm": "A0",
+      "scale": 25000,
+      "seed": 43,
+      "duration_seconds": 179.7,
+      "test_em": 19.79,
+      "test_cer": 31.87,
+      "native_em": 25.97,
+      "named_entities_em": 14.79,
+      "prediction_file": "/Users/slakshmanan/Playspace/Gemini/valimeli/artifacts/predictions/predictions_mal_A0_25k_seed43.jsonl"
+    },
+    {
+      "lang": "mal",
+      "arm": "A1-MT",
+      "scale": 25000,
+      "seed": 43,
+      "duration_seconds": 178.4,
+      "test_em": 20.28,
+      "test_cer": 31.9,
+      "native_em": 27.02,
+      "named_entities_em": 14.82,
+      "prediction_file": "/Users/slakshmanan/Playspace/Gemini/valimeli/artifacts/predictions/predictions_mal_A1-MT_25k_seed43.jsonl"
+    },
+    {
+      "lang": "mal",
+      "arm": "A0",
+      "scale": 25000,
+      "seed": 44,
+      "duration_seconds": 179.7,
+      "test_em": 17.54,
+      "test_cer": 34.73,
+      "native_em": 23.0,
+      "named_entities_em": 13.12,
+      "prediction_file": "/Users/slakshmanan/Playspace/Gemini/valimeli/artifacts/predictions/predictions_mal_A0_25k_seed44.jsonl"
+    },
+    {
+      "lang": "mal",
+      "arm": "A1-MT",
+      "scale": 25000,
+      "seed": 44,
+      "duration_seconds": 176.5,
+      "test_em": 17.45,
+      "test_cer": 34.06,
+      "native_em": 23.06,
+      "named_entities_em": 12.92,
+      "prediction_file": "/Users/slakshmanan/Playspace/Gemini/valimeli/artifacts/predictions/predictions_mal_A1-MT_25k_seed44.jsonl"
+    }
+  ]
+}

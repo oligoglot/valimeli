@@ -1,0 +1,20 @@
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrrrrr}
+\toprule
+& \multicolumn{2}{c}{\textbf{Tamil (Dakshina)}} & \multicolumn{2}{c}{\textbf{Malayalam}} & \textbf{Tamil Wild} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-6}
+\textbf{Context} & \textbf{Split slots} & \textbf{\%} & \textbf{Split slots} & \textbf{\%} & \textbf{\% Voiced} \\
+\midrule
+Word-initial & 855/8,328 & 10.27 & 21/3,555 & 0.59 & 14.81 \\
+Geminate & 150/8,067 & 1.86 & 7/5,482 & 0.13 & 2.32 \\
+Post-consonantal & 1,013/2,222 & 45.59 & 12/530 & 2.26 & 16.67 \\
+Intervocalic & 7,745/16,042 & 48.28 & 792/6,624 & 11.96 & 32.49 \\
+Post-nasal & 3,287/4,746 & \textbf{69.26} & 648/1,587 & \textbf{40.83} & \textbf{64.00} \\
+\midrule All contexts & 13,050/39,405 & 33.12 & 1,480/17,778 & 8.32 & 24.67 \\
+\bottomrule
+\end{tabular}
+\caption{Target-side spelling disagreement and in-the-wild Tanglish voicing. Among multi-reference words in Dakshina (19{,}812 Tamil, 16{,}473 Malayalam), the audit counts plosive slots whose romanisations disagree on voicing. Post-nasal position---where \textit{puṇarcci} (morphophonemic \textit{sandhi}) makes voicing obligatory in speech---exhibits the highest disagreement in both languages. The rightmost column shows the empirical voicing rate in \textsc{Theedhum Nandrum} conversational YouTube Tanglish ($N=13{,}512$ plosives), where post-nasal stops flip to $64.00\%$ voiced, proving that benchmark target ambiguity reflects human spelling variance between letter-name and acoustic conventions.}
+\label{tab:disagree}
+\end{table}

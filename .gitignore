@@ -67,6 +67,21 @@ wheels/
 ehthumbs.db
 Thumbs.db
 
+# --- Secrets, API Keys & Private Configs ---
+.env
+.env.*
+*.env
+config.json
+secrets/
+*.key
+*.secret
+
+# --- Private Pulli & Commercial API Benchmarks (Excluded from ValiMeli) ---
+*sarvam*
+src/*sarvam*
+artifacts/*sarvam*
+scratch/*sarvam*
+
 # --- Matplotlib & Temporary Caches ---
 mpl_cache/
 .cache/

@@ -1,0 +1,192 @@
+[
+  {
+    "Word": "படம்",
+    "Wiktionary_IPA": "/pɐɖɐm/",
+    "Eluttu_Slot": "ப (initial)",
+    "Slot": "ப (initial)",
+    "IPA_Segment": "[p]",
+    "Voicing_State": "Voiceless",
+    "Roman_Spellings": "p",
+    "Audio_File": "LL-Q5885_(tam)-Sriveenkat-படம்.wav"
+  },
+  {
+    "Word": "படம்",
+    "Wiktionary_IPA": "/pɐɖɐm/",
+    "Eluttu_Slot": "ட (intervocalic)",
+    "Slot": "ட (intervocalic)",
+    "IPA_Segment": "[ɖ]",
+    "Voicing_State": "Voiced",
+    "Roman_Spellings": "d",
+    "Audio_File": "LL-Q5885_(tam)-Sriveenkat-படம்.wav"
+  },
+  {
+    "Word": "பக்கம்",
+    "Wiktionary_IPA": "/pɐkːɐm/",
+    "Eluttu_Slot": "ப (initial)",
+    "Slot": "ப (initial)",
+    "IPA_Segment": "[p]",
+    "Voicing_State": "Voiceless",
+    "Roman_Spellings": "p",
+    "Audio_File": "LL-Q5885_(tam)-Sriveenkat-பக்கம்.wav"
+  },
+  {
+    "Word": "பக்கம்",
+    "Wiktionary_IPA": "/pɐkːɐm/",
+    "Eluttu_Slot": "க்க (geminate)",
+    "Slot": "க்க (geminate)",
+    "IPA_Segment": "[kː]",
+    "Voicing_State": "Voiceless Fortis",
+    "Roman_Spellings": "kk",
+    "Audio_File": "LL-Q5885_(tam)-Sriveenkat-பக்கம்.wav"
+  },
+  {
+    "Word": "தம்பி",
+    "Wiktionary_IPA": "/t̪ɐmbiː/",
+    "Eluttu_Slot": "த (initial)",
+    "Slot": "த (initial)",
+    "IPA_Segment": "[t̪]",
+    "Voicing_State": "Voiceless Dental",
+    "Roman_Spellings": "th / t",
+    "Audio_File": "Ta-தம்பி.ogg"
+  },
+  {
+    "Word": "தம்பி",
+    "Wiktionary_IPA": "/t̪ɐmbiː/",
+    "Eluttu_Slot": "ம்பி (post-nasal)",
+    "Slot": "ம்பி (post-nasal)",
+    "IPA_Segment": "[mb]",
+    "Voicing_State": "Obligatorily Voiced [b]",
+    "Roman_Spellings": "mb (or mp)",
+    "Audio_File": "Ta-தம்பி.ogg"
+  },
+  {
+    "Word": "பந்து",
+    "Wiktionary_IPA": "/pɐnd̪ɯ/, [pɐn̪d̪ɯ]",
+    "Eluttu_Slot": "ப (initial)",
+    "Slot": "ப (initial)",
+    "IPA_Segment": "[p]",
+    "Voicing_State": "Voiceless",
+    "Roman_Spellings": "p",
+    "Audio_File": "Ta-பந்து.ogg"
+  },
+  {
+    "Word": "பந்து",
+    "Wiktionary_IPA": "/pɐnd̪ɯ/, [pɐn̪d̪ɯ]",
+    "Eluttu_Slot": "ந்து (post-nasal)",
+    "Slot": "ந்து (post-nasal)",
+    "IPA_Segment": "[nd̪]",
+    "Voicing_State": "Obligatorily Voiced [d̪]",
+    "Roman_Spellings": "ndh (or nth)",
+    "Audio_File": "Ta-பந்து.ogg"
+  },
+  {
+    "Word": "அழகு",
+    "Wiktionary_IPA": "/ɐɻɐɡɯ/",
+    "Eluttu_Slot": "கு (intervocalic)",
+    "Slot": "கு (intervocalic)",
+    "IPA_Segment": "[ɡ]",
+    "Voicing_State": "Voiced Velar [ɡ]",
+    "Roman_Spellings": "g (or k)",
+    "Audio_File": "LL-Q5885_(tam)-Sriveenkat-அழகு.wav"
+  },
+  {
+    "Word": "கண்",
+    "Wiktionary_IPA": "/kɐɳ/",
+    "Eluttu_Slot": "க (initial)",
+    "Slot": "க (initial)",
+    "IPA_Segment": "[k]",
+    "Voicing_State": "Voiceless",
+    "Roman_Spellings": "k",
+    "Audio_File": "Ta-கண்.ogg"
+  },
+  {
+    "Word": "அடி",
+    "Wiktionary_IPA": "/ɐɖiː/",
+    "Eluttu_Slot": "டி (intervocalic)",
+    "Slot": "டி (intervocalic)",
+    "IPA_Segment": "[ɖ]",
+    "Voicing_State": "Voiced Retroflex [ɖ]",
+    "Roman_Spellings": "d (or t)",
+    "Audio_File": "Ta-அடி.oga"
+  },
+  {
+    "Word": "இலக்குவன்",
+    "Wiktionary_IPA": "/ɪlɐkːʊʋɐn/",
+    "Eluttu_Slot": "க்கு (geminate)",
+    "Slot": "க்கு (geminate)",
+    "IPA_Segment": "[kː]",
+    "Voicing_State": "Voiceless Fortis",
+    "Roman_Spellings": "kk",
+    "Audio_File": "LL-Q5885_(tam)-Sriveenkat-இலக்குவன்.wav"
+  },
+  {
+    "Word": "புலிகள்",
+    "Wiktionary_IPA": "/pʊlɪɡɐɭ/",
+    "Eluttu_Slot": "பு (initial)",
+    "Slot": "பு (initial)",
+    "IPA_Segment": "[p]",
+    "Voicing_State": "Voiceless",
+    "Roman_Spellings": "p",
+    "Audio_File": "LL-Q5885_(tam)-Sriveenkat-புலிகள்.wav"
+  },
+  {
+    "Word": "புலிகள்",
+    "Wiktionary_IPA": "/pʊlɪɡɐɭ/",
+    "Eluttu_Slot": "க (intervocalic)",
+    "Slot": "க (intervocalic)",
+    "IPA_Segment": "[ɡ]",
+    "Voicing_State": "Voiced Velar [ɡ]",
+    "Roman_Spellings": "g",
+    "Audio_File": "LL-Q5885_(tam)-Sriveenkat-புலிகள்.wav"
+  },
+  {
+    "Word": "கொட்டிவாக்கம்",
+    "Wiktionary_IPA": "/koʈːɪʋɑːkːɐm/, [ko̞ʈːɪʋäːkːɐm]",
+    "Eluttu_Slot": "கொ (initial)",
+    "Slot": "கொ (initial)",
+    "IPA_Segment": "[k]",
+    "Voicing_State": "Voiceless",
+    "Roman_Spellings": "k",
+    "Audio_File": "LL-Q5885_(tam)-Manimaran96-கொட்டிவாக்கம்.wav"
+  },
+  {
+    "Word": "கொட்டிவாக்கம்",
+    "Wiktionary_IPA": "/koʈːɪʋɑːkːɐm/, [ko̞ʈːɪʋäːkːɐm]",
+    "Eluttu_Slot": "ட்டி (geminate)",
+    "Slot": "ட்டி (geminate)",
+    "IPA_Segment": "[ʈː]",
+    "Voicing_State": "Voiceless Fortis",
+    "Roman_Spellings": "tt",
+    "Audio_File": "LL-Q5885_(tam)-Manimaran96-கொட்டிவாக்கம்.wav"
+  },
+  {
+    "Word": "கொட்டிவாக்கம்",
+    "Wiktionary_IPA": "/koʈːɪʋɑːkːɐm/, [ko̞ʈːɪʋäːkːɐm]",
+    "Eluttu_Slot": "க்க (geminate)",
+    "Slot": "க்க (geminate)",
+    "IPA_Segment": "[kː]",
+    "Voicing_State": "Voiceless Fortis",
+    "Roman_Spellings": "kk",
+    "Audio_File": "LL-Q5885_(tam)-Manimaran96-கொட்டிவாக்கம்.wav"
+  },
+  {
+    "Word": "சங்கு",
+    "Wiktionary_IPA": "/tʃɐŋɡɯ/, [sɐŋɡɯ]",
+    "Eluttu_Slot": "ச (initial)",
+    "Slot": "ச (initial)",
+    "IPA_Segment": "[tʃ] / [s]",
+    "Voicing_State": "Voiceless",
+    "Roman_Spellings": "s / ch",
+    "Audio_File": "Ta-சங்கு.ogg"
+  },
+  {
+    "Word": "சங்கு",
+    "Wiktionary_IPA": "/tʃɐŋɡɯ/, [sɐŋɡɯ]",
+    "Eluttu_Slot": "ங்கு (post-nasal)",
+    "Slot": "ங்கு (post-nasal)",
+    "IPA_Segment": "[ŋɡ]",
+    "Voicing_State": "Obligatorily Voiced [ɡ]",
+    "Roman_Spellings": "ng / ngg",
+    "Audio_File": "Ta-சங்கு.ogg"
+  }
+]
