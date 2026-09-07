@@ -7,13 +7,13 @@
 \textbf{Corpus / Modality} & \textbf{Analysed} & \textbf{Coverage} & \textbf{Plosive} & $H(V)$ & $H(V{\mid}C)$ & $I(V;C)$ & \textbf{$H$ red.} & \textbf{Argmax} \\
  & \textbf{units} & \textbf{\%} & \textbf{slots} & \textbf{bits} & \textbf{bits} & \textbf{bits} & \textbf{\%} & \textbf{gain \%} \\
 \midrule
-Tamil (Dakshina text) & 142,221 & 94.81 & 334,132 & 0.8066 & 0.6705 & 0.1361 & 16.87 & 0.00 \\
-Malayalam (Dakshina text) & 97,965 & 65.31 & 181,655 & 0.5509 & 0.3922 & 0.1587 & 28.81 & 0.00 \\
+Tamil (Dakshina text) & 127,626 & 85.08 & 367,507 & 0.7319 & 0.6410 & 0.0909 & 12.42 & 0.00 \\
+Malayalam (Dakshina text) & 100,716 & 67.14 & 234,476 & 0.4761 & 0.3699 & 0.1062 & 22.30 & 0.00 \\
 \midrule
 Tamil (Spoken acoustics) & 5,325 & 100.0 & 12,435 & 0.9906 & 0.7555 & 0.2351 & 23.73 & \textbf{+32.92} \\
 \bottomrule
 \end{tabular}
 }
-\caption{Voicing entropy of plosives across written orthography (Dakshina) and physical spoken speech acoustics (\textsc{ValiMeli-Speech} / Lingua Libre). Coverage for the spoken modality reflects $100.0\%$ evaluation across the $5{,}325$ waveforms in the \textsc{ValiMeli-Speech} index ($12{,}435$ plosive slots). While phonotactic context provides mutual information in both modalities ($I(V;C) > 0$), argmax decision gain is exactly \textbf{0.00\%} in text benchmarks because Latin crowdsourcing maintains a voiceless plurality ($P(\text{voiced}) < 0.50$) across all environments. In spoken speech acoustics, phonotactic context actively shifts the decision boundary in post-nasal ($85.14\%$ voiced) and intervocalic ($56.77\%$ voiced) positions, achieving a \textbf{+32.92\%} relative error reduction (from $44.29\%$ error down to $29.71\%$; $70.29\%$ rule accuracy). Malayalam text alignment ($65.31\%$) is strongly enriched in Sanskrit/Grantha orthographic markers ($7.30\times$ higher odds, $p < 10^{-300}$; \S\ref{sec:limits}).}
+\caption{Voicing entropy of plosives across written orthography (Dakshina) and physical spoken speech acoustics (\textsc{ValiMeli-Speech} / Lingua Libre). Coverage for the spoken modality reflects $100.0\%$ evaluation across the $5{,}325$ waveforms in the \textsc{ValiMeli-Speech} index ($12{,}435$ plosive slots). While phonotactic context provides mutual information in both modalities ($I(V;C) > 0$), argmax decision gain is exactly \textbf{0.00\%} in text benchmarks because Latin crowdsourcing maintains a voiceless plurality ($P(\text{voiced}) < 0.50$) across all environments. In spoken speech acoustics, phonotactic context actively shifts the decision boundary in post-nasal ($85.14\%$ voiced) and intervocalic ($56.77\%$ voiced) positions, achieving a \textbf{+32.92\%} relative error reduction (from $44.29\%$ error down to $29.71\%$; $70.29\%$ rule accuracy). Malayalam native-stratum alignment ($67.14\%$) isolates indigenous phonology; unaligned pairs are strongly enriched in Sanskrit/Grantha loan consonants ($7.30\times$ higher odds, $p < 10^{-300}$; \S\ref{sec:limits}).}
 \label{tab:entropy}
 \end{table}

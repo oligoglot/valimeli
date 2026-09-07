@@ -86,22 +86,24 @@ Phonological Supervision in Romanised Tamil and Malayalam Transliteration}
 \maketitle
 
 \begin{abstract}
-Tamil and Malayalam orthographies do not dedicate separate graphemes to voiced and voiceless
-stops: a single graphemic stop series spans \textit{[k]} and \textit{[g]}, with phonetic
-realisation systematically conditioned by phonotactic environment. In Indic natural language
-processing, this structural trait has frequently been misdiagnosed as an ``orthographic
+Tamil orthography does not dedicate separate graphemes to voiced and voiceless stops: a
+single graphemic stop series spans \textit{[k]} and \textit{[g]}, with phonetic realisation
+systematically conditioned by phonotactic environment. Malayalam retains the full Indic
+voiced series but confines it largely to the Sanskritic stratum, writing the voiceless
+grapheme in native vocabulary under the same phonotactic conditioning. In Indic natural language
+processing, this trait has frequently been misdiagnosed as an ``orthographic
 underspecification'' deficit, motivating interventions that inject explicit phonological priors
 into neural sequence models. This paper evaluates this hypothesis empirically and theoretically, finding
 that native orthography is in fact an information-theoretically parsimonious code: an
-unconditional voiceless baseline achieves $75.29\%$ accuracy in Tamil and $87.24\%$ in
+unconditional voiceless baseline achieves $79.49\%$ accuracy in Tamil and $89.77\%$ in
 Malayalam across all phonotactic contexts. Measuring stop voicing over 150{,}000 benchmark word
 pairs per language confirms that phonotactic context is genuinely informative (mutual
-information $I(V;C) = 0.136$ bits in Tamil, $0.159$ in Malayalam). However, because the
-voiceless spelling remains the plurality outcome in \emph{every} phonotactic slot in crowdsourced
-benchmarks ($P(\text{voiced}) < 0.50$ in all contexts), conditioning on context alters the
+information $I(V;C) = 0.091$ bits in Tamil, $0.106$ in Malayalam). However, because the
+voiceless spelling remains the plurality outcome in every phonotactic slot in crowdsourced
+benchmarks ($P(\text{voiced}) < 0.50$ in all contexts, with Malayalam post-nasal touching the boundary at $0.492$), conditioning on context alters the
 argmax decision boundary by $0.00\%$, a property formalised here as \emph{argmax invariance}. Parsimony here is decision-theoretic rather than entropic: the omitted distinction carries
-zero Bayes risk under $0$--$1$ loss, not negligible conditional entropy ($H(V\mid C) = 0.671$
-bits in Tamil, $0.392$ in Malayalam), whose residual is traced below to annotator transcription
+zero Bayes risk under $0$--$1$ loss, not negligible conditional entropy ($H(V\mid C) = 0.641$
+bits in Tamil, $0.370$ in Malayalam), whose residual is traced below to annotator transcription
 variance rather than to native phonological structure.
 Across controlled $\text{en}\rightarrow\text{indic}$ transliteration scaling experiments spanning 25k to 1.0M training pairs and two
 distinct architectures, auxiliary phonological supervision yields no measurable gain at low resource scales
@@ -126,11 +128,13 @@ frequently exceed $60\%$ exact match on held-out benchmarks for multi-stop scrip
 Telugu, and Kannada, performance on Tamil and Malayalam is historically lower.
 
 A recurring explanation in the computational literature attributes this disparity to
-\emph{orthographic underspecification}. Both languages inherit a single graphemic stop series
-(\textit{vallinam} / hard plosives in the autonomous Tamil metalinguistic tradition, \citealt{niklas1988tamil}: \textit{ka}, \textit{ca}, \textit{\d{t}a}, \textit{ta}, \textit{pa}, \textit{\b{r}a}) that maps to multiple phonetic realisations: Tamil writes $[k]$, $[g]$, $[\gamma]$,
-and $[x]$ with the single grapheme \textit{ka}. It has thus been widely assumed that neural
-models face a fundamental information bottleneck because the source script omits phonemic voicing
-distinctions present in Indo-Aryan and sister Dravidian scripts.
+\emph{orthographic underspecification}. Tamil orthography maintains an autonomous single graphemic stop series
+(\textit{vallinam} / hard plosives in the classical grammatical tradition, \citealt{niklas1988tamil}: \textit{ka}, \textit{ca}, \textit{\d{t}a}, \textit{ta}, \textit{pa}, \textit{\b{r}a}) that maps to multiple phonetic realisations: Tamil writes $[k]$, $[g]$, $[\gamma]$,
+and $[x]$ with the single grapheme \textit{ka}. Malayalam retains the full Brahmic four-way plosive inventory
+(\textit{ka}, \textit{kha}, \textit{ga}, \textit{gha}) for Indo-Aryan borrowings, but preserves ancestral Dravidian
+complementary distribution in native vocabulary, writing voiceless graphemes for native intervocalic and post-nasal stops.
+It has thus been widely assumed that neural models face a fundamental information bottleneck because Dravidian
+orthographies omit surface allophonic voicing distinctions present in other scripts.
 
 \paragraph{Principled Orthographic Parsimony.}
 Classical phonological theory refutes the deficit hypothesis. Under the classical
@@ -167,9 +171,7 @@ To support future research in Dravidian phonetics, text-to-speech (TTS), speech 
 \paragraph{The Unassimilated Loanword Stratum.}
 A subtle complication arises from modern borrowings (English, Sanskrit, Hindustani). While
 classical Tamil phonology nativised loanwords to conform to native allophony,\footnote{Under classical nativisation rules (\textit{Tolk\={a}ppiyam}, \textit{Collatik\={a}ram} \textit{s\={u}tra} 397; \citealt{niklas1988tamil}), loanwords were adapted to native phonotactics by devoicing non-native voiced stops in initial position (e.g., Sanskrit \textit{danta} $\rightarrow$ Tamil \textit{tantam} $[t̪-]$, \textit{ga\d{n}a} $\rightarrow$ \textit{ka\d{n}am} $[k-]$). In contrast, modern borrowings preserve voiced stops in speech while using native single-series graphemes in writing, creating orthographic duality in crowdsourced romanisation.} modern 20th-century
-borrowings preserve foreign voiced stops in speech while utilising native single-series graphemes
-in print (\textit{Gandhi} $\rightarrow$ \textit{k\={a}nti} $[g-]$, \textit{Dilli} $\rightarrow$
-\textit{tilli} $[d-]$, \textit{Bus} $\rightarrow$ \textit{pas} $[b-]$). While Malayalam accommodated such borrowings by adopting the full Brahmic Grantha plosive series (\textit{ga}, \textit{da}, \textit{ba}), Tamil maintained its parsimonious single stop series grounded in native complementary distribution. When these unassimilated borrowings are romanised, bilingual annotators vacillate between graphemic transliteration and surface phonetic transcription, producing an empirical $11.45\%$ word-initial voiced romanisation rate (Table~\ref{tab:context}) and a $10.27\%$ split-slot disagreement rate (Table~\ref{tab:disagree}) in modern multi-reference corpora.
+borrowings preserve foreign voiced stops in speech (\textit{Gandhi} $\rightarrow$ \textit{k\={a}nti} $[g-]$, \textit{Dilli} $\rightarrow$ \textit{tilli} $[d-]$, \textit{Bus} $\rightarrow$ \textit{pas} $[b-]$). Malayalam accommodates this stratum orthographically through the Brahmic Grantha plosive series (\textit{ga}, \textit{da}, \textit{ba}), reserving those graphemes for foreign voicing. Tamil, whose stop graphemes stand in one-to-one correspondence with its contrastive stop phonemes, writes the same borrowings with the native series. The residual voicing signal in modern multi-reference corpora is therefore lexical and target-side in origin: unassimilated borrowings carrying source-language voicing yield an empirical $9.79\%$ word-initial voiced romanisation rate (Table~\ref{tab:context}) and a $10.27\%$ split-slot disagreement rate (Table~\ref{tab:disagree}).
 
 \paragraph{Contributions.}
 The empirical evaluation examines phonological inductive bias across data scales from 25k to 1.0M pairs:
@@ -194,7 +196,7 @@ The empirical evaluation examines phonological inductive bias across data scales
 Machine transliteration benchmarks across South Asian languages have consistently observed a marked performance disparity between scripts with full phonetic stop inventories and those with single-series stops. In the foundational \textsc{Aksharantar} and \textsc{IndicXlit} benchmark \cite{madhani-etal-2023-aksharantar}, sequence-to-sequence models trained across Indic languages systematically achieved lower exact-match accuracy on Dravidian languages with single-stop inventories (such as Tamil and Malayalam) compared to multi-stop scripts (such as Hindi or Marathi). In our own controlled sequence-to-sequence baseline replications on these benchmarks (\S\ref{sec:scale}, Table~\ref{tab:scale}), standard character models achieve only $58.19\%$ exact-match accuracy for Tamil and $51.08\%$ for Malayalam at the 250k training scale. In natural language processing discussions, this performance gap has frequently been framed around what we term the \emph{orthographic underspecification deficit} hypothesis: the assumption that because the native orthographies collapse voiced and voiceless phones into a single graphemic series, the resulting script ambiguity acts as an information bottleneck in text generation. \citet{madhani-etal-2023-aksharantar} noted that Dravidian languages exhibit substantial alignment ambiguity due to one-to-many and many-to-one character divergences, while \citet{roark-etal-2020-processing} demonstrated that in the \textsc{Dakshina} dataset, human annotators exhibit widespread spelling duality when transcribing Dravidian texts into the Latin script, reflecting uncertainty over whether to transcribe native phonemes or surface allophones. Such observations have motivated recurring proposals to inject explicit phonological features, phonetic lookup tables, or multi-task auxiliary loss heads into neural architectures.
 
 \paragraph{Classical and Instrumental Dravidian Phonology.}
-In contrast to the computational deficit narrative, classical Dravidian grammatical and phonetic theory treats the absence of distinct voiced stop graphemes as a parsimonious design. The earliest extant Tamil grammatical treatise, \textit{Tolk\={a}ppiyam} (\textit{E\d{l}uttatik\={a}ram}, \citealt{niklas1988tamil}), establishes a rigorous structural taxonomy: consonants (\textit{meyye\d{l}uttu}) are partitioned into \textit{vallinam} (hard plosives), \textit{mellinam} (soft nasals), and \textit{i\d{t}aiyinam} (medial sonorants). The phonetic realisation of plosives is treated in classical grammar as conditioned by morphophonemic juncture (\textit{pu\d{n}arcci} / \textit{sandhi}). \citet{caldwell1875comparative} formulated the classical comparative Dravidian ``law of the convertibility of surds and sonants,'' demonstrating that Proto-Dravidian occlusives were uniformly voiceless initially and when geminated, but obligatorily acquired voicing post-nasally and lenition intervocalically \cite{zvelebil1970dravidian}. Instrumental phonetic investigations \cite{lisker1958tamil,christdas1988phonology,keane2004dravidian} confirmed that native Tamil stops lack phonemic voicing contrasts; stop voicing is entirely allophonic and strictly conditioned by local phonotactic environment. \citet{lakshmanan2025biconsonantal} analysed the mathematical distributions of biconsonantal clusters in Old Tamil Sangam literature, demonstrating that geminate ($C_1C_1$) and post-nasal ($NC_1$) cluster architectures have remained phonotactically invariant for two millennia.
+In contrast to the computational deficit narrative, classical Dravidian grammatical and phonetic theory treats the single stop series as a parsimonious design. The earliest extant Tamil grammatical treatise, \textit{Tolk\={a}ppiyam} (\textit{E\d{l}uttatik\={a}ram}, \citealt{niklas1988tamil}), establishes a rigorous structural taxonomy: consonants (\textit{meyye\d{l}uttu}) are partitioned into \textit{vallinam} (hard plosives), \textit{mellinam} (soft nasals), and \textit{i\d{t}aiyinam} (medial sonorants). The phonetic realisation of plosives is treated in classical grammar as conditioned by morphophonemic juncture (\textit{pu\d{n}arcci} / \textit{sandhi}). \citet{caldwell1875comparative} formulated the classical comparative Dravidian ``law of the convertibility of surds and sonants,'' demonstrating that Proto-Dravidian occlusives were uniformly voiceless initially and when geminated, but obligatorily acquired voicing post-nasally and lenition intervocalically \cite{zvelebil1970dravidian}. Instrumental phonetic investigations \cite{lisker1958tamil,christdas1988phonology,keane2004dravidian} confirmed that native Tamil stops lack phonemic voicing contrasts; stop voicing is entirely allophonic and strictly conditioned by local phonotactic environment. \citet{lakshmanan2025biconsonantal} analysed the mathematical distributions of biconsonantal clusters in Old Tamil Sangam literature, demonstrating that geminate ($C_1C_1$) and post-nasal ($NC_1$) cluster architectures have remained phonotactically invariant for two millennia.
 
 \paragraph{Inductive Biases and Tokenisation in Neural Models.}
 The injection of structural inductive biases into neural language models has yielded conflicting results across morphology and phonology. Recently, \citet{vemula-etal-2025-rethinking} investigated tokenisation strategies across morphologically rich Indic languages, concluding that unigram language models dominate byte-pair encoding (BPE) and demonstrating that explicit morphological alignment in tokenisers fails to provide consistent advantages over unconstrained subword segmentations. This paper extends this empirical scrutiny to phonological inductive biases. As demonstrated in \S\ref{sec:scale}, while phonology-aware string tags strictly outperform morphology-aware tokenisation across all four evaluation partitions ($+0.35$ to $+2.48$ points), neither inductive bias overcomes the fundamental information-theoretic barrier imposed by target-side reference variance.
@@ -212,19 +214,27 @@ contexts: word-initial, geminate, post-consonantal, intervocalic, and post-nasal
 \input{table_context.tex}
 
 \paragraph{Context is informative.} Table~\ref{tab:entropy} reports the information-theoretic
-quantities. Unconditional voicing entropy is $0.8066$ bits in Tamil and $0.5509$ in Malayalam;
-conditioning on phonotactic context reduces it to $0.6705$ and $0.3922$ bits, yielding mutual
-information of $I(V;C) = 0.1361$ bits ($16.87\%$ reduction) in Tamil and $0.1587$ bits ($28.81\%$
-reduction) in Malayalam. Context is undeniably informative.
+quantities. Unconditional voicing entropy is $0.7319$ bits in Tamil and $0.4761$ in Malayalam;
+conditioning on phonotactic context reduces it to $0.6410$ and $0.3699$ bits, yielding mutual
+information of $I(V;C) = 0.0909$ bits ($12.42\%$ reduction; bootstrap $95\%$ CI $[0.0897, 0.0921]$)
+in Tamil and $0.1062$ bits ($22.30\%$ reduction; bootstrap $95\%$ CI $[0.1047, 0.1079]$) in Malayalam.
+Sensitivity testing confirms this is robust to edit tolerance: tightening the aligner to exact match ($d=0$)
+yields $I(V;C) = 0.1114$ bits (Tamil, $54.3\%$ coverage) and $0.1043$ bits (Malayalam, $35.9\%$ coverage).
+Context is undeniably informative.
 
 \paragraph{The Argmax Never Moves.} Table~\ref{tab:context} reveals why this mutual information
-fails to alter decision outcomes. In Tamil, word-initial plosives are romanised as voiced $11.45\%$
-of the time, whereas post-nasal plosives are voiced $47.16\%$ of the time---a fourfold shift.
-Yet $0.4716 < 0.50$. In the exact context where spoken phonology mandates voicing, voiceless
+fails to alter decision outcomes. In Tamil, word-initial plosives are romanised as voiced $9.79\%$
+of the time ($n = 62{,}194$), whereas post-nasal plosives are voiced $47.03\%$ of the time ($n = 33{,}969$).
+Yet $0.4703 < 0.50$. In the exact context where spoken phonology mandates voicing, voiceless
 romanisations remain the plurality in crowdsourced benchmarks. In Malayalam, native stops exhibit
-a similar distribution ($0.11\%$ initial vs.\ $49.01\%$ post-nasal). Consequently, an optimal context-conditional classifier and an unconditional ``always voiceless''
+a similar distribution ($0.06\%$ initial over $n = 32{,}323$ vs.\ $49.20\%$ post-nasal over $n = 15{,}132$).
+While the Malayalam post-nasal point estimate strictly preserves the voiceless argmax ($0.4920 < 0.50$),
+its bootstrap $95\%$ confidence interval ($[48.40\%, 50.00\%]$) touches the decision boundary within
+sampling error, indicating an empirical tie between transcription conventions in crowdsourced text.
+Consequently, an optimal context-conditional classifier and an unconditional ``always voiceless''
 classifier produce identical predictions. Moving to context-conditioned rules reduces argmax
-decision error by exactly \textbf{0.00\%} in both languages. In Malayalam, alignment coverage reaches $65.31\%$ ($97{,}965$ pairs) under a conservative edit-distance threshold ($d \le 2$); an empirical contingency audit confirms that the $34.69\%$ unaligned stratum ($52{,}035$ pairs) is strongly enriched in Sanskrit/Grantha orthographic markers ($84.49\%$ contain loanword graphemes vs.\ $42.73\%$ in aligned pairs; odds ratio $7.30\times$, $\chi^2 = 24{,}203.8$, $p < 10^{-300}$), while unaligned pairs actually exhibit slightly fewer complex conjunct ligatures ($46.17\%$ vs.\ $51.01\%$). This establishes that unaligned data reflects non-native phonological borrowings rather than structural limitations of native Dravidian phonology. This property is formalised as follows:
+decision error by exactly \textbf{0.00\%} in both languages. In Malayalam, native-stratum alignment coverage
+reaches $67.14\%$ ($100{,}716$ pairs; $70.89\%$ plosive coverage); an empirical contingency audit confirms that the $32.86\%$ unaligned stratum ($49{,}284$ pairs) is strongly enriched in Sanskrit/Grantha orthographic markers ($84.49\%$ contain loanword graphemes vs.\ $42.73\%$ in aligned pairs; odds ratio $7.30\times$, $\chi^2 = 24{,}203.8$, $p < 10^{-300}$), while unaligned pairs actually exhibit slightly fewer complex conjunct ligatures ($46.17\%$ vs.\ $51.01\%$). This establishes that unaligned data reflects non-native phonological borrowings rather than structural limitations of native Dravidian phonology. This property is formalised as follows:
 
 \vspace{0.4em}
 \noindent\textbf{Proposition 1 (Argmax Invariance under Skewed Allophony).}\label{prop:argmax} \textit{Let $\mathcal{V} = \{0, 1\}$ denote binary stop voicing ($0 = \text{voiceless}, 1 = \text{voiced}$) and let $\mathcal{C}$ denote the finite set of phonotactic environments. If there exists $v^* \in \mathcal{V}$ such that for all $c \in \mathcal{C}$,
@@ -248,7 +258,7 @@ Crucially, the argmax invariance established by Proposition~\ref{prop:argmax} is
 
 In geminates (\texttt{C\_C}), automated spectral energy ratios over standard $25\text{ ms}$ STFT frames detect an apparent $30.22\%$ low-$F_0$ periodicity due to vocal fold inertia and vowel formant transition bleed into early closure ($15$--$20\text{ ms}$). However, the physical articulation of geminates is characterised by an extensive silent occlusion gap averaging $\mathbf{50.5\text{ ms}}$---roughly $11\times$ longer ($10.7\times$) than the $4.7\text{ ms}$ post-nasal transition---confirming robust fortis voicelessness.
 
-Unlike text benchmarks where phonotactic context never shifts the decision boundary ($\Delta R = 0.00\%$, an exact mathematical identity on this data rather than a numerical rounding), in spoken acoustics conditioning on context actively flips the argmax from voiceless to voiced decisively in post-nasal slots ($12.1\%$ of plosive tokens, $85.14\%$ voiced) and marginally in intervocalic slots ($44.8\%$ of plosive tokens, $56.77\%$ voiced, together representing $56.9\%$ of the language's plosives). This yields a mutual information of $I(V_{\text{acoustic}}; C) = \mathbf{0.2351}$ bits ($1.7\times$ higher than text) and achieves a $\mathbf{+32.92\%}$ relative reduction in classification error (from $44.29\%$ unconditional majority baseline error down to $29.71\%$; $70.29\%$ rule accuracy; Table~\ref{tab:entropy}). This resolves a core theoretical question: native Dravidian orthography is not underspecified or deficient; it represents an information-theoretically parsimonious code whose voicing is strongly structured and argmax-predictable in spoken acoustics. The argmax barrier emerges solely when Latin annotators arbitrarily split post-nasal spellings ($47.16\%$ voiced in text benchmarks).
+Unlike text benchmarks where phonotactic context never shifts the decision boundary ($\Delta R = 0.00\%$, an exact mathematical identity on this data rather than a numerical rounding), in spoken acoustics conditioning on context actively flips the argmax from voiceless to voiced decisively in post-nasal slots ($12.1\%$ of plosive tokens, $85.14\%$ voiced) and marginally in intervocalic slots ($44.8\%$ of plosive tokens, $56.77\%$ voiced, together representing $56.9\%$ of the language's plosives). This yields a mutual information of $I(V_{\text{acoustic}}; C) = \mathbf{0.2351}$ bits ($2.6\times$ higher than text) and achieves a $\mathbf{+32.92\%}$ relative reduction in classification error (from $44.29\%$ unconditional majority baseline error down to $29.71\%$; $70.29\%$ rule accuracy; Table~\ref{tab:entropy}). This resolves a core theoretical question: native Dravidian orthography is not underspecified or deficient; it represents an information-theoretically parsimonious code whose voicing is strongly structured and argmax-predictable in spoken acoustics. The argmax barrier emerges solely when Latin annotators arbitrarily split post-nasal spellings ($47.03\%$ voiced in text benchmarks).
 
 \section{Target-Side Disagreement \& In-The-Wild Voicing}
 \label{sec:disagree}

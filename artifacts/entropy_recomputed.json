@@ -1,0 +1,193 @@
+{
+ "entropy": {
+  "tam": {
+   "lang": "tam",
+   "pairs": 150000,
+   "words_aligned": 127626,
+   "word_rate": 0.8508,
+   "plosive_tokens": 423442,
+   "plosives_labelled": 367507,
+   "coverage": 0.8679,
+   "H_uncond": 0.7319,
+   "H_cond": 0.641,
+   "MI": 0.0909,
+   "reduction_pct": 12.42,
+   "contexts": {
+    "INTERVOCALIC": {
+     "H": 0.8285,
+     "n": 184496,
+     "p_voiced": 0.2611
+    },
+    "POST_NASAL": {
+     "H": 0.9975,
+     "n": 33969,
+     "p_voiced": 0.4703
+    },
+    "GEMINATE": {
+     "H": 0.0493,
+     "n": 63786,
+     "p_voiced": 0.0055
+    },
+    "WORD_INITIAL": {
+     "H": 0.4623,
+     "n": 62194,
+     "p_voiced": 0.0979
+    },
+    "POST_CONS": {
+     "H": 0.7352,
+     "n": 23062,
+     "p_voiced": 0.2067
+    }
+   }
+  },
+  "mal": {
+   "lang": "mal",
+   "pairs": 150000,
+   "words_aligned": 100716,
+   "word_rate": 0.6714,
+   "plosive_tokens": 330755,
+   "plosives_labelled": 234476,
+   "coverage": 0.7089,
+   "H_uncond": 0.4761,
+   "H_cond": 0.3699,
+   "MI": 0.1062,
+   "reduction_pct": 22.3,
+   "contexts": {
+    "WORD_INITIAL": {
+     "H": 0.0072,
+     "n": 32323,
+     "p_voiced": 0.0006
+    },
+    "INTERVOCALIC": {
+     "H": 0.5527,
+     "n": 128390,
+     "p_voiced": 0.1283
+    },
+    "POST_NASAL": {
+     "H": 0.9998,
+     "n": 15132,
+     "p_voiced": 0.492
+    },
+    "GEMINATE": {
+     "H": 0.0027,
+     "n": 51987,
+     "p_voiced": 0.0002
+    },
+    "POST_CONS": {
+     "H": 0.0417,
+     "n": 6644,
+     "p_voiced": 0.0045
+    }
+   }
+  }
+ },
+ "rule": {
+  "tam": {
+   "n_decisions": 367507,
+   "base_acc": 0.7949,
+   "rule_acc": 0.7949,
+   "err_base": 0.2051,
+   "err_rule": 0.2051,
+   "err_reduction_pct": 0.0,
+   "by_source": {
+    "Dakshina": {
+     "n": 143998,
+     "base": 0.8019,
+     "rule": 0.8019,
+     "H": 0.7182,
+     "Hc": 0.6233
+    },
+    "AK-Freq": {
+     "n": 2144,
+     "base": 0.7729,
+     "rule": 0.7901,
+     "H": 0.773,
+     "Hc": 0.6091
+    },
+    "Samanantar": {
+     "n": 40073,
+     "base": 0.6754,
+     "rule": 0.6928,
+     "H": 0.9093,
+     "Hc": 0.8625
+    },
+    "IndicCorp": {
+     "n": 179865,
+     "base": 0.817,
+     "rule": 0.817,
+     "H": 0.6866,
+     "Hc": 0.5768
+    }
+   }
+  },
+  "mal": {
+   "n_decisions": 234476,
+   "base_acc": 0.8977,
+   "rule_acc": 0.8977,
+   "err_base": 0.1023,
+   "err_rule": 0.1023,
+   "err_reduction_pct": 0.0,
+   "by_source": {
+    "Dakshina": {
+     "n": 66370,
+     "base": 0.9095,
+     "rule": 0.9095,
+     "H": 0.4382,
+     "Hc": 0.3433
+    },
+    "Samanantar": {
+     "n": 12937,
+     "base": 0.9544,
+     "rule": 0.9544,
+     "H": 0.2674,
+     "Hc": 0.215
+    },
+    "IndicCorp": {
+     "n": 154727,
+     "base": 0.8878,
+     "rule": 0.8927,
+     "H": 0.5066,
+     "Hc": 0.3911
+    }
+   }
+  }
+ },
+ "sensitivity": {
+  "tam_b0": {
+   "cov": 0.5432,
+   "H": 0.7593,
+   "Hc": 0.6478,
+   "MI": 0.1114,
+   "lo": 0.1095,
+   "hi": 0.1132,
+   "red": 14.68
+  },
+  "tam_b2": {
+   "cov": 0.8679,
+   "H": 0.7319,
+   "Hc": 0.641,
+   "MI": 0.0909,
+   "lo": 0.0897,
+   "hi": 0.0921,
+   "red": 12.42
+  },
+  "mal_b0": {
+   "cov": 0.359,
+   "H": 0.4899,
+   "Hc": 0.3856,
+   "MI": 0.1043,
+   "lo": 0.1019,
+   "hi": 0.1069,
+   "red": 21.29
+  },
+  "mal_b2": {
+   "cov": 0.7089,
+   "H": 0.4761,
+   "Hc": 0.3699,
+   "MI": 0.1062,
+   "lo": 0.1047,
+   "hi": 0.1079,
+   "red": 22.3
+  }
+ }
+}
