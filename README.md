@@ -78,10 +78,6 @@ valimeli/
 │   └── mal.zip
 ├── docs/                          # Scientific publication & preprint artifacts
 │   ├── parsimonious_code_preprint.pdf # Final compiled submission preprint PDF
-│   ├── revised2/                  # Camera-ready LaTeX manuscript and table suite
-│   │   ├── main.tex
-│   │   ├── references.bib
-│   │   └── table_*.tex
 │   └── valimeli_pipeline_trace.md # Engineering architecture & math trace
 ├── scratch/                       # Working run telemetry, checkpoints, extracted datasets
 ├── src/                           # Core source codebase
@@ -104,7 +100,6 @@ valimeli/
   - **Title**: *A Parsimonious Code: Allophonic Voicing and the Limits of Phonological Supervision in Romanised Tamil and Malayalam Transliteration*
   - **Author**: BalaSundaraRaman Lakshmanan
   - **Submission Identifier**: `arXiv:submit/8042292 [cs.CL]` (Submitted 6 September 2026; moderation approval pending)
-  - **LaTeX Source & Tables**: Complete camera-ready manuscript sources located in [`docs/revised2/`](docs/revised2/)
 - **Core Findings**:
   - **Argmax Invariance under Skewed Allophony (Proposition 1)**: In crowdsourced benchmarks, voiceless spellings remain the plurality across all phonotactic contexts ($P(\text{voiced}) < 0.50$). While context provides mutual information ($I(V; C) > 0$), context-conditioned rules reduce argmax decision error by $0.00\%$.
   - **Acoustic Realisation in Native Speech**: In spoken speech acoustics (VALIMELI-SPEECH), phonotactic context decisively flips voicing in post-nasal ($85.14\%$ voiced) and intervocalic ($56.77\%$ voiced) positions, achieving a $+32.92\%$ relative error reduction.

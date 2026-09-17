@@ -10,6 +10,11 @@ docs/*_private*
 docs/*career*
 docs/*outreach*
 
+# --- Manuscript LaTeX Source Packages (Private) ---
+docs/revised2/
+*.tex
+*.bib
+
 # --- Runtime & High-Compute Working Directories ---
 scratch/
 runs/
