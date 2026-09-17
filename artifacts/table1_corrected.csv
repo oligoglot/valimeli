@@ -1,0 +1,3 @@
+language,corpus_pairs,word_alignment_rate,plosive_decisions,H_voicing,H_voicing_given_context,mutual_information_bits,entropy_reduction_pct,unconditional_argmax_acc,context_conditioned_argmax_acc,argmax_error_reduction_pct,source
+Tamil,150000,0.851,367507,0.7319,0.641,0.0909,12.42,79.49,79.49,0.0,"single pipeline, geminates counted once"
+Malayalam,150000,0.671,234476,0.4761,0.3699,0.1062,22.3,89.77,89.77,0.0,"single pipeline, geminates counted once"

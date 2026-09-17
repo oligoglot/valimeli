@@ -1,10 +1,16 @@
-# Project ValiMeli (வலி–മെലി)
+# Project ValiMeli (வலி–மெலி)
 ### Phonology-Aware Tokenisation for Dravidian Transliteration
 
+[![Preprint: arXiv:submit/8042292](https://img.shields.io/badge/Preprint-arXiv%3Asubmit%2F8042292%20[cs.CL]-b31b1b.svg)](https://github.com/oligoglot/valimeli/releases/download/v1.0-preprint/parsimonious_code_preprint.pdf)
+[![GitHub Release](https://img.shields.io/badge/Release-v1.0--preprint-blue.svg)](https://github.com/oligoglot/valimeli/releases/tag/v1.0-preprint)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-ee4c2c.svg)](https://pytorch.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Dataset: Aksharantar](https://img.shields.io/badge/Dataset-AI4Bharat%20Aksharantar-green.svg)](https://huggingface.co/datasets/ai4bharat/Aksharantar)
+
+> **Preprint:** [Download PDF (arXiv:submit/8042292)](https://github.com/oligoglot/valimeli/releases/download/v1.0-preprint/parsimonious_code_preprint.pdf) *(arXiv approval pending)*.  
+> **Paper Title:** *A Parsimonious Code: Allophonic Voicing and the Limits of Phonological Supervision in Romanised Tamil and Malayalam Transliteration*  
+> **Direct Repository Mirror:** [`docs/parsimonious_code_preprint.pdf`](docs/parsimonious_code_preprint.pdf)
 
 **Project ValiMeli** (*Vallinam* [Hard] + *Mellinam* [Soft]) addresses the fundamental inductive bias gap in Dravidian machine transliteration (Tamil and Malayalam). By replacing naive character-level tokenisers and lossy Devanagari pivots with deterministic, context-sensitive phonotactic tags (`[INIT]`, `[GEM]`, `[NASAL]`, `[INTER]`), ValiMeli collapses stop-voicing ambiguity and delivers superior sequence-to-sequence convergence.
 
@@ -64,48 +70,50 @@ valimeli/
 │   ├── valimeli_metrics_en-indic.png
 │   ├── valimeli_convergence_indic-en.png
 │   ├── valimeli_convergence_en-indic.png
-│   ├── attn_tamil_pakkam.png
-│   ├── attn_tamil_padam.png
-│   ├── attn_tamil_sangu.png
-│   └── tam_A1_indic-en_results.json
+│   ├── fig_effects_corrected.png  # Forest plot of 10 matched scaling comparisons
+│   ├── acoustic_voicing_spectrograms.png # STFT spectrograms of native Tamil speech
+│   └── multiseed_rigorous_results.json # Multi-seed 25k paired McNemar evaluation logs
 ├── data/                          # Original compressed Aksharantar dataset archives
 │   ├── tam.zip
 │   └── mal.zip
-├── docs/                          # Scientific publication & outreach artifacts
-│   ├── paper_skeleton.md          # Full ACL/EMNLP manuscript layout
-│   ├── outreach_strategy.md       # Stakeholder pitches (AI4Bharat, Sarvam, Saama, Niranjan)
+├── docs/                          # Scientific publication & preprint artifacts
+│   ├── parsimonious_code_preprint.pdf # Final compiled submission preprint PDF
+│   ├── revised2/                  # Camera-ready LaTeX manuscript and table suite
+│   │   ├── main.tex
+│   │   ├── references.bib
+│   │   └── table_*.tex
 │   └── valimeli_pipeline_trace.md # Engineering architecture & math trace
 ├── scratch/                       # Working run telemetry, checkpoints, extracted datasets
-│   └── valimeli/
-│       ├── runs/                  # Saved model checkpoints per experiment cell
-│       ├── data/                  # Extracted JSON splits (tam_train, tam_test, etc.)
-│       └── grid_run.log           # Full log of high-compute benchmark execution
 ├── src/                           # Core source codebase
 │   ├── valimeli-benchmark.py      # Standardised Seq2Seq benchmarking engine (v4)
 │   ├── test_linguistics.py        # Unit tests for Tamil/Malayalam phonotactic rules
-│   ├── plot_results.py            # Publication plotting engine (300 DPI bar/loss charts)
-│   ├── plot_attention.py          # Bahdanau attention weight heatmap extractor
+│   ├── compute_voicing_entropy.py # Dynamic-programming phonetic aligner & entropy audit
+│   ├── run_multiseed_rigorous_benchmark.py # Multi-seed paired McNemar runner
+│   ├── speech/                    # Wikimedia Commons audio harvesting & acoustic features
 │   └── monitor_progress.py        # Real-time Markdown progress dashboard
 ├── README.md                      # Project documentation and quickstart guide
 ├── requirements.txt               # Python package dependencies
-├── run_grid.sh                    # Automated shell runner for 8-cell comparative grid
-└── check_mps.py                   # Metal Performance Shaders (MPS) memory monitor
+└── run_grid.sh                    # Automated shell runner for comparative grid
 ```
 
 ---
 
-## 🔬 Scientific Publications & Outreach Dossiers
+## 🔬 Scientific Publication
 
-- **Manuscript Pre-print Layout**: [`docs/paper_skeleton.md`](docs/paper_skeleton.md)
-  - Theoretical formalisation of Dravidian Stop Allophony.
-  - Comparative analysis with Morphology-Aware Tokenisation ([arXiv:2508.08424](https://arxiv.org/abs/2508.08424)).
-  - Information-theoretic entropy audit ($H(\text{Voicing} \mid \text{Context})$).
-- **Outreach Strategy Dossier**: [`docs/outreach_strategy.md`](docs/outreach_strategy.md)
-  - Tailored communications for **Anoop Kunchukuttan & AI4Bharat**, **Niranjan Nayak**, **Sarvam AI**, and **Malaikkannan & Saama AI**.
+- **Preprint Manuscript**: [`docs/parsimonious_code_preprint.pdf`](docs/parsimonious_code_preprint.pdf) | [Release Download](https://github.com/oligoglot/valimeli/releases/download/v1.0-preprint/parsimonious_code_preprint.pdf)
+  - **Title**: *A Parsimonious Code: Allophonic Voicing and the Limits of Phonological Supervision in Romanised Tamil and Malayalam Transliteration*
+  - **Author**: BalaSundaraRaman Lakshmanan
+  - **Submission Identifier**: `arXiv:submit/8042292 [cs.CL]` (Submitted 6 September 2026; moderation approval pending)
+  - **LaTeX Source & Tables**: Complete camera-ready manuscript sources located in [`docs/revised2/`](docs/revised2/)
+- **Core Findings**:
+  - **Argmax Invariance under Skewed Allophony (Proposition 1)**: In crowdsourced benchmarks, voiceless spellings remain the plurality across all phonotactic contexts ($P(\text{voiced}) < 0.50$). While context provides mutual information ($I(V; C) > 0$), context-conditioned rules reduce argmax decision error by $0.00\%$.
+  - **Acoustic Realisation in Native Speech**: In spoken speech acoustics (VALIMELI-SPEECH), phonotactic context decisively flips voicing in post-nasal ($85.14\%$ voiced) and intervocalic ($56.77\%$ voiced) positions, achieving a $+32.92\%$ relative error reduction.
+  - **Scaling & Multi-Seed Dynamics**: Across random seeds 42, 43, 44, auxiliary phonological supervision yields overlapping performance at 25k pairs ($\Delta \le 0.15$ points, $p \ge 0.58$) and reverses to significant degradation at 1.0M bilingual pairs ($-2.33\%$, $p = 0.0003$).
+  - **Open Speech Index**: Releases the VALIMELI-SPEECH index (5,325 phonotactically annotated native spoken Tamil audio recordings across 12,435 plosive slots) under CC BY-SA 4.0.
 - **Technical Pipeline Trace**: [`docs/valimeli_pipeline_trace.md`](docs/valimeli_pipeline_trace.md)
   - Deep-dive into akshara segmentation, PUA tagging, memory streaming mechanics, and Bahdanau attention equations.
 
 ---
 
 ## ⚖️ License
-MIT License. Open for academic research and foundational model tokeniser integrations.
+MIT License. Open for academic research and foundational model tokeniser integrations. Spoken audio recordings curated from Wikimedia Commons / Lingua Libre under CC BY-SA 4.0.

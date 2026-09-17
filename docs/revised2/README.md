@@ -5,8 +5,8 @@ emitted programmatically from a named `artifacts/*.json` file; none was typed by
 
 ## Contents
 - `main.tex` — full manuscript with Paper-Centric Active Voice (Option B)
-- `table_entropy.tex`   Table 1, from `artifacts/voicing_entropy_results.json` (text) and `artifacts/acoustic_voicing_entropy_results.json` (speech)
-- `table_context.tex`   Table 2, same sources, per-context breakdown
+- `table_entropy.tex`   Table 1, from `artifacts/entropy_recomputed.json` / `artifacts/table1_corrected.csv` (text) and `artifacts/acoustic_voicing_entropy_results.json` (speech)
+- `table_context.tex`   Table 2, same sources, per-context breakdown with bootstrap 95% CI on MI and Malayalam post-nasal boundary disclosure
 - `table_scale.tex`     Table 3, from `multiseed_rigorous_results.json` (25k) and scaling `*_results.json` files
 - `table_disagree.tex`  Table 4, computed with `src/compute_dakshina_disagreement.py`; output saved as
                         `valimeli_disagreement_slots.json` (slots) and `valimeli_disagreement_pairs.json` (pairs)
