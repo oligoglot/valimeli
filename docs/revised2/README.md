@@ -16,7 +16,7 @@ emitted programmatically from a named `artifacts/*.json` file; none was typed by
 - `fig_effects_corrected.png` Figure 1 (forest plot of all 10 matched comparisons with multi-seed error bars)
 - `acoustic_voicing_spectrograms.png` Figure 2 (spectrograms rendered with Arial Unicode MS)
 
-## Deliberate departures from `docs/paper_skeleton.md`
+## Deliberate departures from earlier working drafts
 1. The scaling result is reported as two mechanism-specific comparisons rather than one pooled curve, because the 25k/1.0M arms (auxiliary loss) and the 250k/500k arms (string tags) are different interventions.
 2. Multi-seed 25k results (seeds 42, 43, 44) are reported as sample standard deviation ($s$, $N=3$) and show overlapping performance within seed variance ($\Delta = -0.14\%$ for Tamil, $+0.15\%$ for Malayalam), with paired McNemar tests showing non-significant differences ($p = 0.585$ and $p = 0.901$).
 3. Table 4 reports slot-level disagreement ($69.26\%$ Tamil post-nasal split slots) and pair-level disagreement ($44.50\%$), with Wild Tanglish post-nasal voicing ($64.00\%$) and overall wild rate ($24.67\%$).
