@@ -233,6 +233,14 @@ def augment_pan_indic_chat(roman: str, lang_tag: str, prob: float = 0.65) -> str
         elif 'a' in s and random.random() < 0.5:
             s = s.replace('a', 'o')
 
+    # 6. Indo-Aryan Dental Stop Chat Variation (Dental t <-> th, d <-> dh)
+    # Teaches the neural encoder that plain Latin 't-' in native words maps to dental त
+    if lang_tag in {"__hi__", "__gu__", "__mr__", "__bn__"}:
+        if s.startswith("t") and not s.startswith("th") and random.random() < 0.35:
+            s = "th" + s[1:]
+        elif s.startswith("th") and random.random() < 0.5:
+            s = "t" + s[2:]
+
     return s
 
 # =====================================================================
