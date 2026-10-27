@@ -40,6 +40,8 @@ mal_color = '#d95f02'  # Rust orange
 # 25k deltas: Tam runs = [-0.20, +0.17, -0.39] -> mean -0.14, min -0.39, max +0.17 -> err = [0.25, 0.31]
 # Mal runs = [+0.04, +0.49, -0.09] -> mean +0.15, min -0.09, max +0.49 -> err = [0.24, 0.34]
 
+ALPHA_BONF = 0.005  # m = 10 matched comparisons
+
 comparisons = [
     {
         "y": 7.8,
@@ -51,29 +53,29 @@ comparisons = [
     {
         "y": 6.2,
         "name": "1.0M (bilingual)",
-        "tam": {"delta": -2.33, "p": 0.0003, "err": None},
-        "mal": {"delta": -1.37, "p": 0.0295, "err": None},
+        "tam": {"delta": -2.33, "p": 1.6e-14, "err": None},
+        "mal": {"delta": -1.37, "p": 1.1e-5, "err": None},
         "offset": 0.18
     },
     {
         "y": 4.0,
         "name": "250k (BiGRU)",
-        "tam": {"delta": 1.53, "p": 0.0183, "err": None},
-        "mal": {"delta": 1.08, "p": 0.0893, "err": None},
+        "tam": {"delta": 1.53, "p": 3.0e-6, "err": None},
+        "mal": {"delta": 1.08, "p": 0.0011, "err": None},
         "offset": 0.18
     },
     {
         "y": 2.6,
         "name": "250k (Transformer)",
-        "tam": {"delta": 0.77, "p": 0.2371, "err": None},
-        "mal": {"delta": -0.10, "p": 0.8689, "err": None},
+        "tam": {"delta": 0.77, "p": 0.017, "err": None},
+        "mal": {"delta": -0.10, "p": 0.77, "err": None},
         "offset": 0.18
     },
     {
         "y": 1.2,
         "name": "500k (Transformer)",
-        "tam": {"delta": -0.22, "p": 0.7358, "err": None},
-        "mal": {"delta": -0.54, "p": 0.3928, "err": None},
+        "tam": {"delta": -0.22, "p": 0.49, "err": None},
+        "mal": {"delta": -0.54, "p": 0.087, "err": None},
         "offset": 0.18
     },
 ]
@@ -91,7 +93,7 @@ for item in comparisons:
     ax.plot([0, dt], [yt, yt], color=tam_color, alpha=0.5, lw=1.2, zorder=2)
     if err_t is not None:
         ax.errorbar(dt, yt, xerr=err_t, color=tam_color, fmt='none', capsize=0, lw=2.0, zorder=3)
-    if pt < 0.05:
+    if pt < ALPHA_BONF:
         ax.scatter(dt, yt, color=tam_color, s=70, zorder=4)
     else:
         ax.scatter(dt, yt, facecolor='white', edgecolor=tam_color, lw=2.0, s=70, zorder=4)
@@ -104,7 +106,7 @@ for item in comparisons:
     ax.plot([0, dm], [ym, ym], color=mal_color, alpha=0.5, lw=1.2, zorder=2)
     if err_m is not None:
         ax.errorbar(dm, ym, xerr=err_m, color=mal_color, fmt='none', capsize=0, lw=2.0, zorder=3)
-    if pm < 0.05:
+    if pm < ALPHA_BONF:
         ax.scatter(dm, ym, color=mal_color, s=70, zorder=4)
     else:
         ax.scatter(dm, ym, facecolor='white', edgecolor=mal_color, lw=2.0, s=70, zorder=4)
@@ -132,13 +134,13 @@ ax.set_ylim(0.4, 9.4)
 ax.set_xlabel("Change in exact-match accuracy from phonological supervision (points)", fontsize=10.5, labelpad=8)
 
 # Title & Directional prompt
-ax.set_title("One significant gain and two significant losses across ten matched comparisons", fontsize=11, loc='left', pad=10, fontweight='medium')
+ax.set_title("Four of ten comparisons survive Bonferroni correction", fontsize=11, loc='left', pad=10, fontweight='medium')
 ax.text(2.28, 9.15, r"$\text{phonology helps} \rightarrow$", fontsize=8.5, color='#666666', ha='right')
 
 # Custom Legend in bottom left
 legend_y = 1.0
 ax.scatter(-2.9, 0.9, color='#444444', s=60, zorder=5)
-ax.text(-2.75, 0.9, r"$p < 0.05$", fontsize=8.5, va='center', color='#333333')
+ax.text(-2.75, 0.9, r"Bonferroni-significant ($\alpha = 0.005$)", fontsize=8.5, va='center', color='#333333')
 ax.scatter(-2.9, 0.55, facecolor='white', edgecolor='#444444', lw=1.8, s=60, zorder=5)
 ax.text(-2.75, 0.55, "not significant", fontsize=8.5, va='center', color='#333333')
 
@@ -150,13 +152,19 @@ ax.spines['bottom'].set_color('#333333')
 
 plt.tight_layout()
 
-# Save figure to docs/revised2 and artifacts
-out_docs = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "docs", "revised2", "fig_effects_corrected.png")
-out_scaling = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "docs", "revised2", "fig_scaling_corrected.png")
-out_artifacts = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "artifacts", "fig_effects_corrected.png")
+# Save figure to all destinations
+base_valimeli = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+out_paths = [
+    os.path.join(base_valimeli, "docs", "revised2", "fig_effects_corrected.png"),
+    os.path.join(base_valimeli, "docs", "revised2", "fig_scaling_corrected.png"),
+    os.path.join(base_valimeli, "artifacts", "fig_effects_corrected.png"),
+    "/Users/slakshmanan/Playspace/Gemini/aayvu-private/paper_a_internals/submissions/tacl/fig_effects_corrected.png",
+    "/Users/slakshmanan/Playspace/Gemini/aayvu-private/paper_a_internals/submissions/shared/fig_effects_corrected.png",
+    "/Users/slakshmanan/Playspace/Gemini/aayvu-private/paper_a_internals/submissions/arr/fig_effects_corrected.png"
+]
 
-plt.savefig(out_docs, bbox_inches='tight')
-plt.savefig(out_scaling, bbox_inches='tight')
-plt.savefig(out_artifacts, bbox_inches='tight')
-print(f"Saved: {out_docs}")
-print(f"Saved: {out_scaling}")
+for p in out_paths:
+    os.makedirs(os.path.dirname(p), exist_ok=True)
+    plt.savefig(p, bbox_inches='tight')
+    print(f"Saved: {p}")
+
